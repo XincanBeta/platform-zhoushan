@@ -56,9 +56,16 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     var path = '../apps/overrun/partials/';
     $scope.add = function () {
       var modalInstance
-      var item = {xccfid: ""};
+      var item = {
+        xccfCl: {},
+        xccfDsr: {},
+        xccfJsy: {}
+      };
       requestService.getNewId().success(function (res) {
-        console.log('res', res);
+        if (!res.success) {
+          throw 'new id get failure !'
+        }
+        item.xccfid = res.data;
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,
@@ -66,7 +73,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
           templateUrl: path + 'item-edit.html',
           controller: 'OverrunEditCtrl',
           resolve: {
-            item: item
+            item: function () {
+              return item;
+            }
           }
         })
 
@@ -82,10 +91,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
           sliderService.startAutoHide();
         });
       })
-
-
     }
-
 
     /*
      删除功能部分

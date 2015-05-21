@@ -27,6 +27,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      $ 初始化（一）
      --------------------------*/
     $scope.item = item;
+    //console.log($scope.item);
     var dateFormat = 'YYYY-MM-DD HH:mm';
     if (isNew()) {
       // 获取一个 id
@@ -148,8 +149,8 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $ 车辆信息关联
     --------------------------*/
     // 单向关联车牌
-    $scope.$watch('xccfCl.cp', function () {
-      $scope.xccfCl.ct = $scope.xccfCl.cp;
+    $scope.$watch('item.xccfCl.cp', function () {
+      $scope.item.xccfCl.ct = $scope.item.xccfCl.cp;
     })
 
 
@@ -236,14 +237,14 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     });
 
 
-    $scope.uploadPhoto = function(){
+    /*$scope.uploadPhoto = function(){
 
-    }
+    }*/
     $scope.upload = function (files, datatype) {
       // 等待 promise
-      if(idPromise){
+      //if(idPromise){
 
-      }
+      //}
 
 
       if (files && files.length) {
@@ -393,13 +394,9 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
 
     /*--------------------------
      $ 初始化（二）
+     新案件 item 初始化在 todoCtrl 中
      --------------------------*/
     if (isNew()) {
-      $scope.item = {
-        xccfCl: {},
-        xccfDsr: {},
-        xccfJsy: {}
-      };
       // 时间控件：初始化
       var date = moment().format(dateFormat);// 未用 angular-moment
       $scope.item.cjsj = date
