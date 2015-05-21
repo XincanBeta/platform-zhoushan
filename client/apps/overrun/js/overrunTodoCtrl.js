@@ -55,28 +55,35 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     // 新增(包含info 和 证件信息)
     var path = '../apps/overrun/partials/';
     $scope.add = function () {
-      var modalInstance = $modal.open({
-        backdrop: "static",
-        keyboard: false,
-        size: "lg",
-        templateUrl: path + 'item-edit.html',
-        controller: 'OverrunEditCtrl',
-        resolve: {
-          item: null
-        }
+      var modalInstance
+      var item = {xccfid: ""};
+      requestService.getNewId().success(function (res) {
+        console.log('res', res);
+        modalInstance = $modal.open({
+          backdrop: "static",
+          keyboard: false,
+          size: "lg",
+          templateUrl: path + 'item-edit.html',
+          controller: 'OverrunEditCtrl',
+          resolve: {
+            item: item
+          }
+        })
+
+        modalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
+
+        modalInstance.result.then(function () {
+          sliderService.startAutoHide();
+          // 刷新
+          $scope.pagingAct();
+        }, function () {
+          sliderService.startAutoHide();
+        });
       })
 
-      modalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
-      })
 
-      modalInstance.result.then(function () {
-        sliderService.startAutoHide();
-        // 刷新
-        $scope.pagingAct();
-      }, function () {
-        sliderService.startAutoHide();
-      });
     }
 
 

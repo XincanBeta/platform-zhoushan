@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, $http) {
+            Upload, $q) {
 
     /*
      功能目录：
@@ -30,7 +30,8 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     var dateFormat = 'YYYY-MM-DD HH:mm';
     if (isNew()) {
       // 获取一个 id
-
+      //var idPromise = requestService.getNewId()
+      // 返回一个 promise
     }
     
     
@@ -234,7 +235,17 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.upload($scope.billFiles, 'bill');
     });
 
+
+    $scope.uploadPhoto = function(){
+
+    }
     $scope.upload = function (files, datatype) {
+      // 等待 promise
+      if(idPromise){
+
+      }
+
+
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
           var file = files[i];

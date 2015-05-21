@@ -29,6 +29,16 @@ angular.module("request", []).service('requestService', function ($http) {
     }
     return _path;
   }
+  /*--------------------------
+   $ 通用
+   --------------------------*/
+  this.getNewId = function () {
+    if (env == 'local') {
+      //return _doGetRequest(localPath + 'home.sidebar.json');
+    } else {
+      return _doPostRequest('/api/commons/generatorDataid.do');
+    }
+  }
 
   this.homeSidebarItems = function () {
     // 目前没有 remote 版本，所以固定用 localPath，而且是 get 请求
@@ -44,13 +54,6 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'overrun.menu.json');
   }
   /*现场超限待处理接口*/
-  this.overrunNewId = function () {
-    if (env == 'local') {
-      //return _doGetRequest(localPath + 'home.sidebar.json');
-      //} else {
-      //  return _doPostRequest('/api/xccfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
-    }
-  }
   this.overrunTodoItems = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.todo.item.json');
