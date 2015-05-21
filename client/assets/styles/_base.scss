@@ -1,0 +1,17 @@
+/* 
+  只处理元素级别的样式，允许包含伪类、伪元素
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/*
+  normalize ......... 浏览器级别重置
+  custom ............ 系统级别重置
+  angular-ui-router.. 设置 ui-router 的自定义元素
+*/
+
+@import "base/normalize";
+@import "base/custom";
+@import "base/ui-router-reset";
+@import "base/checkbox";

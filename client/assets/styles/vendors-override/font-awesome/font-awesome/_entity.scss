@@ -1,0 +1,21 @@
+/* 
+  fa 会生成一个伪类，所以一般不要在伪类上再用 fa
+
+  调用方式：
+  extend %fa-plus
+  至少会简单地出现图标
+
+  注：font-awesome 中还有其他 mixin 未用到或许其中可以再抽取一些共性
+*/
+
+%fa-plus{
+  @include fa-icon('plus')
+}
+
+.fa-calculator{
+  @include fa-icon('calculator')
+}
+
+
+
+

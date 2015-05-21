@@ -1,0 +1,29 @@
+/*--------------------------
+  $ 目录
+--------------------------*/
+/**
+  目录...............你当前正在阅读
+  base class ........ 基类对象
+  platform.......... 平台
+  app............... 应用
+
+  基于 oosass 方法论
+  对象类可细分为结构类、样式类
+  额外规定：layout（布局类）用 小写 l 开头，便于可读性
+
+ */
+
+/*--------------------------
+  $ 对象
+--------------------------*/
+%header, %sidebar, %content{
+  // 给子元素参照的，应该作为布局类的默认项
+  position: relative;
+}
+
+@import "layout/platform";
+@import "layout/app";
+@import "layout/plate";
+@import "layout/entity-panel";
+
+

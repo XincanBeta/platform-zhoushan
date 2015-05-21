@@ -1,0 +1,67 @@
+// Mixins
+// --------------------------
+
+/**
+ * styles 为原文件 core/.fa
+ */
+@mixin fa-icon(
+  $icon: false,
+  $position: "before",
+  $style: true,
+  $border: false,
+  $pull-left: false,
+  $pull-right: false,
+  $lg: false) {
+  &:#{$position} {
+    @if $icon {
+      content: match($icons, $icon);
+    }
+    @if $style {
+      @extend %fa-style;
+    }
+    @if $border {
+      @extend %fa-border;
+    }
+    @if $pull-left {
+      @extend %fa-pull-left;
+    }
+    @if $pull-right {
+      @extend %fa-pull-left;
+    }
+    @if $lg {
+      @extend %fa-lg;
+    }
+
+    @content;
+  }
+}
+
+/**
+ * 加载所有图标
+ */
+@mixin load-fa-icons($All-icons: false) {
+  @if $All-icons {
+    @each $icon in $icons {
+      $name: nth($icon, 1);
+      .#{$fa-css-prefix}#{$name} {
+        @include fa-icon("before", false, $name);
+      }
+    }
+  }
+}
+
+@mixin fa-icon-rotate($degrees, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: rotate($degrees);
+  -ms-transform: rotate($degrees);
+  transform: rotate($degrees);
+}
+
+@mixin fa-icon-flip($horiz, $vert, $rotation) {
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=#{$rotation});
+  -webkit-transform: scale($horiz, $vert);
+  -ms-transform: scale($horiz, $vert);
+  transform: scale($horiz, $vert);
+}
+
+

@@ -1,0 +1,15 @@
+.sass-cache
+.idea
+.tmp
+*.iml
+*.css.map
+*.css
+deploy
+dist
+build
+node_modules
+tmp
+bower_components
+client/assets/lib/**/*
+
+

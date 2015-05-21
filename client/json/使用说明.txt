@@ -1,0 +1,15 @@
+xxx.menu.json
+1）menuname：菜单名称
+2）templateurl：模板文件名称（省略路径，让前端灵活控制）
+3）无须 menucode
+
+------------------------
+
+列表数据 json
+1）要包含数据编号（menucode），作为后台查询主键使用
+
+
+
+
+
+

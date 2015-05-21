@@ -1,0 +1,7 @@
+第一版构建用 grunt 技术
+
+grunt-contrib-sass 比较稳定，支持语法多。 node 学好再玩 node-sass
+
+单页面入口，除了首页部分，其他动态加载的 bower 要跟着 入口的
+grunt 配置更改后，可能要重启服务器
+

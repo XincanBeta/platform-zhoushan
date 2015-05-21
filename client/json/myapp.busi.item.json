@@ -1,0 +1,39 @@
+[
+  {
+    "name": "现场超限处罚应用",
+    "description": "",
+    "routestate": "myapp.overrun",
+    "imgsrc": "huo-che.png"
+  },
+  {
+    "name": "视频监控",
+    "description": "",
+    "routestate": "myapp",
+    "imgsrc": "shipin.png"
+  },
+  {
+    "name": "移动巡检",
+    "description": "",
+    "routestate": "myapp",
+    "imgsrc": "yidong-xunjian.png"
+  },
+  
+  {
+    "name": "电子台账",
+    "description": "",
+    "routestate": "myapp",
+    "imgsrc": "dianzi-taizhang.png"
+  },
+  {
+    "name": "公路标志牌管理",
+    "description": "",
+    "routestate": "myapp",
+    "imgsrc": "biaozhi-pai.png"
+  },
+  {
+    "name": "公路赔补偿管理",
+    "description": "",
+    "routestate": "myapp",
+    "imgsrc": "pei-bu-chang.png"
+  }
+]

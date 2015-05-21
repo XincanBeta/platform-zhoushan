@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head lang="cn">
+  <meta charset="UTF-8">
+  <title>舟山公路基础业务平台</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <link rel="stylesheet" href="../assets/styles/main.css"/>
+</head>
+<body ng-controller="AppCtrl">
+<header class="l-platform-header">
+  <toast></toast> <!-- 共用 -->
+  <img class="platform-logo" src="../assets/img/website/logo-50.png">
+  <h1 class="platform-title">舟山公路基础业务平台</h1>
+  <ul class="platform-dock">
+    <li>
+      <a href="javascript:void(0)" title="快捷方式" ng-click="toggleAppsSwitcher()">快捷方式</a>
+      <div class="app-switcher slide-down " ng-show="isShowAppSwitcher" ng-style="setAppSwitcherBlock()">
+        <div class="app-shortcut">
+          <img class="app-shortcut--icon" src="../assets/img/shortcut/desktop.png" alt=""/>
+          <div class="app-shortcut--name">我的桌面</div>
+        </div>
+        <div class="app-shortcut">
+          <img class="app-shortcut--icon" src="../assets/img/shortcut/myapp.png" alt=""/>
+          <div class="app-shortcut--name">我的应用</div>
+        </div>
+        <div class="app-shortcut">
+          <img class="app-shortcut--icon" src="../assets/img/shortcut/overrun.png" alt=""/>
+          <div class="app-shortcut--name">现场超限处罚</div>
+        </div>
+      </div>
+    </li>
+    <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
+    <!--ng-click="toggleShowAccountItem()"-->
+    <li><a href="javascript:void(0);" class="user-identity">
+      <img src="../assets/img/avatar/icon-40.png" alt="用户头像">
+      <span>张雷</span><i class="fa fa-caret-down"></i>
+    </a>
+    </li>
+    <li><a href="javascript:void(0);" class="narrow"
+           ng-click="exit()" ><i class="iconfont icon-exit-door icon-size20" alt=""></i></a></li>
+  </ul>
+</header>
+<aside id="platform-sidebar" class="l-platform-sidebar">
+  <ul class="platform-navbar">
+    <li ng-repeat="item in items">
+      <a ng-class=isSelected(item) href="javascript:void(0);" ng-click="select(item)">
+        <i class="icon" ng-class="item.iconclass"></i>
+        <span class="text" ng-bind="item.name"></span>
+      </a>
+    </li>
+  </ul>
+</aside>
+<!--
+ui-view 路由替换
+ui-view-container 动画效果
+-->
+<ui-view-container id="platform-body" class="l-platform-body">
+  <ui-view></ui-view>
+</ui-view-container>
+
+<!--
+  angular-loading-bar 通过 ocLazyLoad 注入无效
+  注：首发 js 模块附带的样式会并入 _vendor.scss
+->
+<!-- 这两部分还必须得分开写 -->
+<!-- build:js js/vendors.js -->
+<script src="../assets/lib/jquery/dist/jquery.min.js"></script>
+<script src="../assets/lib/angular/angular.min.js"></script>
+<script src="../assets/lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="../assets/lib/angular-animate/angular-animate.min.js"></script>
+<script src="../assets/lib/ocLazyLoad/dist/ocLazyLoad.min.js"></script>
+<script src="../assets/lib/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="../assets/lib/ngtoast/dist/ngToast.min.js"></script>
+<script src="../assets/lib/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src=""></script>
+<!-- endbuild -->
+
+<!--入口-->
+<!-- build:js js/scripts.js -->
+<script src="../assets/components/request.js"></script>
+<script src="js/config.js"></script>
+<script src="js/router.js"></script>
+<script src="js/appCtrl.js"></script>
+
+<!-- endbuild -->
+</body>
+</html>

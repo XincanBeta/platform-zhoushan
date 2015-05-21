@@ -1,0 +1,86 @@
+/*
+  slider 与 entity-panel 的关系：
+    1）slider 是滑动效果，本身不依赖其他样式文件
+    2）slider 是效果，entity-panel 内容，两者松耦合
+    3）没有 entity-panel ，那么 slider 无效
+
+  优先视作模块处理
+  功能上与 modals 类似，模仿 panel 写法
+
+  总结：
+  1）子代选择器，父子关系明确，倾向于简短子类类名长度，缺点是同类名造成样式重叠，也要少用
+  2）保持模块的专一，而非简单，参考  entity-panel--footer 细化到对 .btn 的处理
+    因为 footer 就只容纳按钮
+
+  现在只是做布局上的事情
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/* 
+  l-entity-panel
+  l-entity-panel--header
+
+  l-entity-panel--body
+  l-entity-panel--footer
+*/
+
+/*--------------------------
+  $ entity-panel
+  页面上的位置
+  宽度由 slider 决定
+--------------------------*/
+.l-entity-panel {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  width: 0;
+  background-color: #fff;
+  box-shadow: -2px 0 4px rgba(0, 0, 0, 0.2);
+  z-index: z("entity-panel");
+}
+
+.l-entity-panel--header {
+  position: relative;
+  height: $app-header-height;
+  color: $app-color;
+  background-color: $app-background-color;
+  &.with-border{
+    //border: 0;
+    border-bottom: 1px solid $app-border-color;
+  }
+}
+
+
+.l-entity-panel--body {
+  //overflow-x: hidden;
+  //overflow-y: auto;
+  overflow: hidden; // 如果 body 中存在 navbar 就不能滚动
+  position: absolute;
+  top: $app-header-height;
+  left: 0;
+  right: 0;
+  bottom: $app-footer-height - 1px;
+}
+
+.l-entity-panel--footer {
+  position: absolute;
+  height: $app-footer-height;
+  width: 100%;
+  bottom: 0;
+  border-top: 1px solid $app-border-color;
+  color: $app-color;
+  background-color: $app-background-color;
+  // 内部元素
+  text-align: right;
+  padding-top: 10px;
+  padding-right: 20px;
+  > .btn + .btn{
+    margin-left: 10px;
+  }
+}
+
+
+

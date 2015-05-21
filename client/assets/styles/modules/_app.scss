@@ -1,0 +1,251 @@
+/*
+  为了复用：先抽取模块，若不是模块的再考虑其为 pages 类（ 针对具体应用 ）
+  此文件包含 app- 前缀的模块
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/* 
+  app-direction
+  app-menu
+  app-toolbar
+  app-search
+  app-table
+  app-pagination
+  app-switcher
+*/
+
+/*--------------------------
+  $ app-direction
+  app-sidebar 中的指示信息，包括应用名称，要支持扩展
+--------------------------*/
+.app-direction {
+  position: relative;
+  padding: 15px 0 15px 15px;
+  height: $app-header-height;
+  &.in-sidebar {
+    border-bottom: 1px solid $app-border-color;
+  }
+}
+
+.app-direction--back {
+  @extend .iconfont;
+  @extend .icon-fanhui;
+  display: block;
+  margin-right: 5px;
+  margin-top: -2px;
+  float: left;
+  color: $direction-color;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all .3s ease-in-out;
+  &:hover {
+    font-weight: bold;
+  }
+}
+
+// place 要适应没有 back 的情况
+.app-direction--place {
+  height: 20px;
+  line-height: 20px;
+  font-size: $relative-font-size * 1.3;
+  //@include vertical-align;
+  font-weight: bold;
+  float: left;
+  &.no-back {
+    font-size: $relative-font-size * 1.4;
+  }
+}
+
+/*--------------------------
+  $ app-menu
+  app-sidebar 中的菜单
+  不设宽高，让其自适应
+--------------------------*/
+/* ul */
+.app-menu {
+  > li {
+    position: relative;
+    > a {
+      display: block;
+      padding: 10px 15px;
+      border-bottom: 1px solid #e4e4e4;
+      color: #666;
+      font-size: $relative-font-size * 1.4;
+      transition: background-color .2s ease-in-out;
+      &:hover, &.is-select {
+        color: #1b252e;
+        background-color: #eee;
+      }
+    }
+  }
+}
+
+/*--------------------------
+  $ app-toolbar
+--------------------------*/
+.app-toolbar {
+  height: 30px;
+  width: 100%;
+  padding: 0 15px;
+  // 允许子元素用外边距调整位置
+  @include vertical-align;
+
+  // 以 fa 前缀命名是便于跟踪来源（font-awesome）
+  & .fa-plus {
+    @include fa-icon($icon: plus);
+    @include toolbar-btn-default;
+  }
+  & .fa-trash {
+    @include fa-icon($icon: trash);
+    @include toolbar-btn-default;
+  }
+  & .fa-download {
+    @include fa-icon($icon: download);
+    @include toolbar-btn-default;
+  }
+  & .fa-search {
+    @include fa-icon($icon: search);
+    @include toolbar-btn-default;
+  }
+}
+
+/*--------------------------
+  $ app-search
+  用 bootstrap ，但是不受其限制
+--------------------------*/
+
+.app-search {
+  width: 500px;
+  float: right;
+  @extend .input-group;
+  @extend .input-group-sm;
+  > input[type=text]:first-child {
+    float: right;
+    width: 180px;
+    transition: all .5s;
+  }
+  > input[type=text]:first-child:focus {
+    width: 400px;
+  }
+}
+
+/*--------------------------
+  $ app-table
+--------------------------*/
+/*
+  fixme：此处应该用 bootstrap table，然后对样式稍作调整
+  bootstrap table 的适用性很强
+*/
+.app-table {
+  font-size: $relative-font-size * 1.3;
+  width: 100%;
+  border-radius: 3px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .06); // todo : 是容器带阴影，还是要 table 本身也带阴影 ？
+  & th, & td {
+    padding: 6px 15px;
+    line-height: 1.42857143;
+  }
+  // theader
+  & > thead > tr > th,
+  & > tr > th {
+    border-bottom: 1px solid #ebebeb;
+    vertical-align: bottom;
+    text-align: left;
+  }
+  // tbody
+  & > tbody > tr {
+    &:hover {
+      background-color: #f5f5f5;
+    }
+    &.active {
+      background-color: #e8e8e8;
+    }
+    &.active:hover {
+      background-color: #e8e8e8;
+    }
+    & > td {
+      border-top: 1px solid #f1f1f1;
+      vertical-align: top;
+    }
+  }
+  &.entity-view {
+    cursor: pointer;
+  }
+}
+
+/*--------------------------
+  $ app-pagination
+--------------------------*/
+.app-pagination {
+  float: right;
+  & > .pagination {
+    margin: 10px 15px 10px 0;
+  }
+}
+
+.app-pagination-direction {
+  display: inline-block;
+  float: left;
+  margin: 15px 0 10px 15px;
+  font-size: $relative-font-size * 1.3;
+}
+
+/*--------------------------
+  $ app-switcher
+  platform-dock 上的快捷方式
+--------------------------*/
+.app-switcher {
+  position: absolute;
+  top: 55px;
+  left: -226px;
+  width: 445px;;
+  height: 150px;
+  padding: 15px 0 15px 20px;
+  border: 4px solid $platform-background-color;
+  border-top: none;
+  background-color: #fff;
+  display: none;
+  z-index: z("platform", "app-switcher");
+
+  &::after {
+    /* 对伪元素来说，content 是必须*/
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 261px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 8px;
+    border-color: transparent transparent #fff transparent;
+  }
+}
+
+
+
+.app-shortcut {
+  position: relative;
+  float: left;
+}
+
+.app-shortcut--icon {
+  background-color: #fff;
+  width: 120px;
+  float: left;
+  height: 92px;
+  margin-bottom: 15px;
+  margin-right: 15px;
+  border: 1px solid #eee;
+  border-radius: 6px;
+}
+
+.app-shortcut--name {
+  position: absolute;
+  bottom: -5px;
+  font-size: $relative-font-size * 1.2;
+  color: $app-color;
+  margin-left: 32px;
+}
+

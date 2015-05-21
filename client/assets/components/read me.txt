@@ -1,0 +1,6 @@
+之所以称为 components 组件，因为 slider 包含了 css
+
+
+
+
+

@@ -1,0 +1,17 @@
+/*------------------------*\
+  $垂直居中
+\*------------------------*/
+
+/**
+ * 实现：让子元素在在父元素内垂直居中
+ * 前提条件：子元素有固定的高，或者设置非0参数值
+ * 对象：同时适用于块级元素和行内元素
+ * 灵感来自：zhangxinxu
+ * 触类旁通：对块级元素水平居中也可以用此思路
+ */
+@mixin vertical-align($top: 0, $bottom: $top) {
+  position: absolute;  top: $top;  bottom: $bottom;
+  // 上下 auto 是关键（方向值默认也是 auto）
+  margin-top: auto;
+  margin-bottom: auto;
+}

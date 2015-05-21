@@ -1,0 +1,25 @@
+<!--
+  - 侧边栏主要显示菜单，是不变的
+-->
+<aside class="l-app-sidebar">
+  <div class="app-direction in-sidebar">
+    <!--应该是一个通用的指令-->
+    <i class="app-direction--back" ng-click="backToMyapp()" title="返回"></i>
+    <p class="app-direction--place">统计分析</p>
+  </div>
+  <ul class="app-menu">
+    <li>
+      <a class="is-select" href="javascript:void(0);" >
+        路网检测和应急指挥
+      </a>
+    </li>
+  </ul>
+</aside>
+<!--
+  - 主区域是对应菜单内容变化的
+-->
+<aside class="l-app-main">
+  <iframe src="http://120.26.91.44/zsjt/tjcx/main" frameborder="0"
+          style="height: 100%; width: 100%;
+  overflow: hidden;"></iframe>
+</aside>

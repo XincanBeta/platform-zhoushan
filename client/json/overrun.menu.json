@@ -1,0 +1,18 @@
+[
+  {
+    "menuname": "待处理案件",
+    "routestate": "myapp.overrun.todo"
+  },
+  {
+    "menuname": "已完结案件",
+    "routestate": "myapp.overrun.done"
+  },
+  {
+    "menuname": "数据报送",
+    "routestate": "myapp.overrun.report"
+  },
+  {
+    "menuname": "信用档案",
+    "routestate": "myapp.overrun.blacklist"
+  }
+]

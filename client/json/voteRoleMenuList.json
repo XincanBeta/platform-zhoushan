@@ -1,0 +1,24 @@
+[
+  {
+    "id": "new",
+    "text": "发起投票",
+    "children": [
+      {
+        "id": "type1",
+        "text": "投票类型1"
+      },
+      {
+        "id": "type2",
+        "text": "投票类型2"
+      }
+    ]
+  },
+  {
+    "id": "invole",
+    "text": "参与投票"
+  },
+  {
+    "id": "manage",
+    "text": "投票管理"
+  }
+]

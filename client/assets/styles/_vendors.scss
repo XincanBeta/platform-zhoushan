@@ -1,0 +1,43 @@
+/*
+  引入规范：
+
+  1 当发现冲突时，就在 vendors-override 封装自定义引入
+  2 库往往非常大，请在 vendors-override 封装引入实际用到的功能
+
+  注：对第三方工具库的看法是，要有选择地借助他们的力量
+*/
+
+
+// Mixin 库
+@import "../lib/bourbon/app/assets/stylesheets/bourbon";
+
+// bootstrap
+@import "vendors-override/bootstrap/bootstrap";
+
+/*
+  animate 和 ng-animation 都没用 bower 管理
+  两者都用 sass 版本
+  区别：
+    ng-animation 本身实现了 animation 并且是对 ng 的封装
+  调用方式的区别：
+  1、要自己写 ng-enter
+  [ui-view-container] > ui-view.ng-enter,{
+    @include fadeInUp($duration: 0.3s);
+  }
+  2、直接使用 ng-animation 的类即可，省去了 ng-enter 等编写
+  fixme：注意两者的类名可能会重复
+*/
+@import "vendors-override/animate/animate";
+// ng-animation 是对 animate 的 angular 封装，
+@import "vendors-override/ng-animation/ng-animation";
+
+
+// font-awesome
+@import "vendors-override/font-awesome/font-awesome";
+
+@import "vendors-override/datetime-picker/datetime-picker";
+
+// 覆盖 angular-loading-bar 插件的样式
+@import "vendors-override/angular-loading-bar/angular-loading-bar";
+
+@import "vendors-override/angular-validation/angular-validation";

@@ -1,0 +1,30 @@
+布局的本质是勾勒边界、轮廓，不涉及任何业务，是非常通用的，关键字有：header、sidebar、footer、content、main
+
+布局与模块的区别？
+通用的 table、form 算是模块？
+
+
+布局类一般只定义
+1）边界大小（必须）
+2）背景色
+3）前景色
+
+
+布局结构是多样化的，比如
+
+1、
+sidebar
+main
+|—— header
+|—— content
+|—— footer
+
+
+2、
+header
+content
+
+
+
+
+

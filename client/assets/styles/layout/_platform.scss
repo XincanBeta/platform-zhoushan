@@ -1,0 +1,36 @@
+/*------------------------*\
+  $ platform
+\*------------------------*/
+
+.l-platform-header {
+  @extend %header;
+  height: $platform-header-height;
+  background-color: $platform-background-color;  // ==> 46 62 78
+  color: #9db1c5;
+}
+
+
+/*--------------------------
+  $ l-platform-sidebar
+  考虑 platform-sidebar 能收缩
+    方案1 ：那么 platform-sidebar 和 platform-body 的关系是百分比
+    方案2 ：同时改变这两者的状态
+--------------------------*/
+.l-platform-sidebar {
+  @extend %sidebar;
+  @include position(absolute, $platform-header-height 0 0 0);
+  // width 让绝对定位的方向值 right 无效
+  width: $platform-sidebar-width;
+  background-color: #233445;
+}
+
+.l-platform-body {
+  // 相对于 body
+  @include position(absolute, $platform-header-height 0 0 $platform-sidebar-width);
+  background-color: #F7F7F7;
+  // 延迟等待路由跳转后再收缩
+  transition: all .3s ease-in-out ;
+  &.is-expand{
+    left: 0;
+  }
+}

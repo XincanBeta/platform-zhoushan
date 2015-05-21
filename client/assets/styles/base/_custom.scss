@@ -1,0 +1,61 @@
+/*--------------------------
+  $ custom
+--------------------------*/
+
+*{
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Microsoft YaHei', 'Helvetica', 'Arial', sans-serif;;
+  height: 100%;
+  font-size: 10px;
+}
+
+// body 中设置字体大小和字体颜色用于继承
+body {
+  font-size: $relative-font-size * 1.2;
+  color: $app-color;
+  height: 100%;
+  line-height: 1.5;
+  margin: 0;
+  overflow: hidden;
+}
+
+a {
+  color: $app-color;
+  text-decoration: none;
+}
+
+ol, ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+table:focus{
+  outline: none;
+}
+
+button {
+  border-width: 1px;
+}
+
+input, button,
+input:focus,
+button:focus {
+  outline: none;
+}
+
+p{
+  margin: 0;
+}
+
+label{
+  font-weight: normal;
+}

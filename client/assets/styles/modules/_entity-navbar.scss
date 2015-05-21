@@ -1,0 +1,32 @@
+/*
+  entity 系列
+
+  entity 泛指具体某个对象
+
+*/
+
+
+/*ul*/
+.entity-navbar {
+  @include position(absolute, 1px 5px null 5px);
+  height: $entity-navbar-height;
+  border-radius: 8px;
+  //opacity: 0.5;
+  // 颜色参考 bootstrap
+  background-color: #f8f8f8;
+  border: 1px solid #e7e7e7;
+  > li > a {
+    float: left;
+    padding: 0 14px 0 16px;
+    color: $app-color;
+    font-size: 11px;
+    line-height: 30px;
+    &:hover {
+      color: $direction-color;
+      text-decoration: underline;
+    }
+  }
+
+}
+
+

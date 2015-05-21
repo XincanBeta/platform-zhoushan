@@ -1,0 +1,24 @@
+[
+  {
+    "name": "我的桌面",
+    "iconClass": "icon-desktop-1",
+    "templateUrl": "app/desktop/desktop.tplt.html",
+    "state": "desktop"
+  },
+  {
+    "name": "我的应用",
+    "iconClass": "icon-app-1",
+    "templateUrl": "app/myapp/myapp.tplt.html",
+    "state": "myapp"
+  },
+  {
+    "name": "通讯录",
+    "iconClass": "icon-tongxunlu",
+    "state": "myapp"
+  },
+  {
+    "name": "系统管理",
+    "iconClass": "icon-permission-1",
+    "state": "myapp"
+  }
+]

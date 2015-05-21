@@ -1,0 +1,8 @@
+层次结构
+body
+    platform
+        app
+
+
+
+

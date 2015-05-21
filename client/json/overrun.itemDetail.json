@@ -1,0 +1,75 @@
+{
+  "xccfid":"1",
+  "cjdh":"000001",
+  "cjsj": "2015-3-12 15:12:13",
+  "cxlx": "超重",
+  "kfxz": "可卸载",
+  "cp": "测L00001",
+  "hyqd": "山西",
+  "hymd": "北京",
+  "hwmc": "煤",
+  "cjzz": "35吨",
+  "cjcz": "5吨",
+  "fjdh": "000001",
+  "fjsj": "2015-3-12 15:12:13",
+  "fjzz": "25吨",
+  "fjcz": "0吨",
+  "fkje": "2000",
+  "zfxwr": "xxxx",
+  "zfxwrzj": "xxxxxxxxxxxx",
+  "zfjlr": "xxxx",
+  "zfjlrzj": "xxxxxxxxxxxx",
+
+  "afsj": "2015-3-15 12:44",
+  "afdd": "xxxx",
+  "xcblsj": "2015-3-15 12:44",
+  "xcbldd": "xxxxxxxxxxxx",
+
+  "xwblsj": "2015-3-15 12:44",
+  "xwbldd": "xxxxxxxxxxxx",
+
+  "addtime": "xxxxxxxxxxxx",
+  "edittime": "xxxxxxxxxxxx",
+  "addman": "xxxxxxxxxxxx",
+  "editman": "xxxxxxxxxxxx",
+
+  "xccfCl":{
+    "cp": "测L00001",
+    "zs": "3",
+    "ct": "测L00001",
+    "gc": "测L00001",
+    "hdzzl": "10吨",
+    "zbzl": "5吨",
+    "cjd": "浙江省舟山市",
+    "cllx": "重型平板挂车",
+    "syr": "阿三",
+    "syrzz": "浙江省舟山市新城行政中心3号楼",
+    "xccfid": "1"
+  },
+
+  "xccfDsr": {
+    "dsrid": "1",
+    "dsrlx": "驾驶员",
+    "dsr": "舟山恒大",
+    "fr": "啊四",
+    "yyz": "xxxxxx",
+    "lxdh": "058010086",
+    "zz": "山东",
+    "xccfid": "1"
+  },
+
+  "xccfJsy": {
+    "jsyid": "1",
+    "xm": "阿三",
+    "xb": "男",
+    "jszh": "330903198007070333",
+    "cyzgz": "330903198007070333",
+    "lxdh": "058010086",
+    "zz": "山东"
+
+  }
+
+
+
+}
+

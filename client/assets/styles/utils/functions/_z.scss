@@ -1,0 +1,71 @@
+/**
+ * 管理 z-index
+
+  定义变量
+  $z-layers: (
+      "goku": 9001,
+      "shoryuken": 8000,
+      "modal": (
+          "base": 500,
+          "close": 100,
+          "header": 50,
+          "footer": 10),
+      "default": 1,
+      "below": -1,
+      "bottomless-pit": -9000
+  );
+
+  使用方式
+  注：函数是直接调用的
+
+  .modal {
+    position: absolute;
+    z-index: z("modal", "base");
+    .close-button {
+      z-index: z("modal", "close");
+    }
+    header {
+      z-index: z("modal", "header");
+    }
+    footer {
+      z-index: z("modal", "footer");
+    }
+  }
+
+  .goku {
+    z-index: z("goku");
+  }
+
+  //  z-index: z("app", "header");
+
+
+ */
+
+@function map-has-nested-keys($map, $keys...) {
+  @each $key in $keys {
+    @if not map-has-key($map, $key) {
+      @return false;
+    }
+    $map: map-get($map, $key);
+  }
+  @return true;
+}
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+    $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+/**
+ * 调用方法
+ */
+@function z($layers...) {
+  @if not map-has-nested-keys($z-layers, $layers...) {
+    @warn "No layer found for `#{inspect($layers...)}` in $z-layers map. Property omitted.";
+  }
+  @return map-deep-get($z-layers, $layers...);
+}
+
+

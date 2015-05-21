@@ -1,0 +1,36 @@
+/*
+ tab 基于 ui-bootstrap
+ 此处只是修饰
+*/
+
+.tabset-entity-location {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: $relative-font-size * 1.3;
+  & .nav{
+    // 15px 是规范
+    padding-left: 15px;
+  }
+}
+
+.tabset-entity-heading {
+  color: $direction-color;
+  font-weight: 600;
+  &.active {
+    color: $app-color;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,34 @@
+
+/*------------------------*\
+  $ Modal
+
+  这里是对 bootstrap-modal 的扩展
+\*------------------------*/
+
+
+.modal-footer .btn + .btn {
+  margin-left: 15px;
+}
+.modal-title {
+  font-size: 18px;
+}
+
+.modal-body{
+  height: 460px;
+  overflow-y: auto;
+}
+
+
+.modal-fullscreen.modal-dialog {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+
+.modal-fullscreen .modal-content {
+  height: 100%;
+  border-radius: 0;
+  overflow: hidden;
+}

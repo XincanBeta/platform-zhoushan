@@ -1,0 +1,23 @@
+/*
+  栅格系统用于分栏
+
+  暂时仍然用 bootstrap grid （先从这简单开始的）
+
+*/
+
+$susy: (
+    columns:16,
+    global-box-sizing: border-box,
+  /*debug:(
+      image: show,
+  )*/
+);
+
+// 全局的盒模型改为 border-box
+@include border-box-sizing;
+
+
+
+/*--------------------------
+  $
+--------------------------*/

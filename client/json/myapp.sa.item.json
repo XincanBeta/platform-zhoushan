@@ -1,0 +1,15 @@
+[
+  {
+    "name": "路网监测和应急指挥",
+    "description": "",
+    "routestate": "myapp.monitor",
+    "imgsrc": "yingji-zhihui.png"
+  },
+  {
+    "name": "统计分析",
+    "description": "",
+    "routestate": "myapp.sas",
+    "imgsrc": "tongji-fenxi.png"
+  }
+
+]

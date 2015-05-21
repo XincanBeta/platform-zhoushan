@@ -1,0 +1,141 @@
+/*
+  此文件包含所有以 platform 前缀命名的模块（好处是便于跟踪和管理）
+
+
+  样式设计规范：（从顶向下角度）
+  模块结构：看到类名能还原出有效地 html 结构
+  模块的形状：大小、轮廓
+  模块的位置：
+  模块的内容：最后是细节部分，比如内容居中等
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/*
+  platform-logo
+  platform-title
+  platform-dock
+  platform-navbar
+*/
+
+
+/*--------------------------
+  $ platform 相关的模块
+--------------------------*/
+// 侧边栏宽度 90px 时，logo 宽30px，左外 30px 刚好水平对齐
+.platform-logo {
+  max-height: 30px;
+  margin-left: 30px;
+  @include vertical-align;
+}
+
+.platform-title {
+  max-height: 30px;
+  @include vertical-align;
+  margin-left: $platform-sidebar-width;
+  color: #fff;
+  font-size: 19px;
+  font-weight: bold;
+}
+
+/*--------------------------
+  $ platform-dock 看作是一排带有格子的架子
+--------------------------*/
+/*
+  li 默认是没有宽高的，要被参照是需要为其设置宽高，但是现在的设计是用 a 来填满整个点击区域，所以这是不设置 li 宽高的原因
+*/
+/* ul */
+.platform-dock {
+  float: right;
+  max-height: $platform-header-height;
+  > li {
+    position: relative;
+    float: left;
+    > a {
+      // 父元素的 floated 时，子元素设置 block 相当于 inline-block
+      display: block;
+      min-width: 95px;
+      // 单行垂直居中
+      height: $platform-header-height;
+      line-height: $platform-header-height;
+      padding-left: 15px;
+      padding-right: 15px;
+      color: #9db1c5;
+      font-size: $relative-font-size * 1.5;
+      text-align: center;
+      border-right: 1px solid rgba(0, 0, 0, 0.05);
+      border-left: 1px solid rgba(255, 255, 255, 0.05);
+      &:hover,
+      &:focus {
+        color: #FFF;
+        background-color: #25313e;
+      }
+      &:first-child {
+        border-left: 0;
+      }
+      &.narrow{
+        min-width: 60px;
+      }
+    }
+  }
+}
+
+/*------------------------*\
+  $ platform-navbar
+\*------------------------*/
+/**
+ * platform-navbar 与 platform-sidebar 的区别：
+ * sidebar 要设置页面中的位置、大小、背景色
+ * navbar 只要设置大小、背景色
+ * 总结：navbar 不需要设置在页面中的方位
+ */
+
+/* ul */
+.platform-navbar {
+  // 宽度默认与父同宽、高度自适应、背景色保留
+  > li {
+    position: relative;
+    > a {
+      // 形状
+      display: block;
+      padding: 15px;
+      // 内容
+      text-align: center;
+      color: #adbece;
+      font-size: 14px;
+      // 顶部白色边框与底部黑色边框组合的分割线样式
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+      position: relative;
+      // 用于 hover、focus、active
+      transition: color .3s ease-in-out 0s;
+      // todo: 搞清楚 active 的作用
+      &:hover, &:visited, &:active, &.active {
+        color: #fff;
+        background-color: rgba(0, 0, 0, 0.075);
+        text-shadow: none;
+      }
+      // 不是伪类的哟~~
+      &.active {
+        border-left: 1px solid $direction-color;
+      }
+      & >.icon {
+        // iconfont 的使用方法
+        @extend .iconfont;
+        display: block;
+        margin: 6px 0;
+        font-size: $relative-font-size * 2.6;
+      }
+      & >.text {
+        display: block;
+        font-size: $relative-font-size * 1.4;
+      }
+    }
+  }
+}
+// end platform-navbar
+
+
+

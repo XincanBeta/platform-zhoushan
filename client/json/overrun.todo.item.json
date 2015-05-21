@@ -1,0 +1,51 @@
+[
+  {
+    "itemid": "01",
+    "number": "2015001",
+    "license": "测L00001",
+    "axle": "2",
+    "weight": "26",
+    "checkdate": "2015-03-12 9:00"
+  },
+  {
+    "itemid": "02",
+    "number": "2015002",
+    "license": "测L00002",
+    "axle": "3",
+    "weight": "32",
+    "checkdate": "2015-03-12 10:00"
+  },
+  {
+    "itemid": "03",
+    "number": "2015003",
+    "license": "测L00003",
+    "axle": "4",
+    "weight": "49",
+    "checkdate": "2015-03-12 18:30"
+  },
+  {
+    "itemid": "04",
+    "number": "2015004",
+    "license": "测L00004",
+    "axle": "5",
+    "weight": "59",
+    "checkdate": "2015-03-12 19:00"
+  },
+  {
+    "itemid": "05",
+    "number": "2015004",
+    "license": "测L00004",
+    "axle": "6",
+    "weight": "66",
+    "checkdate": "2015-03-13 19:00"
+  },
+  {
+    "itemid": "06",
+    "number": "2015004",
+    "license": "测L00004",
+    "axle": "6",
+    "weight": "70",
+    "checkdate": "2015-03-14 11:00"
+  }
+
+]

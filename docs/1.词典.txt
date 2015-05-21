@@ -1,0 +1,56 @@
+单词选择标准是简单、常见，并附上术语解释
+
+app/module 是指具有一定数量功能集合的相对独立的业务模块
+platform 用于 css 类的设计，是平台级别的布局，比如 最上面的页眉，最侧面的边栏
+
+
+===
+超限处罚应用：overrun
+待处理案件：todo
+已完结案件：done
+数据报送：report
+信用档案：blacklist
+初检单：checklist
+车辆：vehicle
+驾驶员：driver
+当事人：party
+案件：case
+复检单：reChecklist
+
+
+===
+发文审批：online-approval
+拟稿：draft
+审稿：review
+核稿：verify
+签发：approval
+发文：dispatch
+在办查询：query-in-process
+办结查询：query-finish
+登记簿：register
+正文：body
+审批单：approval-form
+纸质审批    paper-approval
+
+===
+收文：receipt
+
+
+==
+统计分析
+sas 是 STATISTICAL ANALYSIS SYSTEM 缩写
+
+
+==
+路网监测和应急指挥 monitor
+
+
+==
+系统管理 admin
+
+
+
+
+
+
+

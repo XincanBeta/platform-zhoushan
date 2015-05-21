@@ -1,0 +1,161 @@
+/*
+  信息展示
+
+  info 用于 detail
+    详情面板中 info 包含了字段键值信息
+  label、input 用于 edit
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/*
+  侧边栏：
+  entity-info
+
+  entity-photo
+  entity-photo-hover 有缩放效果
+
+  编辑页：
+  entity-label
+  entity-input
+*/
+
+/*--------------------------
+  $ entity-info
+  默认一行两个
+--------------------------*/
+.entity-info {
+  float: left;
+  width: 50%;
+  height: 36px;
+  line-height: 36px;
+
+  &.is-clear-both {
+    clear: both;
+    width: 100%;
+  }
+  &.is-highlight {
+    color: rgba(255, 0, 0, .8);
+  }
+}
+
+.entity-photo {
+  height: 200px;
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  > img {
+    max-height: 200px;
+  }
+}
+
+.entity-photo-hover {
+  height: 200px;
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+   > img {
+    max-height: 200px;
+    transition: all 1s;
+  }
+  &::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background: url(../img/element/zoom-in.png) no-repeat center rgba(24, 24, 24, 0.3);
+    background-size: 50px;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    cursor: pointer;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+  &:hover > img {
+    transform: scale(1.2);
+  }
+}
+
+.entity-upload-photo {
+  @extend .iconfont;
+  @extend .icon-photo;
+  display: block;
+  position: relative;
+  width: 68px;
+  height: 68px;
+  font-size: 46px;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 4px;
+  color: $app-border-color;
+  border: 1px solid $app-border-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &::after{
+    content: '点击上传或拖拽上传';
+    width: 204px;
+    position: absolute;
+    left: 90px;
+    bottom: 0;
+    margin-bottom: 20px;
+    opacity: 0;
+    color: $app-color;
+    font-size: 12px;
+    transition: all 0.2s linear;
+  }
+  &:hover::after{
+    opacity: 1;
+    margin-bottom: 0;
+  }
+  &:hover{
+    color: $app-color;
+  }
+  // 单击效果，但 mac 的触控盘轻击无效
+  &:active {
+    color: #fff;
+  }
+}
+
+
+/*
+  表单编辑页面
+  entity-label 与 entity-input 只是针对本身的表单域（模块简单了，通用性就好）
+
+  位置关系要借助栅格系统，推荐 bootstrap-sass 的 16 栏 grid
+  还有 bootstrap 的 form-group 进行简单的分组
+*/
+.entity-label {
+  font-size: $relative-font-size * 1.3;
+  &.is-highlight{
+    color: $hightlight-color;
+  }
+}
+
+.entity-input {
+  display: block;
+  width: 100%;
+  height: $input-height-base;
+  > .dropdown-toggle{
+    position: relative;
+    text-align: left;
+    > .caret{
+      position: absolute;
+      right: $padding-base-horizontal;
+      top: ($input-height-base / 2) - 2px;
+    }
+  }
+  + .input-group-btn > .btn{
+     padding: 3px 8px;
+  }
+}
+

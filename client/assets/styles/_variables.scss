@@ -1,0 +1,102 @@
+/*
+  此文件内有效变量的标准是：
+    1、至少重复出现两次
+    2、出现在不同文件中
+
+  注：
+    1、若变量只会用于一个特定的文件里，那么推荐将该变量定义移至该文件内
+    2、要覆盖 vendor default 的变量，请单独放在 vendors-override 中
+*/
+
+/*--------------------------
+  $ base
+--------------------------*/
+$relative-font-size: 1rem;
+// rem 相对于 html 的
+
+/*--------------------------
+  $ 宽高
+--------------------------*/
+// platform
+$platform-header-height: 55px;
+$platform-sidebar-width: 90px;
+// app
+$app-header-height: 50px;
+$app-sidebar-width: 180px;
+$app-footer-height: 50px;
+// entity
+$entity-navbar-height: 30px;
+
+/*--------------------------
+  $ 颜色
+--------------------------*/
+$platform-background-color: #2e3e4e;
+// app
+/* 不为 header, body 分别定义了，因为他们的颜色风格一般是统一的 */
+$app-color: #717171;
+$app-background-color: #FFF;
+$app-border-color: #cfcfcf;
+
+$direction-color: #428bca;
+// 状态颜色
+$hightlight-color: red;
+
+
+/*--------------------------
+  $ $z-index
+  util/funtcion/z
+--------------------------*/
+
+$z-layers: (
+    "default": 1,
+    "below": -1,
+    "entity-panel": 3,
+    "platform":(
+        "app-switcher": 999,
+    ),
+);
+
+/*
+
+
+/!*------------------------*\
+  $颜色
+\*------------------------*!/
+// reset
+$global-color: #717171;
+// platform
+$platform-sidebar-background-color: #233445;
+$platform-content-background-color: #F7F7F7;
+$platform-color: #9db1c5;
+$platform-header-color: $platform-color;
+$platform-dock-link-select-color: #FFF;
+$platform-dock-link-select-background-color: #25313e;
+// app background-color
+$app-background-color: #FFF;
+$app-header-background-color: #FFF;
+$app-sidebar-background-color: #FFF;
+$app-footer-background-color: #FFF;
+// app color
+$app-color: #717171;
+$app-header-color: #717171;
+$app-sidebar-color: #717171;
+$app-footer-color: #717171;
+// app border
+//== Pagination
+
+/!*------------------------*\
+  $字号
+\*------------------------*!/
+$relative-font-size: 1rem;
+// platform
+$platform-dock-font-size: $relative-font-size * 1.5;
+$platform-account-list-font-size: $relative-font-size * 1.3;
+$platform-sidebar-navbar-icon-font-size: $relative-font-size * 2.6;
+$platform-sidebar-navbar-font-size: $relative-font-size * 1.4;*/
+// app
+
+
+
+
+
+

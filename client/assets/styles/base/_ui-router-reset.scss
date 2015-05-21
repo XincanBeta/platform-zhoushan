@@ -1,0 +1,50 @@
+/*--------------------------
+  $ angular-ui-router
+--------------------------*/
+
+/**
+ * 让浏览器识别
+ */
+ui-view-container, ui-view {
+  display: block;
+  position: relative;
+}
+
+/**
+ * angular-ui 动画效果，必须用如下结构：
+   <ui-view-container>
+      <ui-view />
+   </ui-view-container>
+ *
+ * ui-view-container 用于兼容 ngAnimate
+ */
+[ui-view-container] > [ui-view].ng-enter,
+ui-view-container > ui-view.ng-enter,
+[ui-view-container] > ui-view.ng-enter,{
+  @include fadeInUp($duration: 0.3s);
+}
+
+/**
+ * 高度
+ * ui-view 不设置类，保持与父元素 ui-view-container 同高
+ * 而 ui-view-container 样式由根据实际情况决定
+ *
+ * ui-view 中存在嵌套 ui-view>ui-view-container>ui-view 结构的情况
+ */
+[ui-view],
+ui-view,
+ui-view > ui-view-container,
+[ui-view] > [ui-view-container] {
+  height: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+

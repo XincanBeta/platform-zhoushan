@@ -1,0 +1,19 @@
+/*--------------------------
+  $ 水平垂直都居中
+--------------------------*/
+
+/**
+ * 实现：让子元素在在父元素内居中
+ * 前提条件：1）有正确的父元素 2）子元素有固定的宽高，或者设置非0参数
+ * 对象：同时适用于块级元素和行内元素
+ */
+@mixin origin-center($top:0, $right:0, $bottom: $top, $left: $right) {
+  position: absolute;
+  top: $top; bottom: $bottom;
+  left: $left;  right: $right;
+  margin: auto;
+}
+
+
+
+

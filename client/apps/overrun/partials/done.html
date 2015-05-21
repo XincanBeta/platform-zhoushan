@@ -1,0 +1,69 @@
+<header class="l-app-header">
+  <div class="app-toolbar">
+    <div class="btn-group">
+      <button class="btn btn-sm btn-default fa-download" title="导出"></button>
+    </div>
+    <div class="app-search">
+      <input type="text" class="form-control" placeholder="案号、车牌"/>
+      <span class="input-group-btn">
+        <button class="btn btn-sm btn-default fa-search" title="搜索"></button>
+      </span>
+    </div>
+  </div>
+</header>
+<section class="l-app-body on-footer">
+  <section class="l-plate">
+    <table class="app-table entity-view">
+      <thead>
+      <tr>
+        <th class="with-checkbox">
+          <!--用于导出-->
+          <input type="checkbox">
+        </th>
+        <th>序号</th>
+        <th>案号</th>
+        <th>车牌</th>
+        <th>轴数</th>
+        <th>总重</th>
+        <th>结案时间</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>{{ $index+1 }}</td>
+        <td>{{ item["ah"] }}</td>
+        <td>{{ item["cp"] }}</td>
+        <td>{{ item["zs"] }}</td>
+        <td>{{ item["zz"] }}</td>
+        <td>{{ item["afsj"] }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+<footer class="l-app-footer ">
+  <div class="app-pagination-direction">总共3条 当前为第1页</div>
+  <paging
+      class="app-pagination"
+      page="currentPage"
+      page-size="pageSize"
+      total="total"
+      adjacent="1"
+      dots="..."
+      scroll-top="true"
+      hide-if-empty="true"
+      ul-class="pagination"
+      active-class="active"
+      disabled-class="disabled"
+      show-prev-next="true"
+      paging-action="pagingAct('Paging Clicked', page)">
+  </paging>
+</footer>
+<!-- 平级的位置 -->
+<div my-slider-show class="l-entity-panel"
+     ng-controller="OverrunEntityPanelCtrl"
+     ng-include="'../apps/overrun/partials/item-detail.html'">
+</div>

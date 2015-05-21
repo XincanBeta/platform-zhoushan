@@ -1,0 +1,112 @@
+<style>
+  .focus-wrapper {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    float: left;
+    margin-right: 40px;;
+    margin-bottom: 20px;;
+    /*outline: 1px solid #aaa;*/
+  }
+
+  .focus-top-wrapper, .focus-bottom-wrapper {
+    height: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .focus-top, .focus-bottom{
+    border-radius: 10px;
+  }
+
+  /* 字体信息 */
+  .focus-top{
+    border: 1px solid #ddd;
+    width: 80px;
+    height: 80px;
+    color: #666;
+    font-size: 18px;
+    font-weight: bold;
+  }
+
+  .focus-bottom {
+    position: absolute;
+    top: -40px;
+    width: 80px;
+    height: 80px;
+    background-color: #2E3E4E;
+    color: #fff;
+    font-weight: bold;
+  }
+
+  .focus-wrapper .arrow {
+    position:absolute;
+    top:40px;
+    right:32px;
+    width:0;
+    height:0;
+    font-size:0;
+    border:solid 8px;
+    border-color:#fff #2E3E4E #2E3E4E #2E3E4E;
+  }
+
+  /* 位置信息 */
+  .focus-top > div{
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .focus-bottom > div{
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+  }
+  
+  
+
+</style>
+<!--outline: 1px solid red;-->
+<div style="width: 200px;  overflow: hidden; margin: 0 auto;" >
+  <div class="focus-wrapper">
+    <div class="focus-top-wrapper">
+      <div class="focus-top"><div>2408</div></div>
+    </div>
+    <div class="focus-bottom-wrapper">
+      <div class="focus-bottom"><div >已办案件</div></div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+
+  <div class="focus-wrapper" style="margin-right: 0">
+    <div class="focus-top-wrapper">
+      <div class="focus-top"><div>560</div></div>
+    </div>
+    <div class="focus-bottom-wrapper">
+      <div class="focus-bottom"><div >违规车辆</div></div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+
+  <div class="focus-wrapper" style="margin-bottom: 0">
+    <div class="focus-top-wrapper">
+      <div class="focus-top"><div>600</div></div>
+    </div>
+    <div class="focus-bottom-wrapper">
+      <div class="focus-bottom"><div >公告</div></div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+
+  <div class="focus-wrapper" style="margin-bottom: 0; margin-right: 0" >
+    <div class="focus-top-wrapper">
+      <div class="focus-top"><div>2</div></div>
+    </div>
+    <div class="focus-bottom-wrapper">
+      <div class="focus-bottom"><div >待审批</div></div>
+    </div>
+    <div class="arrow"></div>
+  </div>
+</div>

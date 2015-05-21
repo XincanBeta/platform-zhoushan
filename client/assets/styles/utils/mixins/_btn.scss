@@ -1,0 +1,43 @@
+/* 
+  mixin 也是为了复用
+
+  提供 button 的细节样式
+
+  定位：mixin 可用于替代 components
+  sass 的玩法
+*/
+
+@mixin toolbar-btn-default {
+  border: 1px solid #dadada;
+  color: #717171;
+  background-color: #fafafa;
+  box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+  -webkit-box-shadow: 0 1px 1px rgba(90, 90, 90, 0.1);
+  &:hover {
+    color: #717171;
+    background-color: #ededed;
+    border-color: #c6c6c6;
+  }
+  &:active {
+    background-color: #fafafa;
+    border-color: #dadada;
+  }
+  &[disabled] {
+    cursor: not-allowed;
+    pointer-events: none;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+  }
+
+}
+
+
+
+
+
+
+
+
+

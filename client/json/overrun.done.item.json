@@ -1,0 +1,181 @@
+{
+  "data": {
+    "endRow": 6,
+    "firstPage": 1,
+    "hasNextPage": false,
+    "hasPreviousPage": false,
+    "isFirstPage": true,
+    "isLastPage": false,
+    "lastPage": 1,
+    "list": [
+      {
+        "ah": "111",
+        "zs": 20,
+        "cp": "11",
+        "cxlx": "超重",
+        "kfxz": "可卸载",
+        "selected": false,
+        "xccfCl": {
+          "clid": 302,
+          "cp": "11",
+          "selected": false,
+          "xccfid": 301,
+          "zs": 2
+        },
+        "xccfDsr": {
+          "dsrid": 303,
+          "dsrlx": "驾驶员",
+          "selected": false,
+          "xccfid": 301
+        },
+        "xccfJsy": {
+          "cp": "11",
+          "jsyid": 304,
+          "selected": false,
+          "xb": "男",
+          "xccfid": 301
+        },
+        "xccfid": 301
+      },
+      {
+        "cjcz": 20,
+        "ah": "cccjjj",
+        "zs": 300,
+        "cp": "浙L00001",
+        "selected": false,
+        "xccfCl": {
+          "clid": 127,
+          "cp": "浙L00001",
+          "selected": false,
+          "xccfid": 126,
+          "zs": 4
+        },
+        "xccfDsr": {
+          "selected": false,
+          "xccfid": 126
+        },
+        "xccfJsy": {
+          "selected": false,
+          "xccfid": 126
+        },
+        "xccfid": 126
+      },
+      {
+        "ah": "111",
+        "zs": 20,
+        "cp": "11",
+        "cxlx": "超重",
+        "kfxz": "可卸载",
+        "selected": false,
+        "xccfCl": {
+          "clid": 306,
+          "cp": "11",
+          "selected": false,
+          "xccfid": 305,
+          "zs": 2
+        },
+        "xccfDsr": {
+          "dsrid": 307,
+          "dsrlx": "驾驶员",
+          "selected": false,
+          "xccfid": 305
+        },
+        "xccfJsy": {
+          "cp": "11",
+          "jsyid": 308,
+          "selected": false,
+          "xb": "男",
+          "xccfid": 305
+        },
+        "xccfid": 305
+      },
+      {
+        "afsj": 1431851520000,
+        "ah": "22222",
+        "cjsj": 1431851520000,
+        "cp": "1111",
+        "cxlx": "超重",
+        "fjsj": 1431851520000,
+        "kfxz": "可卸载",
+        "selected": false,
+        "xcblsj": 1431851520000,
+        "xccfCl": {
+          "clid": 344,
+          "cp": "1111",
+          "selected": false,
+          "xccfid": 343,
+          "zs": 2
+        },
+        "xccfDsr": {
+          "dsrid": 345,
+          "dsrlx": "驾驶员",
+          "selected": false,
+          "xccfid": 343
+        },
+        "xccfJsy": {
+          "cp": "1111",
+          "jsyid": 346,
+          "selected": false,
+          "xb": "男",
+          "xccfid": 343
+        },
+        "xccfid": 343,
+        "xwblsj": 1431851520000
+      },
+      {
+        "ah": "0001",
+        "cp": "浙A001",
+        "selected": false,
+        "xccfCl": {
+          "clid": 125,
+          "cp": "浙A001",
+          "selected": false,
+          "xccfid": 124,
+          "zs": 2
+        },
+        "xccfDsr": {
+          "selected": false,
+          "xccfid": 124
+        },
+        "xccfJsy": {
+          "selected": false,
+          "xccfid": 124
+        },
+        "xccfid": 124
+      },
+      {
+        "ah": "002",
+        "cp": "浙 D 001",
+        "selected": false,
+        "xccfCl": {
+          "clid": 204,
+          "cp": "浙 D 001",
+          "selected": false,
+          "xccfid": 203
+        },
+        "xccfDsr": {
+          "selected": false,
+          "xccfid": 203
+        },
+        "xccfJsy": {
+          "selected": false,
+          "xccfid": 203
+        },
+        "xccfid": 203
+      }
+    ],
+    "navigatePages": 8,
+    "navigatepageNums": [
+      1
+    ],
+    "nextPage": 0,
+    "pageNum": 1,
+    "pageSize": 20,
+    "pages": 1,
+    "prePage": 0,
+    "size": 6,
+    "startRow": 1,
+    "total": 6
+  },
+  "success": true
+}

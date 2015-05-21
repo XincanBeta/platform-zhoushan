@@ -1,0 +1,28 @@
+/*
+/!**
+ * 包含所有Hack行为和我们不认可的行为
+ *!/
+
+/!* 填充一个中文字的宽度 *!/
+.one-word-width:before {
+  content: "中";
+  visibility: hidden;
+}
+
+/!* 填充两个中文字的宽度 *!/
+.two-word-width:before {
+  content: "中中";
+  visibility: hidden;
+}
+
+/!* 填充一个英文 i 的宽度：i 的宽相当于半个中文字的宽 *!/
+.one-i-letter-width:before {
+  content: "i";
+  visibility: hidden;
+}
+
+.one-a-letter-width:before {
+  content: "a";
+  visibility: hidden;
+}
+*/

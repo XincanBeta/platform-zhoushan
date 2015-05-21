@@ -1,0 +1,55 @@
+/*
+  从模块中“抽离”出布局，让模块专注于显示
+
+  用双横线来表示父子关系
+
+*/
+
+
+/*--------------------------
+  $ 盘子 + 碗
+
+  厨房命名法：
+  plate
+    title
+    bowl
+    bowl
+    bowl
+  盘子上把碗摆整齐
+
+  注： panel 的层级也是为了复用
+--------------------------*/
+.l-plate{
+  min-height: 172px;
+  margin: 15px;
+  padding-bottom: 10px;
+  border: 1px solid #e8e8e8;
+  background-color: #fff;
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.1);
+  overflow: hidden;
+  //border-radius: 4px;
+}
+
+
+.l-plate--title{
+  display: block;
+  margin: 0;
+  padding: 15px;
+  font-size: 16px;
+  border-bottom: 1px solid #eee;
+}
+
+/*
+  一个盘子上摆 5 个碗，碗里面不作限定
+  注：inline-block 有间隙，不适合排列紧密的布阵，用 float 替代
+*/
+.l-plate--bowl{
+  position: relative;
+  float: left;
+  width: 25%;
+  height: 120px;
+  overflow: hidden;
+  border-right: 1px solid #e8e8e8;
+  border-bottom: 1px solid #e8e8e8;
+}
+

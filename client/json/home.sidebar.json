@@ -1,0 +1,26 @@
+[
+  {
+    "name": "我的桌面",
+    "iconclass": "icon-desktop-1",
+    "routestate": "desktop"
+  },
+  {
+    "name": "我的应用",
+    "iconclass": "icon-app-1",
+    "routestate": "myapp"
+  },
+  {
+    "name": "通讯录",
+    "iconclass": "icon-tongxunlu"
+  },
+  {
+    "name": "短信息",
+    "iconclass": "icon-msg-1"
+  },
+  {
+    "name": "系统管理",
+    "iconclass": "icon-settings3",
+    "routestate": "admin"
+  }
+
+]

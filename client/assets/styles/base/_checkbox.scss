@@ -1,0 +1,34 @@
+input[type="checkbox"] {
+  // 可供伪元素参照
+  position: relative;
+  width: 13px;
+  height: 13px;
+  line-height: normal;
+  margin: 3px 0 0;
+  border: 1px solid #dcdcdc;
+  border-radius: 1px;
+  background-color: #fff;
+  // 去除浏览器默认的 checkbox 样式（包括勾选效果），功能保留
+  -webkit-appearance: none;
+
+  &:hover {
+    border-color: #c6c6c6;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .1);
+  }
+
+  &:checked {
+    background-color: #fff;
+
+    &::after{
+      content: url(../img/element/checkmark.png);
+      position: absolute;
+      top: -6px;
+      left: -5px;
+    }
+  }
+}
+
+
+
+

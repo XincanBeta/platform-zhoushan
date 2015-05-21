@@ -1,0 +1,223 @@
+/*------------------------*\
+  $ overrun
+  每个 web/modules 都单独一个 page/modules 样式文件
+  关键是界定 modules 的边界
+  css 方法论采用 oocss，<并必须以模块名作为前缀 ?>
+  此文件中只包含语义类；
+  对象类、样式类部分归为组件类，将整理后移到styles/components中
+\*------------------------*/
+
+
+//.overrun-icon-checklist
+
+
+
+
+
+
+.overrun-form-navbar{
+
+}
+
+
+// 大小
+%navbar{
+  width: 100%;
+}
+
+// 位置
+%position-top-left{
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+
+
+
+%overrun-entity-navbar-wrap {
+
+
+  /*@include e(arrow){
+    width: 0;
+    height: 0;
+    border: solid 7px;
+    border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+    position: absolute;
+    bottom: 100%;
+    left: 36px;
+  }*/
+}
+
+
+
+
+
+
+
+
+/**
+ * 高度随内容自适应，控制内容的高度，比如列表只显示 10 条数据
+ * 原因如下：
+ * 1）统一样式。滚动条由 app-content 控制
+ * 2）灵活性。让高度自适应，转而控制内容。显得更加简单
+ * 不设置高度，让内容本身决定自己的高度吧
+ */
+
+// 由 l-plate 替代了
+.overrun-content {
+  margin: 15px;
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+  background-color: #fff;
+}
+
+.overrun-entity-content-wrap {
+  //margin: 15px;
+  //border: 1px solid #e8e8e8;
+  //border-radius: 2px;
+  //background-color: #fff;
+  //overflow: hidden;
+}
+
+
+
+
+.overrun-info-detail {
+  margin: 15px 30px 15px;
+  font-size: 12px;
+  border-bottom: 1px #428bca solid;
+
+  &:last-child {
+    border-width: 0;
+  }
+
+  @include e(header) {
+    //color: #428bca;
+    margin: 20px 0 10px 0;
+    font-size: 15px;
+  }
+  @include e(icon) {
+    @extend .iconfont;
+
+    @include m(logo) {
+      font-size: 20px;
+      margin-right: 10px;
+      color: #428bca;
+    }
+    @include m(tips) {
+      color: #717171;
+    }
+  }
+
+  @include e(body) {
+    width: 100%;
+
+  }
+}
+
+.overrun-entity-info {
+  display: inline-block;
+  width: 49%;
+  height: 36px;
+  line-height: 36px;
+  @include m(exclusive) {
+    width: 90%;
+  }
+
+}
+
+.overrun-info-edit-wrap{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin-top: 30px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+.overrun-info-edit-content {
+  @include container();
+  padding: 15px 30px 15px 0px;
+  margin-top: 15px;
+  border-bottom: 1px #428bca solid;
+  // 用于显示底部边框
+  margin-left: 15px;
+  margin-right: 15px;
+  &:last-child {
+    border-width: 0;
+  }
+}
+
+
+.overrun-info-edit-header {
+  margin: 0 0 20px 0;
+  font-size: 16px;
+  //font-weight: bold;
+}
+
+.overrun-info-edit-icon {
+  @extend .iconfont;
+  font-size: 32px;
+  margin: 10px 10px 0 58px;
+  color: #428bca;
+}
+
+
+
+.overrun-info-edit-item--name {
+  @include span(3)
+}
+
+.overrun-info-edit-item--value {
+  @include span(5)
+}
+
+.overrun-info-edit-item--value.last {
+  @include span(5 last)
+}
+
+.overrun-info-edit-item--value--double {
+  @include span(13)
+}
+
+.overrun-info-edit-item--value--double.last {
+  @include span(8)
+}
+
+.overrun-info-edit-item--value--exclusive {
+  @include span(13)
+}
+
+/*
+
+.overrun-info-container{
+  @include container();
+
+}
+*/
+
+/*
+
+.overrun-entity-label{
+  @include span(4 );
+  //padding: 0 7px 0 7px;
+  margin: 14px 0 14px 0;
+  font-size: 14px;
+
+}
+
+.overrun-entity-content{
+  @include span( 8);
+  font-size: 14px;
+  margin: 14px 0 14px 0;
+}
+
+.overrun-entity-content.last{
+  @include span(8 last)
+}
+
+
+*/

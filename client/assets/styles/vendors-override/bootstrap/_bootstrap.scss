@@ -1,0 +1,65 @@
+/*
+  能用 bootstrap 解决的问题，就不要重复造轮子了！
+  bootstrap 的特点是结构层次多，但只要封装好，使用简单。可以忽略不计。
+*/
+
+
+/*--------------------------
+  $ 变量
+  覆盖 default
+  有对应变量的，优先以变量方式处理
+  todo：了解变量为什么必须放在 default 之前才能进行覆盖
+--------------------------*/
+@import "variables";
+
+/*--------------------------
+  $ vendors
+--------------------------*/
+@import "mixins";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/variables";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/utilities";
+
+// 动画效果：与 modal 有关
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/component-animations";
+
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/pagination";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/buttons";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/button-groups";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/forms";
+// ui-booststrap 的 tabset 依赖 nav
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/navbar";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/navs";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/modals";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/input-groups";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/close";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/grid";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/dropdowns";
+// ngToast 依赖 alerts
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/alerts";
+// type 包含了颜色，如 text-danger
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/type";
+
+/*
+  用 panel 要覆盖其样式比如外边距
+  panel 有一个使用层级，用于比较正式的场景
+  panel
+    panel-body
+*/
+// 用于 我的桌面
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/panels";
+@import "../../../lib/bootstrap-sass/assets/stylesheets/bootstrap/tables";
+
+
+/*--------------------------
+  $ vendors-override
+--------------------------*/
+
+@import "buttons";
+@import "modals";
+@import "forms";
+@import "dropdowns";
+@import "alerts";
+
+
+
+

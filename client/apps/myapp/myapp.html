@@ -1,0 +1,32 @@
+<ui-view-container>
+  <ui-view>
+    <header class="l-app-header">
+      <div class="app-direction">
+      <p class="app-direction--place no-back">我的应用</p>
+      </div>
+    </header>
+    <section class="l-app-body">
+      <section class="l-plate">
+        <h1 class="l-plate--title" >业务处理类</h1>
+        <div class="l-plate--bowl" ng-repeat="app in busiApps">
+          <a class="myapp" href="javascript:void(0);" ng-click="go(app.routestate)">
+            <img class="myapp--icon" ng-class="{'disabled':app.disabled}"
+                 ng-src="../../assets/img/myapp/{{ app.imgsrc }}" alt=""/>
+            <span class="myapp--name">{{ app.name }}</span>
+            <!--<p class="myapp&#45;&#45;desc">{{ app.description }}</p>-->
+          </a>
+        </div>
+      </section>
+      <section class="l-plate">
+        <h1 class="l-plate--title" >综合应用类</h1>
+        <div class="l-plate--bowl" ng-repeat="app in saApps">
+          <a class="myapp" href="javascript:void(0);" ng-click="go(app.routestate)">
+            <img class="myapp--icon" ng-class="{'disabled':app.disabled}"
+                 ng-src="../../assets/img/myapp/{{ app.imgsrc }}" alt=""/>
+            <span class="myapp--name">{{ app.name }}</span>
+          </a>
+        </div>
+      </section>
+    </section>
+  </ui-view>
+</ui-view-container>

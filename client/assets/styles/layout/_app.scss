@@ -1,0 +1,93 @@
+/*
+  模块支持修饰符
+  例子：l-app-body
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/*
+  l-app-header
+  l-app-body
+  l-app-sidebar
+  l-app-footer
+  l-app-main
+
+  层次关系：
+  l-app-sidebar   l-app-main
+                    l-app-header
+                    l-app-body
+                    l-app-footer
+*/
+
+
+/*--------------------------
+  $ l-app-header
+  app-header 是对 platform-content 区域的进一步划分
+--------------------------*/
+.l-app-header {
+  @extend %header;
+  height: $app-header-height;
+  border-bottom: 1px solid $app-border-color;
+  color: $app-color;
+  background-color: $app-background-color;
+  &.against-sidebar {
+    // 参照父元素（platform-body）排列
+    @include position(absolute, 0 0 null $app-sidebar-width)
+  }
+}
+
+/*--------------------------
+  $ l-app-body
+--------------------------*/
+.l-app-body {
+  // top +1px 是因为 app-body 允许溢出，溢出的边界要低于 header 的高度，不然会覆盖掉 header 的底边
+  @include position(absolute, $app-header-height + 1px 0 0 0);
+  overflow-y: auto;
+  &.no-header {
+    top: 0;
+  }
+  &.against-sidebar {
+    left: $app-sidebar-width;
+  }
+  &.on-footer {
+    bottom: $app-footer-height;
+  }
+}
+
+/*--------------------------
+  $ l-app-sidebar
+--------------------------*/
+.l-app-sidebar {
+  @include position(absolute, 0 null 0 0);
+  width: $app-sidebar-width;
+  border-right: 1px solid $app-border-color;
+  color: $app-color;
+  background-color: $app-background-color;
+}
+
+/*--------------------------
+  $ l-app-footer
+--------------------------*/
+.l-app-footer {
+  @include position(absolute, null 0 0 0);
+  height: $app-footer-height;
+  background-color: #FFF;
+  color: $app-color;
+  border-top: 1px solid $app-border-color;
+
+  &.against-sidebar {
+    left: $app-sidebar-width;
+  }
+}
+
+/*--------------------------
+  $ l-app-main
+  相对于 sdiebar 进行区域划分，用于包含 app-header、app-content、app-footer，
+  目的是让主模板变得更整洁，将变化部分提取到另一个模板中，同时也绑定了动画效果
+--------------------------*/
+.l-app-main {
+  @include position(absolute, 0 0 0 $app-sidebar-width);
+}
+
+

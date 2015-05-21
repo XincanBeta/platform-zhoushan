@@ -1,0 +1,46 @@
+
+/**
+ * core style
+ */
+%fa-style {
+  display: inline-block;
+  font: normal normal normal #{$fa-font-size-base}/1 FontAwesome; // shortening font declaration
+  font-size: inherit; // can't have font-size inherit on line above, so need to override
+  text-rendering: auto; // optimizelegibility throws things off #1094
+  line-height: 1; // ????????
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translate(0, 0); // ensures no half-pixel rendering in firefox
+}
+
+/**
+ * size
+ */
+/* makes the font 33% larger relative to the icon container */
+%fa-lg {
+  font-size: (4em / 3);
+  line-height: (3em / 4);
+  vertical-align: -15%;
+}
+
+/**
+ * bordered
+ * 过去分词，可解释为 "加"边框
+ */
+%fa-border {
+  padding: .2em .25em .15em;
+  border: solid .08em $fa-border-color;
+  border-radius: .1em;
+}
+
+/**
+ * pulled
+ */
+%fa-pull-left {
+  margin-right: .3em;
+}
+
+%fa-pull-right {
+  margin-left: .3em;
+}
+

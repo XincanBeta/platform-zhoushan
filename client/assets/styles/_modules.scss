@@ -1,0 +1,16 @@
+/*
+  抽取尽可能多的模块，一开始是造轮子，到后面能自己用轮子
+
+*/
+
+@import "modules/platform";
+@import "modules/user";
+@import "modules/app";
+@import "modules/myapp";
+@import "modules/entity";
+@import "modules/entity-navbar";
+@import "modules/entity-block";
+@import "modules/tabset";
+
+
+

@@ -1,0 +1,4 @@
+把 angular 模板原件
+
+原件可用于转成 javascript string， 存入 templateCache
+

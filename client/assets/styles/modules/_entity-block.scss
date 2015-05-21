@@ -1,0 +1,61 @@
+/* 
+  entity-block 是对 entity-panel--body 区域的进一步细分
+
+  entity-block 出现多次 header 和 body
+
+
+*/
+
+/*--------------------------
+  $ 目录
+--------------------------*/
+/*
+  entity-navbar   entity-block-wrap
+                    entity-block
+                      entity-block--header
+                      entity-block--body
+*/
+
+.entity-block-wrap{
+  @include position(absolute, 5px 5px 5px 5px);
+  overflow-y: auto;
+  overflow-x: auto; // datetimepicker popup
+  &.under-navbar{
+    margin-top: $entity-navbar-height;
+  }
+
+}
+
+.entity-block{
+  margin: 15px 15px 5px 15px;
+  border-bottom: 1px solid $direction-color;
+  &.no-border{
+    border: 0;
+  }
+  // 用于 overrun 复检单动态切换
+  &:last-child{
+    border: 0;
+  }
+}
+
+.entity-block--header{
+  margin-bottom: 10px;
+  font-size: 15px;
+  color: $direction-color;
+  > .entity-icon{
+    // 标签上 示例： entity-icon + icon-checklist
+    @extend .iconfont;
+    font-size: 20px;
+    margin-right: 10px;
+  }
+}
+
+.entity-block--body{
+  min-height: 100px;
+  // 抑制浮动元素脱离父元素
+  @include clearfix;
+}
+
+
+
+

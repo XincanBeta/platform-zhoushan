@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app.login">
+
+<head>
+  <meta charset="UTF-8">
+  <title>舟山公路基础业务平台登录页面</title>
+  <link rel="stylesheet" href="../assets/styles/login.css"/>
+</head>
+
+<body ng-controller="LoginCtrl">
+<form>
+  <h1>舟山公路基础业务平台</h1>
+  <!-- required 跟样式有关 -->
+  <input placeholder="用户名" type="text" required="" ng-model="wkno">
+  <input placeholder="密码" type="password" required="" ng-model="passwd">
+  <button ng-click="login()" hotkey="{enter: login}">登录</button>
+  <!--<div class="slide-down login-error" ng-show="isError">登录失败，请重新登录！</div>-->
+</form>
+
+<script src="../assets/lib/angular/angular.min.js"></script>
+<script src="../assets/lib/angular-animate/angular-animate.min.js"></script>
+<script src="../assets/lib/angular-hotkeys/build/hotkeys.min.js"></script>
+<script src="js/loginCtrl.js"></script>
+</body>
+</html>
