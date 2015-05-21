@@ -34,7 +34,13 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       //var idPromise = requestService.getNewId()
       // 返回一个 promise
     }
-    
+    // 显示模块的内容
+    $rootScope.$on("modal.content.show", function(){
+      $scope.modal = {contentShow: true};
+    })
+
+
+
     
     /*--------------------------
      $ 表单域处理

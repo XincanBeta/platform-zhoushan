@@ -12,14 +12,14 @@
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-case')">案件信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">复检单</a></li>
     </ul>
-    <div class="entity-block-wrap under-navbar">
+    <div class="entity-block-wrap under-navbar" ng-if="modal.contentShow">
       <!--初检单-->
       <div id="overrun-edit-checklist" class="entity-block under-navbar">
-        <header class="entity-block&#45;&#45;header">
+        <header class="entity-block--header">
           <i class="entity-icon icon-checklist"></i>
           <span>初检单</span>
         </header>
-        <div class="entity-block&#45;&#45;body">
+        <div class="entity-block--body">
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">单号</label>

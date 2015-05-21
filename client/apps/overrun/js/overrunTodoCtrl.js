@@ -81,6 +81,8 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
 
         modalInstance.opened.then(function () {
           sliderService.stopAutoHide();
+          // 显示内容事件
+          $rootScope.$emit("modal.content.show")
         })
 
         modalInstance.result.then(function () {
