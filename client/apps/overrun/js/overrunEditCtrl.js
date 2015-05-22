@@ -35,10 +35,10 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       // 返回一个 promise
     }
     // 显示模块的内容
-    $rootScope.$on("modal.content.show", function(){
+    /*$rootScope.$on("modal.content.show", function(){
       $scope.modal = {contentShow: true};
     })
-
+*/
 
 
     
@@ -212,6 +212,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
       $ 证件获取
     --------------------------*/
+    $scope.sceneImages = [];
     $scope.vehicleImages = [];
     $scope.driverImages = [];
     $scope.billImages = [];
@@ -230,6 +231,10 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 证件上传
      --------------------------*/
+    $scope.$watch('sceneFiles', function () {
+      $scope.upload($scope.sceneFiles, 'scene');
+    });
+
     $scope.$watch('vehicleFiles', function () {
       $scope.upload($scope.vehicleFiles, 'vehicle');
     });
@@ -242,17 +247,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.upload($scope.billFiles, 'bill');
     });
 
-
-    /*$scope.uploadPhoto = function(){
-
-    }*/
     $scope.upload = function (files, datatype) {
-      // 等待 promise
-      //if(idPromise){
-
-      //}
-
-
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
@@ -271,7 +266,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            $scope.vehicleImages.push({
+            $scope.sceneImages.push({
               thumbnaildata: res.data
             })
           });

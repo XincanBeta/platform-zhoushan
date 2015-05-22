@@ -75,7 +75,8 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
           resolve: {
             item: function () {
               return item;
-            }
+            },
+            isNew: true
           }
         })
 
@@ -84,7 +85,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
           // 显示内容事件
           //$timeout(function(){
           //  console.log('hello');
-            $rootScope.$emit("modal.content.show")
+          //  $rootScope.$emit("modal.content.show")
           //}, 300)
 
         })

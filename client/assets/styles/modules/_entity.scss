@@ -43,12 +43,39 @@
 .entity-photo {
   height: 200px;
   width: 400px;
+  //clear: both;
+  //
   margin-top: 10px;
   margin-bottom: 10px;
-  overflow: hidden;
-  position: relative;
   > img {
+    // 控制高度，让宽度自适应
     max-height: 200px;
+  }
+  // 图片上不能加伪元素
+  &.with-delete {
+    position: relative;
+    //outline: 1px solid black;
+    // 利用浮动的包裹性
+    clear: left;
+    float: left;
+    height: auto;
+    width: auto;
+  }
+  &.with-delete::after {
+    content: '';
+    background: url("../img/element/delete-30.png") no-repeat center;
+    // 背景大小就是图片大小
+    background-size: 25px;
+    display: block;
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+    cursor: pointer;
+    @extend .shake;
+    @extend .shake-little;
   }
 }
 
@@ -59,7 +86,7 @@
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
-   > img {
+  > img {
     max-height: 200px;
     transition: all 1s;
   }
@@ -87,6 +114,8 @@
 }
 
 .entity-upload-photo {
+  // 清楚 .entity-photo.with-delete 带来的浮动
+  clear: both;
   @extend .iconfont;
   @extend .icon-photo;
   display: block;
@@ -101,7 +130,7 @@
   border: 1px solid $app-border-color;
   cursor: pointer;
   transition: all 0.3s ease;
-  &::after{
+  &::after {
     content: '点击上传或拖拽上传';
     width: 204px;
     position: absolute;
@@ -113,11 +142,11 @@
     font-size: 12px;
     transition: all 0.2s linear;
   }
-  &:hover::after{
+  &:hover::after {
     opacity: 1;
     margin-bottom: 0;
   }
-  &:hover{
+  &:hover {
     color: $app-color;
   }
   // 单击效果，但 mac 的触控盘轻击无效
@@ -125,7 +154,6 @@
     color: #fff;
   }
 }
-
 
 /*
   表单编辑页面
@@ -135,8 +163,9 @@
   还有 bootstrap 的 form-group 进行简单的分组
 */
 .entity-label {
+  display: block;
   font-size: $relative-font-size * 1.3;
-  &.is-highlight{
+  &.is-highlight {
     color: $hightlight-color;
   }
 }
@@ -145,17 +174,17 @@
   display: block;
   width: 100%;
   height: $input-height-base;
-  > .dropdown-toggle{
+  > .dropdown-toggle {
     position: relative;
     text-align: left;
-    > .caret{
+    > .caret {
       position: absolute;
       right: $padding-base-horizontal;
       top: ($input-height-base / 2) - 2px;
     }
   }
-  + .input-group-btn > .btn{
-     padding: 3px 8px;
+  + .input-group-btn > .btn {
+    padding: 3px 8px;
   }
 }
 

@@ -43,6 +43,20 @@
 
 <script type="text/ng-template" id="photoContent">
   <div class="entity-block-wrap" ng-controller="OverrunEntityPhotoCtrl">
+    <!--现场照片-->
+    <div class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-checklist"></i>
+        <span>现场照片</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-photo-hover" ng-repeat="image in sceneImages"
+             ng-click="openLightboxModal(sceneImages, $index)">
+          <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+        </div>
+        <!--<div cg-busy="sceneImagePromise"></div>-->
+      </section>
+    </div>
     <!--车辆证件-->
     <div class="entity-block">
       <header class="entity-block--header">
@@ -54,13 +68,9 @@
              ng-click="openLightboxModal(vehicleImages, $index)">
           <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
         </div>
-        <!--<div ngf-drop ngf-select ng-model="vehicleFiles" class="entity-upload-photo drop-box"
-             ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-             ngf-accept="'image/*'"></div>-->
         <div cg-busy="vehicleImagePromise"></div>
       </section>
     </div>
-
     <!--驾驶员证件-->
     <div class="entity-block">
       <header class="entity-block--header">
@@ -72,9 +82,6 @@
              ng-click="openLightboxModal(driverImages, $index)">
           <img ng-src="{{image.thumbUrl}}" alt="驾驶员证件"/>
         </div>
-        <!--<div ngf-drop ng-model="driverFiles" class="entity-upload-photo drop-box"
-             ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-             ngf-accept="'.jpg,.png,.gif'"></div>-->
       </section>
     </div>
     <!--发票证件-->
@@ -88,9 +95,6 @@
              ng-click="openLightboxModal(billImages, $index)">
           <img ng-src="{{image.thumbUrl}}" alt="发票证件"/>
         </div>
-        <!--<div ngf-drop ng-model="billFiles" class="entity-upload-photo drop-box"
-             ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
-             ngf-accept="'.jpg,.png,.gif'"></div>-->
       </section>
     </div>
   </div>

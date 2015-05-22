@@ -63,7 +63,7 @@ angular.module('app')
         // underscore
         // angular-score 放到第三层加载，因为一旦 angular-underscore 与 underscore 有依赖，所以确保 underscore 先加载
         '../assets/lib/underscore/underscore-min.js',
-        '../assets/lib/underscore.string/dist/underscore.string.min.js',
+        //'../assets/lib/underscore.string/dist/underscore.string.min.js',
         '../assets/lib/angular-underscore/angular-underscore.min.js',
         '../assets/lib/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js',
         // 用自己的模板

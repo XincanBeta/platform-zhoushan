@@ -8,12 +8,30 @@
 */
 
 
+
+/*--------------------------
+  $ vendors
+--------------------------*/
 // Mixin 库
 @import "../lib/bourbon/app/assets/stylesheets/bourbon";
 
+// csshake
+// 注，
+/*
+   csshake 的 animation 与 bootstrap 冲突
+    1、要么重命名 animation mixin
+    2、要么直接 extend .shake
+*/
+@import "../lib/csshake/sass/mixins";
+@import "../lib/csshake/sass/shake";
+
+
+/*--------------------------
+  $ vendors-override
+--------------------------*/
+
 // bootstrap
 @import "vendors-override/bootstrap/bootstrap";
-
 /*
   animate 和 ng-animation 都没用 bower 管理
   两者都用 sass 版本

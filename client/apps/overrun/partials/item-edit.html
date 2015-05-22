@@ -12,7 +12,8 @@
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-case')">案件信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">复检单</a></li>
     </ul>
-    <div class="entity-block-wrap under-navbar slide-down" ng-if="modal.contentShow" >
+    <!--ng-if="modal.contentShow"-->
+    <div class="entity-block-wrap under-navbar slide-down" >
       <!--初检单-->
       <div id="overrun-edit-checklist" class="entity-block under-navbar">
         <header class="entity-block--header">
@@ -109,6 +110,18 @@
               <input type="text" class="form-control" name="hymd" ng-model="item.hymd"/>
             </div>
           </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label " >上传现场照片</label>
+              <div class="entity-photo with-delete" ng-repeat="image in sceneImages"
+                   ng-click="openLightboxModal(sceneImages, $index)">
+                <img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
+              </div>
+              <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
+                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                   ngf-accept="'image/*'"></div>
+            </div>
+          </div>
         </div>
       </div>
       <!--车辆信息-->
@@ -163,9 +176,9 @@
           <div class="col-sm-16">
             <label class="entity-label">上传车辆证件</label>
 
-            <div class="entity-photo" ng-repeat="image in vehicleImages"
+            <div class="entity-photo with-delete" ng-repeat="image in vehicleImages"
                  ng-click="openLightboxModal(vehicleImages, $index)">
-              <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+              <img class="with-delete" ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
             </div>
             <div ngf-drop ngf-select ng-model="vehicleFiles" class="entity-upload-photo drop-box"
                  ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -222,11 +235,11 @@
             <div class="col-sm-16">
               <label class="entity-label">上传驾驶员证件</label>
 
-              <div class="entity-photo" ng-repeat="image in driverImages"
+              <div class="entity-photo with-delete" ng-repeat="image in driverImages"
                    ng-click="openLightboxModal(driverImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
               </div>
-              <div ngf-drop ng-model="driverFiles" class="entity-upload-photo drop-box"
+              <div ngf-drop ngf-select ng-model="driverFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
                    ngf-accept="'image/*'"></div>
             </div>
@@ -381,11 +394,11 @@
             <div class="col-sm-16">
               <label class="entity-label">上传发票证件</label>
 
-              <div class="entity-photo" ng-repeat="image in billImages"
+              <div class="entity-photo with-delete" ng-repeat="image in billImages"
                    ng-click="openLightboxModal(billImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
               </div>
-              <div ngf-drop ng-model="billFiles" class="entity-upload-photo drop-box"
+              <div ngf-drop ngf-select ng-model="billFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
                    ngf-accept="'image/*'"></div>
             </div>
