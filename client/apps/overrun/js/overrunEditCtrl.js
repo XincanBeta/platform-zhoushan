@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, $q) {
+            Upload, $rootScope) {
 
     /*
      功能目录：

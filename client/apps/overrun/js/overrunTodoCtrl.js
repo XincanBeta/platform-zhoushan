@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunTodoCtrl',
-  function ($scope, $state, $rootScope, sliderService, requestService, $modal) {
+  function ($scope, $state, $rootScope, sliderService, requestService, $modal, $timeout) {
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
@@ -82,7 +82,11 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         modalInstance.opened.then(function () {
           sliderService.stopAutoHide();
           // 显示内容事件
-          $rootScope.$emit("modal.content.show")
+          //$timeout(function(){
+          //  console.log('hello');
+            $rootScope.$emit("modal.content.show")
+          //}, 300)
+
         })
 
         modalInstance.result.then(function () {
