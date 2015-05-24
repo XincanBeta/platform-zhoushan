@@ -48,7 +48,13 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/files/'+ id +'/delete.do');
     }
   }
-
+  this.queryFiles = function(data){
+    if (env == 'local') {
+      //return _doGetRequest(localPath + 'home.sidebar.json');
+    } else {
+      return _doPostRequest('/api/files/query.do', data);
+    }
+  }
   this.homeSidebarItems = function () {
     // 目前没有 remote 版本，所以固定用 localPath，而且是 get 请求
     return _doGetRequest(localPath + 'home.sidebar.json');
