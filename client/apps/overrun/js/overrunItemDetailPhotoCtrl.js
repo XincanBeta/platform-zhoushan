@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunEntityPhotoCtrl',
+angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
   function ($scope, Lightbox, sliderService, Upload, $http) {
 
     /*--------------------------

@@ -37,8 +37,8 @@ angular.module('app.overrun', [
      */
     var apps = '../apps/'
     $ocLazyLoad.load([
-      apps + 'overrun/js/overrunEntityPanelCtrl.js',
-      apps + 'overrun/js/overrunEntityPhotoCtrl.js',
+      apps + 'overrun/js/overrunItemDetailCtrl.js',
+      apps + 'overrun/js/overrunItemDetailPhotoCtrl.js',
       apps + 'overrun/js/overrunEditCtrl.js',
       apps + 'overrun/js/overrunDeleteCtrl.js',
       apps + 'overrun/js/overrunForfeit.js'

@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunEntityPanelCtrl',
+angular.module('app.overrun').controller('OverrunItemDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope, $location, anchorSmoothScroll) {
 
     var tabset = [{
@@ -10,13 +10,18 @@ angular.module('app.overrun').controller('OverrunEntityPanelCtrl',
       content: 'photoContent',
       operator: 'photoOperator'
     }]
+
+    // 区分待处理和已完结
     if ($state.current.name == "myapp.overrun.done") {
       tabset.push({
         name: '案卷',
         content: 'docContent',
         operator: 'docOperator'
       })
+      // ng-if='!hideDetailOperator'
+      $scope.hideDetailOperator = true;
     }
+
     $scope.tabset = tabset;
     $scope.select = function (tab) {
       $scope.selected = tab;

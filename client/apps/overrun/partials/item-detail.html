@@ -16,7 +16,7 @@
 </script>
 
 <script type="text/ng-template" id="detailOperator">
-  <button type="button" class="btn btn-default" ng-click="editInfo()">修改</button>
+  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="editInfo()">修改</button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">
@@ -42,7 +42,7 @@
 
 
 <script type="text/ng-template" id="photoContent">
-  <div class="entity-block-wrap" ng-controller="OverrunEntityPhotoCtrl">
+  <div class="entity-block-wrap" ng-controller="OverrunItemDetailPhotoCtrl">
     <!--现场照片-->
     <div class="entity-block">
       <header class="entity-block--header">

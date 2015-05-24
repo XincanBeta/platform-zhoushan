@@ -164,7 +164,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       if (!$scope.cj_zz) {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.cj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.cj_zz, $scope.item.cj_zs);
       $scope.cj_cz = resutl.overValue;
     }
     // 计算初检罚金
@@ -172,7 +172,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       if (!$scope.checklistValue) {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.cj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.cj_zz, $scope.item.cj_zs);
       $scope.item.aj_fkje = resutl.forfeit;
     }
     // 计算复检超值
@@ -180,7 +180,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       if (!$scope.fj_zz) {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.fj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.fj_zz, $scope.item.cj_zs);
       $scope.fj_zz = resutl.overValue;
     }
 
