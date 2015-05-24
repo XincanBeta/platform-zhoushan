@@ -9,17 +9,15 @@ angular.module('validation.rule', ['validation'])
           if(value == 0){
             return true;
           }
-/*
-          value = value.toString()
-          if(value.replace(/(^\s*)|(\s*$)/g, "") === ""){
-            return false;
-          }
-*/
           return true;
         },
         url: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
         email: /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
-        number: /(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)/,
+        isNumber: /(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)/,
+        // 示例：numberEq=0
+        numberEq: function (value, scope, element, attrs, param) {
+          return parseInt(value, 10) === parseInt(param, 10);
+        },
         minlength: function (value, scope, element, attrs, param) {
           return value.length >= param;
         },
@@ -37,7 +35,7 @@ angular.module('validation.rule', ['validation'])
       };
       /*
        success 属性可选
-       在属性中声明自定义消息 number-error-message
+       在属性中声明自定义消息 isNumber-error-message
        */
       var defaultMsg = {
         required: {
@@ -49,8 +47,12 @@ angular.module('validation.rule', ['validation'])
         email: {
           error: 'This should be Email'
         },
-        number: {
+        isNumber: {
           error: '请填正数'
+        },
+        // fixme：自定义验证无效
+        numberEq: {
+          error: '数值不正确'
         },
         minlength: {
           error: '长度错误'

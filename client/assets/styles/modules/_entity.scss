@@ -40,18 +40,16 @@
   }
 }
 
+/*
+  图片上不能加伪元素
+  伪元素不支持点击事件吗
+*/
 .entity-photo {
   height: 200px;
   width: 400px;
   //clear: both;
-  //
   margin-top: 10px;
   margin-bottom: 10px;
-  > img {
-    // 控制高度，让宽度自适应
-    max-height: 200px;
-  }
-  // 图片上不能加伪元素
   &.with-delete {
     position: relative;
     //outline: 1px solid black;
@@ -61,7 +59,11 @@
     height: auto;
     width: auto;
   }
-  &.with-delete::after {
+  > img {
+    // 控制高度，让宽度自适应
+    max-height: 200px;
+  }
+  & > .delete {
     content: '';
     background: url("../img/element/delete-30.png") no-repeat center;
     // 背景大小就是图片大小
@@ -78,6 +80,7 @@
     @extend .shake-little;
   }
 }
+
 
 .entity-photo-hover {
   height: 200px;

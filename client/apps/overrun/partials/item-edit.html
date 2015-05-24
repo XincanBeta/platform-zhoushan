@@ -75,18 +75,18 @@
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
               <input type="text" class="form-control" name="xccfCl.zs" ng-model="item.xccfCl.zs" validator="required"
-                     validator="required, number"/>
+                     validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ typeLabel }}</label>
-              <input type="text" class="form-control" name="checklistValue" ng-model="checklistValue" validator="required, number"/>
+              <input type="text" class="form-control" name="checklistValue" ng-model="checklistValue" validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ overTypeLabel }}</label>
 
               <div class="input-group">
                 <input type="text" class="entity-input form-control" name="checklistOverValue" ng-model="checklistOverValue"
-                       validator="required, number" message-id="checklist-overvalue-msg"/>
+                       validator="required, isNumber" message-id="checklist-overvalue-msg"/>
 
                 <div class="input-group-btn">
                   <button class="btn btn-default fa-calculator" type="button"
@@ -116,6 +116,7 @@
               <div class="entity-photo with-delete" ng-repeat="image in sceneImages"
                    ng-click="openLightboxModal(sceneImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
+                  <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
               </div>
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -178,7 +179,8 @@
 
             <div class="entity-photo with-delete" ng-repeat="image in vehicleImages"
                  ng-click="openLightboxModal(vehicleImages, $index)">
-              <img class="with-delete" ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+              <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+              <i class="delete" ng-click="deleteImage(vehicleImages, image)"></i>
             </div>
             <div ngf-drop ngf-select ng-model="vehicleFiles" class="entity-upload-photo drop-box"
                  ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -238,6 +240,7 @@
               <div class="entity-photo with-delete" ng-repeat="image in driverImages"
                    ng-click="openLightboxModal(driverImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
+                <i class="delete" ng-click="deleteImage(driverImages, image)"></i>
               </div>
               <div ngf-drop ngf-select ng-model="driverFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -309,7 +312,7 @@
 
               <div class="input-group">
                 <input type="text" class="entity-input form-control" name="fkje" ng-model="item.fkje"
-                       validator="required, number"/>
+                       validator="required, isNumber"/>
 
                 <div class="input-group-btn">
                   <button class="btn btn-default fa-calculator" type="button" ng-click="calcForfeit()"></button>
@@ -397,6 +400,7 @@
               <div class="entity-photo with-delete" ng-repeat="image in billImages"
                    ng-click="openLightboxModal(billImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
+                <i class="delete" ng-click="deleteImage(billImages, image)"></i>
               </div>
               <div ngf-drop ngf-select ng-model="billFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -449,7 +453,8 @@
 
               <div class="input-group">
                 <input type="text" class="entity-input form-control" name="reChecklistOverValue" ng-model="$parent.reChecklistOverValue"
-                       validator="required, number" message-id="re-checklist-overvalue-msg"/>
+                       validator="required, isNumber, numberEq=0" numberEq-error-message="必须是 0" numberEq-success-message="Good Email"
+                       message-id="re-checklist-overvalue-msg"/>
 
                 <div class="input-group-btn">
                   <button class="btn btn-default fa-calculator" type="button" ng-click="calcReChecklistOverValue()"></button>

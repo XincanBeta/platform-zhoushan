@@ -25,15 +25,10 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 初始化（一）
      --------------------------*/
-    console.log("itemIsNew ", itemIsNew);
     $scope.item = item;
     //console.log($scope.item);
     var dateFormat = 'YYYY-MM-DD HH:mm';
-    //if (isNew()) {
-      // 获取一个 id
-      //var idPromise = requestService.getNewId()
-      // 返回一个 promise
-    //}
+
     // 显示模块的内容
     /*$rootScope.$on("modal.content.show", function(){
       $scope.modal = {contentShow: true};
@@ -252,12 +247,15 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
           Upload.upload({
+            // todo：图片上传接口内部实现暴露了
             url: '/api/files/' + $scope.item.xccfid + '/insert.do',
             fields: {
               isthumbnail: true,
               width: 400,
               height: 200,
+              // 文件类型
               filetype: 'image',
+              // 业务类型
               datatype: datatype
             },
             file: file
@@ -266,9 +264,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            $scope.sceneImages.push({
-              thumbnaildata: res.data
-            })
+            $scope.sceneImages.push( res.data )
           });
         }
       }
@@ -276,7 +272,17 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 证件删除
      --------------------------*/
-
+    $scope.deleteImage = function(images, image){
+      requestService.deleteFile(image.fileid).success(function(res){
+        if (res.success) {
+          images = _.without(images, _.findWhere(images, {fileid: image.fileid}));
+          ngToast.create({
+            className: 'success',
+            content: '删除成功!'
+          });
+        }
+      })
+    }
 
 
     /*--------------------------
@@ -308,7 +314,6 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.item.afsj = moment($scope.item.afsj).format(dateFormat)
       $scope.item.xcblsj = moment($scope.item.xcblsj).format(dateFormat)
       $scope.item.xwblsj = moment($scope.item.xwblsj).format(dateFormat)
-
 
       // 处理总量/超量
       // 初检单
@@ -428,12 +433,6 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     }
 
 
-    /*--------------------------
-      $ 工具函数
-    --------------------------*/
-    // 判断是新增还是修改
-    /*function isNew() {
-      return !!(!$scope.item || !$scope.item.xccfid);
-    }*/
+
 
   })
