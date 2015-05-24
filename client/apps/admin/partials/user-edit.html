@@ -1,0 +1,31 @@
+<form name="form" class="form-horizontal form-modal " method="post" action="">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title">人员信息</h4>
+  </div>
+  <div class="modal-body" id="info-edit-body">
+    <div class="entity-block-wrap">
+      <div class="entity-block">
+        <div class="entity-block--body">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label class="entity-label">人员名称</label>
+              <input type="text" class="form-control" name="ry_mc" ng-model="item.ry_mc" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+            <div class="col-sm-8">
+              <label class="entity-label">单位名称</label>
+              <input type="text" class="form-control" name="dw_bm" ng-model="item.dw_bm" validator="required"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+    <button type="button" class="btn btn-primary" validation-submit="form" ng-click="save()">保存</button>
+  </div>
+</form>
+
+
