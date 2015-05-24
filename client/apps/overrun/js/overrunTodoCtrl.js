@@ -76,7 +76,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
             item: function () {
               return item;
             },
-            isNew: true
+            itemIsNew: function(){return true}
           }
         })
 

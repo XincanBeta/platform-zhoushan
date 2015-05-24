@@ -1,11 +1,10 @@
 angular.module('app.overrun').controller('OverrunEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
-            requestService, item, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
+            requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
             Upload, $rootScope) {
 
     /*
      功能目录：
-
      初始化（一）
      表单域处理
      下拉列表与表单变换
@@ -26,14 +25,15 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 初始化（一）
      --------------------------*/
+    console.log("itemIsNew ", itemIsNew);
     $scope.item = item;
     //console.log($scope.item);
     var dateFormat = 'YYYY-MM-DD HH:mm';
-    if (isNew()) {
+    //if (isNew()) {
       // 获取一个 id
       //var idPromise = requestService.getNewId()
       // 返回一个 promise
-    }
+    //}
     // 显示模块的内容
     /*$rootScope.$on("modal.content.show", function(){
       $scope.modal = {contentShow: true};
@@ -319,7 +319,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.item[$scope.selectedOverrunType.reChecklistOverValueField] = $scope.reChecklistOverValue;
 
 
-      if (isNew()) {
+      if (itemIsNew) {
         requestService.overrunTodoItemSave($scope.item).success(function (res) {
           if (res.success) {
             ngToast.create({
@@ -397,7 +397,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      $ 初始化（二）
      新案件 item 初始化在 todoCtrl 中
      --------------------------*/
-    if (isNew()) {
+    if (itemIsNew) {
       // 时间控件：初始化
       var date = moment().format(dateFormat);// 未用 angular-moment
       $scope.item.cjsj = date
@@ -432,8 +432,8 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $ 工具函数
     --------------------------*/
     // 判断是新增还是修改
-    function isNew() {
+    /*function isNew() {
       return !!(!$scope.item || !$scope.item.xccfid);
-    }
+    }*/
 
   })
