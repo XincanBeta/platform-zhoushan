@@ -87,7 +87,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.zz_label = type.zz_label;
       $scope.cz_label = type.cz_label;
       // 更换类型时重置超量和罚金
-      $scope.item.aj_fkje = '';
+      $scope.item.aj_fk = '';
       $scope.item.cj_cz = '';
       $scope.item.fj_cz = '';
     };
@@ -173,7 +173,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
         return;
       }
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.cj_zz, $scope.item.cj_zs);
-      $scope.item.aj_fkje = resutl.forfeit;
+      $scope.item.aj_fk = resutl.forfeit;
     }
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
@@ -298,11 +298,11 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      --------------------------*/
     $scope.save = function () {
       // fixme：格式化时间（临时方案）
-      $scope.item.cjsj = moment($scope.item.cj_sj).format(dateFormat)
-      $scope.item.fjsj = moment($scope.item.fj_sj).format(dateFormat)
-      $scope.item.afsj = moment($scope.item.aj_afsj).format(dateFormat)
-      $scope.item.xcblsj = moment($scope.item.aj_xcblsj).format(dateFormat)
-      $scope.item.xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
+      $scope.item.cj_sj = moment($scope.item.cj_sj).format(dateFormat)
+      $scope.item.fj_sj = moment($scope.item.fj_sj).format(dateFormat)
+      $scope.item.aj_afsj = moment($scope.item.aj_afsj).format(dateFormat)
+      $scope.item.aj_xcblsj = moment($scope.item.aj_xcblsj).format(dateFormat)
+      $scope.item.aj_xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
 
       /*// 处理总量/超量
        // 初检单

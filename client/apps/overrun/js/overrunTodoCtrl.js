@@ -56,16 +56,12 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     var path = '../apps/overrun/partials/';
     $scope.add = function () {
       var modalInstance
-      var item = {
-        xccfCl: {},
-        xccfDsr: {},
-        xccfJsy: {}
-      };
+      var item = {};
       requestService.getNewId().success(function (res) {
         if (!res.success) {
           throw 'new id get failure !'
         }
-        item.xccfid = res.data;
+        item.aj_id = res.data;
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,
