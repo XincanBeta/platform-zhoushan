@@ -24,8 +24,11 @@ angular.module('app.admin', [])
      */
     var apps = '../apps/'
     $ocLazyLoad.load([
-      apps + 'admin/js/adminDeptDetailCtrl.js'
+      apps + 'admin/js/adminDeptDetailCtrl.js',
+      apps + 'admin/js/adminDeptEditCtrl.js'
     ])
+
+
 
 
 
