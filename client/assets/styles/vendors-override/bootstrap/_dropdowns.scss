@@ -1,5 +1,6 @@
 .dropdown-menu {
-  min-width: 153px;
+  // todo：与 modal-lg 、grid-gutter-width 有关联，具体应用在 edit 页面
+  min-width: 175px;
 
   > li > a {
     padding: 3px 12px;
