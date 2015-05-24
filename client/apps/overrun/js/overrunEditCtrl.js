@@ -43,41 +43,21 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /* 下拉列表与表单变换 */
     $scope.overrunTypes = [
       {
-        label: '总重',
-        name: '超重',
-        checklistValueField: 'cjzz',
-        checklistOverValueField: 'cjcz',
-        reChecklistValueField: 'fjzz',
-        reChecklistOverValueField: 'fjcz'
+        zz_label: '总重',
+        cz_label: '超重'
       },
       {
-        label: '总长',
-        name: '超长',
-        checklistValueField: 'cjzc',
-        checklistOverValueField: 'cjcc',
-        reChecklistValueField: 'fjzc',
-        reChecklistOverValueField: 'fjcc'
+        zz_label: '总长',
+        cz_label: '超长'
       }, {
-        label: '总宽',
-        name: '超宽',
-        checklistValueField: 'cjzk',
-        checklistOverValueField: 'cjck',
-        reChecklistValueField: 'fjzk',
-        reChecklistOverValueField: 'fjck'
+        zz_label: '总宽',
+        cz_label: '超宽'
       }, {
-        label: '总高',
-        name: '超高',
-        checklistValueField: 'cjzg',
-        checklistOverValueField: 'cjcg',
-        reChecklistValueField: 'fjzg',
-        reChecklistOverValueField: 'fjcg'
+        zz_label: '总高',
+        cz_label: '超高'
       }, {
-        label: '集装箱总高',
-        name: '集装箱超高',
-        checklistValueField: 'cjjzxzg',
-        checklistOverValueField: 'cjjzxcg',
-        reChecklistValueField: 'fjjzxzg',
-        reChecklistOverValueField: 'fjjzxcg'
+        zz_label: '集装箱总高',
+        cz_label: '集装箱超高'
       }
     ];
     $scope.unloadTypes = [
@@ -227,22 +207,22 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      $ 证件上传
      --------------------------*/
     $scope.$watch('sceneFiles', function () {
-      $scope.upload($scope.sceneFiles, 'scene');
+      $scope.upload($scope.sceneFiles, 'scene', $scope.sceneImages);
     });
 
     $scope.$watch('vehicleFiles', function () {
-      $scope.upload($scope.vehicleFiles, 'vehicle');
+      $scope.upload($scope.vehicleFiles, 'vehicle', $scope.vehicleImages);
     });
 
     $scope.$watch('driverFiles', function () {
-      $scope.upload($scope.driverFiles, 'driver');
+      $scope.upload($scope.driverFiles, 'driver', $scope.driverImages);
     });
 
     $scope.$watch('billFiles', function () {
-      $scope.upload($scope.billFiles, 'bill');
+      $scope.upload($scope.billFiles, 'bill', $scope.billImages);
     });
 
-    $scope.upload = function (files, datatype) {
+    $scope.upload = function (files, datatype, images) {
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
@@ -264,7 +244,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            $scope.sceneImages.push( res.data )
+            images.push( res.data )
           });
         }
       }
@@ -275,7 +255,11 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     $scope.deleteImage = function(images, image){
       requestService.deleteFile(image.fileid).success(function(res){
         if (res.success) {
-          images = _.without(images, _.findWhere(images, {fileid: image.fileid}));
+          for(var i=0; i<images.length; i++){
+            if(images[i].fileid == image.fileid){
+              images.splice(i, 1);
+            }
+          }
           ngToast.create({
             className: 'success',
             content: '删除成功!'

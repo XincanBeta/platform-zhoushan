@@ -8,7 +8,7 @@
       <li><a href="javascript:void(0)"  ng-click="gotoAnchor('overrun-edit-checklist')">初检单</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-vehicle')">车辆信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-driver')">驾驶员信息</a></li>
-      <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-party')">当事人信息</a></li>
+      <!--<li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-party')">当事人信息</a></li>-->
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-case')">案件信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">复检单</a></li>
     </ul>
@@ -24,26 +24,26 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">单号</label>
-              <input type="text" class="form-control" name="cjdh" ng-model="item.cjdh" validator="required"
+              <input type="text" class="form-control" name="cj_dh" ng-model="item.cj_dh" validator="required"
                      autofocus="autofocus"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">时间</label>
-              <input type="text" class="form-control" ng-model="item.cjsj" readonly
+              <input type="text" class="form-control" ng-model="item.cj_sj" readonly
                      today-text="今天" now-text="现在" date-text="日期"
                      time-text="时刻" clear-text="清空" close-text="关闭"
                      datetime-picker="yyyy-MM-dd HH:mm"
                      datepicker-options="dateOptions"
                      timepicker-options="timeOptions"
-                     is-open="openDatepicker.cjsj"
-                     ng-click="openCalendar($event, 'cjsj')"/>
+                     is-open="openDatepicker.cj_sj"
+                     ng-click="openCalendar($event, 'cj_sj')"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">超限类型</label>
 
               <div class="entity-input dropdown" dropdown>
                 <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
-                  <span>{{ item.cxlx }}</span> <span class="caret"></span>
+                  <span>{{ item.cj_cxlx }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li ng-repeat="type in overrunTypes" ng-class="(type.name === selectedOverrunType.name)? 'disabled':''">
@@ -57,7 +57,7 @@
 
               <div class="entity-input dropdown" dropdown>
                 <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
-                  <span>{{ item.kfxz }}</span> <span class="caret"></span>
+                  <span>{{ item.cj_kfxz }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
                   <li ng-repeat="type in unloadTypes" ng-class="(type.name === selectedUnloadType.name)? 'disabled':''">
@@ -70,22 +70,23 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
-              <input type="text" class="form-control" name="xccfCl.cp" ng-model="item.xccfCl.cp" validator="required"/>
+              <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp" validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="xccfCl.zs" ng-model="item.xccfCl.zs" validator="required"
+              <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs" validator="required"
                      validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">{{ typeLabel }}</label>
-              <input type="text" class="form-control" name="checklistValue" ng-model="checklistValue" validator="required, isNumber"/>
+              <label class="entity-label">{{ zz_label }}</label>
+              <input type="text" class="form-control" name="cj_zz" ng-model="item.cj_zz"
+                     validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">{{ overTypeLabel }}</label>
+              <label class="entity-label">{{ cz_label }}</label>
 
               <div class="input-group">
-                <input type="text" class="entity-input form-control" name="checklistOverValue" ng-model="checklistOverValue"
+                <input type="text" class="entity-input form-control" name="cj_cz" ng-model="item.cj_cz"
                        validator="required, isNumber" message-id="checklist-overvalue-msg"/>
 
                 <div class="input-group-btn">
@@ -99,15 +100,15 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">货物名称</label>
-              <input type="text" class="form-control" name="hwmc" ng-model="item.hwmc"/>
+              <input type="text" class="form-control" name="hw_mc" ng-model="item.hw_mc"/>
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货起点</label>
-              <input type="text" class="form-control" name="hyqd" ng-model="item.hyqd"/>
+              <input type="text" class="form-control" name="hw_qd" ng-model="item.hw_qd"/>
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货目的地</label>
-              <input type="text" class="form-control" name="hymd" ng-model="item.hymd"/>
+              <input type="text" class="form-control" name="hw_md" ng-model="item.hw_md"/>
             </div>
           </div>
           <div class="form-group">
@@ -135,41 +136,49 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车头</label>
-              <input type="text" class="form-control" name="xccfCl.ct" ng-model="item.xccfCl.ct"/>
+              <input type="text" class="form-control"  ng-model="item.cj_cp"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">挂车</label>
-              <input type="text" class="form-control" name="xccfCl.gc" ng-model="item.xccfCl.gc"/>
+              <input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">核定载质量</label>
-              <input type="text" class="form-control" name="xccfCl.hdzzl" ng-model="item.xccfCl.hdzzl"/>
+              <input type="text" class="form-control" name="cl_hdz" ng-model="item.cl_hdz"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">整备质量</label>
-              <input type="text" class="form-control" name="xccfCl.zbzl" ng-model="item.xccfCl.zbzl"/>
+              <input type="text" class="form-control" name="cl_zb" ng-model="item.cl_zb"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-8">
               <label class="entity-label">车籍地</label>
-              <input type="text" class="form-control" name="xccfCl.cjd" ng-model="item.xccfCl.cjd"/>
+              <input type="text" class="form-control" name="cl_cjd" ng-model="item.cl_cjd"/>
             </div>
             <div class="col-sm-8">
               <label class="entity-label">车辆类型</label>
-              <input type="text" class="form-control" name="xccfCl.cllx" ng-model="item.xccfCl.cllx"/>
+              <input type="text" class="form-control" name="cl_lx" ng-model="item.cl_lx"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label class="entity-label">车辆所有人</label>
+              <input type="text" class="form-control" name="cl_syr" ng-model="item.cl_syr"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">所有人电话</label>
+              <input type="text" class="form-control" name="cl_dh" ng-model="item.cl_dh"/>
+            </div>
+            <div class="col-sm-8">
+              <label class="entity-label">营运证</label>
+              <input type="text" class="form-control" name="cl_yyz" ng-model="item.cl_yyz"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label">所有人</label>
-              <input type="text" class="form-control" name="xccfCl.syr" ng-model="item.xccfCl.syr"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-16">
-              <label class="entity-label">住址</label>
-              <input type="text" class="form-control" name="xccfCl.syrzz" ng-model="item.xccfCl.syrzz"/>
+              <label class="entity-label">所有人住址</label>
+              <input type="text" class="form-control" name="cl_zz" ng-model="item.cl_zz"/>
             </div>
           </div>
         </div>
@@ -198,14 +207,13 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">姓名</label>
-              <input type="text" class="form-control" name="xccfJsy.xm" ng-model="item.xccfJsy.xm"/>
+              <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">性别</label>
-
               <div class="entity-input dropdown" dropdown>
                 <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
-                  <span>{{ item.xccfJsy.xb }}</span><span class="caret"></span>
+                  <span>{{ item.jsy_xb }}</span><span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li ng-repeat="type in genderTypes" ng-class="(type.name === selectedGenderTypes.name)? 'disabled':''">
@@ -216,21 +224,21 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">驾驶证号</label>
-              <input type="text" class="form-control" name="xccfJsy.jszh" ng-model="item.xccfJsy.jszh"/>
+              <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">从业资格证</label>
-              <input type="text" class="form-control" name="xccfJsy.cyzgz" ng-model="item.xccfJsy.cyzgz"/>
+              <input type="text" class="form-control" name="jsy_cy" ng-model="item.jsy_cy"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">联系电话</label>
-              <input type="text" class="form-control" name="xccfJsy.lxdh" ng-model="item.xccfJsy.lxdh"/>
+              <input type="text" class="form-control" name="jsy_dh" ng-model="item.jsy_dh"/>
             </div>
             <div class="col-sm-12">
               <label class="entity-label">住址</label>
-              <input type="text" class="form-control" name="xccfJsy.zz" ng-model="item.xccfJsy.zz"/>
+              <input type="text" class="form-control" name="jsy_zz" ng-model="item.jsy_zz"/>
             </div>
           </div>
           <div class="form-group">
@@ -250,55 +258,54 @@
         </div>
       </div>
       <!--当事人信息-->
-      <div id="overrun-edit-party" class="entity-block">
-        <header class="entity-block--header">
-          <i class="entity-icon icon-party"></i>
-          <span>当事人信息</span>
-        </header>
-        <div class="entity-block--body">
-          <div class="form-group">
-            <div class="col-sm-4">
-              <label class="entity-label">当事人类型</label>
-
-              <div class="entity-input dropdown" dropdown>
-                <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
-                  <span>{{ item.xccfDsr.dsrlx }}</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" role="menu">
-                  <li ng-repeat="type in partyTypes"
-                      ng-class="(type.name === selectedPartyTypes.name)? 'disabled':''; type.isDisabled ? 'disabled': ''">
-                    <a href="javascript:void(0)" ng-click="setPartyTypes(type)">{{type.name}}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-8">
-              <label class="entity-label">当事人</label>
-              <input type="text" class="form-control" name="xccfDsr.dsr" ng-model="item.xccfDsr.dsr"/>
-            </div>
-            <div class="col-sm-4">
-              <label class="entity-label">法人</label>
-              <input type="text" class="form-control" name="xccfDsr.fr" ng-model="item.xccfDsr.fr"/>
-            </div>
-            <div class="col-sm-4">
-              <label class="entity-label">营运证</label>
-              <input type="text" class="form-control" name="xccfDsr.yyz" ng-model="item.xccfDsr.yyz"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-4">
-              <label class="entity-label">联系电话</label>
-              <input type="text" class="form-control" name="xccfDsr.lxdh" ng-model="item.xccfDsr.lxdh"/>
-            </div>
-            <div class="col-sm-12">
-              <label class="entity-label">住址</label>
-              <input type="text" class="form-control" name="xccfDsr.zz" ng-model="item.xccfDsr.zz"/>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--<div id="overrun-edit-party" class="entity-block">-->
+        <!--<header class="entity-block&#45;&#45;header">-->
+          <!--<i class="entity-icon icon-party"></i>-->
+          <!--<span>当事人信息</span>-->
+        <!--</header>-->
+        <!--<div class="entity-block&#45;&#45;body">-->
+          <!--<div class="form-group">-->
+            <!--<div class="col-sm-4">-->
+              <!--<label class="entity-label">当事人类型</label>-->
+              <!--<div class="entity-input dropdown" dropdown>-->
+                <!--<button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>-->
+                  <!--<span>{{ item.dsr_lx }}</span> <span class="caret"></span>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu" role="menu">-->
+                  <!--<li ng-repeat="type in partyTypes"-->
+                      <!--ng-class="(type.name === selectedPartyTypes.name)? 'disabled':''; type.isDisabled ? 'disabled': ''">-->
+                    <!--<a href="javascript:void(0)" ng-click="setPartyTypes(type)">{{type.name}}</a>-->
+                  <!--</li>-->
+                <!--</ul>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<div class="col-sm-8">-->
+              <!--<label class="entity-label">当事人</label>-->
+              <!--<input type="text" class="form-control" name="xccfDsr.dsr" ng-model="item.xccfDsr.dsr"/>-->
+            <!--</div>-->
+            <!--<div class="col-sm-4">-->
+              <!--<label class="entity-label">法人</label>-->
+              <!--<input type="text" class="form-control" name="xccfDsr.fr" ng-model="item.xccfDsr.fr"/>-->
+            <!--</div>-->
+            <!--<div class="col-sm-4">-->
+              <!--<label class="entity-label">营运证</label>-->
+              <!--<input type="text" class="form-control" name="xccfDsr.yyz" ng-model="item.xccfDsr.yyz"/>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="form-group">-->
+            <!--<div class="col-sm-4">-->
+              <!--<label class="entity-label">联系电话</label>-->
+              <!--<input type="text" class="form-control" name="xccfDsr.lxdh" ng-model="item.xccfDsr.lxdh"/>-->
+            <!--</div>-->
+            <!--<div class="col-sm-12">-->
+              <!--<label class="entity-label">住址</label>-->
+              <!--<input type="text" class="form-control" name="xccfDsr.zz" ng-model="item.xccfDsr.zz"/>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
       <!--案件信息-->
       <div id="overrun-edit-case" class="entity-block">
         <header class="entity-block--header">
@@ -311,7 +318,7 @@
               <label class="entity-label ">罚款金额</label>
 
               <div class="input-group">
-                <input type="text" class="entity-input form-control" name="fkje" ng-model="item.fkje"
+                <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk"
                        validator="required, isNumber"/>
 
                 <div class="input-group-btn">
@@ -321,31 +328,37 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label ">罚款票据号</label>
-              <input type="text" class="form-control" name="fkpjh" ng-model="item.fkpjh"/>
+              <input type="text" class="form-control" name="aj_pjh" ng-model="item.aj_pjh"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label">停车地点</label>
+              <input type="text" class="form-control" name="aj_tcdd" ng-model="item.aj_tcdd"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">询问人姓名</label>
-              <input type="text" class="form-control" name="zfxwr" ng-model="item.zfxwr"/>
+              <input type="text" class="form-control" name="aj_zfx" ng-model="item.aj_zfx"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">询问人证号</label>
-              <input type="text" class="form-control" name="zfxwrzj" ng-model="item.zfxwrzj"/>
+              <input type="text" class="form-control" name="aj_zfxz" ng-model="item.aj_zfxz"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人姓名</label>
-              <input type="text" class="form-control" name="zfjlr" ng-model="item.zfjlr"/>
+              <input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人证号</label>
-              <input type="text" class="form-control" name="zfjlrzj" ng-model="item.zfjlrzj"/>
+              <input type="text" class="form-control" name="aj_zfjz" ng-model="item.aj_zfjz"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">案发时间</label>
-              <input type="text" class="form-control" name="afsj" ng-model="item.afsj" readonly
+              <input type="text" class="form-control" name="aj_afsj" ng-model="item.aj_afsj" readonly
                      today-text="今天" now-text="现在" date-text="日期"
                      time-text="时刻" clear-text="清空" close-text="关闭"
                      datetime-picker="yyyy-MM-dd HH:mm"
@@ -356,41 +369,41 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">案发地点</label>
-              <input type="text" class="form-control" name="afdd" ng-model="item.afdd"/>
+              <input type="text" class="form-control" name="aj_afdd" ng-model="item.aj_afdd"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">现场笔录时间</label>
-              <input type="text" class="form-control" name="xcblsj" ng-model="item.xcblsj" readonly
+              <input type="text" class="form-control" name="aj_xcblsj" ng-model="item.aj_xcblsj" readonly
                      today-text="今天" now-text="现在" date-text="日期"
                      time-text="时刻" clear-text="清空" close-text="关闭"
                      datetime-picker="yyyy-MM-dd HH:mm"
                      datepicker-options="dateOptions"
                      timepicker-options="timeOptions"
                      is-open="openDatepicker.xcblsj"
-                     ng-click="openCalendar($event, 'xcblsj')"/>
+                     ng-click="openCalendar($event, 'aj_xcblsj')"/>
             </div>
             <div class="col-sm-12">
               <label class="entity-label">现场笔录地点</label>
-              <input type="text" class="form-control" name="xcbldd" ng-model="item.xcbldd"/>
+              <input type="text" class="form-control" name="aj_xcbldd" ng-model="item.aj_xcbldd"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">询问笔录时间</label>
-              <input type="text" class="form-control" name="xwblsj" ng-model="item.xwblsj" readonly
+              <input type="text" class="form-control" name="aj_xwblsj" ng-model="item.aj_xwblsj" readonly
                      today-text="今天" now-text="现在" date-text="日期"
                      time-text="时刻" clear-text="清空" close-text="关闭"
                      datetime-picker="yyyy-MM-dd HH:mm"
                      datepicker-options="dateOptions"
                      timepicker-options="timeOptions"
                      is-open="openDatepicker.xwblsj"
-                     ng-click="openCalendar($event, 'xwblsj')"/>
+                     ng-click="openCalendar($event, 'aj_xwblsj')"/>
             </div>
             <div class="col-sm-12">
               <label class="entity-label">询问笔录地点</label>
-              <input type="text" class="form-control" name="xwbldd" ng-model="item.xwbldd"/>
+              <input type="text" class="form-control" name="aj_xwbldd" ng-model="item.aj_xwbldd"/>
             </div>
           </div>
           <div class="form-group">
@@ -411,7 +424,7 @@
         </div>
       </div>
       <!--复检单-->
-      <div id="overrun-edit-reChecklist" ng-if="item.kfxz == '可卸载'" class="entity-block">
+      <div id="overrun-edit-reChecklist" ng-if="item.cj_kfxz == '可卸载'" class="entity-block">
         <header class="entity-block--header">
           <i class="entity-icon icon-reChecklist"></i>
           <span>复检单</span>
@@ -420,40 +433,42 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">单号</label>
-              <input type="text" class="form-control" name="fjdh" ng-model="item.fjdh"/>
+              <input type="text" class="form-control" name="fj_dh" ng-model="item.fj_dh"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">时间</label>
-              <input type="text" class="form-control" name="fjsj" ng-model="item.fjsj" readonly
+              <input type="text" class="form-control" name="fj_sj" ng-model="item.fj_sj" readonly
                      today-text="今天" now-text="现在" date-text="日期"
                      time-text="时刻" clear-text="清空" close-text="关闭"
                      datetime-picker="yyyy-MM-dd HH:mm"
                      datepicker-options="dateOptions"
                      timepicker-options="timeOptions"
                      is-open="openDatepicker.fjsj"
-                     ng-click="openCalendar($event, 'fjsj')"/>
+                     ng-click="openCalendar($event, 'fj_sj')"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
-              <input type="text" class="form-control" name="xccfCl.cp" ng-model="item.xccfCl.cp"/>
+              <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="xccfCl.zs" ng-model="item.xccfCl.zs"/>
+              <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ typeLabel }}</label>
               <!-- ngIf 有自己的作用域，要么对象访问，要么通过 $parent -->
-              <input type="text" class="form-control" name="reChecklistValue" ng-model="$parent.reChecklistValue"/>
+              <input type="text" class="form-control" name="fj_zz" ng-model="$parent.fj_zz"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ overTypeLabel }}</label>
 
               <div class="input-group">
-                <input type="text" class="entity-input form-control" name="reChecklistOverValue" ng-model="$parent.reChecklistOverValue"
-                       validator="required, isNumber, numberEq=0" numberEq-error-message="必须是 0" numberEq-success-message="Good Email"
+                <input type="text" class="entity-input form-control" name="fj_cz"
+                       ng-model="$parent.fj_cz"
+                       validator="required, isNumber, numberEq=0"
+                       numberEq-error-message="必须是 0"
                        message-id="re-checklist-overvalue-msg"/>
 
                 <div class="input-group-btn">

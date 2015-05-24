@@ -105,7 +105,7 @@
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-checklist')">初检单</a></li>
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-vehicle')">车辆信息</a></li>
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-driver')">驾驶员信息</a></li>
-    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-party')">当事人信息</a></li>
+    <!--<li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-party')">当事人信息</a></li>-->
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-case')">案件信息</a></li>
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-reChecklist')">复检单</a></li>
   </ul>
@@ -117,15 +117,19 @@
         <span>初检单</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">单号：{{ item.cjdh }}</div>
-        <div class="entity-info">时间：{{ item.cjsj }}</div>
-        <div class="entity-info">车牌：{{ item.cp }}</div>
-        <div class="entity-info">轴数：{{ item.xccfCl.zs }}</div>
-        <div class="entity-info">总重：{{ item.cjzz }}</div>
-        <div class="entity-info">超重：{{ item.cjcz }}</div>
-        <div class="entity-info">货物名称：{{ item.hwmc }}</div>
-        <div class="entity-info">运货起点：{{ item.hyqd }}</div>
-        <div class="entity-info">运货目的地：{{ item.hymd }}</div>
+        <div class="entity-info">单号：{{ item.cj_dh }}</div>
+        <div class="entity-info">时间：{{ item.cj_sj }}</div>
+        <div class="entity-info">车牌：{{ item.cj_cp }}</div>
+        <div class="entity-info">轴数：{{ item.cj_zs }}</div>
+
+        <div class="entity-info">超限类型：{{ item.cj_cxlx }}</div>
+        <div class="entity-info">可否卸载：{{ item.cj_kfxz }}</div>
+
+        <div class="entity-info">总重：{{ item.cj_zz }}</div>
+        <div class="entity-info">超重：{{ item.cj_cz }}</div>
+        <div class="entity-info">货物名称：{{ item.hw_mc }}</div>
+        <div class="entity-info">运货起点：{{ item.hw_qd }}</div>
+        <div class="entity-info">运货目的地：{{ item.hw_md }}</div>
       </section>
     </div>
     <!--车辆信息-->
@@ -135,14 +139,18 @@
         <span>车辆信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">车头：{{ item.xccfCl.ct }}</div>
-        <div class="entity-info">挂车：{{ item.xccfCl.gc }}</div>
-        <div class="entity-info">核定载质量：{{ item.xccfCl.hdzzl }}</div>
-        <div class="entity-info">整备质量：{{ item.xccfCl.zbzl }}</div>
-        <div class="entity-info">车籍地：{{ item.xccfCl.cjd }}</div>
-        <div class="entity-info">车辆类型：{{ item.xccfCl.cllx }}</div>
-        <div class="entity-info">所有人：{{ item.xccfCl.syr }}</div>
-        <div class="entity-info">住址：{{ item.xccfCl.syrzz }}</div>
+        <div class="entity-info">车头：{{ item.cj_cp }}</div>
+        <div class="entity-info">挂车：{{ item.cl_gc }}</div>
+        <div class="entity-info">核定载质量：{{ item.cl_hdz }}</div>
+        <div class="entity-info">整备质量：{{ item.cl_zb }}</div>
+        <div class="entity-info">车籍地：{{ item.cl_cjd }}</div>
+        <div class="entity-info">车辆类型：{{ item.cl_lx }}</div>
+
+        <div class="entity-info">车辆所有人：{{ item.cl_syr }}</div>
+        <div class="entity-info">所有人电话：{{ item.cl_dh }}</div>
+
+        <div class="entity-info">营运证：{{ item.cl_yyz }}</div>
+        <div class="entity-info">所有人住址：{{ item.cl_zz }}</div>
       </section>
     </div>
     <!--驾驶员信息-->
@@ -152,28 +160,28 @@
         <span>驾驶员信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">姓名：{{ item.xccfJsy.xm }}</div>
-        <div class="entity-info">性别：{{ item.xccfJsy.xb }}</div>
-        <div class="entity-info">驾驶证号：{{ item.xccfJsy.jszh }}</div>
-        <div class="entity-info">从业资格证：{{ item.xccfJsy.cyzgz }}</div>
-        <div class="entity-info">联系电话：{{ item.xccfJsy.lxdh }}</div>
-        <div class="entity-info">住址：{{ item.xccfJsy.zz }}</div>
+        <div class="entity-info">姓名：{{ item.jsy_xm }}</div>
+        <div class="entity-info">性别：{{ item.jsy_xb }}</div>
+        <div class="entity-info">驾驶证号：{{ item.jsy_zh }}</div>
+        <div class="entity-info">从业资格证：{{ item.jsy_cy }}</div>
+        <div class="entity-info">联系电话：{{ item.jsy_dh }}</div>
+        <div class="entity-info">住址：{{ item.jsy_zz }}</div>
       </section>
     </div>
     <!--当事人信息-->
-    <div id="overrun-detail-party" class="entity-block">
-      <header class="entity-block--header">
+    <!--<div id="overrun-detail-party" class="entity-block">
+      <header class="entity-block&#45;&#45;header">
         <i class="entity-icon icon-party"></i>
         <span>当事人信息</span>
       </header>
-      <section class="entity-block--body">
+      <section class="entity-block&#45;&#45;body">
         <div class="entity-info">当事人：{{ item.xccfDsr.dsr }}</div>
         <div class="entity-info">法人：{{ item.xccfDsr.fr }}</div>
         <div class="entity-info">联系电话：{{ item.xccfDsr.lxdh }}</div>
         <div class="entity-info">营运证：{{ item.xccfDsr.yyz }}</div>
         <div class="entity-info">住址：{{ item.xccfDsr.zz }}</div>
       </section>
-    </div>
+    </div>-->
     <!--案件信息-->
     <div id="overrun-detail-case" class="entity-block">
       <header class="entity-block--header">
@@ -181,17 +189,19 @@
         <span>案件信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info is-clear-both is-highlight">罚款金额：{{ item.fkje }}元</div>
-        <div class="entity-info">执法人员（询问人）：{{ item.zfxwr }}</div>
-        <div class="entity-info">证号：{{ item.zfxwrzj }}</div>
-        <div class="entity-info">执法人员（记录人）：{{ item.zfjlr }}</div>
-        <div class="entity-info">证号：{{ item.zfjlrzj }}</div>
-        <div class="entity-info">案发时间：{{ item.afsj }}</div>
-        <div class="entity-info">案发地点：{{ item.afdd }}</div>
-        <div class="entity-info">现场笔录时间：{{ item.xcblsj }}</div>
-        <div class="entity-info">现场笔录地点：{{ item.xcbldd }}</div>
-        <div class="entity-info">询问笔录时间：{{ item.xwblsj }}</div>
-        <div class="entity-info">询问笔录地点：{{ item.xwbldd }}</div>
+        <div class="entity-info">罚款金额：{{ item.aj_fk }}元</div>
+        <div class="entity-info">票据号：{{ item.aj_pjh }}元</div>
+        <div class="entity-info">停车点：{{ item.aj_pjh }}元</div>
+        <div class="entity-info">执法询问人：{{ item.aj_zfx }}</div>
+        <div class="entity-info">证号：{{ item.aj_zfxz }}</div>
+        <div class="entity-info">执法记录人：{{ item.aj_zfj }}</div>
+        <div class="entity-info">证号：{{ item.aj_zfjz }}</div>
+        <div class="entity-info">案发时间：{{ item.aj_afsj }}</div>
+        <div class="entity-info">案发地点：{{ item.aj_afdd }}</div>
+        <div class="entity-info">现场笔录时间：{{ item.aj_xcblsj }}</div>
+        <div class="entity-info">现场笔录地点：{{ item.aj_xcbldd }}</div>
+        <div class="entity-info">询问笔录时间：{{ item.aj_xwblsj }}</div>
+        <div class="entity-info">询问笔录地点：{{ item.aj_xwbldd }}</div>
       </section>
     </div>
     <!--复检单-->
@@ -201,12 +211,12 @@
         <span>复检单</span>
       </header>
       <section class="entity-block--body no-border">
-        <div class="entity-info">单号：{{ item.fjdh }}</div>
-        <div class="entity-info">时间：{{ item.fjsj }}</div>
-        <div class="entity-info">车牌：{{ item.xccfCl.cp }}</div>
-        <div class="entity-info">轴数：{{ item.xccfCl.zs }}</div>
-        <div class="entity-info">总重：{{ item.fjzz }}</div>
-        <div class="entity-info">超重：{{ item.fjcz }}</div>
+        <div class="entity-info">单号：{{ item.fj_dh }}</div>
+        <div class="entity-info">时间：{{ item.fj_sj }}</div>
+        <div class="entity-info">车牌：{{ item.cj_cp }}</div>
+        <div class="entity-info">轴数：{{ item.cj_zs }}</div>
+        <div class="entity-info">总重：{{ item.fj_zz }}</div>
+        <div class="entity-info">超重：{{ item.fj_cz }}</div>
       </section>
     </div>
   </div>
