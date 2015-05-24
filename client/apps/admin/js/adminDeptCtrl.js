@@ -15,7 +15,7 @@ angular.module('app.admin').controller('AdminDeptCtrl',
           keyboard: false,
           size: "lg",
           templateUrl: path + 'dept-edit.html',
-          controller: 'OverrunEditCtrl',
+          controller: 'AdminDeptEditCtrl',
           resolve: {
             item: function () {return item;},
             itemIsNew: function(){return true}

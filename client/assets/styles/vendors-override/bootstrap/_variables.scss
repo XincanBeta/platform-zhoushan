@@ -1,6 +1,6 @@
 $border-radius-base: 2px;
 $grid-columns: 16;
-$modal-lg: 760px;
+$modal-lg: 820px;
 $input-height-base: 27px;
 $padding-base-vertical: 3px;
 
@@ -10,5 +10,6 @@ $alert-padding: 10px;
 // btn-info 在 hover、focus 时会加深 10%
 // 第一次用于 overrun>info-edit>datepicker input
 $btn-info-bg: lighten($direction-color, 20%);
+
 
 
