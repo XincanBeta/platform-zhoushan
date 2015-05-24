@@ -8,7 +8,6 @@
       <li><a href="javascript:void(0)"  ng-click="gotoAnchor('overrun-edit-checklist')">初检单</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-vehicle')">车辆信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-driver')">驾驶员信息</a></li>
-      <!--<li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-party')">当事人信息</a></li>-->
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-case')">案件信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">复检单</a></li>
     </ul>
@@ -46,8 +45,8 @@
                   <span>{{ item.cj_cxlx }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="type in overrunTypes" ng-class="(type.name === selectedOverrunType.name)? 'disabled':''">
-                    <a href="javascript:void(0)" ng-click="setOverrunType(type)">{{type.name}}</a>
+                  <li ng-repeat="type in overrunTypes" ng-class="(type.cz_label === selectedOverrunType.cz_label)? 'disabled':''">
+                    <a href="javascript:void(0)" ng-click="setOverrunType(type)">{{type.cz_label}}</a>
                   </li>
                 </ul>
               </div>
@@ -244,7 +243,6 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">上传驾驶员证件</label>
-
               <div class="entity-photo with-delete" ng-repeat="image in driverImages"
                    ng-click="openLightboxModal(driverImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
@@ -257,56 +255,6 @@
           </div>
         </div>
       </div>
-      <!--当事人信息-->
-      <!--<div id="overrun-edit-party" class="entity-block">-->
-        <!--<header class="entity-block&#45;&#45;header">-->
-          <!--<i class="entity-icon icon-party"></i>-->
-          <!--<span>当事人信息</span>-->
-        <!--</header>-->
-        <!--<div class="entity-block&#45;&#45;body">-->
-          <!--<div class="form-group">-->
-            <!--<div class="col-sm-4">-->
-              <!--<label class="entity-label">当事人类型</label>-->
-              <!--<div class="entity-input dropdown" dropdown>-->
-                <!--<button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>-->
-                  <!--<span>{{ item.dsr_lx }}</span> <span class="caret"></span>-->
-                <!--</button>-->
-                <!--<ul class="dropdown-menu" role="menu">-->
-                  <!--<li ng-repeat="type in partyTypes"-->
-                      <!--ng-class="(type.name === selectedPartyTypes.name)? 'disabled':''; type.isDisabled ? 'disabled': ''">-->
-                    <!--<a href="javascript:void(0)" ng-click="setPartyTypes(type)">{{type.name}}</a>-->
-                  <!--</li>-->
-                <!--</ul>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<div class="col-sm-8">-->
-              <!--<label class="entity-label">当事人</label>-->
-              <!--<input type="text" class="form-control" name="xccfDsr.dsr" ng-model="item.xccfDsr.dsr"/>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-              <!--<label class="entity-label">法人</label>-->
-              <!--<input type="text" class="form-control" name="xccfDsr.fr" ng-model="item.xccfDsr.fr"/>-->
-            <!--</div>-->
-            <!--<div class="col-sm-4">-->
-              <!--<label class="entity-label">营运证</label>-->
-              <!--<input type="text" class="form-control" name="xccfDsr.yyz" ng-model="item.xccfDsr.yyz"/>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="form-group">-->
-            <!--<div class="col-sm-4">-->
-              <!--<label class="entity-label">联系电话</label>-->
-              <!--<input type="text" class="form-control" name="xccfDsr.lxdh" ng-model="item.xccfDsr.lxdh"/>-->
-            <!--</div>-->
-            <!--<div class="col-sm-12">-->
-              <!--<label class="entity-label">住址</label>-->
-              <!--<input type="text" class="form-control" name="xccfDsr.zz" ng-model="item.xccfDsr.zz"/>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-      <!--案件信息-->
       <div id="overrun-edit-case" class="entity-block">
         <header class="entity-block--header">
           <i class="entity-icon icon-case"></i>

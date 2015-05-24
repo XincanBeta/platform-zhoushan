@@ -82,7 +82,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
 
     $scope.setOverrunType = function (type) {
       $scope.selectedOverrunType = type; // 前端内部使用
-      $scope.item.cj_cxlx = type.name;  // 对接使用
+      $scope.item.cj_cxlx = type.cz_label;  // 对接使用
       // 更改总量/超量标签
       $scope.zz_label = type.zz_label;
       $scope.cz_label = type.cz_label;
@@ -99,26 +99,6 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       $scope.selectedGenderTypes = type;
       $scope.item.jsy_xb = type.name;
     };
-    /*$scope.setPartyTypes = function (type) {
-     $scope.selectedPartyTypes = type;
-     $scope.item.xccfDsr.dsrlx = type.name;
-     };*/
-
-    /*--------------------------
-     $ 驾驶员数据关联
-     第一版本去掉了当事人信息
-     --------------------------*/
-    /*$scope.$watch('item.xccfJsy.lxdh', function () {
-     if ($scope.item.xccfDsr.dsrlx == '驾驶员') {
-     $scope.item.xccfDsr.lxdh = $scope.item.xccfJsy.lxdh;
-     }
-     })
-
-     $scope.$watch('item.xccfJsy.zz', function () {
-     if ($scope.item.xccfDsr.dsrlx == '驾驶员') {
-     $scope.item.xccfDsr.zz = $scope.item.xccfJsy.zz;
-     }
-     })*/
 
     /*--------------------------
      $ 日期设置
