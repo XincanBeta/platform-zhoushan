@@ -5,12 +5,12 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
 
     /*
      功能目录：
-     初始化（一）
+     初始化
      表单域处理
      下拉列表与表单变换
      驾驶员数据关联
      车辆信息关联
-     时间控件
+     日期设置
      罚金计算
      证件获取
      证件上传
@@ -18,12 +18,10 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      页内导航
      验证与格式化
      页脚操作
-     初始化（二）
-     工具函数
      */
 
     /*--------------------------
-     $ 初始化（一）
+     $ 初始化
      --------------------------*/
     $scope.item = item;
     //console.log($scope.item);
@@ -31,16 +29,14 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
 
     // 显示模块的内容
     /*$rootScope.$on("modal.content.show", function(){
-      $scope.modal = {contentShow: true};
-    })
-*/
+     $scope.modal = {contentShow: true};
+     })
+     */
 
-
-    
     /*--------------------------
      $ 表单域处理
      --------------------------*/
-    /* 下拉列表与表单变换 */
+    /* 超限类型与标签变换 */
     $scope.overrunTypes = [
       {
         zz_label: '总重',
@@ -72,7 +68,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
         name: '女'
       }
     ];
-    $scope.partyTypes = [
+    /*$scope.partyTypes = [
       {name: '驾驶员'},
       {
         name: '公司',
@@ -82,37 +78,36 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
         name: '个人',
         isDisabled: true
       }
-    ];
+    ];*/
     // 设置表单变换的通用字段 总量/超量标签
 
     $scope.setOverrunType = function (type) {
       $scope.selectedOverrunType = type; // 前端内部使用
-      $scope.item.cxlx = type.name;  // 对接使用
+      $scope.item.cj_cxlx = type.name;  // 对接使用
       // 更改总量/超量标签
-      $scope.typeLabel = type.label;
-      $scope.overTypeLabel = type.name;
+      $scope.zz_label = type.zz_label;
+      $scope.cz_label = type.cz_label;
       // 更换类型时重置超量和罚金
-      $scope.item.fkje = '';
-      $scope.checklistOverValue = '';
-      $scope.reChecklistOverValue = '';
-
+      $scope.item.aj_fkje = '';
+      $scope.cj_cz = '';
+      $scope.fj_cz = '';
     };
     $scope.setUnloadType = function (type) {
       $scope.selectedUnloadType = type;
-      $scope.item.kfxz = type.name;
+      $scope.item.cj_kfxz = type.name;
     };
     $scope.setGenderTypes = function (type) {
       $scope.selectedGenderTypes = type;
-      $scope.item.xccfJsy.xb = type.name;
+      $scope.item.jsy_xb = type.name;
     };
-    $scope.setPartyTypes = function (type) {
+    /*$scope.setPartyTypes = function (type) {
       $scope.selectedPartyTypes = type;
       $scope.item.xccfDsr.dsrlx = type.name;
-    };
+    };*/
 
     /*--------------------------
-      $ 驾驶员数据关联
-    --------------------------*/
+     $ 驾驶员数据关联
+     --------------------------*/
     //如果当事人类型是驾驶员，关联出电话和住址
     $scope.$watch('item.xccfJsy.lxdh', function () {
       if ($scope.item.xccfDsr.dsrlx == '驾驶员') {
@@ -127,17 +122,16 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     })
 
     /*--------------------------
-      $ 车辆信息关联
-    --------------------------*/
+     $ 车辆信息关联
+     --------------------------*/
     // 单向关联车牌
     $scope.$watch('item.xccfCl.cp', function () {
       $scope.item.xccfCl.ct = $scope.item.xccfCl.cp;
     })
 
 
-
     /*--------------------------
-     $ 时间控件
+     $ 日期设置
      --------------------------*/
     $scope.openDatepicker = {
       cjsj: false,
@@ -156,6 +150,36 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
       e.stopPropagation();
       $scope.openDatepicker[dateField] = true;
     };
+
+    // 初始化
+    if (itemIsNew) {
+      var date = moment().format(dateFormat);// 未用 angular-moment
+      $scope.item.cjsj = date
+      $scope.item.fjsj = date
+      $scope.item.afsj = date
+      $scope.item.xcblsj = date
+      $scope.item.xwblsj = date
+      // 下拉列表
+      $scope.setOverrunType($scope.overrunTypes[0]);
+      $scope.setUnloadType($scope.unloadTypes[0]);
+      $scope.setGenderTypes($scope.genderTypes[0]);
+      $scope.setPartyTypes($scope.partyTypes[0]);
+    } else {
+      // 下拉列表
+      $scope.setOverrunType(_matchTypes($scope.overrunTypes, $scope.item.cxlx));
+      $scope.setUnloadType(_matchTypes($scope.unloadTypes, $scope.item.kfxz));
+      $scope.setGenderTypes(_matchTypes($scope.genderTypes, $scope.item.xccfJsy.xb));
+      $scope.setPartyTypes(_matchTypes($scope.partyTypes, $scope.item.xccfDsr.dsrlx));
+    }
+
+    function _matchTypes(types, name) {
+      if (!name) {
+        return types[0]
+      }
+      return $scope._(types).find(function (type) {
+        return type.name == name;
+      });
+    }
 
 
     /*--------------------------
@@ -185,22 +209,22 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     }
 
     /*--------------------------
-      $ 证件获取
-    --------------------------*/
+     $ 证件获取
+     --------------------------*/
     $scope.sceneImages = [];
     $scope.vehicleImages = [];
     $scope.driverImages = [];
     $scope.billImages = [];
 
     /*$scope.vehicleImagePromise = $http.post('/api/files/query.do', {
-      dataid: $scope.item.xccfid,
-      datatype: 'vehicle'
-    }).success(function (res) {
-      var images = res.data;
-      for (var i = 0; i < images.length; i++) {
-        $scope.vehicleImages.push(images[i])
-      }
-    })*/
+     dataid: $scope.item.xccfid,
+     datatype: 'vehicle'
+     }).success(function (res) {
+     var images = res.data;
+     for (var i = 0; i < images.length; i++) {
+     $scope.vehicleImages.push(images[i])
+     }
+     })*/
 
 
     /*--------------------------
@@ -244,7 +268,7 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            images.push( res.data )
+            images.push(res.data)
           });
         }
       }
@@ -252,11 +276,11 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 证件删除
      --------------------------*/
-    $scope.deleteImage = function(images, image){
-      requestService.deleteFile(image.fileid).success(function(res){
+    $scope.deleteImage = function (images, image) {
+      requestService.deleteFile(image.fileid).success(function (res) {
         if (res.success) {
-          for(var i=0; i<images.length; i++){
-            if(images[i].fileid == image.fileid){
+          for (var i = 0; i < images.length; i++) {
+            if (images[i].fileid == image.fileid) {
               images.splice(i, 1);
             }
           }
@@ -386,37 +410,6 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
      $ 初始化（二）
      新案件 item 初始化在 todoCtrl 中
      --------------------------*/
-    if (itemIsNew) {
-      // 时间控件：初始化
-      var date = moment().format(dateFormat);// 未用 angular-moment
-      $scope.item.cjsj = date
-      $scope.item.fjsj = date
-      $scope.item.afsj = date
-      $scope.item.xcblsj = date
-      $scope.item.xwblsj = date
-      // 下拉列表
-      $scope.setOverrunType($scope.overrunTypes[0]);
-      $scope.setUnloadType($scope.unloadTypes[0]);
-      $scope.setGenderTypes($scope.genderTypes[0]);
-      $scope.setPartyTypes($scope.partyTypes[0]);
-    } else {
-      // 下拉列表
-      $scope.setOverrunType(_matchTypes($scope.overrunTypes, $scope.item.cxlx));
-      $scope.setUnloadType(_matchTypes($scope.unloadTypes, $scope.item.kfxz));
-      $scope.setGenderTypes(_matchTypes($scope.genderTypes, $scope.item.xccfJsy.xb));
-      $scope.setPartyTypes(_matchTypes($scope.partyTypes, $scope.item.xccfDsr.dsrlx));
-    }
-
-    function _matchTypes(types, name) {
-      if (!name) {
-        return types[0]
-      }
-      return $scope._(types).find(function (type) {
-        return type.name == name;
-      });
-    }
-
-
 
 
   })
