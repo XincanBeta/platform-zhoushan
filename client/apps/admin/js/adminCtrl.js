@@ -22,20 +22,11 @@ angular.module('app.admin', [])
      * todo: ocLazyLoad isLoaded 无效
      * 有的部分在路由中加载了，就不要重复加载了
      */
-    /*
-     var apps = '../apps/'
-     $ocLazyLoad.load([
-     apps + 'admin/js/adminDeptCtrl.js',
-     apps + 'admin/js/adminUserCtrl.js'
-     ])
-     */
-    // todo: 抽取成通用的服务
-    $scope.backToMyapp = function () {
-      $("#platform-body").removeClass("is-expand");
-      $timeout(function () {
-        $state.go("myapp")
-      }, 300)
-    }
+    var apps = '../apps/'
+    $ocLazyLoad.load([
+      apps + 'admin/js/adminDeptDetailCtrl.js'
+    ])
+
 
 
   })
