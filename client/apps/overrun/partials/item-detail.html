@@ -125,8 +125,8 @@
         <div class="entity-info">超限类型：{{ item.cj_cxlx }}</div>
         <div class="entity-info">可否卸载：{{ item.cj_kfxz }}</div>
 
-        <div class="entity-info">总重：{{ item.cj_zz }}</div>
-        <div class="entity-info">超重：{{ item.cj_cz }}</div>
+        <div class="entity-info">总重：{{ item.cj_zz }}<span ng-if="item.cj_zz">{{ unit }}</span></div>
+        <div class="entity-info">超重：{{ item.cj_cz }}<span ng-if="item.cj_cz">{{ unit }}</span></div>
         <div class="entity-info">货物名称：{{ item.hw_mc }}</div>
         <div class="entity-info">运货起点：{{ item.hw_qd }}</div>
         <div class="entity-info">运货目的地：{{ item.hw_md }}</div>
@@ -189,9 +189,9 @@
         <span>案件信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">罚款金额：{{ item.aj_fk }}元</div>
-        <div class="entity-info">票据号：{{ item.aj_pjh }}元</div>
-        <div class="entity-info">停车点：{{ item.aj_pjh }}元</div>
+        <div class="entity-info">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
+        <div class="entity-info">票据号：{{ item.aj_pjh }}</div>
+        <div class="entity-info">停车点：{{ item.aj_pjh }}</div>
         <div class="entity-info">执法询问人：{{ item.aj_zfx }}</div>
         <div class="entity-info">证号：{{ item.aj_zfxz }}</div>
         <div class="entity-info">执法记录人：{{ item.aj_zfj }}</div>
@@ -215,8 +215,8 @@
         <div class="entity-info">时间：{{ item.fj_sj }}</div>
         <div class="entity-info">车牌：{{ item.cj_cp }}</div>
         <div class="entity-info">轴数：{{ item.cj_zs }}</div>
-        <div class="entity-info">总重：{{ item.fj_zz }}</div>
-        <div class="entity-info">超重：{{ item.fj_cz }}</div>
+        <div class="entity-info">总重：{{ item.fj_zz }}<span ng-if="item.fj_zz">{{ unit }}</span></div>
+        <div class="entity-info">超重：{{ item.fj_cz }}<span ng-if="item.fj_cz">{{ unit }}</span></div>
       </section>
     </div>
   </div>

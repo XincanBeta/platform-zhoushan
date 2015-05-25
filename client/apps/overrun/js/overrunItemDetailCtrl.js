@@ -83,8 +83,8 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
     }
 
     /*--------------------------
-      $ 页内导航
-    --------------------------*/
+     $ 页内导航
+     --------------------------*/
     $scope.gotoAnchor = function (id) {
       $location.hash(id);
       anchorSmoothScroll.scrollTo(id);
@@ -93,6 +93,19 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
     // 接收详细信息
     $rootScope.$on("entity.update", function (event, res) {
       $scope.item = res.data;
+      // 设置单位
+      $scope.unit = _getUnit($scope.item.cj_cxlx)
     })
+
+    function _getUnit(cxlx){
+      if (!cxlx || cxlx == "") {
+        return ""
+      }
+      if (cxlx == '超重') {
+        return '吨'
+      }else{
+        return '米'
+      }
+    }
 
   })
