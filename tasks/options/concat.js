@@ -24,6 +24,9 @@ module.exports = {
       '<%= pkg.path.build %>/assets/lib/angular-busy/dist/angular-busy.min.js',
       '<%= pkg.path.build %>/assets/components/anchorSmoothScroll.min.js',
 
+      '<%= pkg.path.build %>/assets/components/car-city.min.js',
+      '<%= pkg.path.build %>/assets/components/angucomplete.min.js',
+
       // 串行
       '<%= pkg.path.build %>/assets/lib/underscore/underscore-min.js',
       '<%= pkg.path.build %>/assets/lib/underscore.string/dist/underscore.string.min.js',

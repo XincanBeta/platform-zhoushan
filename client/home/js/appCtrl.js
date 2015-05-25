@@ -53,10 +53,9 @@ angular.module('app')
       '../assets/lib/angular-busy/dist/angular-busy.min.js',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
       '../assets/components/anchorSmoothScroll.min.js',
-      '../assets/components/car-city.js',
-      '../assets/components/angucomplete.js',
+      '../assets/components/car-city.min.js',
+      '../assets/components/angucomplete.min.js',
       '../assets/components/angucomplete.css'
-
     ]
     /*
       串行加载解决依赖关系
@@ -89,6 +88,7 @@ angular.module('app')
       '../assets/components/ngToast.css',
       '../assets/lib/ngtoast/dist/ngToast-animations.min.css',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
+      '../assets/components/angucomplete.css',
       'js/homeLazyLoad.js'
     ];
 
