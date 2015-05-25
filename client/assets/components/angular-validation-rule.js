@@ -1,3 +1,7 @@
+/*
+  依赖 input[name] ，但是 name 不能重复
+*/
+
 angular.module('validation.rule', ['validation'])
   .config(['$validationProvider',
     function ($validationProvider) {

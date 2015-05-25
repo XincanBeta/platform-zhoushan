@@ -125,7 +125,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.openDatepicker[dateField] = true;
     };
 
-    // 初始化
+    // 时间初始化
     if (itemIsNew) {
       var date = moment().format(dateFormat);// 未用 angular-moment
       $scope.item.cj_sj = date
@@ -168,13 +168,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.cj_cz = resutl.overValue;
       $scope.item.aj_fk = resutl.forfeit;
     }
-    //
-    /*$scope.calcForfeit = function () {
-      if (!$scope.item.cj_zz) {
-        return;
-      }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.cj_zz, $scope.item.cj_zs);
-    }*/
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
       if (!$scope.item.fj_zz) {
@@ -192,10 +185,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.driverImages = [];
     $scope.billImages = [];
 
-    _loadImage($scope.item.aj_id, 'scene', $scope.sceneImages);
-    _loadImage($scope.item.aj_id, 'vehicle', $scope.vehicleImages);
-    _loadImage($scope.item.aj_id, 'driver', $scope.driverImages);
-    _loadImage($scope.item.aj_id, 'bill', $scope.billImages);
+    // 证件初始化
+    if (!itemIsNew) {
+      _loadImage($scope.item.aj_id, 'scene', $scope.sceneImages);
+      _loadImage($scope.item.aj_id, 'vehicle', $scope.vehicleImages);
+      _loadImage($scope.item.aj_id, 'driver', $scope.driverImages);
+      _loadImage($scope.item.aj_id, 'bill', $scope.billImages);
+    }
+
     // date 是业务信息，file 是文件本身
     function _loadImage(dateid, datetype, images) {
       requestService.queryFiles({

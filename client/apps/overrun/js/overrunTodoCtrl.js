@@ -67,7 +67,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
           keyboard: false,
           size: "lg",
           templateUrl: path + 'item-edit.html',
-          controller: 'OverrunEditCtrl',
+          controller: 'OverrunItemEditCtrl',
           resolve: {
             item: function () {
               return item;
