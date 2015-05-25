@@ -143,7 +143,7 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车头</label>
-              <input type="text" class="form-control" ng-model="item.cj_cp"/>
+              <input type="text" class="form-control" ng-model="item.cj_cp" disabled/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">挂车</label>
@@ -403,11 +403,11 @@
             <div class="col-sm-4">
               <!-- 只要验证 初检单部分即可，这些基本信息会同步到复检单-->
               <label class="entity-label">车牌</label>
-              <input type="text" class="form-control" name="fj_cp" ng-model="item.cj_cp"/>
+              <input type="text" class="form-control" name="fj_cp" ng-model="item.cj_cp" disabled/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="fj_zs" ng-model="item.cj_zs" maxlength="1"/>
+              <input type="text" class="form-control" name="fj_zs" ng-model="item.cj_zs" disabled/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ zz_label }}</label>
