@@ -52,7 +52,11 @@ angular.module('app')
       '../assets/lib/mathjs/dist/math.min.js',
       '../assets/lib/angular-busy/dist/angular-busy.min.js',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
-      '../assets/components/anchorSmoothScroll.min.js'
+      '../assets/components/anchorSmoothScroll.min.js',
+      '../assets/components/car-city.js',
+      '../assets/components/angucomplete.js',
+      '../assets/components/angucomplete.css'
+
     ]
     /*
       串行加载解决依赖关系

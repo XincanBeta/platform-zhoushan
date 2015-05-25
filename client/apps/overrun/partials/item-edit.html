@@ -69,7 +69,18 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
-              <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp" validator="required"/>
+              <angucomplete id="ex1"
+                            placeholder="车籍地"
+                            pause="100"
+                            selectedobject="item.cj_cp"
+                            localdata="carData"
+                            searchfields="Pcode,province,city,code"
+                            titlefield="code"
+                            minlength="1"
+                            inputclass="angucomplete form-control"
+                            name="cj_cp"
+                  />
+              <!--<input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp" validator="required"/>-->
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>

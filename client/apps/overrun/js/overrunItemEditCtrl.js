@@ -1,12 +1,13 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, $rootScope) {
+            Upload, carService) {
 
     /*
      功能目录：
      初始化
      表单域处理
+     车牌
      下拉列表与表单变换
      驾驶员数据关联
      日期设置
@@ -14,6 +15,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      证件获取
      证件上传
      证件删除
+
      页内导航
      验证与格式化
      页脚操作
@@ -99,6 +101,13 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.selectedGenderTypes = type;
       $scope.item.jsy_xb = type.name;
     };
+
+    /*--------------------------
+      $ 车牌
+    --------------------------*/
+    $scope.carData = carService.carData;
+
+
 
     /*--------------------------
      $ 日期设置
