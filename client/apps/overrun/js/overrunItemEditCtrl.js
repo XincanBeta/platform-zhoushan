@@ -25,7 +25,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 初始化
      --------------------------*/
     $scope.item = item;
-    //console.log($scope.item);
     var dateFormat = 'YYYY-MM-DD HH:mm';
 
     // 显示模块的内容
@@ -103,6 +102,13 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     $scope.carData = carService.carData;
 
+    $scope.item.cj_cp = $scope.cp_1 + $scope.cp_2;
+    $scope.$watch('cp_1', function(value){
+      console.log('cp_1',  value);
+    })
+    $scope.$watch('cp_2', function(value){
+      console.log('cp_2',  value);
+    })
 
     /*--------------------------
      $ 日期设置
@@ -141,13 +147,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.setOverrunType($scope.overrunTypes[0]);
       $scope.setUnloadType($scope.unloadTypes[0]);
       $scope.setGenderTypes($scope.genderTypes[0]);
-      //$scope.setPartyTypes($scope.partyTypes[0]);
     } else {
       // 下拉列表
-      $scope.setOverrunType(_matchTypes($scope.overrunTypes, $scope.item.cj_cxlx));
       $scope.setUnloadType(_matchTypes($scope.unloadTypes, $scope.item.cj_kfxz));
       $scope.setGenderTypes(_matchTypes($scope.genderTypes, $scope.item.jsy_xb));
-      //$scope.setPartyTypes(_matchTypes($scope.partyTypes, $scope.item.xccfDsr.dsrlx));
+      /*  初始化不能重置超值
+       *  更改总量/超量标签
+       */
+      //$scope.setOverrunType(_matchTypes($scope.overrunTypes, $scope.item.cj_cxlx));
+      var overrunType = _matchTypes($scope.overrunTypes, $scope.item.cj_cxlx)
+      $scope.selectedOverrunType = overrunType; // 前端内部使用
+      $scope.item.cj_cxlx = overrunType.cz_label;  // 对接使用
+      $scope.zz_label = overrunType.zz_label;
+      $scope.cz_label = overrunType.cz_label;
     }
 
     function _matchTypes(types, name) {
@@ -170,6 +182,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
+      console.log($scope.item.cj_cz);
       $scope.item.aj_fk = resutl.forfeit;
     }
     // 计算复检超值
@@ -203,7 +216,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         dataid: dataid,
         datatype: datatype
       }).success(function (res) {
-        console.log(datatype);
         $scope[datatype]= res.data;
       })
     }
