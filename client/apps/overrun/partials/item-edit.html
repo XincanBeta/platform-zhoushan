@@ -73,7 +73,7 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs"
+              <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs" maxlength="1"
                      validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
@@ -164,7 +164,7 @@
             </div>
             <div class="col-sm-8">
               <label class="entity-label">营运证</label>
-              <input type="text" class="form-control" name="cl_yyz" ng-model="item.cl_yyz"/>
+              <input type="text" class="form-control" name="cl_yyz" ng-model="item.cl_yyz" maxlength="12"/>
             </div>
           </div>
           <div class="form-group">
@@ -217,11 +217,11 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">驾驶证号</label>
-              <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh"/>
+              <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh" maxlength="18"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">从业资格证</label>
-              <input type="text" class="form-control" name="jsy_cy" ng-model="item.jsy_cy"/>
+              <input type="text" class="form-control" name="jsy_cy" ng-model="item.jsy_cy" maxlength="19"/>
             </div>
           </div>
           <div class="form-group">
@@ -392,7 +392,7 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="fj_zs" ng-model="item.cj_zs"/>
+              <input type="text" class="form-control" name="fj_zs" ng-model="item.cj_zs" maxlength="1"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ zz_label }}</label>
