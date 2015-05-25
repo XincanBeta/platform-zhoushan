@@ -159,29 +159,29 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
     /*--------------------------
      $ 罚金计算
      --------------------------*/
-    // 计算初检超值
+    // 计算初检超值/罚金
     $scope.calcChecklistOverValue = function () {
-      if (!$scope.cj_zz) {
+      if (!$scope.item.cj_zz) {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.cj_zz, $scope.item.cj_zs);
-      $scope.cj_cz = resutl.overValue;
-    }
-    // 计算初检罚金
-    $scope.calcForfeit = function () {
-      if (!$scope.checklistValue) {
-        return;
-      }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.cj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.cj_zz, $scope.item.cj_zs);
+      $scope.item.cj_cz = resutl.overValue;
       $scope.item.aj_fk = resutl.forfeit;
     }
-    // 计算复检超值
-    $scope.calcReChecklistOverValue = function () {
-      if (!$scope.fj_zz) {
+    //
+    /*$scope.calcForfeit = function () {
+      if (!$scope.item.cj_zz) {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.fj_zz, $scope.item.cj_zs);
-      $scope.fj_zz = resutl.overValue;
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.cj_zz, $scope.item.cj_zs);
+    }*/
+    // 计算复检超值
+    $scope.calcReChecklistOverValue = function () {
+      if (!$scope.item.fj_zz) {
+        return;
+      }
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.fj_zz, $scope.item.cj_zs);
+      $scope.item.fj_cz = resutl.overValue;
     }
 
     /*--------------------------
@@ -313,6 +313,9 @@ angular.module('app.overrun').controller('OverrunEditCtrl',
        $scope.item[$scope.selectedOverrunType.reChecklistOverValueField] = $scope.reChecklistOverValue;*/
 
       // 新增和更新用不同的接口
+      console.log(item);
+      console.dir(item);
+
       if (itemIsNew) {
         requestService.overrunTodoItemSave($scope.item).success(function (res) {
           if (res.success) {

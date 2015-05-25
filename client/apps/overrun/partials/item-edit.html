@@ -5,14 +5,14 @@
   </div>
   <div class="modal-body" id="info-edit-body">
     <ul class="entity-navbar">
-      <li><a href="javascript:void(0)"  ng-click="gotoAnchor('overrun-edit-checklist')">初检单</a></li>
+      <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-checklist')">初检单</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-vehicle')">车辆信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-driver')">驾驶员信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-case')">案件信息</a></li>
       <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">复检单</a></li>
     </ul>
     <!--ng-if="modal.contentShow"-->
-    <div class="entity-block-wrap under-navbar slide-down" >
+    <div class="entity-block-wrap under-navbar slide-down">
       <!--初检单-->
       <div id="overrun-edit-checklist" class="entity-block under-navbar">
         <header class="entity-block--header">
@@ -79,22 +79,23 @@
             <div class="col-sm-4">
               <label class="entity-label">{{ zz_label }}</label>
               <input type="text" class="form-control" name="cj_zz" ng-model="item.cj_zz"
+                     ng-change='calcChecklistOverValue()'
                      validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ cz_label }}</label>
 
-              <div class="input-group">
-                <input type="text" class="entity-input form-control" name="cj_cz" ng-model="item.cj_cz"
-                       validator="required, isNumber" message-id="checklist-overvalue-msg"/>
+              <!--<div class="input-group">-->
+              <input type="text" class=" form-control" name="cj_cz" ng-model="item.cj_cz"
+                     validator="required, isNumber"/>
 
-                <div class="input-group-btn">
-                  <button class="btn btn-default fa-calculator" type="button"
-                          ng-click="cc()"></button>
-                </div>
-              </div>
-              <span id="checklist-overvalue-msg"></span>
+              <!--<div class="input-group-btn">
+                <button class="btn btn-default fa-calculator" type="button"
+                        ng-click="cc()"></button>
+              </div>-->
             </div>
+            <!--message-id="checklist-overvalue-msg"-->
+            <!--<span id="checklist-overvalue-msg"></span>-->
           </div>
           <div class="form-group">
             <div class="col-sm-4">
@@ -112,11 +113,12 @@
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label " >上传现场照片</label>
+              <label class="entity-label ">上传现场照片</label>
+
               <div class="entity-photo with-delete" ng-repeat="image in sceneImages"
                    ng-click="openLightboxModal(sceneImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
-                  <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
+                <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
               </div>
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -135,7 +137,7 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车头</label>
-              <input type="text" class="form-control"  ng-model="item.cj_cp"/>
+              <input type="text" class="form-control" ng-model="item.cj_cp"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">挂车</label>
@@ -210,6 +212,7 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">性别</label>
+
               <div class="entity-input dropdown" dropdown>
                 <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
                   <span>{{ item.jsy_xb }}</span><span class="caret"></span>
@@ -243,6 +246,7 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">上传驾驶员证件</label>
+
               <div class="entity-photo with-delete" ng-repeat="image in driverImages"
                    ng-click="openLightboxModal(driverImages, $index)">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
@@ -264,15 +268,8 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label ">罚款金额</label>
-
-              <div class="input-group">
-                <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk"
-                       validator="required, isNumber"/>
-
-                <div class="input-group-btn">
-                  <button class="btn btn-default fa-calculator" type="button" ng-click="calcForfeit()"></button>
-                </div>
-              </div>
+              <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk"
+                     validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label ">罚款票据号</label>
@@ -370,63 +367,57 @@
           </div>
 
         </div>
-      </div>
-      <!--复检单-->
-      <div id="overrun-edit-reChecklist" ng-if="item.cj_kfxz == '可卸载'" class="entity-block">
-        <header class="entity-block--header">
-          <i class="entity-icon icon-reChecklist"></i>
-          <span>复检单</span>
-        </header>
-        <div class="entity-block--body">
-          <div class="form-group">
-            <div class="col-sm-4">
-              <label class="entity-label">单号</label>
-              <input type="text" class="form-control" name="fj_dh" ng-model="item.fj_dh"/>
+        <!--复检单-->
+        <div id="overrun-edit-reChecklist" ng-if="item.cj_kfxz == '可卸载'" class="entity-block">
+          <header class="entity-block--header">
+            <i class="entity-icon icon-reChecklist"></i>
+            <span>复检单</span>
+          </header>
+          <div class="entity-block--body">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <label class="entity-label">单号</label>
+                <input type="text" class="form-control" name="fj_dh" ng-model="item.fj_dh"/>
+              </div>
+              <div class="col-sm-4">
+                <label class="entity-label">时间</label>
+                <input type="text" class="form-control" name="fj_sj" ng-model="item.fj_sj" readonly
+                       today-text="今天" now-text="现在" date-text="日期"
+                       time-text="时刻" clear-text="清空" close-text="关闭"
+                       datetime-picker="yyyy-MM-dd HH:mm"
+                       datepicker-options="dateOptions"
+                       timepicker-options="timeOptions"
+                       is-open="openDatepicker.fjsj"
+                       ng-click="openCalendar($event, 'fj_sj')"/>
+              </div>
             </div>
-            <div class="col-sm-4">
-              <label class="entity-label">时间</label>
-              <input type="text" class="form-control" name="fj_sj" ng-model="item.fj_sj" readonly
-                     today-text="今天" now-text="现在" date-text="日期"
-                     time-text="时刻" clear-text="清空" close-text="关闭"
-                     datetime-picker="yyyy-MM-dd HH:mm"
-                     datepicker-options="dateOptions"
-                     timepicker-options="timeOptions"
-                     is-open="openDatepicker.fjsj"
-                     ng-click="openCalendar($event, 'fj_sj')"/>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-4">
-              <label class="entity-label">车牌</label>
-              <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp"/>
-            </div>
-            <div class="col-sm-4">
-              <label class="entity-label">轴数</label>
-              <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs"/>
-            </div>
-            <div class="col-sm-4">
-              <label class="entity-label">{{ zz_label }}</label>
-              <!-- ngIf 有自己的作用域，要么对象访问，要么通过 $parent -->
-              <input type="text" class="form-control" name="fj_zz" ng-model="$parent.item.fj_zz"/>
-            </div>
-            <div class="col-sm-4">
-              <label class="entity-label">{{ cz_label }}</label>
-
-              <div class="input-group">
+            <div class="form-group">
+              <div class="col-sm-4">
+                <label class="entity-label">车牌</label>
+                <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp"/>
+              </div>
+              <div class="col-sm-4">
+                <label class="entity-label">轴数</label>
+                <input type="text" class="form-control" name="cj_zs" ng-model="item.cj_zs" validator="required, isNumber"/>
+              </div>
+              <div class="col-sm-4">
+                <label class="entity-label">{{ zz_label }}</label>
+                <!-- ngIf 有自己的作用域，要么对象访问，要么通过 $parent -->
+                <input type="text" class="form-control" name="fj_zz" ng-model="$parent.item.fj_zz"
+                       validator="required, isNumber"
+                       ng-change="calcReChecklistOverValue()"/>
+              </div>
+              <div class="col-sm-4">
+                <label class="entity-label">{{ cz_label }}</label>
                 <input type="text" class="entity-input form-control" name="fj_cz"
                        ng-model="$parent.item.fj_cz"
                        validator="required, isNumber, numberEq=0"
                        numberEq-error-message="必须是 0"
-                       message-id="re-checklist-overvalue-msg"/>
-
-                <div class="input-group-btn">
-                  <button class="btn btn-default fa-calculator" type="button" ng-click="calcReChecklistOverValue()"></button>
-                </div>
+                    />
               </div>
-              <span id="re-checklist-overvalue-msg"></span>
             </div>
-          </div>
 
+          </div>
         </div>
       </div>
     </div>
