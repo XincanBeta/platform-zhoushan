@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunEditCtrl',
+angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
             Upload, $rootScope) {

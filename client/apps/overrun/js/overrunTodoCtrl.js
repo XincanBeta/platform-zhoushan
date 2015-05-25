@@ -128,7 +128,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         keyboard: false,
         size: "sm",
         templateUrl: path + 'item-delete.html',
-        controller: 'OverrunDeleteCtrl',
+        controller: 'OverrunItemDeleteCtrl',
         resolve: {
           toDeleteItemList: function () {
             return selectedItems

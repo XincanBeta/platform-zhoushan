@@ -103,13 +103,13 @@
         <div class="horizontalToolbarSeparator visibleLargeView hidden"></div>
 
         <!-- 改成打印 -->
-        <button id="print-all" class="secondaryToolbarButton " >
+        <button id="print-all" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
           <span > 打印全部</span>
         </button>
-        <button id="print-current" class="secondaryToolbarButton " >
+        <button id="print-current" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
           <span > 打印当前页</span>
         </button>
-        <button id="print-first" class="secondaryToolbarButton " >
+        <button id="print-first" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
           <span > 打印封面</span>
         </button>
         <button id="print-directory" class="secondaryToolbarButton " >
@@ -500,7 +500,14 @@
     </div>
   </div>
 </div>
+
+<!-- 案件打印，隐藏的iframe -->
+<iframe id="pdfIframe" height="600" type="application/pdf" width="800"
+        src="" style="display: none;"></iframe>
+
 </body>
+
+<script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script>
   var app = angular.module('myWidget.pdf', [])
@@ -512,6 +519,17 @@
       parentScope.closeModal()
     }
   })
+
+
+  function _print( url ){
+    var pdfIframe = document.getElementById('pdfIframe');
+    pdfIframe.src = url
+    pdfIframe.focus();
+    pdfIframe.contentWindow.print();
+  }
+  // 打印部分
+  $("#print-all").click(_print("sample.pdf"))
+
 
 </script>
 </html>

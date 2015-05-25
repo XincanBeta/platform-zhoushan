@@ -18,7 +18,6 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
         content: 'docContent',
         operator: 'docOperator'
       })
-      // ng-if='!hideDetailOperator'
       $scope.hideDetailOperator = true;
     }
 
@@ -35,7 +34,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
         keyboard: false,
         size: "lg",
         templateUrl: path + 'item-edit.html',
-        controller: 'OverrunEditCtrl',
+        controller: 'OverrunItemEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope

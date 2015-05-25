@@ -39,8 +39,8 @@ angular.module('app.overrun', [
     $ocLazyLoad.load([
       apps + 'overrun/js/overrunItemDetailCtrl.js',
       apps + 'overrun/js/overrunItemDetailPhotoCtrl.js',
-      apps + 'overrun/js/overrunEditCtrl.js',
-      apps + 'overrun/js/overrunDeleteCtrl.js',
+      apps + 'overrun/js/overrunItemEditCtrl.js',
+      apps + 'overrun/js/overrunItemDeleteCtrl.js',
       apps + 'overrun/js/overrunForfeit.js'
     ])
 
@@ -51,11 +51,8 @@ angular.module('app.overrun', [
         $state.go("myapp")
       }, 300)
     }
-
-
-
-
   })
+
   // 修改 ui-bootstrap 中的 datepicker 的默认 date format 如 "2009-02-03T18:30:00.000Z" 造成的问题
   // fixme：重写无效
   .directive('datepickerPopup', function () {

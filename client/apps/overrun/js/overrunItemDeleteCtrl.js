@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunDeleteCtrl',
+angular.module('app.overrun').controller('OverrunItemDeleteCtrl',
   function ($scope, $modalInstance, requestService, toDeleteItemList, ngToast) {
 
     $scope.cancel = function () {
