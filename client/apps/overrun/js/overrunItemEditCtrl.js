@@ -228,7 +228,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           var file = files[i];
           Upload.upload({
             // todo：图片上传接口内部实现暴露了
-            url: '/api/files/' + $scope.item.xccfid + '/insert.do',
+            url: '/api/files/' + $scope.item.aj_id + '/insert.do',
             fields: {
               isthumbnail: true,
               width: 400,
