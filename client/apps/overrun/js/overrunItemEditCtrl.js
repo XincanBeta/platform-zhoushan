@@ -191,20 +191,20 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     // 证件初始化
     if (!itemIsNew) {
-      _loadImage($scope.item.aj_id, 'scene', $scope.sceneImages);
-      _loadImage($scope.item.aj_id, 'vehicle', $scope.vehicleImages);
-      _loadImage($scope.item.aj_id, 'driver', $scope.driverImages);
-      _loadImage($scope.item.aj_id, 'bill', $scope.billImages);
+      _loadImage($scope.item.aj_id, 'sceneImages');
+      _loadImage($scope.item.aj_id, 'vehicleImages');
+      _loadImage($scope.item.aj_id, 'driverImages');
+      _loadImage($scope.item.aj_id, 'billImages');
     }
 
     // date 是业务信息，file 是文件本身
-    function _loadImage(dataid, datatype, images) {
+    function _loadImage(dataid, datatype) {
       requestService.queryImages({
         dataid: dataid,
         datatype: datatype
-
       }).success(function (res) {
-        images = res.data;
+        console.log(datatype);
+        $scope[datatype]= res.data;
       })
     }
 
@@ -212,22 +212,22 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 证件上传
      --------------------------*/
     $scope.$watch('sceneFiles', function () {
-      $scope.upload($scope.sceneFiles, 'scene', $scope.sceneImages);
+      $scope.upload($scope.sceneFiles, 'sceneImages');
     });
 
     $scope.$watch('vehicleFiles', function () {
-      $scope.upload($scope.vehicleFiles, 'vehicle', $scope.vehicleImages);
+      $scope.upload($scope.vehicleFiles, 'vehicleImages');
     });
 
     $scope.$watch('driverFiles', function () {
-      $scope.upload($scope.driverFiles, 'driver', $scope.driverImages);
+      $scope.upload($scope.driverFiles, 'driverImages');
     });
 
     $scope.$watch('billFiles', function () {
-      $scope.upload($scope.billFiles, 'bill', $scope.billImages);
+      $scope.upload($scope.billFiles, 'billImages');
     });
 
-    $scope.upload = function (files, datatype, images) {
+    $scope.upload = function (files, datatype) {
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
@@ -249,7 +249,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            images.push(res.data)
+            $scope[datatype].push(res.data)
           });
         }
       }
