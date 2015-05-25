@@ -16,7 +16,7 @@
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
         </th>
         <th>序号</th>
-        <th>编号</th>
+        <!--<th>编号</th>-->
         <th>车牌</th>
         <th>轴数</th>
         <th>货车信息</th>
@@ -29,18 +29,18 @@
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
         </td>
         <td>{{ $index+1 }}</td>
-        <td>{{ item["number"] }}</td>
-        <td>{{ item["cp"] }}</td>
-        <td>{{ item.xccfCl.zs }}</td>
-        <td>{{ item["cjzz"] }}</td>
-        <td>{{ item["cjsj"] }}</td>
+        <!--<td>{{ item["number"] }}</td>-->
+        <td>{{ item.cj_cp }}</td>
+        <td>{{ item.cj_zs }}</td>
+        <td>{{ item.cj_zz_lx }}</td>
+        <td>{{ item.cj_sj }}</td>
       </tr>
       </tbody>
     </table>
   </section>
 </section>
 <footer class="l-app-footer ">
-  <div class="app-pagination-direction">总共5条 当前为第1页</div>
+  <div class="app-pagination-direction">总共{{ total }}条 当前为第{{ currentPage }}页</div>
   <paging
       class="app-pagination"
       page="currentPage"
