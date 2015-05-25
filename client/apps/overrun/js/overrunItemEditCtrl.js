@@ -41,20 +41,26 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.overrunTypes = [
       {
         zz_label: '总重',
-        cz_label: '超重'
+        cz_label: '超重',
+        // todo: 为了_match 的通用性，增加一个冗余的字段
+        name: '超重'
       },
       {
         zz_label: '总长',
-        cz_label: '超长'
+        cz_label: '超长',
+        name: '超长'
       }, {
         zz_label: '总宽',
-        cz_label: '超宽'
+        cz_label: '超宽',
+        name: '超宽'
       }, {
         zz_label: '总高',
-        cz_label: '超高'
+        cz_label: '超高',
+        name: '超高'
       }, {
         zz_label: '集装箱总高',
-        cz_label: '集装箱超高'
+        cz_label: '集装箱超高',
+        name: '集装箱超高'
       }
     ];
     $scope.unloadTypes = [
@@ -69,17 +75,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         name: '女'
       }
     ];
-    /*$scope.partyTypes = [
-     {name: '驾驶员'},
-     {
-     name: '公司',
-     isDisabled: true
-     },
-     {
-     name: '个人',
-     isDisabled: true
-     }
-     ];*/
+
     // 设置表单变换的通用字段 总量/超量标签
 
     $scope.setOverrunType = function (type) {
@@ -103,10 +99,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     };
 
     /*--------------------------
-      $ 车牌
-    --------------------------*/
+     $ 车牌
+     --------------------------*/
     $scope.carData = carService.carData;
-
 
 
     /*--------------------------
@@ -203,10 +198,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     // date 是业务信息，file 是文件本身
-    function _loadImage(dateid, datetype, images) {
-      requestService.queryFiles({
-        dateid: dateid,
-        datetype: datetype
+    function _loadImage(dataid, datatype, images) {
+      requestService.queryImages({
+        dataid: dataid,
+        datatype: datatype
+
       }).success(function (res) {
         images = res.data;
       })

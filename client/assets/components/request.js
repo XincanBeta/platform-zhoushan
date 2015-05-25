@@ -10,6 +10,10 @@ angular.module("request", []).service('requestService', function ($http) {
     if (!data) {
       data = {}
     }
+    /*else{
+      data = JSON.stringify(data)
+    }*/
+    //console.log( data);
     return $http.post(url, data);
   }
   var _parseGetRequestParams = function (params) {
@@ -48,11 +52,11 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/files/'+ id +'/delete.do');
     }
   }
-  this.queryFiles = function(data){
+  this.queryImages = function(data){
     if (env == 'local') {
       //return _doGetRequest(localPath + 'home.sidebar.json');
     } else {
-      return _doPostRequest('/api/files/query.do', data);
+      return _doPostRequest('/api/files/querythumbnail.do', data);
     }
   }
   this.homeSidebarItems = function () {
@@ -73,25 +77,25 @@ angular.module("request", []).service('requestService', function ($http) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.todo.item.json');
     } else {
-      return _doPostRequest('/api/xccfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
     }
   }
   this.overrunTodoItemDetail = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.itemDetail.json');
     } else {
-      return _doPostRequest('/api/xccfs/' + data.xccfid + '/query.do');
+      return _doPostRequest('/api/cxcfs/' + data.aj_id + '/query.do');
     }
   }
   this.overrunTodoItemSave = function (data) {
-    return _doPostRequest('/api/xccfs/insert.do', data);
+    return _doPostRequest('/api/cxcfs/insert.do', data);
   }
   this.overrunTodoItemUpdate = function (data) {
-    return _doPostRequest('/api/xccfs/update.do', data);
+    return _doPostRequest('/api/cxcfs/update.do', data);
   }
   // 超限公共接口
   this.overrunItemsDelete = function (data) {
-    return _doPostRequest('/api/xccfs/delete.do', data);
+    return _doPostRequest('/api/cxcfs/delete.do', data);
   }
   /* 
    现场超限已完结接口
@@ -102,14 +106,14 @@ angular.module("request", []).service('requestService', function ($http) {
      if (env == 'local') {
      return _doGetRequest(localPath + 'overrun.done.item.json');
      } else {
-     return _doPostRequest('/api/xccfs/' + data.xccfid + '/query.do');
+     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/query.do');
      }*/
   }
   this.overrunDoneItemDetail = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.itemDetail.json');
     } else {
-      return _doPostRequest('/api/xccfs/' + data.xccfid + '/query.do');
+      return _doPostRequest('/api/cxcfs/' + data.aj_id + '/query.do');
       // 适应 get 请求，可以局部微调
       //return doPostRequest(remotePath + '/app/xccfs/query.do' + _parseGetRequestParams(data));
     }

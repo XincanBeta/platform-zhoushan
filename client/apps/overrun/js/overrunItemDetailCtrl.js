@@ -38,7 +38,8 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope
-          }
+          },
+          itemIsNew: function(){return false}
         }
       })
 

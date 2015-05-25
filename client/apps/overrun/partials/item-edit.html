@@ -70,17 +70,21 @@
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
               <angucomplete id="ex1"
-                            placeholder="车籍地"
+                            placeholder=""
                             pause="100"
                             selectedobject="item.cj_cp"
                             localdata="carData"
                             searchfields="Pcode,province,city,code"
                             titlefield="code"
                             minlength="1"
-                            inputclass="angucomplete form-control"
+                            inputclass="form-control"
+                            class="overrun-cp-angucomplete"
                             name="cj_cp"
                   />
-              <!--<input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp" validator="required"/>-->
+              <span>&bull;</span>
+              <input type="text" class="form-control" name="cj_cp" ng-model="item.cj_cp"
+                     style=" width: 93px; display: inline-block;"
+                     validator="required" maxlength="5"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>

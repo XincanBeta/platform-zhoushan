@@ -27,7 +27,7 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
 
     sliderService.initRequestMethod(requestService.overrunDoneItemDetail);
     $scope.mySliderToggle = function (item) {
-      sliderService.setRequestData({xccfid: item.xccfid})
+      sliderService.setRequestData({aj_id: item.aj_id})
       if (!$scope.selected) {
         $scope.selected = item;
         sliderService.show()
