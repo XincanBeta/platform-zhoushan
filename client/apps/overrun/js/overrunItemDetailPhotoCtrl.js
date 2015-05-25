@@ -4,27 +4,32 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
     /*--------------------------
      $ 目录
      证件获取
-     证件上传
      证件全屏
      --------------------------*/
 
     /*--------------------------
      $ 证件获取
      --------------------------*/
+    $scope.sceneImages = [];
     $scope.vehicleImages = [];
     $scope.driverImages = [];
     $scope.billImages = [];
 
-    $scope.vehicleImagePromise = $http.post('/api/files/query.do', {
-      dataid: $scope.item.xccfid,
-      datatype: 'vehicle'
-    }).success(function (res) {
-      var images = res.data;
-      for (var i = 0; i < images.length; i++) {
-        $scope.vehicleImages.push(images[i])
-      }
-    })
+    _loadImage($scope.item.aj_id, 'scene', $scope.sceneImages);
+    _loadImage($scope.item.aj_id, 'vehicle', $scope.vehicleImages);
+    _loadImage($scope.item.aj_id, 'driver', $scope.driverImages);
+    _loadImage($scope.item.aj_id, 'bill', $scope.billImages);
 
+    // date 是业务信息，file 是文件本身
+    function _loadImage(dataid, datatype, images) {
+      requestService.queryImages({
+        dataid: dataid,
+        datatype: datatype
+
+      }).success(function (res) {
+        images = res.data;
+      })
+    }
 
 
     /*--------------------------
