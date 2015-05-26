@@ -6,10 +6,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*
      功能目录：
      初始化
-     表单域处理
+     下拉列表
      车牌
-     下拉列表与表单变换
-     驾驶员数据关联
      日期设置
      罚金计算
      证件获取
@@ -34,7 +32,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      */
 
     /*--------------------------
-     $ 表单域处理
+     $ 下拉列表
      --------------------------*/
     /* 超限类型与标签变换 */
     $scope.overrunTypes = [
@@ -74,9 +72,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         name: '女'
       }
     ];
-
     // 设置表单变换的通用字段 总量/超量标签
-
     $scope.setOverrunType = function (type) {
       $scope.selectedOverrunType = type; // 前端内部使用
       $scope.item.cj_cxlx = type.cz_label;  // 对接使用
@@ -96,24 +92,47 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.selectedGenderTypes = type;
       $scope.item.jsy_xb = type.name;
     };
+    // 下拉列表初始化
+    if (itemIsNew) {
+      $scope.setOverrunType($scope.overrunTypes[0]);
+      $scope.setUnloadType($scope.unloadTypes[0]);
+      $scope.setGenderTypes($scope.genderTypes[0]);
+    } else {
+      $scope.setUnloadType(_matchTypes($scope.unloadTypes, $scope.item.cj_kfxz));
+      $scope.setGenderTypes(_matchTypes($scope.genderTypes, $scope.item.jsy_xb));
+      // 由于 setOverrunType 会重置超值，所以单独写
+      var overrunType = _matchTypes($scope.overrunTypes, $scope.item.cj_cxlx)
+      $scope.selectedOverrunType = overrunType;
+      $scope.item.cj_cxlx = overrunType.cz_label;
+      $scope.zz_label = overrunType.zz_label;
+      $scope.cz_label = overrunType.cz_label;
+    }
+
+
+    function _matchTypes(types, name) {
+      if (!name) {
+        return types[0]
+      }
+      return $scope._(types).find(function (type) {
+        return type.name == name;
+      });
+    }
+
 
     /*--------------------------
      $ 车牌
      --------------------------*/
     $scope.carData = carService.carData;
 
-    $scope.$watch('cp_1', function(value){
+    $scope.$watch('cp_1', function (value) {
       //console.log('cp_1',  value);
       $scope.item.cj_cp = value + $scope.cp_2;
     })
-    $scope.$watch('cp_2', function(value){
+    $scope.$watch('cp_2', function (value) {
       //console.log('cp_2',  value);
       $scope.item.cj_cp = $scope.cp_1 + value;
-
-
     })
     //$scope.item.cj_cp = $scope.cp_1 + $scope.cp_2;
-
 
 
     /*--------------------------
@@ -142,39 +161,17 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     };
 
     // 时间初始化
+
+    if (!$scope.item.fj_dh || $scope.item.fj_dh == '') {
+      $scope.item.fj_sj = date
+    }
     if (itemIsNew) {
       var date = moment().format(dateFormat);// 未用 angular-moment
       $scope.item.cj_sj = date
-      $scope.item.fj_sj = date
       $scope.item.aj_afsj = date
-      $scope.item.aj_xcblsj = date
-      $scope.item.aj_xwblsj = date
-      // 下拉列表
-      $scope.setOverrunType($scope.overrunTypes[0]);
-      $scope.setUnloadType($scope.unloadTypes[0]);
-      $scope.setGenderTypes($scope.genderTypes[0]);
-    } else {
-      // 下拉列表
-      $scope.setUnloadType(_matchTypes($scope.unloadTypes, $scope.item.cj_kfxz));
-      $scope.setGenderTypes(_matchTypes($scope.genderTypes, $scope.item.jsy_xb));
-      /*  初始化不能重置超值
-       *  更改总量/超量标签
-       */
-      //$scope.setOverrunType(_matchTypes($scope.overrunTypes, $scope.item.cj_cxlx));
-      var overrunType = _matchTypes($scope.overrunTypes, $scope.item.cj_cxlx)
-      $scope.selectedOverrunType = overrunType; // 前端内部使用
-      $scope.item.cj_cxlx = overrunType.cz_label;  // 对接使用
-      $scope.zz_label = overrunType.zz_label;
-      $scope.cz_label = overrunType.cz_label;
-    }
+      $scope.item.aj_xcblsj = moment().add(16, 'minutes').format(dateFormat);
+      $scope.item.aj_xwblsj = moment().add(32, 'minutes').format(dateFormat);
 
-    function _matchTypes(types, name) {
-      if (!name) {
-        return types[0]
-      }
-      return $scope._(types).find(function (type) {
-        return type.name == name;
-      });
     }
 
 
@@ -222,7 +219,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         dataid: dataid,
         datatype: datatype
       }).success(function (res) {
-        $scope[datatype]= res.data;
+        $scope[datatype] = res.data;
       })
     }
 
