@@ -88,7 +88,7 @@ angular.module('app')
       '../assets/components/ngToast.css',
       '../assets/lib/ngtoast/dist/ngToast-animations.min.css',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
-      '../assets/components/angucomplete.css',
+      '../assets/components/angucomplete-alt.css',
       'js/homeLazyLoad.js'
     ];
 
