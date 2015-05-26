@@ -395,6 +395,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
       $q.all(savePromise).then(function (res) {
+        console.log(res);
         if (res.success) {
           ngToast.create({
             className: 'success',
@@ -424,16 +425,28 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       } else {
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
-      $q.all(savePromise).then(function (result) {
-        console.log('result = ', result);
+      $q.all(savePromise).then(function (res) {
+        console.log(res.success);
+        if (res.success) {
+          console.log('success');
+        }
+        requestService.overrunTodoItemDone($scope.item.aj_id).success(function(res){
+          console.log('done res', res);
+          ngToast.create({
+            className: 'success',
+            content: '结案成功!'
+          });
+
+
+
+        })
+
+
       })
 
 
       /*// 提示
-       ngToast.create({
-       className: 'success',
-       content: '结案成功!'
-       });
+
 
        // 全屏
        fullscreenModalInstance = $modal.open({
