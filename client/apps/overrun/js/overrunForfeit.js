@@ -32,6 +32,9 @@ angular.module('app.overrun').service('forfeit', function () {
     var result;
     type = _formatType(type);
     if (type == "weight") {
+      if (!axles) {
+        return;
+      }
       result = _calcOverWeightForfeit(type, value, axles)
     } else {
       result = _calcOverValueForfeit(type, value);
@@ -51,7 +54,7 @@ angular.module('app.overrun').service('forfeit', function () {
     if (str == "" || str == null) {
       return 0;
     } else {
-      return parseFloat(str);
+      return + str; //parseFloat(str);
     }
   }
 
@@ -277,7 +280,7 @@ angular.module('app.overrun').service('forfeit', function () {
    forfeit
    */
   function _calcOverValueForfeit(type, value) {
-    var result = {};
+    var result = {overValue:null,forfeit:null};
     var precision = 2;
     var maxLegalValue = _getMaxLegalValue(type)
     var overValue = value - maxLegalValue; // 下面主要都是用 value 去比较，这更符合纸质参考资料
@@ -324,7 +327,10 @@ angular.module('app.overrun').service('forfeit', function () {
    forfeit
    */
   function _calcOverWeightForfeit(type, weight, axles) {
-    var result = {};
+    var result = {overValue:null,forfeit:null};
+    if (!axles) {
+      return result;
+    }
     var precision = 3;
     var maxLegalValue = _getMaxLegalValue(type, axles)
     var overWeight = weight - maxLegalValue;
