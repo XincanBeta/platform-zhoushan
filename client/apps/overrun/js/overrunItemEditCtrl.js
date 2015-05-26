@@ -4,7 +4,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             Upload, carService, util, $q) {
 
     /*
-     功能目录：
      初始化
      下拉列表
      精度限制
@@ -22,7 +21,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      填充（临时）
      */
 
-    /*--------------------------
+    //调试帮助：区分 $scope 上的 item 与 普通值
+
+
+   /*--------------------------
      $ 初始化
      --------------------------*/
     $scope.item = item;
@@ -192,9 +194,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 车牌获取
      --------------------------*/
-    if (!itemIsNew && $scope.cj_cp) {
-      $scope.cp_part_1 = $scope.cj_cp.substring(0, 2);
-      $scope.cp_part_2 = $scope.cj_cp.substring(2);
+    if (!itemIsNew && $scope.item.cj_cp) {
+      $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
+      $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
     }
 
 
