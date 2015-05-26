@@ -161,19 +161,18 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     };
 
     // 时间初始化
-
+    var date = moment().format(dateFormat);
+    // 复检时间：只要单号为空，每次都生成时间
     if (!$scope.item.fj_dh || $scope.item.fj_dh == '') {
       $scope.item.fj_sj = date
     }
     if (itemIsNew) {
-      var date = moment().format(dateFormat);// 未用 angular-moment
       $scope.item.cj_sj = date
       $scope.item.aj_afsj = date
       $scope.item.aj_xcblsj = moment().add(16, 'minutes').format(dateFormat);
       $scope.item.aj_xwblsj = moment().add(32, 'minutes').format(dateFormat);
-
+      $scope.item.fj_sj = date
     }
-
 
     /*--------------------------
      $ 罚金计算
