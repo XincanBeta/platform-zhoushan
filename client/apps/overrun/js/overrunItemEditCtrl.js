@@ -102,13 +102,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     $scope.carData = carService.carData;
 
-    $scope.item.cj_cp = $scope.cp_1 + $scope.cp_2;
     $scope.$watch('cp_1', function(value){
-      console.log('cp_1',  value);
+      //console.log('cp_1',  value);
+      $scope.item.cj_cp = value + $scope.cp_2;
     })
     $scope.$watch('cp_2', function(value){
-      console.log('cp_2',  value);
+      //console.log('cp_2',  value);
+      $scope.item.cj_cp = $scope.cp_1 + value;
+
+
     })
+    //$scope.item.cj_cp = $scope.cp_1 + $scope.cp_2;
+
+
 
     /*--------------------------
      $ 日期设置
