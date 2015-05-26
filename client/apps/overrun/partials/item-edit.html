@@ -94,12 +94,13 @@
             <div class="col-sm-4">
               <label class="entity-label">{{ zz_label }}</label>
               <input type="text" class="form-control" name="cj_zz" ng-model="item.cj_zz"
-                     ng-change='calcChecklistOverValue()'
+                     ng-keyup="calcChecklistOverValue(); precisionLimit($event, 'cj_zz')"
                      validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ cz_label }}</label>
               <input type="text" class=" form-control" name="cj_cz" ng-model="item.cj_cz"
+                     ng-keyup="precisionLimit($event, 'cj_cz')"
                      validator="required, isNumber"/>
             </div>
           </div>
@@ -151,11 +152,15 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">核定载质量</label>
-              <input type="text" class="form-control" name="cl_hdzzl" ng-model="item.cl_hdzzl" validator="required"/>
+              <input type="text" class="form-control" name="cl_hdzzl" ng-model="item.cl_hdzzl"
+                     ng-keyup="precisionLimit($event, 'cl_hdzzl', 3)"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">整备质量</label>
-              <input type="text" class="form-control" name="cl_zbzl" ng-model="item.cl_zbzl" validator="required"/>
+              <input type="text" class="form-control" name="cl_zbzl" ng-model="item.cl_zbzl"
+                     ng-keyup="precisionLimit($event, 'cl_zbzl', 3)"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -414,21 +419,24 @@
               <!-- ngIf 有自己的作用域，要么对象访问，要么通过 $parent -->
               <input type="text" class="form-control" name="fj_zz" ng-model="$parent.item.fj_zz"
                      validator="required, isNumber"
-                     ng-change="calcReChecklistOverValue()"/>
+                     ng-keyup="calcReChecklistOverValue(); precisionLimit($event, 'fj_zz')"/>
+
+
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ cz_label }}</label>
               <input type="text" class="entity-input form-control" name="fj_cz"
                      ng-model="$parent.item.fj_cz"
                      validator="required, isNumber, numberEq=0"
-                     numberEq-error-message="必须是 0" />
+                     maxlength="1"
+                     numberEq-error-message="必须是 0"/>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  </div>
+  <!--</div>-->
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
     <button type="button" class="btn btn-default" validation-submit="form" ng-click="save()">保存</button>

@@ -1,19 +1,19 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService) {
+            Upload, carService, util) {
 
     /*
      功能目录：
      初始化
      下拉列表
+     精度限制
      车牌
      日期设置
      罚金计算
      证件获取
      证件上传
      证件删除
-
      页内导航
      验证与格式化
      页脚操作
@@ -81,7 +81,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.cz_label = type.cz_label;
       // 更换类型时重置超量和罚金
       $scope.item.aj_fk = '';
+      $scope.item.cj_zz = '';
       $scope.item.cj_cz = '';
+      $scope.item.fj_zz = '';
       $scope.item.fj_cz = '';
     };
     $scope.setUnloadType = function (type) {
@@ -117,6 +119,34 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       });
     }
 
+    /*--------------------------
+     $ 精度限制
+     --------------------------*/
+    $scope.precisionLimit = function (e, fieldname, precision) {
+      var elem = $(e.target);
+      var oldVal = (+elem.val()), newVal;
+      if (!oldVal) {
+        return;
+      }
+      var count = util.countDecimals(oldVal)
+      // 1）超限精度 2）其他参数指定的精度
+      if (!precision) {
+        precision = _getOvertypePrecision();
+      }
+      if (count > precision) {
+        newVal = oldVal.toFixed(precision)
+        elem.val(newVal)
+        $scope.item[fieldname] = newVal;
+      }
+    }
+    // 仅是超限精度
+    function _getOvertypePrecision() {
+      if ($scope.selectedOverrunType.name == '超重') {
+        return 3;
+      } else {
+        return 2;
+      }
+    }
 
     /*--------------------------
      $ 车牌
@@ -131,8 +161,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       //console.log('cp_2',  value);
       $scope.item.cj_cp = $scope.cp_1 + value;
     })
-    //$scope.item.cj_cp = $scope.cp_1 + $scope.cp_2;
-
 
     /*--------------------------
      $ 日期设置
@@ -178,20 +206,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     // 计算初检超值/罚金
     $scope.calcChecklistOverValue = function () {
-      if (!$scope.item.cj_zz) {
+      if (!$scope.item.cj_zz || $scope.item.cj_zz == '') {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.cj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
-      console.log($scope.item.cj_cz);
       $scope.item.aj_fk = resutl.forfeit;
     }
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
-      if (!$scope.item.fj_zz) {
+      if (!$scope.item.fj_zz || $scope.item.fj_zz == '') {
         return;
       }
-      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.cz_label, $scope.item.fj_zz, $scope.item.cj_zs);
+      var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.fj_zz, $scope.item.cj_zs);
       $scope.item.fj_cz = resutl.overValue;
     }
 

@@ -34,5 +34,10 @@ angular.module("util", []).constant("util", {
     } else {
       return parseFloat(str);
     }
+  },
+  countDecimals: function(value){
+    value = +value; // 转数字
+    if(Math.floor(value) === value) return 0;
+    return value.toString().split(".")[1].length || 0;
   }
 })
