@@ -188,6 +188,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     function _setCP() {
       $scope.item.cj_cp = cp_part_1 + cp_part_2;
     }
+
     /*--------------------------
      $ 车牌获取
      --------------------------*/
@@ -385,39 +386,26 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     $scope.save = function () {
       _beforeSave();
-      //console.log('save');
+      var savePromise;
       if (itemIsNew) {
-        requestService.overrunTodoItemSave($scope.item).success(function (res) {
-          if (res.success) {
-            ngToast.create({
-              className: 'success',
-              content: '保存成功!'
-            });
-            $modalInstance.close();
-          } else {
-            ngToast.create({
-              className: 'danger',
-              content: '保存失败!'
-            });
-          }
-        })
+        savePromise = requestService.overrunTodoItemSave($scope.item)
       } else {
-        // 更新
-        requestService.overrunTodoItemUpdate($scope.item).success(function (res) {
-          if (res.success) {
-            ngToast.create({
-              className: 'success',
-              content: '保存成功!'
-            })
-            $modalInstance.close();
-          } else {
-            ngToast.create({
-              className: 'danger',
-              content: '保存失败!'
-            });
-          }
-        })
+        savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
+      $q.all(savePromise).then(function (res) {
+        if (res.success) {
+          ngToast.create({
+            className: 'success',
+            content: '保存成功!'
+          })
+          $modalInstance.close();
+        } else {
+          ngToast.create({
+            className: 'danger',
+            content: '保存失败!'
+          });
+        }
+      })
     }
 
     /*--------------------------
