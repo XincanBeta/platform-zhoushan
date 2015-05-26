@@ -45,8 +45,8 @@
                   <span>{{ item.cj_cxlx }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="type in overrunTypes" ng-class="(type.cz_label === selectedOverrunType.cz_label)? 'disabled':''">
-                    <a href="javascript:void(0)" ng-click="setOverrunType(type)">{{type.cz_label}}</a>
+                  <li ng-repeat="type in overrunTypes" ng-class="(type.name === selectedOverrunType.name)? 'disabled':''">
+                    <a href="javascript:void(0)" ng-click="setOverrunType(type)">{{type.name}}</a>
                   </li>
                 </ul>
               </div>
@@ -421,11 +421,9 @@
               <input type="text" class="entity-input form-control" name="fj_cz"
                      ng-model="$parent.item.fj_cz"
                      validator="required, isNumber, numberEq=0"
-                     numberEq-error-message="必须是 0"
-                  />
+                     numberEq-error-message="必须是 0" />
             </div>
           </div>
-
         </div>
       </div>
     </div>

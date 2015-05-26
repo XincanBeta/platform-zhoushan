@@ -37,26 +37,26 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /* 超限类型与标签变换 */
     $scope.overrunTypes = [
       {
-        zz_label: '总重',
-        cz_label: '超重',
-        // todo: 为了_match 的通用性，增加一个冗余的字段
+        zz_label: '总重（吨）',
+        cz_label: '超重（吨）',
+        // name 是超限类型存于数据库
         name: '超重'
       },
       {
-        zz_label: '总长',
-        cz_label: '超长',
+        zz_label: '总长（米）',
+        cz_label: '超长（米）',
         name: '超长'
       }, {
-        zz_label: '总宽',
-        cz_label: '超宽',
+        zz_label: '总宽（米）',
+        cz_label: '超宽（米）',
         name: '超宽'
       }, {
-        zz_label: '总高',
-        cz_label: '超高',
+        zz_label: '总高（米）',
+        cz_label: '超高（米）',
         name: '超高'
       }, {
-        zz_label: '集装箱总高',
-        cz_label: '集装箱超高',
+        zz_label: '集装箱总高（米）',
+        cz_label: '集装箱超高（米）',
         name: '集装箱超高'
       }
     ];
@@ -75,9 +75,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     // 设置表单变换的通用字段 总量/超量标签
     $scope.setOverrunType = function (type) {
       $scope.selectedOverrunType = type; // 前端内部使用
-      $scope.item.cj_cxlx = type.cz_label;  // 对接使用
+      $scope.item.cj_cxlx = type.name;  // name 用于超限类型
       // 更改总量/超量标签
-      $scope.zz_label = type.zz_label;
+      $scope.zz_label = type.zz_label; // 仅是标签
       $scope.cz_label = type.cz_label;
       // 更换类型时重置超量和罚金
       $scope.item.aj_fk = '';
@@ -103,7 +103,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       // 由于 setOverrunType 会重置超值，所以单独写
       var overrunType = _matchTypes($scope.overrunTypes, $scope.item.cj_cxlx)
       $scope.selectedOverrunType = overrunType;
-      $scope.item.cj_cxlx = overrunType.cz_label;
       $scope.zz_label = overrunType.zz_label;
       $scope.cz_label = overrunType.cz_label;
     }
