@@ -138,7 +138,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 日期设置
      --------------------------*/
-    // todo：不是必须的？
+    // todo：openDatepicker 必须的吗 ?
     $scope.openDatepicker = {
       cj_sj: false,
       fj_sj: false,
