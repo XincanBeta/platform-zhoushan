@@ -18,12 +18,8 @@ angular.module('app', [
       animation: 'fade'
     });
   })
-  .run(function ($rootScope, $http) {
-    /*
-     设置分页的固定参数
-     */
-
-
+  .run(function () {
+    console.log('喜欢看弘云的代码，还是发现了什么bug？不如和我们一起为弘云添砖加瓦吧！');
   })
 
 

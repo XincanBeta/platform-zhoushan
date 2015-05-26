@@ -1,14 +1,15 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService, util) {
+            Upload, carService, util, $q) {
 
     /*
      功能目录：
      初始化
      下拉列表
      精度限制
-     车牌
+     车牌录入
+     车牌获取
      日期设置
      罚金计算
      证件获取
@@ -16,7 +17,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      证件删除
      页内导航
      验证与格式化
-     页脚操作
+     保存
+     结案
+     填充（临时）
      */
 
     /*--------------------------
@@ -149,7 +152,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-     $ 车牌
+     $ 车牌录入
      --------------------------*/
     $scope.carData = carService.carData;
     var cp_part_1, cp_part_2;
@@ -157,7 +160,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     // 车牌第一部分：下拉选中
     $scope.carSelected = function (selected) {
       if (selected) {
-        cp_part_1 = selected.title.toUpperCase();;
+        cp_part_1 = selected.title.toUpperCase();
       }
       if (cp_part_2) {
         _setCP();
@@ -182,10 +185,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         _setCP();
       }
     })
-
     function _setCP() {
       $scope.item.cj_cp = cp_part_1 + cp_part_2;
     }
+    /*--------------------------
+     $ 车牌获取
+     --------------------------*/
+
+
 
     /*--------------------------
      $ 日期设置
@@ -361,28 +368,20 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 页脚操作
+     $ 保存
      --------------------------*/
-    $scope.save = function () {
+    function _beforeSave() {
       // fixme：格式化时间（临时方案）
       $scope.item.cj_sj = moment($scope.item.cj_sj).format(dateFormat)
       $scope.item.fj_sj = moment($scope.item.fj_sj).format(dateFormat)
       $scope.item.aj_afsj = moment($scope.item.aj_afsj).format(dateFormat)
       $scope.item.aj_xcblsj = moment($scope.item.aj_xcblsj).format(dateFormat)
       $scope.item.aj_xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
+    }
 
-      /*// 处理总量/超量
-       // 初检单
-       $scope.item[$scope.selectedOverrunType.checklistValueField] = $scope.checklistValue;
-       $scope.item[$scope.selectedOverrunType.checklistOverValueField] = $scope.checklistOverValue;
-       // 复检单
-       $scope.item[$scope.selectedOverrunType.reChecklistValueField] = $scope.reChecklistValue;
-       $scope.item[$scope.selectedOverrunType.reChecklistOverValueField] = $scope.reChecklistOverValue;*/
 
-      // 新增和更新用不同的接口
-      console.log(item);
-      console.dir(item);
-
+    $scope.save = function () {
+      _beforeSave();
       if (itemIsNew) {
         requestService.overrunTodoItemSave($scope.item).success(function (res) {
           if (res.success) {
@@ -417,42 +416,114 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
     }
 
+    /*--------------------------
+     $ 结案
+     --------------------------*/
     var apps = '../apps/'
     var fullscreenModalInstance;
-    // 结案
     $scope.done = function () {
-      // 提示
-      ngToast.create({
-        className: 'success',
-        content: '结案成功!'
-      });
-
-      // 全屏
-      fullscreenModalInstance = $modal.open({
-        keyboard: true,
-        size: "fullscreen",
-        templateUrl: apps + 'overrun/partials/docContentFullscreen-2.html'
+      var savePromise;
+      // 先保存
+      _beforeSave();
+      if (itemIsNew) {
+        savePromise = requestService.overrunTodoItemSave($scope.item)
+      } else {
+        savePromise = requestService.overrunTodoItemUpdate($scope.item)
+      }
+      $q.all(savePromise).then(function (result) {
+        console.log('result = ', result);
       })
-      fullscreenModalInstance.result.then(function () {
-        sliderService.startAutoHide();
-      }, function () {
-        sliderService.startAutoHide();
-      });
 
-      fullscreenModalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
-      })
+
+      /*// 提示
+       ngToast.create({
+       className: 'success',
+       content: '结案成功!'
+       });
+
+       // 全屏
+       fullscreenModalInstance = $modal.open({
+       keyboard: true,
+       size: "fullscreen",
+       templateUrl: apps + 'overrun/partials/docContentFullscreen-2.html'
+       })
+       fullscreenModalInstance.result.then(function () {
+       sliderService.startAutoHide();
+       }, function () {
+       sliderService.startAutoHide();
+       });
+
+       fullscreenModalInstance.opened.then(function () {
+       sliderService.stopAutoHide();
+       })*/
     }
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     $scope.closeModal = function () {
       fullscreenModalInstance.close()
       // 依赖 item-edit，但又要关闭 edit modal
       $modalInstance.close();
-
     }
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
+    }
+
+    /*--------------------------
+     $ 填充
+     --------------------------*/
+    $scope.fillData = function () {
+      var item = {
+        "dw_bh": "01",
+        "aj_bh": "11",
+        "cj_dh": "00001",
+        "cj_sj": "2015-05-26 19:00",
+        "cj_cxlx": "超重",
+        "cj_kfxz": "可卸载",
+        "cj_cp": "浙AFFFFF",
+        "cj_zs": 1,
+        "cj_zz": 1,
+        "cj_cz": 1,
+        "hw_mc": "1",
+        "hw_qd": "1",
+        "hw_md": "1",
+        "cl_gc": "1",
+        "cl_hdzzl": 1,
+        "cl_zbzl": 1,
+        "cl_cjd": "1",
+        "cl_lx": "集装箱超高",
+        "cl_yyz": "1",
+        "cl_syr": "1",
+        "cl_zz": "1",
+        "cl_dh": "1",
+        "jsy_xm": "1",
+        "jsy_xb": "1",
+        "jsy_zh": "1",
+        "jsy_cy": "1",
+        "jsy_dh": "1",
+        "jsy_zz": "1",
+        "aj_fk": 300,
+        "aj_pjh": "1",
+        "aj_tcdd": "1",
+        "aj_zfx": "1",
+        "aj_zfxz": "1",
+        "aj_zfj": "1",
+        "aj_zfjz": "1",
+        "aj_afsj": "2015-05-23 00:00",
+        "aj_afdd": "1",
+        "fj_cz": 0,
+        "fj_zz": 22,
+        "fj_sj": "2015-05-23 00:00",
+        "fj_dh": "1",
+        "aj_xwbldd": "1",
+        "aj_xwblsj": "1899-12-30 01:00",
+        "aj_xcbldd": "1",
+        "dw": null,
+        "aj_xcblsj": "2015-05-23 00:00"
+      }
+      item.aj_id = $scope.item.aj_id;
+
+      $scope.item = item;
+
     }
 
 

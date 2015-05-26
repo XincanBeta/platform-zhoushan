@@ -74,6 +74,7 @@
                   id="autocomplete-ex1"
                   placeholder=""
                   pause="100"
+                  initial-value="cp_part_1"
                   selected-object="carSelected"
                   local-data="carData"
                   search-fields="Pcode,city,code,province"
@@ -443,9 +444,10 @@
   </div>
   <!--</div>-->
   <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="fillData()">填充</button>
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
     <button type="button" class="btn btn-default" validation-submit="form" ng-click="save()">保存</button>
-    <button type="button" class="btn btn-primary" ng-click="done()">结案</button>
+    <button type="button" class="btn btn-primary" validation-submit="form" ng-click="done()">结案</button>
   </div>
 </form>
 
