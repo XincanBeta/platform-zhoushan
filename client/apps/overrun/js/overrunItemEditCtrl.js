@@ -157,7 +157,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     // 车牌第一部分：下拉选中
     $scope.carSelected = function (selected) {
       if (selected) {
-        cp_part_1 = selected.title;
+        cp_part_1 = selected.title.toUpperCase();;
       }
       if (cp_part_2) {
         _setCP();
@@ -165,14 +165,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
     // 车牌第一部分：手输
     $scope.angucompleteInputChanged = function (value) {
-      cp_part_1 = value;
+      if (value) {
+        cp_part_1 = value.toUpperCase();
+      }
       if (cp_part_2) {
         _setCP();
       }
     }
     // 车牌第二部分
     $scope.$watch('cp_part_2', function (value) {
-      cp_part_2 = value
+      if (value) {
+        cp_part_2 = value.toUpperCase()
+        $scope.cp_part_2 = value.toUpperCase();
+      }
       if (cp_part_1) {
         _setCP();
       }
