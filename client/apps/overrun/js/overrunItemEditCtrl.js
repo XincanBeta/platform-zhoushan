@@ -191,7 +191,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 车牌获取
      --------------------------*/
-
+    if (!itemIsNew && $scope.cj_cp) {
+      $scope.cp_part_1 = $scope.cj_cp.substring(0, 2);
+      $scope.cp_part_2 = $scope.cj_cp.substring(2);
+    }
 
 
     /*--------------------------
@@ -382,6 +385,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     $scope.save = function () {
       _beforeSave();
+      //console.log('save');
       if (itemIsNew) {
         requestService.overrunTodoItemSave($scope.item).success(function (res) {
           if (res.success) {
@@ -480,23 +484,22 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         "cj_cxlx": "超重",
         "cj_kfxz": "可卸载",
         "cj_cp": "浙AFFFFF",
-        "cj_zs": 1,
-        "cj_zz": 1,
-        "cj_cz": 1,
-        "hw_mc": "1",
-        "hw_qd": "1",
-        "hw_md": "1",
-        "cl_gc": "1",
-        "cl_hdzzl": 1,
-        "cl_zbzl": 1,
-        "cl_cjd": "1",
-        "cl_lx": "集装箱超高",
-        "cl_yyz": "1",
-        "cl_syr": "1",
-        "cl_zz": "1",
-        "cl_dh": "1",
-        "jsy_xm": "1",
-        "jsy_xb": "1",
+        "cj_zs": 2,
+        "cj_zz": 22,
+        "cj_cz": 2,
+        "hw_mc": "煤",
+        "hw_qd": "山西",
+        "hw_md": "背景",
+        "cl_hdzzl": 18,
+        "cl_zbzl": 19,
+        "cl_cjd": "杭州",
+        "cl_lx": "普通",
+        "cl_yyz": "331081222233445",
+        "cl_syr": "阿三",
+        "cl_zz": "杭州 XXXX 街道",
+        "cl_dh": "13575760977",
+        "jsy_xm": "阿三",
+        "jsy_xb": "男",
         "jsy_zh": "1",
         "jsy_cy": "1",
         "jsy_dh": "1",
