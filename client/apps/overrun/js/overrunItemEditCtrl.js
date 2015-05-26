@@ -151,28 +151,36 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 车牌
      --------------------------*/
-
-
-
     $scope.carData = carService.carData;
-    var cp_part_1;
+    var cp_part_1, cp_part_2;
     // 注：angucomplete 的用法
     // 车牌第一部分：下拉选中
-    $scope.carSelected = function(selected){
-      cp_part_1 = selected.title;
-      $scope.item.cj_cp = cp_part_1 + $scope.cp_2;
+    $scope.carSelected = function (selected) {
+      if (selected) {
+        cp_part_1 = selected.title;
+      }
+      if (cp_part_2) {
+        _setCP();
+      }
     }
     // 车牌第一部分：手输
-    $scope.angucompleteInputChanged = function(value) {
+    $scope.angucompleteInputChanged = function (value) {
       cp_part_1 = value;
-      $scope.item.cj_cp = cp_part_1 + $scope.cp_2;
-      console.log('angucompleteInputChanged', $scope.item.cj_cp);
+      if (cp_part_2) {
+        _setCP();
+      }
     }
     // 车牌第二部分
-    $scope.$watch('cp_part_2', function (cp_part_2) {
-      $scope.item.cj_cp = cp_part_1 + cp_part_2;
-      console.log('cp_2',$scope.item.cj_cp);
+    $scope.$watch('cp_part_2', function (value) {
+      cp_part_2 = value
+      if (cp_part_1) {
+        _setCP();
+      }
     })
+
+    function _setCP() {
+      $scope.item.cj_cp = cp_part_1 + cp_part_2;
+    }
 
     /*--------------------------
      $ 日期设置
