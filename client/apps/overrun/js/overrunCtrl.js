@@ -14,7 +14,7 @@ angular.module('app.overrun', [
   'cgBusy',
   'anchorSmoothScroll',
   'car.helper',
-  'angucomplete'
+  'angucomplete-alt'
 ])
   .controller('OverrunCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     // todo: 把 apps 应用目录提取成一个 env 服务，因为依赖性很强，就算改起来很方便

@@ -54,8 +54,8 @@ angular.module('app')
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
       '../assets/components/anchorSmoothScroll.min.js',
       '../assets/components/car-city.min.js',
-      '../assets/components/angucomplete.min.js',
-      '../assets/components/angucomplete.css'
+      '../assets/lib/angucomplete-alt/dist/angucomplete-alt.min.js',
+      '../assets/components/angucomplete-alt.css'
     ]
     /*
       串行加载解决依赖关系

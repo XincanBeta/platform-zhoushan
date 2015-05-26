@@ -69,20 +69,25 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
-              <angucomplete id="ex1"
-                            placeholder=""
-                            pause="100"
-                            selectedobject="cp_1"
-                            localdata="carData"
-                            searchfields="Pcode,province,city,code"
-                            titlefield="code"
-                            minlength="1"
-                            inputclass="form-control"
-                            class="overrun-cp-angucomplete"
-                            name="cj_cp"
+              <div style="display: inline-block">
+              <angucomplete-alt
+                  id="autocomplete-ex1"
+                  placeholder=""
+                  pause="100"
+                  selected-object="carSelected"
+                  local-data="carData"
+                  search-fields="Pcode,city,code,province"
+                  title-field="code"
+                  minlength="1"
+                  match-class="highlight"
+                  input-class="form-control form-control-small"
+                  input-changed="angucompleteInputChanged"
+                  class="overrun-cp-angucomplete"
+                  name="cp_part_1"
                   />
+              </div>
               <span>&bull;</span>
-              <input type="text" class="form-control" name="cj_cp" ng-model="cp_2"
+              <input type="text" class="form-control" name="cp_part_2" ng-model="cp_part_2"
                      style=" width: 83px; display: inline-block;"
                      validator="required" maxlength="5"/>
             </div>

@@ -41,6 +41,6 @@
     "angular-busy": "~4.1.3",
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
     "csshake": "*",
-    "angucomplete": "*"
+    "angucomplete-alt": "~0.0.40"
   }
 }
