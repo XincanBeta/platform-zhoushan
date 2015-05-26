@@ -72,7 +72,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
             item: function () {
               return item;
             },
-            itemIsNew: function(){return true}
+            itemIsNew: function () {
+              return true
+            }
           }
         })
 
@@ -130,8 +132,11 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         templateUrl: path + 'item-delete.html',
         controller: 'OverrunItemDeleteCtrl',
         resolve: {
-          toDeleteItemList: function () {
+          selectedItems: function () {
             return selectedItems
+          },
+          itemList: function () {
+            return $scope.itemList;
           }
         }
       })

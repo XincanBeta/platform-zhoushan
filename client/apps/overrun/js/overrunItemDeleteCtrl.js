@@ -1,20 +1,30 @@
 angular.module('app.overrun').controller('OverrunItemDeleteCtrl',
-  function ($scope, $modalInstance, requestService, toDeleteItemList, ngToast) {
+  function ($scope, $modalInstance, requestService, selectedItems, itemList, ngToast) {
 
     $scope.cancel = function () {
       $modalInstance.dismiss('取消');
     }
 
     $scope.delete = function () {
-      requestService.overrunItemsDelete(toDeleteItemList).success(function (res) {
-        if (res.success) {
-          ngToast.create({
-            className: 'success',
-            content: '删除成功!'
-          })
-          $modalInstance.close(); // close 表示正常关闭
-        }
-      })
+      requestService.overrunItemsDelete(selectedItems)
+        .success(function (res) {
+          if (res.success) {
+            for (var i = 0; i < itemList.length; i++) {
+              var item = itemList[i];
+              var find = _.find(selectedItems, function (_item) {
+                return _item.aj_id == item.aj_id;
+              });
+              if (find) {
+                itemList.splice(i, 1);
+              }
+            }
+            ngToast.create({
+              className: 'success',
+              content: '删除成功!'
+            })
+            $modalInstance.close();
+          }
+        })
     }
 
   })
