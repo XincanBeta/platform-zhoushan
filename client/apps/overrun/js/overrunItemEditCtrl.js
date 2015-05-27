@@ -417,7 +417,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
-      var savePromise;
+      /*var savePromise;
       // 先保存
       _beforeSave();
       if (itemIsNew) {
@@ -425,6 +425,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       } else {
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
+      // todo：$q 的 res 不一样的
       $q.all(savePromise).then(function (res) {
         console.log(res.success);
         if (res.success) {
@@ -436,33 +437,23 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             className: 'success',
             content: '结案成功!'
           });
-
-
-
         })
+      })*/
 
-
+      fullscreenModalInstance = $modal.open({
+        keyboard: true,
+        size: "fullscreen",
+        templateUrl: apps + 'overrun/partials/docFullscreen.html'
       })
+      fullscreenModalInstance.result.then(function () {
+        sliderService.startAutoHide();
+      }, function () {
+        sliderService.startAutoHide();
+      });
 
-
-      /*// 提示
-
-
-       // 全屏
-       fullscreenModalInstance = $modal.open({
-       keyboard: true,
-       size: "fullscreen",
-       templateUrl: apps + 'overrun/partials/docContentFullscreen-2.html'
-       })
-       fullscreenModalInstance.result.then(function () {
-       sliderService.startAutoHide();
-       }, function () {
-       sliderService.startAutoHide();
-       });
-
-       fullscreenModalInstance.opened.then(function () {
-       sliderService.stopAutoHide();
-       })*/
+      fullscreenModalInstance.opened.then(function () {
+        sliderService.stopAutoHide();
+      })
     }
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     $scope.closeModal = function () {
