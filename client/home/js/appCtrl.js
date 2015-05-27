@@ -45,7 +45,7 @@ angular.module('app')
       //'../assets/components/angular-bootstrap-lightbox.js',
 
       '../assets/lib/angular-touch/angular-touch.min.js',
-      '../assets/lib/angular-carousel/dist/angular-carousel.js',
+      '../assets/lib/angular-carousel/dist/angular-carousel.min.js',
       '../assets/components/angular-carousel.css',
 
       '../assets/lib/ng-file-upload/ng-file-upload.min.js',
@@ -83,7 +83,7 @@ angular.module('app')
         '../assets/lib/angular-validation/dist/angular-validation.min.js',
         /*1) date 验证依赖 moment
          2) validation-submit 依赖 input[name] */
-        '../assets/components/angular-validation-rule.js'
+        '../assets/components/angular-validation-rule.js' //未压缩
       ]
     }
     /*
