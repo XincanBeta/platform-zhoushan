@@ -35,12 +35,17 @@ angular.module('app')
       '../assets/components/slider.js',
       '../assets/components/util.js',
       '../assets/lib/angular-locale_zh-cn/angular-locale_zh-cn.js',
-      '../assets/lib/angular-bootstrap/ui-bootstrap-tpls.min.js', //
+      '../assets/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
+
+      // 注：lightbox 已经废弃
       // todo ：学习 lightbox 是符合封装 loading 模块的
-      '../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.js',
-      '../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css',
+      //'../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.js',
+      //'../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css',
       // angular-bootstrap-lightbox 封装了 bootstrapLightbox
-      '../assets/components/angular-bootstrap-lightbox.js',
+      //'../assets/components/angular-bootstrap-lightbox.js',
+
+
+
       '../assets/lib/ng-file-upload/ng-file-upload.min.js',
       // todo：toast 依赖 sanitize，查明 sanitize 的作用
       // 延迟加载 ngToast css，js 在 home/index.html 中直接加载掉，因为指令要放在最外层
@@ -84,7 +89,7 @@ angular.module('app')
       css 部分暂不考虑
     */
     var lazyloadForBuild = [
-      '../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css',
+      //'../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css',
       '../assets/components/ngToast.css',
       '../assets/lib/ngtoast/dist/ngToast-animations.min.css',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',

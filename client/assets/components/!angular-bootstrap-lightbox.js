@@ -1,3 +1,5 @@
+// todo：已废弃
+
 /**
  * angular-bootstrap-lightbox 是对 bootstrapLightbox 的封装，使用时直接引入 angular-bootstrap-lightbox 即可
  * angular-bootstrap-lightbox 主要用于配置 LightboxProvider

@@ -5,7 +5,7 @@
   </div>
   <div class="modal-body" style="height: 400px">
     <div ng-repeat="image in images">
-      <img ng-src="image.contentdata" alt=""/>
+      <img ng-src="{{ image.contentdata }}" alt=""/>
     </div>
   </div>
   <div class="modal-footer">
