@@ -35,9 +35,15 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
     /*--------------------------
      $ 证件全屏
      --------------------------*/
+    /*
+
+
+    */
     // 由于 img 会被 ::after 挡住，所以点击事件在 div 上
     $scope.openLightboxModal = function (images, index) {
       var modalInstance = Lightbox.openModal(images, index)
+
+
       modalInstance.result.then(function () {
         sliderService.startAutoHide();
       }, function () {
