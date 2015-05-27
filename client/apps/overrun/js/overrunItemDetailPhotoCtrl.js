@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
-  function ($scope, Lightbox, sliderService, Upload, $http) {
+  function ($scope, Lightbox, sliderService, requestService) {
 
     /*--------------------------
      $ 目录
@@ -15,19 +15,19 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
     $scope.driverImages = [];
     $scope.billImages = [];
 
-    _loadImage($scope.item.aj_id, 'scene', $scope.sceneImages);
-    _loadImage($scope.item.aj_id, 'vehicle', $scope.vehicleImages);
-    _loadImage($scope.item.aj_id, 'driver', $scope.driverImages);
-    _loadImage($scope.item.aj_id, 'bill', $scope.billImages);
+    // 证件初始化
+    _loadImage($scope.item.aj_id, 'sceneImages');
+    _loadImage($scope.item.aj_id, 'vehicleImages');
+    _loadImage($scope.item.aj_id, 'driverImages');
+    _loadImage($scope.item.aj_id, 'billImages');
 
     // date 是业务信息，file 是文件本身
-    function _loadImage(dataid, datatype, images) {
+    function _loadImage(dataid, datatype) {
       requestService.queryImages({
         dataid: dataid,
         datatype: datatype
-
       }).success(function (res) {
-        images = res.data;
+        $scope[datatype] = res.data;
       })
     }
 

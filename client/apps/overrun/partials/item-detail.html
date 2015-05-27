@@ -43,7 +43,6 @@
 
 <script type="text/ng-template" id="photoContent">
   <div class="entity-block-wrap" ng-controller="OverrunItemDetailPhotoCtrl">
-    <!--现场照片-->
     <div class="entity-block">
       <header class="entity-block--header">
         <i class="entity-icon icon-tupian"></i>
@@ -54,7 +53,7 @@
              ng-click="openLightboxModal(sceneImages, $index)">
           <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
         </div>
-        <!--<div cg-busy="sceneImagePromise"></div>-->
+        <div cg-busy="sceneImagePromise"></div>
       </section>
     </div>
     <!--车辆证件-->
@@ -68,7 +67,7 @@
              ng-click="openLightboxModal(vehicleImages, $index)">
           <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
         </div>
-        <div cg-busy="vehicleImagePromise"></div>
+        <!--<div cg-busy="vehicleImagePromise"></div>-->
       </section>
     </div>
     <!--驾驶员证件-->
@@ -80,7 +79,7 @@
       <section class="entity-block--body no-border">
         <div class="entity-photo-hover" ng-repeat="image in driverImages"
              ng-click="openLightboxModal(driverImages, $index)">
-          <img ng-src="{{image.thumbUrl}}" alt="驾驶员证件"/>
+          <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
         </div>
       </section>
     </div>
@@ -93,7 +92,7 @@
       <section class="entity-block--body no-border">
         <div class="entity-photo-hover" ng-repeat="image in billImages"
              ng-click="openLightboxModal(billImages, $index)">
-          <img ng-src="{{image.thumbUrl}}" alt="发票证件"/>
+          <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
         </div>
       </section>
     </div>
