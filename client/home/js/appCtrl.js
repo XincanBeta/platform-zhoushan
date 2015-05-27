@@ -44,7 +44,9 @@ angular.module('app')
       // angular-bootstrap-lightbox 封装了 bootstrapLightbox
       //'../assets/components/angular-bootstrap-lightbox.js',
 
-
+      '../assets/lib/angular-touch/angular-touch.min.js',
+      '../assets/lib/angular-carousel/dist/angular-carousel.js',
+      '../assets/components/angular-carousel.css',
 
       '../assets/lib/ng-file-upload/ng-file-upload.min.js',
       // todo：toast 依赖 sanitize，查明 sanitize 的作用
@@ -64,8 +66,8 @@ angular.module('app')
       '../assets/components/angucomplete-alt.css'
     ]
     /*
-      串行加载解决依赖关系
-    */
+     串行加载解决依赖关系
+     */
     var lazyloadInSerie = {
       serie: true,
       files: [
@@ -80,16 +82,17 @@ angular.module('app')
         '../assets/components/moment.locale.zh-cn.min.js',
         '../assets/lib/angular-validation/dist/angular-validation.min.js',
         /*1) date 验证依赖 moment
-          2) validation-submit 依赖 input[name] */
+         2) validation-submit 依赖 input[name] */
         '../assets/components/angular-validation-rule.js'
       ]
     }
     /*
-      js 部分合并根据 grunt concat 任务
-      css 部分暂不考虑
-    */
+     js 部分合并根据 grunt concat 任务
+     css 部分暂不考虑
+     */
     var lazyloadForBuild = [
       //'../assets/lib/angular-bootstrap-lightbox/dist/angular-bootstrap-lightbox.min.css',
+      '../assets/components/angular-carousel.css',
       '../assets/components/ngToast.css',
       '../assets/lib/ngtoast/dist/ngToast-animations.min.css',
       '../assets/lib/angular-busy/dist/angular-busy.min.css',
@@ -107,18 +110,16 @@ angular.module('app')
       $scope.setAppSwitcherBlock()
     }
 
-    $scope.setAppSwitcherBlock = function(){
+    $scope.setAppSwitcherBlock = function () {
       // 借助 ng-style 修改元素样式
       return {"display": "block"}
     }
 
     var parentScope = parent.angular.element('#clientIndex').scope();
     // 退出系统
-    $scope.exit = function(){
+    $scope.exit = function () {
       parentScope.signOut();
     }
-
-
 
 
   });

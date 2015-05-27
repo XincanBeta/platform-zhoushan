@@ -10,6 +10,7 @@ angular.module('app.overrun').controller('OverrunPhotoDetailCtrl',
     }).success(function (res) {
       console.log(res.data);
       $scope.images = res.data;
+      $scope.carouselIndex = imageInfo.imageIndex;
     })
 
 

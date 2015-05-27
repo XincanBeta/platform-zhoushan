@@ -1,15 +1,27 @@
+<style>
+   /*内嵌*/
+  .modal-body{
+    height: 800px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+</style>
+
 <form class="form-horizontal form-validate form-modal " method="post" action="">
   <div class="modal-header">
     <button type="button" class="close" ng-click="cancel()">&times;</button>
     <h4 class="modal-title">证件详情</h4>
   </div>
-  <div class="modal-body" style="height: 400px">
-    <div ng-repeat="image in images">
-      <img ng-src="{{ image.contentdata }}" alt=""/>
-    </div>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+  <div class="modal-body">
+    <ul rn-carousel
+        rn-carousel-controls
+        rn-carousel-index="carouselIndex"
+        class="image">
+      <li ng-repeat="image in images">
+        <img ng-src="{{ image.contentdata }}" alt=""/>
+      </li>
+    </ul>
+    <div rn-carousel-indicators ng-if="images.length > 1" slides="images" rn-carousel-index="carouselIndex"></div>
   </div>
 </form>
 

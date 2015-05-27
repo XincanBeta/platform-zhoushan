@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
-  function ($scope, Lightbox, sliderService, requestService, $modal) {
+  function ($scope, sliderService, requestService, $modal) {
 
     /*--------------------------
      $ 目录
@@ -40,8 +40,8 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
     $scope.openPhotoModal = function (imageType, index) {
       var modalInstance = $modal.open({
         backdrop: "static",
-        keyboard: false,
-        size: "lg",
+        keyboard: true,
+        size: "fullscreen",
         templateUrl: path + 'photo-detail.html',
         controller: 'OverrunPhotoDetailCtrl',
         resolve: {
