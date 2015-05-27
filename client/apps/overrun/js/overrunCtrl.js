@@ -44,7 +44,8 @@ angular.module('app.overrun', [
       apps + 'overrun/js/overrunItemEditCtrl.js',
       apps + 'overrun/js/overrunItemDeleteCtrl.js',
       apps + 'overrun/js/overrunForfeit.js',
-      apps + 'overrun/js/overrunViewerFullscreenCtrl.js'
+      apps + 'overrun/js/overrunViewerFullscreenCtrl.js',
+      apps + 'overrun/js/overrunPhotoDetailCtrl.js'
     ])
 
     // todo: 抽取成通用的服务
