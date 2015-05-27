@@ -145,7 +145,13 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/dws/update.do', data);
     }
   }
-
+  //
+  this.adminDeptItemDetail = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/dws/' + data.dwid + '/query.do', data);
+    }
+  }
 
   // 以下待整理
   this.userDetail = function (userno) {
