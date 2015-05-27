@@ -18,7 +18,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      验证与格式化
      保存
      结案
-     填充（临时）
+     (临时)
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -443,7 +443,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       fullscreenModalInstance = $modal.open({
         keyboard: true,
         size: "fullscreen",
-        templateUrl: apps + 'overrun/partials/docFullscreen.html'
+        templateUrl: apps + 'overrun/partials/docFullscreen.html',
+        controller: 'OverrunViewerFullscreenCtrl'
       })
       fullscreenModalInstance.result.then(function () {
         sliderService.startAutoHide();
@@ -467,60 +468,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-     $ 填充
+     $ (临时)
      --------------------------*/
-    $scope.fillData = function () {
-      var item = {
-        "dw_bh": "01",
-        "aj_bh": "11",
-        "cj_dh": "00001",
-        "cj_sj": "2015-05-26 19:00",
-        "cj_cxlx": "超重",
-        "cj_kfxz": "可卸载",
-        "cj_cp": "浙AFFFFF",
-        "cj_zs": 2,
-        "cj_zz": 22,
-        "cj_cz": 2,
-        "hw_mc": "煤",
-        "hw_qd": "山西",
-        "hw_md": "背景",
-        "cl_hdzzl": 18,
-        "cl_zbzl": 19,
-        "cl_cjd": "杭州",
-        "cl_lx": "普通",
-        "cl_yyz": "331081222233445",
-        "cl_syr": "阿三",
-        "cl_zz": "杭州 XXXX 街道",
-        "cl_dh": "13575760977",
-        "jsy_xm": "阿三",
-        "jsy_xb": "男",
-        "jsy_zh": "1",
-        "jsy_cy": "1",
-        "jsy_dh": "1",
-        "jsy_zz": "1",
-        "aj_fk": 300,
-        "aj_pjh": "1",
-        "aj_tcdd": "1",
-        "aj_zfx": "1",
-        "aj_zfxz": "1",
-        "aj_zfj": "1",
-        "aj_zfjz": "1",
-        "aj_afsj": "2015-05-23 00:00",
-        "aj_afdd": "1",
-        "fj_cz": 0,
-        "fj_zz": 22,
-        "fj_sj": "2015-05-23 00:00",
-        "fj_dh": "1",
-        "aj_xwbldd": "1",
-        "aj_xwblsj": "1899-12-30 01:00",
-        "aj_xcbldd": "1",
-        "dw": null,
-        "aj_xcblsj": "2015-05-23 00:00"
-      }
-      item.aj_id = $scope.item.aj_id;
-
-      $scope.item = item;
-
+    $scope.test = function () {
+      console.log('tset in editCtrl');
     }
 
 

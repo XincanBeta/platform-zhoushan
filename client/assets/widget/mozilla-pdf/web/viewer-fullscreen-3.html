@@ -512,9 +512,15 @@
 <script>
   var app = angular.module('myWidget.pdf', [])
   app.controller("PDFCtrl", function ($scope) {
+    var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
+
+    parentScope.closeFullscreenModal()
+//    console.log();
+
+
+
     $scope.exitFile = function () {
-      // 把钩子挂在 各种 body 类上
-      var parentScope = parent.angular.element('#info-edit-body').scope();
+
       console.log(parentScope.closeModal);
       parentScope.closeModal()
     }
@@ -528,7 +534,7 @@
     pdfIframe.contentWindow.print();
   }
   // 打印部分
-  $("#print-all").click(_print("sample.pdf"))
+//  $("#print-all").click(_print("sample.pdf"))
 
 
 </script>
