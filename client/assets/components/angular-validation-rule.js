@@ -56,7 +56,7 @@ angular.module('validation.rule', ['validation'])
         },
         // fixme：自定义验证无效
         numberEq: {
-          error: '数值不正确'
+          error: '还处于超限状态无法结案'
         },
         minlength: {
           error: '长度错误'

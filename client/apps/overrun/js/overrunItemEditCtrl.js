@@ -239,6 +239,16 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.fj_sj = date
     }
 
+    // 监听初检时间
+    $scope.$watch('item.cj_sj', function (value) {
+      var date = moment(value).format(dateFormat);
+      $scope.item.aj_afsj = date
+      $scope.item.aj_xcblsj = moment(date).add(16, 'minutes').format(dateFormat);
+      $scope.item.aj_xwblsj = moment(date).add(32, 'minutes').format(dateFormat);
+    });
+
+
+
     /*--------------------------
      $ 罚金计算
      --------------------------*/
