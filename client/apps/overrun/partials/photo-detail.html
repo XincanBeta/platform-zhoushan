@@ -4,6 +4,9 @@
     <h4 class="modal-title">证件详情</h4>
   </div>
   <div class="modal-body" style="height: 400px">
+    <div ng-repeat="image in images">
+      <img ng-src="image.contentdata" alt=""/>
+    </div>
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
