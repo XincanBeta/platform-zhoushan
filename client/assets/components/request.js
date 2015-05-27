@@ -126,6 +126,25 @@ angular.module("request", []).service('requestService', function ($http) {
   this.adminSidebarItems = function () {
     return _doGetRequest(localPath + 'admin.menu.json');
   }
+  // 单位管理
+  this.adminDeptItems = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/dws/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+    }
+  }
+  this.adminDeptItemSave = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/dws/insert.do', data);
+    }
+  }
+  this.adminDeptItemUpdate = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/dws/update.do', data);
+    }
+  }
 
 
   // 以下待整理
