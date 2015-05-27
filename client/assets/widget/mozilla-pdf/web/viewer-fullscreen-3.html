@@ -513,16 +513,8 @@
   var app = angular.module('myWidget.pdf', [])
   app.controller("PDFCtrl", function ($scope) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
-
-    parentScope.closeFullscreenModal()
-//    console.log();
-
-
-
     $scope.exitFile = function () {
-
-      console.log(parentScope.closeModal);
-      parentScope.closeModal()
+      parentScope.closeFullscreenModal()
     }
   })
 

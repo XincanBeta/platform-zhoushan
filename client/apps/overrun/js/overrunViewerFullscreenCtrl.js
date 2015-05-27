@@ -1,14 +1,10 @@
 angular.module('app.overrun').controller('OverrunViewerFullscreenCtrl',
-  function ($scope) {
-    
+  function ($scope, $modalInstance) {
+
 
     $scope.closeFullscreenModal = function () {
-      $scope.closeModal();
-      //$scope.$parent.test()
-
+      $modalInstance.close();
     }
-
-    $scope.test();
 
 
   })
