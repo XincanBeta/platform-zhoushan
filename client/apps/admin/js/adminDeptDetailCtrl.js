@@ -1,10 +1,6 @@
 angular.module('app.admin').controller('AdminDeptDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope ) {
 
-    $scope.select = function (tab) {
-      $scope.selected = tab;
-    }
-
     // 案件修改
     var path = '../apps/admin/partials/';
     $scope.edit = function () {

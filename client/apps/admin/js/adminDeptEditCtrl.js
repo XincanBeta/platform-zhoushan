@@ -2,6 +2,9 @@ angular.module('app.admin').controller('AdminDeptEditCtrl',
   function ($scope, $state, sliderService, $modalInstance,
             requestService, item, itemIsNew, ngToast, $q) {
 
+    // 挂在 $scope
+    $scope.item = item;
+
     $scope.save = function () {
       var savePromise;
       if (itemIsNew) {
@@ -10,7 +13,6 @@ angular.module('app.admin').controller('AdminDeptEditCtrl',
         savePromise = requestService.adminDeptItemUpdate($scope.item)
       }
       $q.all(savePromise).then(function (res) {
-        console.log(res);
         if (res.success) {
           ngToast.create({
             className: 'success',
