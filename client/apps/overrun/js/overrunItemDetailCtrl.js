@@ -60,7 +60,8 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       fullscreenModalInstance = $modal.open({
         keyboard: true,
         size: "fullscreen",
-        templateUrl: 'docContentFullscreen.html'
+        templateUrl: 'docFullscreen.html',
+        controller: 'OverrunViewerFullscreenCtrl'
       })
       fullscreenModalInstance.result.then(function () {
         sliderService.startAutoHide();
