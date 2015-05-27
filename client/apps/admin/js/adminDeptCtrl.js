@@ -87,7 +87,58 @@ angular.module('app.admin').controller('AdminDeptCtrl',
     }
 
 
+    /*
+     删除功能部分
+     */
+    $scope.selectAllItem = function () {
+      $scope._($scope.itemList).each(function (item) {
+        item.selected = $scope.allItemIsChecked;
+      });
+    }
 
+    $scope.selectItem = function ($event) {
+      $event.stopPropagation();
+    }
+
+    $scope.deleteIsActived = function () {
+      var found = $scope._($scope.itemList).find(function (item) {
+        return item.selected === true
+      });
+      return found;
+    }
+
+    $scope.delete = function () {
+      var selectedItems = $scope._($scope.itemList).filter(function (item) {
+        return item.selected === true
+      });
+      var modalInstance = $modal.open({
+        backdrop: "static",
+        keyboard: false,
+        size: "sm",
+        templateUrl: path + 'dept-delete.html',
+        controller: 'AdminDeptDeleteCtrl',
+        resolve: {
+          selectedItems: function () {
+            return selectedItems
+          },
+          itemList: function () {
+            return $scope.itemList;
+          }
+        }
+      })
+
+      modalInstance.opened.then(function () {
+        sliderService.stopAutoHide();
+      })
+
+      modalInstance.result.then(function () {
+        sliderService.startAutoHide();
+      }, function () {
+        sliderService.startAutoHide();
+      });
+
+
+    }
 
 
   })

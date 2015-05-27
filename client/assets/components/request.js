@@ -97,7 +97,6 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/'+ id +'/all/-1/printPdf.do');
     //return _doPostRequest('/api/cxcfs/'+ id +'/savePdf.do');
   }
-  // 超限公共接口
   this.overrunItemsDelete = function (data) {
     return _doPostRequest('/api/cxcfs/delete.do', data);
   }
@@ -152,6 +151,10 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/dws/' + data.dwid + '/query.do', data);
     }
   }
+  this.adminDeptItemsDelete = function (data) {
+    return _doPostRequest('/api/dws/delete.do', data);
+  }
+
 
   // 以下待整理
   this.userDetail = function (userno) {
