@@ -448,8 +448,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       })
       fullscreenModalInstance.result.then(function () {
         sliderService.startAutoHide();
+        $modalInstance.close(); // 全屏关闭后，再关闭本层
       }, function () {
         sliderService.startAutoHide();
+        $modalInstance.close();
       });
 
       fullscreenModalInstance.opened.then(function () {
@@ -457,12 +459,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       })
     }
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
+    // 正常关闭本层
     $scope.closeModal = function () {
-      fullscreenModalInstance.close()
-      // 依赖 item-edit，但又要关闭 edit modal
       $modalInstance.close();
     }
-
+    // 错误关闭本层
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
