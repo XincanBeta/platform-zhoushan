@@ -46,6 +46,11 @@ module.exports = {
       rewrite: {
         '^/api/': '/cxcf/api/' // 地址映射策略，从context开始算，把前后地址做正则替换，如果远端路径和context相同则不用配置。
       }*/
+    },{
+      context: '/fileUpLoad/', // 访问服务器上的文件
+      host: '<%= pkg.proxy.ip %>',
+      port: '<%= pkg.proxy.port %>',
+      changeOrigin: true
     }]
   },
   livereload: {

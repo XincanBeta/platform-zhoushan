@@ -511,9 +511,10 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script>
   var app = angular.module('myWidget.pdf', [])
+  var DEFAULT_URL;
   app.controller("PDFCtrl", function ($scope) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
-    var DEFAULT_URL = parentScope.getPdfurl(); // 'sample.pdf';
+    DEFAULT_URL = parentScope.getPdfurl(); // 'sample.pdf';
 
     $scope.exitFile = function () {
       parentScope.closeFullscreenModal()
@@ -528,7 +529,6 @@
   }
   // 打印部分
   //  $("#print-all").click(_print("sample.pdf"))
-
 </script>
 <script src="viewer.js"></script>
 </html>
