@@ -12,7 +12,8 @@
         <div class="entity-info">负责单位：{{ item.fzdw }}</div>
         <div class="entity-info">负责领导：{{ item.fzld }}</div>
 
-        <div class="entity-info is-clear-both">案号：{{ item.ahyd }}〔2015〕字第{{ item.ahed }}0001号</span></div>
+        <div class="entity-info is-clear-both">案号：{{ item.ahyd }}〔<span ng-bind="ahnf"></span>〕字第{{ item.ahed
+          }}0001号</span></div>
         <div class="entity-info is-clear-both">缴款银行：{{ item.ykyh }}</div>
         <div class="entity-info is-clear-both">银行账号：{{ item.yhzh }}</div>
 

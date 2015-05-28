@@ -42,7 +42,8 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">&nbsp;</label>
-              〔2015〕字第 <input type="text" class="form-control" name="ahed" ng-model="item.ahed"
+              〔<span ng-bind="ahnf"></span>〕字第 <input type="text" class="form-control" name="ahed"
+                                                        ng-model="item.ahed"
                               style=" width: 50px; display: inline-block;"
                               validator="required" message-id="ahed-msg" /> 0001号
               <span id="ahed-msg"></span>

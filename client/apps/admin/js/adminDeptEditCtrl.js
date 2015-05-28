@@ -5,6 +5,9 @@ angular.module('app.admin').controller('AdminDeptEditCtrl',
     // 挂在 $scope
     $scope.item = item;
 
+    // 更新案号年份
+    $scope.ahnf = new Date().getFullYear();
+
     $scope.save = function () {
       var savePromise;
       if (itemIsNew) {
@@ -27,7 +30,6 @@ angular.module('app.admin').controller('AdminDeptEditCtrl',
         }
       })
     }
-
 
 
     $scope.closeModal = function () {

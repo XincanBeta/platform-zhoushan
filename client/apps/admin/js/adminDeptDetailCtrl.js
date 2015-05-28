@@ -1,6 +1,9 @@
 angular.module('app.admin').controller('AdminDeptDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope ) {
 
+    // 更新案号年份
+    $scope.ahnf = new Date().getFullYear();
+
     // 案件修改
     var path = '../apps/admin/partials/';
     $scope.edit = function () {
