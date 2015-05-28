@@ -132,7 +132,7 @@
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
                    ngf-accept="'image/*'"></div>
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in sceneImages">
-                <div class="compact" ng-if="image.uploaded">
+                <div class="compact" ng-if="image.fileid">
                   <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
                   <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
                 </div>

@@ -281,7 +281,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     // 证件初始化
     if (!itemIsNew) {
-      //_loadImage($scope.item.aj_id, 'sceneImages');
+      _loadImage($scope.item.aj_id, 'sceneImages');
       _loadImage($scope.item.aj_id, 'vehicleImages');
       _loadImage($scope.item.aj_id, 'driverImages');
       _loadImage($scope.item.aj_id, 'billImages');
@@ -355,7 +355,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         if (res.success) {
           for (var i = 0; i < images.length; i++) {
             if (images[i].fileid == image.fileid) {
-              images.splice(i, 1);
+              // 删除并用空对像替代（保证格子）
+              images.splice(i, 1, {});
             }
           }
           ngToast.create({
