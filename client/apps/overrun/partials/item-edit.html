@@ -127,11 +127,10 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label ">上传现场照片</label>
-
-              <div class="entity-photo with-delete" ng-repeat="image in sceneImages"
-                   ng-click="openLightboxModal(sceneImages, $index)">
-                <img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
-                <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
+              <!--with-delete ng-repeat="image in sceneImages"-->
+              <div class="entity-photo no-upload" style="" >
+                <!--<img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>-->
+                <!--<i class="delete" ng-click="deleteImage(sceneImages, image)"></i>-->
               </div>
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
@@ -204,8 +203,7 @@
           <div class="col-sm-16">
             <label class="entity-label">上传车辆证件</label>
 
-            <div class="entity-photo with-delete" ng-repeat="image in vehicleImages"
-                 ng-click="openLightboxModal(vehicleImages, $index)">
+            <div class="entity-photo with-delete" ng-repeat="image in vehicleImages">
               <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
               <i class="delete" ng-click="deleteImage(vehicleImages, image)"></i>
             </div>
@@ -264,8 +262,7 @@
             <div class="col-sm-16">
               <label class="entity-label">上传驾驶员证件</label>
 
-              <div class="entity-photo with-delete" ng-repeat="image in driverImages"
-                   ng-click="openLightboxModal(driverImages, $index)">
+              <div class="entity-photo with-delete" ng-repeat="image in driverImages">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
                 <i class="delete" ng-click="deleteImage(driverImages, image)"></i>
               </div>
@@ -373,8 +370,7 @@
             <div class="col-sm-16">
               <label class="entity-label">上传发票证件</label>
 
-              <div class="entity-photo with-delete" ng-repeat="image in billImages"
-                   ng-click="openLightboxModal(billImages, $index)">
+              <div class="entity-photo with-delete" ng-repeat="image in billImages">
                 <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
                 <i class="delete" ng-click="deleteImage(billImages, image)"></i>
               </div>

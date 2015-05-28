@@ -23,7 +23,6 @@
   entity-input
 */
 
-
 /*--------------------------
   $ entity-title
 --------------------------*/
@@ -33,9 +32,6 @@
   left: 20px;
   font-size: 16px;
 }
-
-
-
 
 /*--------------------------
   $ entity-info
@@ -56,9 +52,15 @@
   }
 }
 
+/*--------------------------
+  $ entity-photo
+  作为图片的容器
+--------------------------*/
 /*
-  图片上不能加伪元素
-  伪元素不支持点击事件吗
+
+  注： 1）图片上不能加伪元素
+    2）伪元素点击事假不友好
+
 */
 .entity-photo {
   height: 200px;
@@ -66,6 +68,16 @@
   //clear: both;
   margin-top: 10px;
   margin-bottom: 10px;
+  &.no-upload {
+    // iconfont 就是伪元素
+    @extend .iconfont;
+    @extend .icon-tupian;
+    color: $app-border-color;
+    outline: 2px dashed $app-border-color;
+    text-align: center;
+    font-size: 60px;
+    padding-top: 70px;
+  }
   &.with-delete {
     position: relative;
     //outline: 1px solid black;
@@ -96,7 +108,6 @@
     @extend .shake-little;
   }
 }
-
 
 .entity-photo-hover {
   height: 200px;
