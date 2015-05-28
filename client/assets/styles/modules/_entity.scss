@@ -57,15 +57,13 @@
   作为图片的容器
 --------------------------*/
 /*
-
-  注： 1）图片上不能加伪元素
+  注：
+    1）图片上不能加伪元素
     2）伪元素点击事假不友好
-
 */
 .entity-photo {
   height: 200px;
   width: 400px;
-  //clear: both;
   margin-top: 10px;
   margin-bottom: 10px;
   &.no-upload {
@@ -80,7 +78,6 @@
   }
   &.with-delete {
     position: relative;
-    //outline: 1px solid black;
     // 利用浮动的包裹性
     clear: left;
     float: left;
