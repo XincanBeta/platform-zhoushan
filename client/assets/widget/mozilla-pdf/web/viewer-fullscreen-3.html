@@ -103,29 +103,29 @@
         <div class="horizontalToolbarSeparator visibleLargeView hidden"></div>
 
         <!-- 改成打印 -->
-        <button id="print-all" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
-          <span > 打印全部</span>
+        <button id="print-all" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+          <span> 打印全部</span>
         </button>
-        <button id="print-current" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
-          <span > 打印当前页</span>
+        <button id="print-current" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+          <span> 打印当前页</span>
         </button>
-        <button id="print-first" ng-click="_print('sample.pdf')" class="secondaryToolbarButton " >
-          <span > 打印封面</span>
+        <button id="print-first" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+          <span> 打印封面</span>
         </button>
-        <button id="print-directory" class="secondaryToolbarButton " >
-          <span > 打印目录</span>
+        <button id="print-directory" class="secondaryToolbarButton ">
+          <span> 打印目录</span>
         </button>
-        <button id="print-decision" class="secondaryToolbarButton " >
-          <span > 打印决定书</span>
+        <button id="print-decision" class="secondaryToolbarButton ">
+          <span> 打印决定书</span>
         </button>
-        <button id="print-content" class="secondaryToolbarButton " >
-          <span > 打印其他正文</span>
+        <button id="print-content" class="secondaryToolbarButton ">
+          <span> 打印其他正文</span>
         </button>
-        <button id="print-double" class="secondaryToolbarButton " >
-          <span > 打印二联页</span>
+        <button id="print-double" class="secondaryToolbarButton ">
+          <span> 打印二联页</span>
         </button>
-        <button id="print-last" class="secondaryToolbarButton " >
-          <span > 打印封底</span>
+        <button id="print-last" class="secondaryToolbarButton ">
+          <span> 打印封底</span>
         </button>
         <!--<button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57"
                 data-l10n-id="last_page">
@@ -513,25 +513,23 @@
   var app = angular.module('myWidget.pdf', [])
   app.controller("PDFCtrl", function ($scope) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
+    var DEFAULT_URL = parentScope.getPdfurl(); // 'sample.pdf';
+
     $scope.exitFile = function () {
       parentScope.closeFullscreenModal()
     }
   })
 
-
-  function _print( url ){
+  function _print(url) {
     var pdfIframe = document.getElementById('pdfIframe');
     pdfIframe.src = url
     pdfIframe.focus();
     pdfIframe.contentWindow.print();
   }
   // 打印部分
-//  $("#print-all").click(_print("sample.pdf"))
+  //  $("#print-all").click(_print("sample.pdf"))
 
-  var DEFAULT_URL = 'sample.pdf';
 </script>
 <script src="viewer.js"></script>
-
-
 </html>
 

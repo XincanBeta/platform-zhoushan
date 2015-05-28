@@ -522,7 +522,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
             pdfurl: function () {
-              return $scope.item // 指令内部控制器，不能访问到外部 scope
+              return res.data
             }
           }
         })
