@@ -6,7 +6,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       requestService.overrunTodoItems({
         currentPage: $scope.currentPage,
         pageSize: $scope.pageSize,
-        aj_jazt: '否'
+        aj_jazt: null
       }).success(function (res) {
         if (res.success) {
           $scope.itemList = res.data.list;

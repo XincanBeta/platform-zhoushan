@@ -488,6 +488,7 @@
   var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL, itemId
   var urlHead = location.protocol + '//' + location.host + '/';
+  urlHead = 'http://120.26.91.44/'
 
   app.controller("PDFCtrl", function ($scope, requestService) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
@@ -500,12 +501,25 @@
 
     // part = 'wordType/pageNum/'
     $scope.print = function (part) {
-      var pdfIframe = document.getElementById('pdfIframe');
+      var iframe = document.getElementById('pdfIframe');
       requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
         if (res.success) {
-          pdfIframe.src = urlHead + res.data;
-          pdfIframe.focus();
-          pdfIframe.contentWindow.print();
+          iframe.src = urlHead + res.data;
+          // 等待 iframe 加载完毕
+          if (iframe.attachEvent){
+            iframe.attachEvent("onload", function(){
+              _doit();
+            });
+          } else {
+            iframe.onload = function(){
+              _doit();
+            };
+          }
+
+          function _doit(){
+            iframe.focus();
+            iframe.contentWindow.print();
+          }
         }
       })
     }

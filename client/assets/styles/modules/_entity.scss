@@ -59,8 +59,9 @@
 /*
   注：
     1）图片上不能加伪元素
-    2）伪元素点击事假不友好
+    2）伪元素点击事件不友好
 */
+
 .entity-photo {
   height: 200px;
   width: 400px;
@@ -106,13 +107,14 @@
       }
     }
   }
-  // 让图片实体自由在模块顶级元素中，并且具有一个唯一性的类名
-  .entity-photo--item {
-    // max 表示范围
-    max-height: 200px;
-    max-width: 400px;
-  }
 }
+// 让图片实体自由在模块顶级元素中，并且具有一个唯一性的类名
+.entity-photo--item {
+  // max 表示范围
+  max-height: 200px;
+  max-width: 400px;
+}
+
 
 /*--------------------------
   $ entity-photo-hover
