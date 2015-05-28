@@ -341,6 +341,15 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      */
     $scope.upload = function (files, datatype) {
       if (files && files.length) {
+
+        if (_isFilesLengthLimited(files, datatype)) {
+          ngToast.create({
+            className: 'danger',
+            content: '上传数目过多!'
+          });
+          return;
+        }
+
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
           Upload.upload({
@@ -372,6 +381,28 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }
       }
     };
+
+    // 控制上传的数目
+    function _isFilesLengthLimited(newFiles, datatype) {
+      var limited = false,
+        imageNumber = 0,
+        images = $scope[datatype];
+      for (var i = 0; i < images.length; i++) {
+        if (images[i].fileid) {
+          imageNumber++;
+        }
+      }
+      imageNumber += newFiles.length;
+      if ((datatype == 'vehicleFiles' || datatype == 'driverFiles') && imageNumber > 3) {
+        limited = true;
+      } else if (datatype == 'sceneFiles' && imageNumber > 2) {
+        limited = true;
+      } else if (datatype == 'billFiles' && imageNumber > 1) {
+        limited = true;
+      }
+      return limited;
+    }
+
     /*--------------------------
      $ 证件删除
      --------------------------*/
