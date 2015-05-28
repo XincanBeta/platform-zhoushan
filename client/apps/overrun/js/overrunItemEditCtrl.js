@@ -18,7 +18,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      验证与格式化
      保存
      结案
-     (临时)
+
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -540,12 +540,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $modalInstance.dismiss('cancel');
     }
 
-    /*--------------------------
-     $ (临时)
-     --------------------------*/
-    $scope.test = function () {
-      console.log('tset in editCtrl');
-    }
+
 
 
   })
