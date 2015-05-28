@@ -523,6 +523,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           resolve: {
             pdfurl: function () {
               return res.data
+            },
+            item: function(){
+              return $scope.item;
             }
           }
         })

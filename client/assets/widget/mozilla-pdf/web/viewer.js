@@ -6580,11 +6580,18 @@ window.addEventListener('pagechange', function pagechange(evt) {
   }
   var numPages = PDFViewerApplication.pagesCount;
 
-  document.getElementById('previous').disabled = (page <= 1);
-  document.getElementById('next').disabled = (page >= numPages);
-
-  document.getElementById('firstPage').disabled = (page <= 1);
-  document.getElementById('lastPage').disabled = (page >= numPages);
+  if (document.getElementById('previous')) {
+    document.getElementById('previous').disabled = (page <= 1);
+  }
+  if (document.getElementById('next')) {
+    document.getElementById('next').disabled = (page >= numPages);
+  }
+  if (document.getElementById('firstPage')) {
+    document.getElementById('firstPage').disabled = (page <= 1);
+  }
+  if (document.getElementById('lastPage')) {
+    document.getElementById('lastPage').disabled = (page >= numPages);
+  }
 
   // checking if the this.page was called from the updateViewarea function
   if (evt.updateInProgress) {

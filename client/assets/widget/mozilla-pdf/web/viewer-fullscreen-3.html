@@ -102,29 +102,30 @@
 
         <div class="horizontalToolbarSeparator visibleLargeView hidden"></div>
 
+
         <!-- 改成打印 -->
-        <button id="print-all" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+        <button id="print-all" ng-click="print('all/-1/')" class="secondaryToolbarButton ">
           <span> 打印全部</span>
         </button>
-        <button id="print-current" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+        <button id="print-current" ng-click="printCurrent()" class="secondaryToolbarButton ">
           <span> 打印当前页</span>
         </button>
-        <button id="print-first" ng-click="_print('sample.pdf')" class="secondaryToolbarButton ">
+        <button id="print-first" ng-click="print('cover/-1/')" class="secondaryToolbarButton ">
           <span> 打印封面</span>
         </button>
-        <button id="print-directory" class="secondaryToolbarButton ">
+        <button id="print-directory" ng-click="print('catalogue/-1/')" class="secondaryToolbarButton ">
           <span> 打印目录</span>
         </button>
-        <button id="print-decision" class="secondaryToolbarButton ">
+        <button id="print-decision" ng-click="print('decision/-1/')" class="secondaryToolbarButton ">
           <span> 打印决定书</span>
         </button>
-        <button id="print-content" class="secondaryToolbarButton ">
+        <button id="print-content" ng-click="print('otherBody/-1/')" class="secondaryToolbarButton ">
           <span> 打印其他正文</span>
         </button>
-        <button id="print-double" class="secondaryToolbarButton ">
+        <button id="print-double" ng-click="print('duplexPages/-1/')" class="secondaryToolbarButton ">
           <span> 打印二联页</span>
         </button>
-        <button id="print-last" class="secondaryToolbarButton ">
+        <button id="print-last" ng-click="print('end/-1/')" class="secondaryToolbarButton ">
           <span> 打印封底</span>
         </button>
         <!--<button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57"
@@ -208,33 +209,6 @@
               <span data-l10n-id="print_label">Print</span>
             </button>
 
-            <!-- 自定义打印 -->
-
-            <!--<button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">打印全部
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">打印当前
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">封面
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">目录
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">决定书
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">其他正文
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">二联页
-            </button>
-            <button class="toolbarButton" title="Print" style="width: auto;"
-                    data-l10n-id="print">封底
-            </button>
--->
             <button id="download" class="toolbarButton download hiddenMediumView hidden" title="Download" tabindex="34"
                     data-l10n-id="download">
               <span data-l10n-id="download_label">Download</span>
@@ -511,24 +485,32 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script>
   var app = angular.module('myWidget.pdf', [])
-  var DEFAULT_URL;
+  var DEFAULT_URL, itemId, urlHead = location.protocol + '//' + location.host;
   app.controller("PDFCtrl", function ($scope) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
-    DEFAULT_URL = parentScope.getPdfurl(); // 'sample.pdf';
+    DEFAULT_URL = parentScope.getPdfurl();
+    itemId = parentScope.getItemId();
 
     $scope.exitFile = function () {
       parentScope.closeFullscreenModal()
     }
+
+
+    // part = 'wordType/pageNum/'
+    $scope.print = function (part) {
+      var pdfIframe = document.getElementById('pdfIframe');
+      // http://localhost:9000   +  /api/cxcfs/{cxcfid}/{wordType}/{pageNum}/printPdf.do
+      pdfIframe.src = urlHead + '/api/cxcfs/' + itemId + '/' + part + 'printPdf.do';
+      pdfIframe.focus();
+      pdfIframe.contentWindow.print();
+    }
+
+    $scope.printCurrent = function () {
+      var pageNumber = $('#pageNumber').val();
+      $scope.print('pageNum/'+ pageNumber +'/')
+    }
   })
 
-  function _print(url) {
-    var pdfIframe = document.getElementById('pdfIframe');
-    pdfIframe.src = url
-    pdfIframe.focus();
-    pdfIframe.contentWindow.print();
-  }
-  // 打印部分
-  //  $("#print-all").click(_print("sample.pdf"))
 </script>
 <script src="viewer.js"></script>
 </html>
