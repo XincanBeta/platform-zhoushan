@@ -273,10 +273,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 证件获取
      --------------------------*/
-    $scope.sceneImages = [{uploaded:true},{}];
-    $scope.vehicleImages = [];
-    $scope.driverImages = [];
-    $scope.billImages = [];
+    // 初始化证件类型，带上数量，为了能显示正确的格子数目
+    $scope.sceneImages = [{},{}];
+    $scope.vehicleImages = [{},{},{}];
+    $scope.driverImages = [{},{},{}];
+    $scope.billImages = [{}];
 
     // 证件初始化
     if (!itemIsNew) {

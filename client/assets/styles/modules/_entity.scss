@@ -80,6 +80,7 @@
   &.with-delete {
     // 父元素禁止浮动，以免干扰后面的元素
     > .compact {
+      // compact 用来紧紧包裹图片
       position: relative;
       // 利用浮动的包裹性，让删除图标贴着图片
       clear: left;
