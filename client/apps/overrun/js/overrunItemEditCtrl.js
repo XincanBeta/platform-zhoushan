@@ -320,6 +320,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 证件上传
      --------------------------*/
+    // 注：业务判断是用 sceneImages 而非 sceneFiles 
     $scope.$watch('sceneFiles', function () {
       $scope.upload($scope.sceneFiles, 'sceneImages');
     });
@@ -349,7 +350,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           });
           return;
         }
-
         for (var i = 0; i < files.length; i++) {
           var file = files[i];
           Upload.upload({
@@ -393,11 +393,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }
       }
       imageNumber += newFiles.length;
-      if ((datatype == 'vehicleFiles' || datatype == 'driverFiles') && imageNumber > 3) {
+      if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
         limited = true;
-      } else if (datatype == 'sceneFiles' && imageNumber > 2) {
+      } else if (datatype == 'sceneImages' && imageNumber > 2) {
         limited = true;
-      } else if (datatype == 'billFiles' && imageNumber > 1) {
+      } else if (datatype == 'billImages' && imageNumber > 1) {
         limited = true;
       }
       return limited;
