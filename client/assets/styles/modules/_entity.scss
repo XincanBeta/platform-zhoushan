@@ -78,6 +78,7 @@
   }
   // 作为一个整体来设计
   &.with-delete {
+    // 父元素禁止浮动，以免干扰后面的元素
     > .compact {
       position: relative;
       // 利用浮动的包裹性，让删除图标贴着图片
@@ -86,6 +87,7 @@
       height: auto;
       width: auto;
       > .delete {
+        // delete 实际上可以独立出去
         content: '';
         background: url("../img/element/delete-30.png") no-repeat center;
         // 背景大小就是图片大小
