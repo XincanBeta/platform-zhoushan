@@ -84,7 +84,8 @@ angular.module("request", []).service('requestService', function ($http) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.todo.item.json');
     } else {
-      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
+        {aj_jazt: data.aj_jazt});
     }
   }
   this.overrunTodoItemDetail = function (data) {

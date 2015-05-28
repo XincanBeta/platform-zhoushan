@@ -5,7 +5,8 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
       $scope.pageSize = 20; // 每页显示 20 条
       requestService.overrunDoneItems({
         currentPage: $scope.currentPage,
-        pageSize: $scope.pageSize
+        pageSize: $scope.pageSize,
+        aj_jazt: '是'
       }).success(function (res) {
         if (res.success) {
           $scope.itemList = res.data.list;
