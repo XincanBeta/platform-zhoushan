@@ -114,13 +114,13 @@ angular.module("request", []).service('requestService', function ($http) {
    现场超限已完结接口
    */
   this.overrunDoneItems = function (data) {
-    return _doGetRequest(localPath + 'overrun.done.item.json');
-    /*
-     if (env == 'local') {
-     return _doGetRequest(localPath + 'overrun.done.item.json');
-     } else {
-     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/query.do');
-     }*/
+    if (env == 'local') {
+      return _doGetRequest(localPath + 'overrun.done.item.json');
+    } else {
+      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
+        {aj_jazt: data.aj_jazt});
+    }
+
   }
   this.overrunDoneItemDetail = function (data) {
     if (env == 'local') {
