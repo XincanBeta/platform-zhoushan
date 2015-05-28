@@ -24,7 +24,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     //调试帮助：区分 $scope 上的 item 与 普通值
 
 
-   /*--------------------------
+    /*--------------------------
      $ 初始化
      --------------------------*/
     $scope.item = item;
@@ -248,7 +248,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     });
 
 
-
     /*--------------------------
      $ 罚金计算
      --------------------------*/
@@ -274,9 +273,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 证件获取
      --------------------------*/
     // 初始化证件类型，带上数量，为了能显示正确的格子数目
-    $scope.sceneImages = [{},{}];
-    $scope.vehicleImages = [{},{},{}];
-    $scope.driverImages = [{},{},{}];
+    $scope.sceneImages = [{}, {}];
+    $scope.vehicleImages = [{}, {}, {}];
+    $scope.driverImages = [{}, {}, {}];
     $scope.billImages = [{}];
 
     // 证件初始化
@@ -293,13 +292,30 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         dataid: dataid,
         datatype: datatype
       }).success(function (res) {
-        $scope[datatype] = res.data;
+        _fillImageArray(datatype, res.data)
       })
     }
 
-    $scope.isUploaded = function(image){
-      return image.uploaded ? 'with-delete ' : 'no-upload';
+    /*
+     假定 images 必有空的对象
+     从头遍历 images ，找到第一个空对象（没有 fileid）
+     */
+    function _fillImageArray(datatype, newImages) {
+      var images = $scope[datatype];
+      for (var i = 0; i < newImages.length; i++) {
+        for (var k = 0; k < images.length; k++) {
+          if (!images[k].fileid) {
+            images.splice(k, 1, newImages[i]);
+            break;
+          }
+        }
+      }
     }
+
+    $scope.isUploaded = function (image) {
+      return image.fileid ? 'with-delete ' : 'no-upload';
+    }
+
 
     /*--------------------------
      $ 证件上传
@@ -320,6 +336,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.upload($scope.billFiles, 'billImages');
     });
 
+    /* 
+     注：上传的内部实现是一个个上传，返回的是对象，而非数组
+     */
     $scope.upload = function (files, datatype) {
       if (files && files.length) {
         for (var i = 0; i < files.length; i++) {
@@ -342,7 +361,13 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             console.log('上传进度: ' + progressPercentage + '% ' + evt.config.file.name);
           }).success(function (res, status, headers, config) {
             console.log('文件 ' + config.file.name + '已经成功上传. 返回: ' + res);
-            $scope[datatype].push(res.data)
+            var images = $scope[datatype], newImage = res.data; // newImage 是单个对象
+            for (var k = 0; k < images.length; k++) {
+              if (!images[k].fileid) {
+                images.splice(k, 1, newImage);
+                break;
+              }
+            }
           });
         }
       }
@@ -434,27 +459,27 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var fullscreenModalInstance;
     $scope.done = function () {
       /*var savePromise;
-      // 先保存
-      _beforeSave();
-      if (itemIsNew) {
-        savePromise = requestService.overrunTodoItemSave($scope.item)
-      } else {
-        savePromise = requestService.overrunTodoItemUpdate($scope.item)
-      }
-      // todo：$q 的 res 不一样的
-      $q.all(savePromise).then(function (res) {
-        console.log(res.success);
-        if (res.success) {
-          console.log('success');
-        }
-        requestService.overrunTodoItemDone($scope.item.aj_id).success(function(res){
-          console.log('done res', res);
-          ngToast.create({
-            className: 'success',
-            content: '结案成功!'
-          });
-        })
-      })*/
+       // 先保存
+       _beforeSave();
+       if (itemIsNew) {
+       savePromise = requestService.overrunTodoItemSave($scope.item)
+       } else {
+       savePromise = requestService.overrunTodoItemUpdate($scope.item)
+       }
+       // todo：$q 的 res 不一样的
+       $q.all(savePromise).then(function (res) {
+       console.log(res.success);
+       if (res.success) {
+       console.log('success');
+       }
+       requestService.overrunTodoItemDone($scope.item.aj_id).success(function(res){
+       console.log('done res', res);
+       ngToast.create({
+       className: 'success',
+       content: '结案成功!'
+       });
+       })
+       })*/
 
       fullscreenModalInstance = $modal.open({
         keyboard: true,
