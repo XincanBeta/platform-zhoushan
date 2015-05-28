@@ -54,7 +54,7 @@
 
 /*--------------------------
   $ entity-photo
-  作为图片的容器
+  作为图片的容器，用于编辑表单中
 --------------------------*/
 /*
   注：
@@ -76,36 +76,45 @@
     font-size: 60px;
     padding-top: 70px;
   }
+  // 作为一个整体来设计
   &.with-delete {
-    position: relative;
-    // 利用浮动的包裹性
-    clear: left;
-    float: left;
-    height: auto;
-    width: auto;
+    > .compact {
+      position: relative;
+      // 利用浮动的包裹性，让删除图标贴着图片
+      clear: left;
+      float: left;
+      height: auto;
+      width: auto;
+      > .delete {
+        content: '';
+        background: url("../img/element/delete-30.png") no-repeat center;
+        // 背景大小就是图片大小
+        background-size: 25px;
+        display: block;
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+        cursor: pointer;
+        @extend .shake;
+        @extend .shake-little;
+      }
+    }
   }
-  > img {
-    // 控制高度，让宽度自适应
+  // 让图片实体自由在模块顶级元素中，并且具有一个唯一性的类名
+  .entity-photo--item {
+    // max 表示范围
     max-height: 200px;
-  }
-  & > .delete {
-    content: '';
-    background: url("../img/element/delete-30.png") no-repeat center;
-    // 背景大小就是图片大小
-    background-size: 25px;
-    display: block;
-    position: absolute;
-    top: -20px;
-    right: -20px;
-    width: 40px;
-    height: 40px;
-    z-index: 10;
-    cursor: pointer;
-    @extend .shake;
-    @extend .shake-little;
+    max-width: 400px;
   }
 }
 
+/*--------------------------
+  $ entity-photo-hover
+  用于查看页面中
+--------------------------*/
 .entity-photo-hover {
   height: 200px;
   width: 400px;

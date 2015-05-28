@@ -69,23 +69,24 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
+
               <div style="display: inline-block">
-              <angucomplete-alt
-                  id="autocomplete-ex1"
-                  placeholder=""
-                  pause="100"
-                  initial-value="{{ cp_part_1 }}"
-                  selected-object="carSelected"
-                  local-data="carData"
-                  search-fields="Pcode,city,code,province"
-                  title-field="code"
-                  minlength="1"
-                  match-class="highlight"
-                  input-class="form-control form-control-small"
-                  input-changed="angucompleteInputChanged"
-                  class="overrun-cp-angucomplete"
-                  name="cp_part_1"
-                  />
+                <angucomplete-alt
+                    id="autocomplete-ex1"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ cp_part_1 }}"
+                    selected-object="carSelected"
+                    local-data="carData"
+                    search-fields="Pcode,city,code,province"
+                    title-field="code"
+                    minlength="1"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="angucompleteInputChanged"
+                    class="overrun-cp-angucomplete"
+                    name="cp_part_1"
+                    />
               </div>
               <span>&bull;</span>
               <input type="text" class="form-control" name="cp_part_2" ng-model="cp_part_2"
@@ -126,15 +127,17 @@
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label ">上传现场照片</label>
-              <!--with-delete ng-repeat="image in sceneImages"-->
-              <div class="entity-photo no-upload" style="" >
-                <!--<img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>-->
-                <!--<i class="delete" ng-click="deleteImage(sceneImages, image)"></i>-->
-              </div>
+              <label class="entity-label ">上传现场照片（ 2 张 ）</label>
+
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
                    ngf-accept="'image/*'"></div>
+              <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in sceneImages">
+                <div class="compact" ng-if="image.uploaded">
+                  <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
+                  <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -201,7 +204,7 @@
         </div>
         <div class="form-group">
           <div class="col-sm-16">
-            <label class="entity-label">上传车辆证件</label>
+            <label class="entity-label">上传车辆证件（ 1 ~ 3 张 ）</label>
 
             <div class="entity-photo with-delete" ng-repeat="image in vehicleImages">
               <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
@@ -260,7 +263,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label">上传驾驶员证件</label>
+              <label class="entity-label">上传驾驶员证件（ 1 ~ 3 张 ）</label>
 
               <div class="entity-photo with-delete" ng-repeat="image in driverImages">
                 <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
@@ -368,7 +371,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label">上传发票证件</label>
+              <label class="entity-label">上传发票证件（ 1 张 ）</label>
 
               <div class="entity-photo with-delete" ng-repeat="image in billImages">
                 <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
@@ -442,7 +445,7 @@
     <!--<button type="button" class="btn btn-default" ng-click="fillData()">填充</button>-->
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
     <button type="button" class="btn btn-default" validation-submit="form" ng-click="save()">保存</button>
-    <button type="button" class="btn btn-primary"  ng-click="done()">结案</button>
+    <button type="button" class="btn btn-primary" ng-click="done()">结案</button>
     <!--validation-submit="form"-->
   </div>
 </form>

@@ -273,14 +273,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 证件获取
      --------------------------*/
-    $scope.sceneImages = [];
+    $scope.sceneImages = [{uploaded:true},{}];
     $scope.vehicleImages = [];
     $scope.driverImages = [];
     $scope.billImages = [];
 
     // 证件初始化
     if (!itemIsNew) {
-      _loadImage($scope.item.aj_id, 'sceneImages');
+      //_loadImage($scope.item.aj_id, 'sceneImages');
       _loadImage($scope.item.aj_id, 'vehicleImages');
       _loadImage($scope.item.aj_id, 'driverImages');
       _loadImage($scope.item.aj_id, 'billImages');
@@ -294,6 +294,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }).success(function (res) {
         $scope[datatype] = res.data;
       })
+    }
+
+    $scope.isUploaded = function(image){
+      return image.uploaded ? 'with-delete ' : 'no-upload';
     }
 
     /*--------------------------
