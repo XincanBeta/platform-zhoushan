@@ -100,9 +100,8 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunTodoItemUpdate = function (data) {
     return _doPostRequest('/api/cxcfs/update.do', data);
   }
-  this.overrunTodoItemDone = function (id) {
-    return _doPostRequest('/api/cxcfs/'+ id +'/all/-1/printPdf.do');
-    //return _doPostRequest('/api/cxcfs/'+ id +'/savePdf.do');
+  this.overrunTodoItemDone = function (data) {
+    return _doPostRequest('/api/cxcfs/jiean.do', data);
   }
   this.overrunItemsDelete = function (data) {
     return _doPostRequest('/api/cxcfs/delete.do', data);

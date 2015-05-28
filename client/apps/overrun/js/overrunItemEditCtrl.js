@@ -466,6 +466,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       } else {
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
+      // todo：$q 的 res 不一样的
       $q.all(savePromise).then(function (res) {
         console.log(res);
         if (res.success) {
@@ -489,46 +490,57 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
-      /*var savePromise;
-       // 先保存
-       _beforeSave();
-       if (itemIsNew) {
+      //var savePromise;
+      // 先保存
+      _beforeSave();
+      /*if (itemIsNew) {
        savePromise = requestService.overrunTodoItemSave($scope.item)
        } else {
        savePromise = requestService.overrunTodoItemUpdate($scope.item)
        }
-       // todo：$q 的 res 不一样的
        $q.all(savePromise).then(function (res) {
        console.log(res.success);
        if (res.success) {
        console.log('success');
        }
-       requestService.overrunTodoItemDone($scope.item.aj_id).success(function(res){
-       console.log('done res', res);
-       ngToast.create({
-       className: 'success',
-       content: '结案成功!'
-       });
-       })
+
        })*/
 
-      fullscreenModalInstance = $modal.open({
-        keyboard: true,
-        size: "fullscreen",
-        templateUrl: apps + 'overrun/partials/docFullscreen.html',
-        controller: 'OverrunViewerFullscreenCtrl'
-      })
-      fullscreenModalInstance.result.then(function () {
-        sliderService.startAutoHide();
-        $modalInstance.close(); // 全屏关闭后，再关闭本层
-      }, function () {
-        sliderService.startAutoHide();
-        $modalInstance.close();
-      });
+      requestService.overrunTodoItemDone($scope.item).success(function (res) {
+        console.log('done res', res);
+        if (!res.success) {
+          ngToast.create({
+            className: 'danger',
+            content: '结案失败!'
+          });
+          return false;
+        }
+        fullscreenModalInstance = $modal.open({
+          keyboard: true,
+          size: "fullscreen",
+          templateUrl: apps + 'overrun/partials/docFullscreen.html',
+          controller: 'OverrunViewerFullscreenCtrl',
+          resolve: {
+            pdfurl: function () {
+              return $scope.item // 指令内部控制器，不能访问到外部 scope
+            }
+          }
+        })
+        fullscreenModalInstance.result.then(function () {
+          sliderService.startAutoHide();
+          $modalInstance.close(); // 全屏关闭后，再关闭本层
+        }, function () {
+          sliderService.startAutoHide();
+          $modalInstance.close();
+        });
 
-      fullscreenModalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
+        fullscreenModalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
+
       })
+
+
     }
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     // 正常关闭本层
@@ -539,8 +551,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
-
-
 
 
   })
