@@ -483,10 +483,11 @@
 
 <script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
+<script src="../../../../assets/components/request.js"></script>
 <script>
   var app = angular.module('myWidget.pdf', [])
-  var DEFAULT_URL, itemId, urlHead = location.protocol + '//' + location.host;
-  app.controller("PDFCtrl", function ($scope) {
+  var DEFAULT_URL, itemId
+  app.controller("PDFCtrl", function ($scope, requestService) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
     DEFAULT_URL = parentScope.getPdfurl();
     itemId = parentScope.getItemId();
@@ -495,19 +496,21 @@
       parentScope.closeFullscreenModal()
     }
 
-
     // part = 'wordType/pageNum/'
     $scope.print = function (part) {
       var pdfIframe = document.getElementById('pdfIframe');
-      // http://localhost:9000   +  /api/cxcfs/{cxcfid}/{wordType}/{pageNum}/printPdf.do
-      pdfIframe.src = urlHead + '/api/cxcfs/' + itemId + '/' + part + 'printPdf.do';
-      pdfIframe.focus();
-      pdfIframe.contentWindow.print();
+      requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
+        if (res.success) {
+          pdfIframe.src = urlHead + '/api/cxcfs/' + itemId + '/' + part + 'printPdf.do';
+          pdfIframe.focus();
+          pdfIframe.contentWindow.print();
+        }
+      })
     }
 
     $scope.printCurrent = function () {
       var pageNumber = $('#pageNumber').val();
-      $scope.print('pageNum/'+ pageNumber +'/')
+      $scope.print('pageNum/' + pageNumber + '/')
     }
   })
 
