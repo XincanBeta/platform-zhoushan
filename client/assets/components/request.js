@@ -107,9 +107,7 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/delete.do', data);
   }
   this.overrunItemsPrint = function (data) {
-    // http://localhost:9000   +  /api/cxcfs/{cxcfid}/{wordType}/{pageNum}/printPdf.do
-    var urlHead = location.protocol + '//' + location.host;
-    return _doPostRequest(urlHead +  + '/api/cxcfs/' + data.itemId + '/' + data.part + 'printPdf.do');
+    return _doPostRequest('/api/cxcfs/' + data.itemId.toString() + '/' + data.part + 'printPdf.do');
   }
   /* 
    现场超限已完结接口

@@ -485,8 +485,10 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script src="../../../../assets/components/request.js"></script>
 <script>
-  var app = angular.module('myWidget.pdf', [])
+  var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL, itemId
+  var urlHead = location.protocol + '//' + location.host + '/';
+
   app.controller("PDFCtrl", function ($scope, requestService) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
     DEFAULT_URL = parentScope.getPdfurl();
@@ -501,7 +503,7 @@
       var pdfIframe = document.getElementById('pdfIframe');
       requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
         if (res.success) {
-          pdfIframe.src = urlHead + '/api/cxcfs/' + itemId + '/' + part + 'printPdf.do';
+          pdfIframe.src = urlHead + res.data;
           pdfIframe.focus();
           pdfIframe.contentWindow.print();
         }

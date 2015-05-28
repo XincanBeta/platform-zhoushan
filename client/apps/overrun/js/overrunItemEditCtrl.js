@@ -507,7 +507,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
        })*/
 
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
-        console.log('done res', res);
+        //console.log('done res', res);
         if (!res.success) {
           ngToast.create({
             className: 'danger',
