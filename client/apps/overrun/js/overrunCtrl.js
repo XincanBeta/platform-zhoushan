@@ -43,7 +43,7 @@ angular.module('app.overrun', [
       apps + 'overrun/js/overrunItemDetailPhotoCtrl.js',
       apps + 'overrun/js/overrunItemEditCtrl.js',
       apps + 'overrun/js/overrunItemDeleteCtrl.js',
-      apps + 'overrun/js/overrunForfeit.js',
+      apps + 'overrun/js/overrunForfeitService.js', // 服务
       apps + 'overrun/js/overrunViewerFullscreenCtrl.js',
       apps + 'overrun/js/overrunViewerCtrl.js',
       apps + 'overrun/js/overrunPhotoDetailCtrl.js'
