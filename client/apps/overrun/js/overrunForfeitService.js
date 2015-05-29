@@ -54,7 +54,7 @@ angular.module('app.overrun').service('forfeit', function () {
     if (str == "" || str == null) {
       return 0;
     } else {
-      return + str; //parseFloat(str);
+      return +str; //parseFloat(str);
     }
   }
 
@@ -175,8 +175,8 @@ angular.module('app.overrun').service('forfeit', function () {
       maxOver4: 40,
       maxOver5: 50,
       maxOver6: 55,
-      level: "特别严重"
-
+      level: "特别严重",
+      maxForfeit: 30000
     }//特别严重
   ];
 
@@ -273,6 +273,10 @@ angular.module('app.overrun').service('forfeit', function () {
     return yValue;
   }
 
+  function _initResult() {
+    return {overValue: null, forfeit: null, forfeitRange: null};
+  }
+
   /*
    依次获取：
    overValue
@@ -280,7 +284,7 @@ angular.module('app.overrun').service('forfeit', function () {
    forfeit
    */
   function _calcOverValueForfeit(type, value) {
-    var result = {overValue:null,forfeit:null};
+    var result = _initResult();
     var precision = 2;
     var maxLegalValue = _getMaxLegalValue(type)
     var overValue = value - maxLegalValue; // 下面主要都是用 value 去比较，这更符合纸质参考资料
@@ -289,6 +293,7 @@ angular.module('app.overrun').service('forfeit', function () {
     /*
      1）根据超量找到自己的范围
      2）计算罚金
+     3）加入罚金范围
      */
     for (var i = 0; i < overValueRules.length; i++) {
       rule = overValueRules[i];
@@ -304,6 +309,7 @@ angular.module('app.overrun').service('forfeit', function () {
         var forfeit = 1500 + Math.floor([(overValue - ruleValueRange[0]) / maxLegalValue] / 0.05) * 1000;
         forfeit = forfeit > 30000 ? 30000 : forfeit;
         result.forfeit = forfeit;
+        result.forfeitRange = [1500, 30000];
         return result;
       }
       if (value > ruleValueRange[0] && value <= ruleValueRange[1]) {
@@ -315,6 +321,7 @@ angular.module('app.overrun').service('forfeit', function () {
          */
         result.forfeit = _linearEquation(ruleValueRange, rule.forfeitRange, value);
         result.forfeit = math.format(result.forfeit, {notation: 'fixed'});
+        result.forfeitRange = rule.forfeitRange;
         return result;
       }
     }
@@ -327,7 +334,7 @@ angular.module('app.overrun').service('forfeit', function () {
    forfeit
    */
   function _calcOverWeightForfeit(type, weight, axles) {
-    var result = {overValue:null,forfeit:null};
+    var result = _initResult();
     if (!axles) {
       return result;
     }
@@ -357,12 +364,14 @@ angular.module('app.overrun').service('forfeit', function () {
         // 根据坐标求出罚金
         result.forfeit = _linearEquation(overWeightRange, forfeitRange, overWeight);
         result.forfeit = math.format(result.forfeit, {notation: 'fixed'});
+        result.forfeitRange = forfeitRange;
         return result;
       }
       else if (overWeight > overWeightRules[overWeightRules.length - 1]["maxOver" + axles]) {
-        var forfeit = 1500 + Math.floor([(overWeight - overWeightRules[overWeightRules.length - 1]["maxOver" + axles]) / maxLegalValue] / 0.05) * 1000;
+        var forfeit = 11000 + Math.floor([(overWeight - overWeightRules[overWeightRules.length - 1]["maxOver" + axles]) / maxLegalValue] / 0.05) * 1000;
         forfeit = forfeit > 30000 ? 30000 : forfeit;
         result.forfeit = forfeit;
+        result.forfeitRange = [11000, 30000];
         return result;
       }
     }
