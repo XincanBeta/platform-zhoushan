@@ -80,7 +80,7 @@ angular.module('app')
           }]
         }
       })
-      .state('myapp.overrun.forfeit', {
+      /*.state('myapp.overrun.forfeit', {
         url: '/forfeit',
         templateUrl: app_base + 'overrun/partials/forfeit.html',
         controller: "OverrunForfeitCtrl",
@@ -91,7 +91,7 @@ angular.module('app')
             ]);
           }]
         }
-      })
+      })*/
 
       /*--------------------------
         $ overrun-leader
@@ -108,7 +108,18 @@ angular.module('app')
           }]
         }
       })
-
+      .state('myapp.overrun-leader.todo', {
+        url: '/todo',
+        templateUrl: app_base + 'overrun-leader/partials/todo.html',
+        controller: "OverrunLeaderTodoCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-leader/js/overrunLeaderTodoCtrl.js'
+            ]);
+          }]
+        }
+      })
 
       .state('myapp.monitor', {
         url: '/monitor',

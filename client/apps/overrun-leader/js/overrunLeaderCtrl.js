@@ -1,7 +1,7 @@
 /**
  * 主控制器，并声明模块
  */
-angular.module('app.overrun', [
+angular.module('app.overrun-leader', [
   'ngToast',
   'ngAnimate',
   'angular-loading-bar',

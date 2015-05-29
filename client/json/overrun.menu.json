@@ -8,10 +8,6 @@
     "routestate": "myapp.overrun.done"
   },
   {
-    "menuname": "罚金修改",
-    "routestate": "myapp.overrun.forfeit"
-  },
-  {
     "menuname": "数据报送",
     "routestate": "myapp.overrun.report"
   },
