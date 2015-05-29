@@ -34,6 +34,17 @@ angular.module("request", []).service('requestService', function ($http) {
     return _path;
   }
   /*--------------------------
+    $ 目录
+  --------------------------*/
+  /*
+   通用
+   overrun
+   overrun-leader
+   admin
+  */
+
+
+  /*--------------------------
    $ 通用
    --------------------------*/
   this.getNewId = function () {
@@ -76,6 +87,9 @@ angular.module("request", []).service('requestService', function ($http) {
   this.myappSaItems = function () {
     return _doGetRequest(localPath + 'myapp.sa.item.json');
   }
+  /*--------------------------
+    $ overrun
+  --------------------------*/
   this.overrunSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun.menu.json');
   }
@@ -135,8 +149,26 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDoneDoc = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
   }
+  /*--------------------------
+   $ overrun-leader
+   --------------------------*/
+  this.overrunLeaderSidebarItems = function () {
+    return _doGetRequest(localPath + 'overrun-leader.menu.json');
+  }
+  this.overrunLeaderTodoItems = function (data) {
+    return _doGetRequest(localPath + 'overrun-leader.todo.item.json');
+    /*
+    if (env == 'local') {
+      return _doGetRequest(localPath + 'overrun.leader.todo.item.json');
+    } else {
+      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
+        {aj_jazt: data.aj_jazt});
+    }*/
+  }
 
-  // 系统管理
+  /*--------------------------
+    $ admin
+  --------------------------*/
   this.adminSidebarItems = function () {
     return _doGetRequest(localPath + 'admin.menu.json');
   }

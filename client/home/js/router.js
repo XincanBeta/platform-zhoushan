@@ -3,6 +3,17 @@ angular.module('app')
     var app_base = "../apps/", bower_base = "../assets/lib/"
     $urlRouterProvider.otherwise("/");
     $stateProvider
+      /*--------------------------
+       $ 目录
+       --------------------------*/
+      /*
+       desktop
+       myapp
+       overrun
+       overrun-leader
+       */
+
+
       .state('desktop', {
         url: "/desktop",
         controller: 'DesktopCtrl',
@@ -30,6 +41,9 @@ angular.module('app')
           }]
         }
       })
+      /*--------------------------
+       $ overrun
+       --------------------------*/
       .state('myapp.overrun', {
         url: '/overrun',
         templateUrl: app_base + 'overrun/overrun.html',
@@ -66,7 +80,6 @@ angular.module('app')
           }]
         }
       })
-
       .state('myapp.overrun.forfeit', {
         url: '/forfeit',
         templateUrl: app_base + 'overrun/partials/forfeit.html',
@@ -79,6 +92,23 @@ angular.module('app')
           }]
         }
       })
+
+      /*--------------------------
+        $ overrun-leader
+      --------------------------*/
+      .state('myapp.overrun-leader', {
+        url: '/overrun-leader',
+        templateUrl: app_base + 'overrun-leader/overrun-leader.html',
+        controller: "OverrunLeaderCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-leader/js/overrunLeaderCtrl.js'
+            ]);
+          }]
+        }
+      })
+
 
       .state('myapp.monitor', {
         url: '/monitor',
