@@ -273,6 +273,7 @@ angular.module('app.overrun').service('forfeit', function () {
     return yValue;
   }
 
+  // 确保都初始化过，实际有值再赋值
   function _initResult() {
     return {overValue: null, forfeit: null, forfeitRange: null};
   }

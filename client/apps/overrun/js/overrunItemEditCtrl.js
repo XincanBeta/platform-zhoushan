@@ -251,7 +251,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 罚金计算
      --------------------------*/
-    // 计算初检超值/罚金
+    // 计算初检超值/罚金，通过超值触发
     $scope.calcChecklistOverValue = function () {
       if (!$scope.item.cj_zz || $scope.item.cj_zz == '') {
         return;
@@ -259,6 +259,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
       $scope.item.aj_fk = resutl.forfeit;
+      // todo：要存储？
+      $scope.forfeitRange = resutl.forfeitRange ? resutl.forfeitRange.join('-') : '';
     }
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
