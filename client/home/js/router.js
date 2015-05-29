@@ -66,6 +66,20 @@ angular.module('app')
           }]
         }
       })
+
+      .state('myapp.overrun.forfeit', {
+        url: '/forfeit',
+        templateUrl: app_base + 'overrun/partials/forfeit.html',
+        controller: "OverrunForfeitCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun/js/overrunForfeitCtrl.js'
+            ]);
+          }]
+        }
+      })
+
       .state('myapp.monitor', {
         url: '/monitor',
         templateUrl: app_base + 'monitor/monitor.html',
