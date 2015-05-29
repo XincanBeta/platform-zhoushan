@@ -10,6 +10,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
      全屏案卷
      页内导航
      详细信息
+     加载pdfUrl
      */
 
 
@@ -85,8 +86,16 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       fullscreenModalInstance = $modal.open({
         keyboard: true,
         size: "fullscreen",
-        templateUrl: 'docFullscreen.html',
-        controller: 'OverrunViewerFullscreenCtrl'
+        templateUrl: path + 'docFullscreen.html',
+        controller: 'OverrunViewerFullscreenCtrl',
+        resolve: {
+          pdfurl: function () {
+            return pdfUrl;
+          },
+          item: function(){
+            return $scope.item;
+          }
+        }
       })
       fullscreenModalInstance.result.then(function () {
         sliderService.startAutoHide();
