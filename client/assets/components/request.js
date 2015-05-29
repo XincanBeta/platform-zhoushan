@@ -131,6 +131,11 @@ angular.module("request", []).service('requestService', function ($http) {
       //return doPostRequest(remotePath + '/app/xccfs/query.do' + _parseGetRequestParams(data));
     }
   }
+  // 已完结的案卷用在详情和全屏
+  this.overrunDoneDoc = function (data) {
+    return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
+  }
+
   // 系统管理
   this.adminSidebarItems = function () {
     return _doGetRequest(localPath + 'admin.menu.json');

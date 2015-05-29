@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html dir="ltr" mozdisallowselectionprint moznomarginboxes>
+<html dir="ltr" mozdisallowselectionprint moznomarginboxes ng-app="myWidget.pdf">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -25,8 +25,7 @@
     }
   </style>
 </head>
-<!--style="border: 2px solid ;"-->
-<body tabindex="1" >
+<body tabindex="1" ng-controller="PDFCtrl">
 <div id="outerContainer" class="loadingInProgress">
 
   <div id="sidebarContainer">
@@ -457,7 +456,13 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script src="../../../../assets/components/request.js"></script>
 <script>
+  var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL = 'sample.pdf';
+  app.controller("PDFCtrl", function ($scope, requestService) {
+
+
+
+  })
 
 </script>
 <script src="viewer.js"></script>

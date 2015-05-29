@@ -1,6 +1,21 @@
 angular.module('app.overrun').controller('OverrunItemDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope, $location, anchorSmoothScroll) {
 
+    /*--------------------------
+     $ 目录
+     --------------------------*/
+    /*
+     选项卡
+     案件修改（待处理）
+     全屏案卷
+     页内导航
+     详细信息
+     */
+
+
+    /*--------------------------
+     $ 选项卡
+     --------------------------*/
     var tabset = [{
       name: '案件',
       content: 'detailContent',
@@ -26,7 +41,13 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       $scope.selected = tab;
     }
 
-    // 案件修改
+    $scope.isSelected = function (tab) {
+      return (tab === $scope.selected) ? 'active' : '';
+    }
+
+    /*--------------------------
+     $ 案件修改（待处理）
+     --------------------------*/
     var path = '../apps/overrun/partials/';
     $scope.editInfo = function () {
       var modalInstance = $modal.open({
@@ -39,7 +60,9 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope
           },
-          itemIsNew: function(){return false}
+          itemIsNew: function () {
+            return false
+          }
         }
       })
 
@@ -54,7 +77,9 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       })
     }
 
-    // 全屏
+    /*--------------------------
+     $ 全屏案卷
+     --------------------------*/
     var fullscreenModalInstance;
     $scope.fullscreenDoc = function () {
       fullscreenModalInstance = $modal.open({
@@ -79,10 +104,6 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
     }
 
 
-    $scope.isSelected = function (tab) {
-      return (tab === $scope.selected) ? 'active' : '';
-    }
-
     /*--------------------------
      $ 页内导航
      --------------------------*/
@@ -91,20 +112,24 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       anchorSmoothScroll.scrollTo(id);
     }
 
-    // 接收详细信息
+
+    /*--------------------------
+     $ 详细信息
+     --------------------------*/
     $rootScope.$on("entity.update", function (event, res) {
       $scope.item = res.data;
       // 设置单位
       $scope.unit = _getUnit($scope.item.cj_cxlx)
     })
 
-    function _getUnit(cxlx){
+
+    function _getUnit(cxlx) {
       if (!cxlx || cxlx == "") {
         return ""
       }
       if (cxlx == '超重') {
         return '吨'
-      }else{
+      } else {
         return '米'
       }
     }

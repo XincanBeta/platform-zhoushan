@@ -45,6 +45,7 @@ angular.module('app.overrun', [
       apps + 'overrun/js/overrunItemDeleteCtrl.js',
       apps + 'overrun/js/overrunForfeit.js',
       apps + 'overrun/js/overrunViewerFullscreenCtrl.js',
+      apps + 'overrun/js/overrunViewerCtrl.js',
       apps + 'overrun/js/overrunPhotoDetailCtrl.js'
     ])
 
