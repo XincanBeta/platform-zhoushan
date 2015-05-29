@@ -1,38 +1,64 @@
 [
   {
+    "appid": "1",
     "name": "现场超限处罚应用",
+    "subname": "业务员版",
     "description": "",
     "routestate": "myapp.overrun",
-    "imgsrc": "huo-che.png"
+    "imgsrc": "huo-che.png",
+    "disabled": false
+  },
+  {
+    "appid": "2",
+    "name": "现场超限处罚应用",
+    "subname": "领导版",
+    "description": "",
+    "routestate": "myapp.overrun-leader",
+    "imgsrc": "huo-che.png",
+    "disabled": false
+  },
+  {
+    "appid": "3",
+    "name": "现场超限处罚应用",
+    "subname": "管理员版",
+    "description": "",
+    "routestate": "myapp.overrun-admin",
+    "imgsrc": "huo-che.png",
+    "disabled": true
   },
   {
     "name": "视频监控",
     "description": "",
     "routestate": "myapp",
-    "imgsrc": "shipin.png"
+    "imgsrc": "shipin.png",
+    "disabled": true
   },
   {
     "name": "移动巡检",
     "description": "",
     "routestate": "myapp",
-    "imgsrc": "yidong-xunjian.png"
+    "imgsrc": "yidong-xunjian.png",
+    "disabled": true
   },
   {
     "name": "电子台账",
     "description": "",
     "routestate": "myapp",
-    "imgsrc": "dianzi-taizhang.png"
+    "imgsrc": "dianzi-taizhang.png",
+    "disabled": true
   },
   {
     "name": "公路标志牌管理",
     "description": "",
     "routestate": "myapp",
-    "imgsrc": "biaozhi-pai.png"
+    "imgsrc": "biaozhi-pai.png",
+    "disabled": true
   },
   {
     "name": "公路赔补偿管理",
     "description": "",
     "routestate": "myapp",
-    "imgsrc": "pei-bu-chang.png"
+    "imgsrc": "pei-bu-chang.png",
+    "disabled": true
   }
 ]

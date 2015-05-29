@@ -31,7 +31,6 @@ $myapp-icon-left: 40px;
   }
 }
 
-
 .myapp--icon {
   @include size($myapp-size);
   @include vertical-align;
@@ -58,6 +57,12 @@ $myapp-icon-left: 40px;
   font-size: $relative-font-size * 1.4;
   @include vertical-align;
   left: $myapp-icon-left + $myapp-size + 20px;
+}
+
+.myapp--subname{
+  position: absolute;
+  bottom: 20px;
+  left: $myapp-icon-left + $myapp-size + 20px;;
 }
 
 /*
