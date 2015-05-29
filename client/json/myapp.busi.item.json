@@ -1,6 +1,6 @@
 [
   {
-    "appid": "1",
+    "appid": "01001",
     "name": "现场超限处罚应用",
     "subname": "业务员版",
     "description": "",
@@ -9,7 +9,7 @@
     "disabled": false
   },
   {
-    "appid": "2",
+    "appid": "01002",
     "name": "现场超限处罚应用",
     "subname": "领导版",
     "description": "",
@@ -18,7 +18,7 @@
     "disabled": false
   },
   {
-    "appid": "3",
+    "appid": "01003",
     "name": "现场超限处罚应用",
     "subname": "管理员版",
     "description": "",
@@ -28,6 +28,7 @@
   },
   {
     "name": "视频监控",
+    "subname": "",
     "description": "",
     "routestate": "myapp",
     "imgsrc": "shipin.png",

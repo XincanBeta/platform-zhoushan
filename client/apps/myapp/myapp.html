@@ -11,7 +11,7 @@
         <div class="l-plate--bowl" ng-repeat="app in busiApps">
           <a class="myapp" href="javascript:void(0);"
              ng-class="{'disabled':app.disabled}"
-             ng-click="go(app.routestate)">
+             ng-click="go(app)">
             <img class="myapp--icon" ng-src="../../assets/img/myapp/{{ app.imgsrc }}" alt=""/>
             <span class="myapp--name">{{ app.name }}</span>
             <span class="myapp--subname">{{ app.subname }}</span>
@@ -22,7 +22,7 @@
       <section class="l-plate">
         <h1 class="l-plate--title">综合应用类</h1>
         <div class="l-plate--bowl" ng-repeat="app in saApps">
-          <a class="myapp" href="javascript:void(0);" ng-click="go(app.routestate)">
+          <a class="myapp" href="javascript:void(0);" ng-click="go(app)">
             <img class="myapp--icon" ng-class="{'disabled':app.disabled}"
                  ng-src="../../assets/img/myapp/{{ app.imgsrc }}" alt=""/>
             <span class="myapp--name">{{ app.name }}</span>

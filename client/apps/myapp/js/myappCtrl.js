@@ -10,7 +10,11 @@ angular.module('app.myapp', []).controller('MyappCtrl', function ($scope, reques
   })
 
 
-  $scope.go = function (state) {
+  $scope.go = function (app) {
+    if (app.disabled) {
+      return;
+    }
+    var state = app.routestate;
     if (state == 'myapp' || state == '') {
       return console.log('请正确配置 router state');
     }

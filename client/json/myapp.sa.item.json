@@ -1,15 +1,20 @@
 [
   {
+    "appid": "02001",
     "name": "路网监测和应急指挥",
     "description": "",
     "routestate": "myapp.monitor",
-    "imgsrc": "yingji-zhihui.png"
+    "imgsrc": "yingji-zhihui.png",
+    "disabled": false
+
   },
   {
+    "appid": "02002",
     "name": "统计分析",
     "description": "",
     "routestate": "myapp.sas",
-    "imgsrc": "tongji-fenxi.png"
+    "imgsrc": "tongji-fenxi.png",
+    "disabled": false
   }
 
 ]
