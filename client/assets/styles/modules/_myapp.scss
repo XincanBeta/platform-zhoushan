@@ -15,12 +15,13 @@ $myapp-icon-left: 40px;
   text-align: left;
   overflow: hidden;
   transition: all .5s;
-  &:hover{
+  background-color: #fff;
+  &:hover {
     background-color: #eee;
     // fixme:box-shadow 无效？
     //box-shadow: 0px 9px 3px 2px rgba(0,0,0,0.1);
   }
-  &.item-add{
+  &.item-add {
     text-align: center;
     border: 2px dashed #cccccc;
     //border-radius: $myapp-border-radius;
@@ -29,26 +30,24 @@ $myapp-icon-left: 40px;
     font-size: 22px;
     padding: 15px;
   }
+  &.disabled {
+    > img {
+      -webkit-filter: grayscale(1); /* Webkit */
+      filter: gray; /* IE6-9 */
+      filter: grayscale(1); /* W3C */
+    }
+  }
+  &.disabled:hover {
+    cursor: default;
+    background-color: #fff;
+  }
 }
 
 .myapp--icon {
   @include size($myapp-size);
   @include vertical-align;
   left: $myapp-icon-left;
-  &.disabled {
-    background-color: rgba(200,200,200, 0.5);
-    -webkit-filter: grayscale(1);/* Webkit */
-    filter:gray;/* IE6-9 */
-    filter: grayscale(1);/* W3C */
 
-  }
-  &.disabled:hover{
-    background-color: rgba(200,200,200, 1);
-    //background-color: black;
-    /*&::before{
-      content:'hello'
-    }*/
-  }
 }
 
 .myapp--name {
@@ -59,7 +58,7 @@ $myapp-icon-left: 40px;
   left: $myapp-icon-left + $myapp-size + 20px;
 }
 
-.myapp--subname{
+.myapp--subname {
   position: absolute;
   bottom: 20px;
   left: $myapp-icon-left + $myapp-size + 20px;;
