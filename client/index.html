@@ -14,28 +14,39 @@
     }
   </style>
 </head>
-<body ng-controller="MyCtrl" id="clientIndex" >
+<body ng-controller="MyCtrl" id="client-index">
 <iframe ng-src="{{ content }}" frameborder="0"></iframe>
 
 <script src="assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="assets/lib/angular/angular.min.js"></script>
+<!--<script src="assets/components/user.js"></script>-->
 <script>
   var app = angular.module('entrypoint', [])
-  app.controller('MyCtrl', function($scope, $sce){
+  app.controller('MyCtrl', function ($scope) {
+    var user = {
+      wkno: 'test',
+      wkna: '测试',
+      appid: ['0101']
+    }
 
-    //
+    $scope.getUser = function () {
+      return user;
+    }
 
-
+//    userService.setUser(user)
+//    console.log(userService.getUser());
+//    var childScope = angular.element('#app-home').scope();
+//    childScope.test();
 
 
 //    $scope.content = 'login/index.html';
     $scope.content = 'home/index.html';
 
-    $scope.signIn = function(){
+    $scope.signIn = function () {
       $scope.content = 'home/index.html';
       $scope.$apply()
     }
-    $scope.signOut = function(){
+    $scope.signOut = function () {
       $scope.content = 'login/index.html';
       $scope.$apply()
     }

@@ -33,8 +33,9 @@
     <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
     <!--ng-click="toggleShowAccountItem()"-->
     <li><a href="javascript:void(0);" class="user-identity">
-      <img src="../assets/img/avatar/icon-40.png" alt="用户头像">
-      <span>张雷</span><i class="fa fa-caret-down"></i>
+      <!--<img src="../assets/img/avatar/icon-40.png" alt="用户头像">-->
+      <span>{{ user.wkna }}</span>
+      <!--<i class="fa fa-caret-down"></i>-->
     </a>
     </li>
     <li><a href="javascript:void(0);" class="narrow"
@@ -73,6 +74,7 @@ ui-view-container 动画效果
 <script src="../assets/lib/angular-sanitize/angular-sanitize.min.js"></script>
 <script src="../assets/lib/ngtoast/dist/ngToast.min.js"></script>
 <script src="../assets/lib/angular-loading-bar/build/loading-bar.min.js"></script>
+<script src="../assets/components/user.js"></script>
 <script src=""></script>
 <!-- endbuild -->
 

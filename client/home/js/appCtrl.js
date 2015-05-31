@@ -1,5 +1,12 @@
 angular.module('app')
-  .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast) {
+  .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast, userService) {
+
+    var parentScope = parent.angular.element('#client-index').scope();
+    console.log('>>>', parentScope.getUser())
+
+
+    //userService
+    //console.log(userService.getUser());
 
     requestService.homeSidebarItems().success(function (items) {
       $scope.items = items;
@@ -115,7 +122,6 @@ angular.module('app')
       return {"display": "block"}
     }
 
-    var parentScope = parent.angular.element('#clientIndex').scope();
     // 退出系统
     $scope.exit = function () {
       parentScope.signOut();

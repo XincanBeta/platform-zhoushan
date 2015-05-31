@@ -4,7 +4,8 @@ angular.module('app', [
   'oc.lazyLoad',
   'request',
   'ngToast',
-  'angular-loading-bar'
+  'angular-loading-bar',
+  'user'
 ])
   .config(function (ngToastProvider) {
     // ngToast 星号标示的属性必须在 config 配置生效
