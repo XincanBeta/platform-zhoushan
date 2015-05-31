@@ -3,6 +3,8 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
 
     /*--------------------------
      $ 目录
+
+     侧边栏：
      证件获取
      证件全屏
      --------------------------*/
@@ -14,12 +16,14 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
     $scope.vehicleImages = [];
     $scope.driverImages = [];
     $scope.billImages = [];
+    $scope.recheckImages = [];
 
     // 证件初始化
     _loadImage($scope.item.aj_id, 'sceneImages');
     _loadImage($scope.item.aj_id, 'vehicleImages');
     _loadImage($scope.item.aj_id, 'driverImages');
     _loadImage($scope.item.aj_id, 'billImages');
+    _loadImage($scope.item.aj_id, 'recheckImages');
 
     // date 是业务信息，file 是文件本身
     function _loadImage(dataid, datatype) {

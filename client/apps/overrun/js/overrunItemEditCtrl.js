@@ -279,6 +279,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.vehicleImages = [{}, {}, {}];
     $scope.driverImages = [{}, {}, {}];
     $scope.billImages = [{}];
+    $scope.recheckImages = [{}, {}];
 
     // 证件初始化
     if (!itemIsNew) {
@@ -286,6 +287,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       _loadImage($scope.item.aj_id, 'vehicleImages');
       _loadImage($scope.item.aj_id, 'driverImages');
       _loadImage($scope.item.aj_id, 'billImages');
+      _loadImage($scope.item.aj_id, 'recheckImages');
     }
 
     // date 是业务信息，file 是文件本身
@@ -337,6 +339,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     $scope.$watch('billFiles', function () {
       $scope.upload($scope.billFiles, 'billImages');
+    });
+
+    $scope.$watch('recheckFiles', function () {
+      $scope.upload($scope.billFiles, 'recheckImages');
     });
 
     /* 
@@ -526,7 +532,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             pdfurl: function () {
               return res.data
             },
-            item: function(){
+            item: function () {
               return $scope.item;
             }
           }
@@ -556,9 +562,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
-
-
-
 
 
   })

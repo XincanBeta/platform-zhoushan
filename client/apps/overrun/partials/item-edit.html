@@ -450,6 +450,20 @@
                      numberEq-error-message="还处于超限状态无法结案"/>
             </div>
           </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label ">上传复检照片（ 2 张 ）</label>
+              <div ngf-drop ngf-select ng-model="recheckFiles" class="entity-upload-photo drop-box"
+                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                   ngf-accept="'image/*'"></div>
+              <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in recheckImages">
+                <div class="compact" ng-if="image.fileid">
+                  <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="复检照片"/>
+                  <i class="delete" ng-click="deleteImage(recheckImages, image)"></i>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
