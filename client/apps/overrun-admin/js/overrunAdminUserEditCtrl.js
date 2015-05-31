@@ -66,8 +66,12 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       $scope.item.appid = appid;
 
       console.log($scope.item);
-
-
     }
+
+    $scope.cancel = function () {
+      $modalInstance.dismiss('cancel');
+    }
+
+
 
   })
