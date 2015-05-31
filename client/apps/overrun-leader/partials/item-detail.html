@@ -1,0 +1,228 @@
+<section class="l-entity-panel--header no-border">
+  <tabset class="tabset-entity-location">
+    <tab select="select(tab)" ng-repeat="tab in tabset">
+      <tab-heading class="tabset-entity-heading" ng-class="isSelected(tab)">{{ tab.name }}</tab-heading>
+    </tab>
+  </tabset>
+</section>
+<section class="l-entity-panel--body" ng-include="selected.content"></section>
+<section class="l-entity-panel--footer" ng-include="selected.operator"></section>
+
+
+<!--operator start -->
+<script type="text/ng-template" id="docOperator">
+  <button type="button" class="btn btn-default" ng-click="fullscreenDoc()">全屏</button>
+  <button type="button" class="btn btn-default" ng-click="downloadDoc()">下载</button>
+</script>
+
+<script type="text/ng-template" id="detailOperator">
+  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="editInfo()">修改</button>
+</script>
+
+<script type="text/ng-template" id="photoOperator">
+</script>
+<!--operator end -->
+
+
+<!--content start -->
+<!-- script 上的 id 是给 templateUrl 用的 -->
+<script type="text/ng-template" id="docContent">
+  <!-- top 值小 因为全屏上方是有工具栏 -->
+  <!-- viewer-container 是给 iframe 内的 angular 用的 -->
+  <div id="viewer-container" ng-controller="OverrunViewerCtrl"
+       style="position: absolute; left: 2px; right: 2px; top: -32px; bottom: 2px; ">
+    <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer.html"
+            height="100%" width="100%" frameborder="no" ></iframe>
+  </div>
+</script>
+
+
+<!-- 这个应该没在用了，用另一个全屏 -->
+<script type="text/ng-template" id="docContentFullscreen.html">
+<div style="position: absolute; top: 0; bottom: 0; width: 100% ; " >
+  <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer-fullscreen.html"
+          height="100%" width="100%" frameborder="no"></iframe>
+</div>
+</script>
+
+
+<script type="text/ng-template" id="photoContent">
+  <div class="entity-block-wrap" ng-controller="OverrunItemDetailPhotoCtrl">
+    <div class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-tupian"></i>
+        <span>现场照片</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-photo-hover" ng-repeat="image in sceneImages"
+             ng-click="openPhotoModal('sceneImages', $index)">
+          <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+        </div>
+        <div cg-busy="sceneImagePromise"></div>
+      </section>
+    </div>
+    <!--车辆证件-->
+    <div class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-tupian"></i>
+        <span>车辆证件</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-photo-hover" ng-repeat="image in vehicleImages"
+             ng-click="openPhotoModal('vehicleImages', $index)">
+          <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+        </div>
+        <!--<div cg-busy="vehicleImagePromise"></div>-->
+      </section>
+    </div>
+    <!--驾驶员证件-->
+    <div class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-tupian"></i>
+        <span>驾驶员证件</span>
+      </header>
+      <section class="entity-block--body no-border">
+        <div class="entity-photo-hover" ng-repeat="image in driverImages"
+             ng-click="openPhotoModal('driverImages', $index)">
+          <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
+        </div>
+      </section>
+    </div>
+    <!--发票证件-->
+    <div class="entity-block no-border">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-tupian"></i>
+        <span>发票证件</span>
+      </header>
+      <section class="entity-block--body no-border">
+        <div class="entity-photo-hover" ng-repeat="image in billImages"
+             ng-click="openPhotoModal('billImages', $index)">
+          <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
+        </div>
+      </section>
+    </div>
+  </div>
+</script>
+
+<script type="text/ng-template" id="detailContent">
+  <ul class="entity-navbar">
+    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-checklist')">初检单</a></li>
+    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-vehicle')">车辆信息</a></li>
+    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-driver')">驾驶员信息</a></li>
+    <!--<li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-party')">当事人信息</a></li>-->
+    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-case')">案件信息</a></li>
+    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-reChecklist')">复检单</a></li>
+  </ul>
+  <div class="entity-block-wrap under-navbar">
+    <!--初检单-->
+    <div id="overrun-detail-checklist" class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-checklist"></i>
+        <span>初检单</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-info">单号：{{ item.cj_dh }}</div>
+        <div class="entity-info">时间：{{ item.cj_sj }}</div>
+        <div class="entity-info">车牌：{{ item.cj_cp }}</div>
+        <div class="entity-info">轴数：{{ item.cj_zs }}</div>
+
+        <div class="entity-info">超限类型：{{ item.cj_cxlx }}</div>
+        <div class="entity-info">可否卸载：{{ item.cj_kfxz }}</div>
+
+        <div class="entity-info">总重：{{ item.cj_zz }}<span ng-if="item.cj_zz">{{ unit }}</span></div>
+        <div class="entity-info">超重：{{ item.cj_cz }}<span ng-if="item.cj_cz">{{ unit }}</span></div>
+        <div class="entity-info">货物名称：{{ item.hw_mc }}</div>
+        <div class="entity-info">运货起点：{{ item.hw_qd }}</div>
+        <div class="entity-info">运货目的地：{{ item.hw_md }}</div>
+      </section>
+    </div>
+    <!--车辆信息-->
+    <div id="overrun-detail-vehicle" class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-vehicle"></i>
+        <span>车辆信息</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-info">车头：{{ item.cj_cp }}</div>
+        <div class="entity-info">挂车：{{ item.cl_gc }}</div>
+        <div class="entity-info">核定载质量：{{ item.cl_hdz }}</div>
+        <div class="entity-info">整备质量：{{ item.cl_zb }}</div>
+        <div class="entity-info">车籍地：{{ item.cl_cjd }}</div>
+        <div class="entity-info">车辆类型：{{ item.cl_lx }}</div>
+
+        <div class="entity-info">车辆所有人：{{ item.cl_syr }}</div>
+        <div class="entity-info">所有人电话：{{ item.cl_dh }}</div>
+
+        <div class="entity-info">营运证：{{ item.cl_yyz }}</div>
+        <div class="entity-info">所有人住址：{{ item.cl_zz }}</div>
+      </section>
+    </div>
+    <!--驾驶员信息-->
+    <div id="overrun-detail-driver" class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-driver"></i>
+        <span>驾驶员信息</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-info">姓名：{{ item.jsy_xm }}</div>
+        <div class="entity-info">性别：{{ item.jsy_xb }}</div>
+        <div class="entity-info">驾驶证号：{{ item.jsy_zh }}</div>
+        <div class="entity-info">从业资格证：{{ item.jsy_cy }}</div>
+        <div class="entity-info">联系电话：{{ item.jsy_dh }}</div>
+        <div class="entity-info">住址：{{ item.jsy_zz }}</div>
+      </section>
+    </div>
+    <!--当事人信息-->
+    <!--<div id="overrun-detail-party" class="entity-block">
+      <header class="entity-block&#45;&#45;header">
+        <i class="entity-icon icon-party"></i>
+        <span>当事人信息</span>
+      </header>
+      <section class="entity-block&#45;&#45;body">
+        <div class="entity-info">当事人：{{ item.xccfDsr.dsr }}</div>
+        <div class="entity-info">法人：{{ item.xccfDsr.fr }}</div>
+        <div class="entity-info">联系电话：{{ item.xccfDsr.lxdh }}</div>
+        <div class="entity-info">营运证：{{ item.xccfDsr.yyz }}</div>
+        <div class="entity-info">住址：{{ item.xccfDsr.zz }}</div>
+      </section>
+    </div>-->
+    <!--案件信息-->
+    <div id="overrun-detail-case" class="entity-block">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-case"></i>
+        <span>案件信息</span>
+      </header>
+      <section class="entity-block--body">
+        <div class="entity-info">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
+        <div class="entity-info">票据号：{{ item.aj_pjh }}</div>
+        <div class="entity-info">停车点：{{ item.aj_pjh }}</div>
+        <div class="entity-info">执法询问人：{{ item.aj_zfx }}</div>
+        <div class="entity-info">证号：{{ item.aj_zfxz }}</div>
+        <div class="entity-info">执法记录人：{{ item.aj_zfj }}</div>
+        <div class="entity-info">证号：{{ item.aj_zfjz }}</div>
+        <div class="entity-info">案发时间：{{ item.aj_afsj }}</div>
+        <div class="entity-info">案发地点：{{ item.aj_afdd }}</div>
+        <div class="entity-info">现场笔录时间：{{ item.aj_xcblsj }}</div>
+        <div class="entity-info">现场笔录地点：{{ item.aj_xcbldd }}</div>
+        <div class="entity-info">询问笔录时间：{{ item.aj_xwblsj }}</div>
+        <div class="entity-info">询问笔录地点：{{ item.aj_xwbldd }}</div>
+      </section>
+    </div>
+    <!--复检单-->
+    <div id="overrun-detail-reChecklist" class="entity-block no-border">
+      <header class="entity-block--header">
+        <i class="entity-icon icon-reChecklist"></i>
+        <span>复检单</span>
+      </header>
+      <section class="entity-block--body no-border">
+        <div class="entity-info">单号：{{ item.fj_dh }}</div>
+        <div class="entity-info">时间：{{ item.fj_sj }}</div>
+        <div class="entity-info">车牌：{{ item.cj_cp }}</div>
+        <div class="entity-info">轴数：{{ item.cj_zs }}</div>
+        <div class="entity-info">总重：{{ item.fj_zz }}<span ng-if="item.fj_zz">{{ unit }}</span></div>
+        <div class="entity-info">超重：{{ item.fj_cz }}<span ng-if="item.fj_cz">{{ unit }}</span></div>
+      </section>
+    </div>
+  </div>
+</script>
+<!--content end -->

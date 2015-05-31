@@ -11,8 +11,8 @@ angular.module("request", []).service('requestService', function ($http) {
       data = {}
     }
     /*else{
-      data = JSON.stringify(data)
-    }*/
+     data = JSON.stringify(data)
+     }*/
     //console.log( data);
     return $http.post(url, data);
   }
@@ -34,14 +34,14 @@ angular.module("request", []).service('requestService', function ($http) {
     return _path;
   }
   /*--------------------------
-    $ 目录
-  --------------------------*/
+   $ 目录
+   --------------------------*/
   /*
    通用
    overrun
    overrun-leader
    admin
-  */
+   */
 
 
   /*--------------------------
@@ -56,21 +56,21 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   // 文件（附件）接口
-  this.deleteFile = function(id){
+  this.deleteFile = function (id) {
     if (env == 'local') {
       //return _doGetRequest(localPath + 'home.sidebar.json');
     } else {
-      return _doPostRequest('/api/files/'+ id +'/delete.do');
+      return _doPostRequest('/api/files/' + id + '/delete.do');
     }
   }
-  this.queryImages = function(data){
+  this.queryImages = function (data) {
     if (env == 'local') {
       //return _doGetRequest(localPath + 'home.sidebar.json');
     } else {
       return _doPostRequest('/api/files/querythumbnail.do', data);
     }
   }
-  this.queryContentImages = function(data){
+  this.queryContentImages = function (data) {
     if (env == 'local') {
       //return _doGetRequest(localPath + 'home.sidebar.json');
     } else {
@@ -88,8 +88,8 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'myapp.sa.item.json');
   }
   /*--------------------------
-    $ overrun
-  --------------------------*/
+   $ overrun
+   --------------------------*/
   this.overrunSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun.menu.json');
   }
@@ -156,19 +156,13 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'overrun-leader.menu.json');
   }
   this.overrunLeaderTodoItems = function (data) {
-    return _doGetRequest(localPath + 'overrun-leader.todo.item.json');
-    /*
-    if (env == 'local') {
-      return _doGetRequest(localPath + 'overrun.leader.todo.item.json');
-    } else {
-      return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
-        {aj_jazt: data.aj_jazt});
-    }*/
+    // todo：临时
+    return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
 
   /*--------------------------
-    $ admin
-  --------------------------*/
+   $ admin
+   --------------------------*/
   this.adminSidebarItems = function () {
     return _doGetRequest(localPath + 'admin.menu.json');
   }

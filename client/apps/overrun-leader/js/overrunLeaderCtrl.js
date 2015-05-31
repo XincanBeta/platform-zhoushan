@@ -30,7 +30,9 @@ angular.module('app.overrun-leader', [
      */
     var apps = '../apps/'
     $ocLazyLoad.load([
-      apps + 'overrun/js/overrunLeaderTodoCtrl.js'
+      apps + 'overrun-leader/js/overrunLeaderTodoCtrl.js',
+      apps + 'overrun-leader/js/overrunLeaderItemDetailCtrl.js',
+      apps + 'overrun-leader/js/overrunLeaderItemEditCtrl.js'
     ])
 
     // todo: 抽取成通用的服务
