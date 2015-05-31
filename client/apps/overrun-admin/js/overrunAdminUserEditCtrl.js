@@ -2,7 +2,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, ngToast, $q) {
     $scope.item = item;
 
-    $scope.apps = [
+    $scope.appList = [
       {
         appid: '0101',
         name: '现场超限处罚应用',
@@ -47,23 +47,24 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       $scope.dwmc = dept.dwmc;
     };
 
-
     // 选完后再统一处理
     $scope.selectApp = function ($event) {
       $event.stopPropagation();
     }
 
-
+    /*
+     {"apps":[{"appid":"1"},{"appid":"2"}],"wkna":"xxx","wkno":"xx","owngrp":"xxx"}
+     */
     $scope.save = function () {
       // 处理 appid
-      var appid = []
-      for (var i = 0; i < $scope.apps.length; i++) {
-        var app = $scope.apps[i];
+      var newApps = []
+      for (var i = 0; i < $scope.appList.length; i++) {
+        var app = $scope.appList[i];
         if (app.selected === true) {
-          appid.push(app.appid)
+          newApps.push({appid: app.appid})
         }
       }
-      $scope.item.appid = appid;
+      $scope.item.apps = newApps;
 
 
       var savePromise;
