@@ -136,9 +136,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
       }, function () {
         sliderService.startAutoHide();
       });
-
-
-    }
+    }// delete
 
 
   })
