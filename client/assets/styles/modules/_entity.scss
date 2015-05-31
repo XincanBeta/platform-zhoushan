@@ -116,7 +116,7 @@
   &.no-upload {
     // iconfont 已经是伪元素
     @extend .iconfont;
-    @extend .icon-photo;
+    @extend .icon-tupian;
     color: $app-border-color;
     outline: 2px dashed $app-border-color;
     text-align: center;
