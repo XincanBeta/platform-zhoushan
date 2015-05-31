@@ -5,7 +5,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
-      requestService.adminDeptItems({
+      requestService.overrunAdminDeptItems({
         currentPage: $scope.currentPage,
         pageSize: $scope.pageSize
       }).success(function (res) {
@@ -27,7 +27,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
       return $scope.selected == item ? "active" : "";
     }
 
-    sliderService.initRequestMethod(requestService.adminDeptItemDetail);
+    sliderService.initRequestMethod(requestService.overrunAdminDeptItemDetail);
     $scope.mySliderToggle = function (item) {
       sliderService.setRequestData({dwid: item.dwid})
       if (!$scope.selected) {

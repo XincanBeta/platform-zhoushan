@@ -6,7 +6,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptDeleteCtrl',
     }
 
     $scope.delete = function () {
-      requestService.adminDeptItemsDelete(selectedItems)
+      requestService.overrunAdminDeptItemsDelete(selectedItems)
         .success(function (res) {
           if (res.success) {
             for (var i = 0; i < itemList.length; i++) {

@@ -40,7 +40,7 @@ angular.module("request", []).service('requestService', function ($http) {
    通用
    overrun
    overrun-leader
-   admin
+   overrun-admin
    */
 
 
@@ -161,38 +161,38 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ admin
+   $ overrun-admin
    --------------------------*/
-  this.adminSidebarItems = function () {
-    return _doGetRequest(localPath + 'admin.menu.json');
+  this.overrunAdminSidebarItems = function () {
+    return _doGetRequest(localPath + 'overrun-admin.menu.json');
   }
   // 单位管理
-  this.adminDeptItems = function (data) {
+  this.overrunAdminDeptItems = function (data) {
     if (env == 'local') {
     } else {
       return _doPostRequest('/api/dws/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
     }
   }
-  this.adminDeptItemSave = function (data) {
+  this.overrunAdminDeptItemSave = function (data) {
     if (env == 'local') {
     } else {
       return _doPostRequest('/api/dws/insert.do', data);
     }
   }
-  this.adminDeptItemUpdate = function (data) {
+  this.overrunAdminDeptItemUpdate = function (data) {
     if (env == 'local') {
     } else {
       return _doPostRequest('/api/dws/update.do', data);
     }
   }
   //
-  this.adminDeptItemDetail = function (data) {
+  this.overrunAdminDeptItemDetail = function (data) {
     if (env == 'local') {
     } else {
       return _doPostRequest('/api/dws/' + data.dwid + '/query.do', data);
     }
   }
-  this.adminDeptItemsDelete = function (data) {
+  this.overrunAdminDeptItemsDelete = function (data) {
     return _doPostRequest('/api/dws/delete.do', data);
   }
 

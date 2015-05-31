@@ -11,9 +11,9 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptEditCtrl',
     $scope.save = function () {
       var savePromise;
       if (itemIsNew) {
-        savePromise = requestService.adminDeptItemSave($scope.item)
+        savePromise = requestService.overrunAdminDeptItemSave($scope.item)
       } else {
-        savePromise = requestService.adminDeptItemUpdate($scope.item)
+        savePromise = requestService.overrunAdminDeptItemUpdate($scope.item)
       }
       $q.all(savePromise).then(function (res) {
         if (res.success) {
