@@ -1,16 +1,15 @@
 angular.module('app.overrun').controller('OverrunPhotoDetailCtrl',
   function ($scope, $modalInstance, imageInfo, requestService) {
-    $scope.cancel = function () {
-      $modalInstance.dismiss('取消');
-    }
 
     requestService.queryContentImages({
-      dataid: imageInfo.dataid,
-      datatype: imageInfo.datatype
+      //dataid: imageInfo.dataid,
+      //datatype: imageInfo.datatype,
+      fileid: imageInfo.fileid
     }).success(function (res) {
-      console.log(res.data);
+      console.log(res);
       $scope.images = res.data;
-      $scope.carouselIndex = imageInfo.imageIndex;
+      //console.log($scope.images);
+      //$scope.carouselIndex = imageInfo.imageIndex;
     })
 
 

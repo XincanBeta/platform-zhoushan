@@ -55,8 +55,8 @@
       </header>
       <section class="entity-block--body">
         <div class="entity-photo-hover" ng-repeat="image in sceneImages"
-             ng-click="openPhotoModal('sceneImages', $index)">
-          <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+             ng-click="openPhotoModal('sceneImages', $index, image)">
+          <img ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
         </div>
         <div cg-busy="sceneImagePromise"></div>
       </section>
@@ -69,7 +69,7 @@
       </header>
       <section class="entity-block--body">
         <div class="entity-photo-hover" ng-repeat="image in vehicleImages"
-             ng-click="openPhotoModal('vehicleImages', $index)">
+             ng-click="openPhotoModal('vehicleImages', $index, image)">
           <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
         </div>
         <!--<div cg-busy="vehicleImagePromise"></div>-->
@@ -83,7 +83,7 @@
       </header>
       <section class="entity-block--body no-border">
         <div class="entity-photo-hover" ng-repeat="image in driverImages"
-             ng-click="openPhotoModal('driverImages', $index)">
+             ng-click="openPhotoModal('driverImages', $index, image)">
           <img ng-src="{{image.thumbnaildata}}" alt="驾驶员证件"/>
         </div>
       </section>
@@ -96,7 +96,7 @@
       </header>
       <section class="entity-block--body no-border">
         <div class="entity-photo-hover" ng-repeat="image in billImages"
-             ng-click="openPhotoModal('billImages', $index)">
+             ng-click="openPhotoModal('billImages', $index, image)">
           <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
         </div>
       </section>
@@ -109,7 +109,7 @@
       </header>
       <section class="entity-block--body no-border">
         <div class="entity-photo-hover" ng-repeat="image in recheckImages"
-             ng-click="openPhotoModal('recheckImages', $index)">
+             ng-click="openPhotoModal('recheckImages', $index, image)">
           <img ng-src="{{image.thumbnaildata}}" alt="复检照片"/>
         </div>
       </section>

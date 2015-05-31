@@ -41,19 +41,20 @@ angular.module('app.overrun').controller('OverrunItemDetailPhotoCtrl',
      --------------------------*/
     // 由于 img 会被 ::after 挡住，所以点击事件在 div 上
     var path = '../apps/overrun/partials/';
-    $scope.openPhotoModal = function (imageType, index) {
+    $scope.openPhotoModal = function (imageType, index, image) {
       var modalInstance = $modal.open({
-        backdrop: "static",
+        backdrop: true,
         keyboard: true,
-        size: "fullscreen",
+        size: "lg",
         templateUrl: path + 'photo-detail.html',
         controller: 'OverrunPhotoDetailCtrl',
         resolve: {
           imageInfo: function () {
             return {
-              dataid: $scope.item.aj_id,
-              datatype: imageType,
-              imageIndex: index
+              //dataid: $scope.item.aj_id,
+              //datatype: imageType,
+              //imageIndex: index,
+              fileid: image.fileid
             };
           }
         }
