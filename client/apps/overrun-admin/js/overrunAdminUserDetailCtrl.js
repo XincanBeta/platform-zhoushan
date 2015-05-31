@@ -1,4 +1,4 @@
-angular.module('app.admin').controller('AdminUserDetailCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminUserDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope ) {
 
     $scope.select = function (tab) {
@@ -6,14 +6,14 @@ angular.module('app.admin').controller('AdminUserDetailCtrl',
     }
 
     // 案件修改
-    var path = '../apps/admin/partials/';
+    var path = '../apps/overrun-admin/partials/';
     $scope.editInfo = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
         size: "lg",
         templateUrl: path + 'dept-edit.html',
-        controller: 'AdminDeptEditCtrl',
+        controller: 'OverrunAdminDeptEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope

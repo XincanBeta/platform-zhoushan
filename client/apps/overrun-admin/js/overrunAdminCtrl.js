@@ -1,8 +1,8 @@
 /**
  * 主控制器，并声明模块
  */
-angular.module('app.admin', [])
-  .controller('AdminCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
+angular.module('app.overrun-admin', [])
+  .controller('OverrunAdminCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     requestService.adminSidebarItems().success(function (menus) {
       $scope.menus = menus;
       $scope.select(menus[0])
@@ -22,11 +22,11 @@ angular.module('app.admin', [])
      * todo: ocLazyLoad isLoaded 无效
      * 有的部分在路由中加载了，就不要重复加载了
      */
-    var apps = '../apps/'
+    var apps = '../apps/overrun-admin/'
     $ocLazyLoad.load([
-      apps + 'admin/js/adminDeptDetailCtrl.js',
-      apps + 'admin/js/adminDeptEditCtrl.js',
-      apps + 'admin/js/adminDeptDeleteCtrl.js'
+      apps + 'js/overrunAdminDeptDetailCtrl.js',
+      apps + 'js/overrunAdminDeptEditCtrl.js',
+      apps + 'js/overrunAdminDeptDeleteCtrl.js'
     ])
 
 

@@ -80,18 +80,6 @@ angular.module('app')
           }]
         }
       })
-      /*.state('myapp.overrun.forfeit', {
-        url: '/forfeit',
-        templateUrl: app_base + 'overrun/partials/forfeit.html',
-        controller: "OverrunForfeitCtrl",
-        resolve: {
-          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            return $ocLazyLoad.load([
-              app_base + 'overrun/js/overrunForfeitCtrl.js'
-            ]);
-          }]
-        }
-      })*/
 
       /*--------------------------
         $ overrun-leader
@@ -120,6 +108,46 @@ angular.module('app')
           }]
         }
       })
+      /*--------------------------
+        $ overrun-admin
+      --------------------------*/
+      .state('myapp.overrun-admin', {
+        url: '/overrun-admin',
+        templateUrl: app_base + 'overrun-admin/overrun-admin.html',
+        controller: "OverrunAdminCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-admin/js/overrunAdminCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.overrun-admin.dept', {
+        url: '/dept',
+        templateUrl: app_base + 'overrun-admin/partials/dept.html',
+        controller: "OverrunAdminDeptCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-admin/js/overrunAdminDeptCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.overrun-admin.user', {
+        url: '/user',
+        templateUrl: app_base + 'overrun-admin/partials/user.html',
+        controller: "OverrunAdminUserCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-admin/js/overrunAdminUserCtrl.js'
+            ]);
+          }]
+        }
+      })
+
 
       .state('myapp.monitor', {
         url: '/monitor',
@@ -145,42 +173,19 @@ angular.module('app')
           }]
         }
       })
-      .state('admin', {
-        url: "/admin",
-        controller: 'AdminCtrl',
-        templateUrl: app_base + 'admin/admin.html',
-        resolve: {
-          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            return $ocLazyLoad.load([
-              app_base + 'admin/js/adminCtrl.js'
-            ]);
-          }]
-        }
-      })
-      .state('admin.dept', {
-        url: '/dept',
-        templateUrl: app_base + 'admin/partials/dept.html',
-        controller: "AdminDeptCtrl",
-        resolve: {
-          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            return $ocLazyLoad.load([
-              app_base + 'admin/js/adminDeptCtrl.js'
-            ]);
-          }]
-        }
-      })
-      .state('admin.user', {
-        url: '/user',
-        templateUrl: app_base + 'admin/partials/user.html',
-        controller: "AdminUserCtrl",
-        resolve: {
-          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-            return $ocLazyLoad.load([
-              app_base + 'admin/js/adminUserCtrl.js'
-            ]);
-          }]
-        }
-      })
+      //.state('admin', {
+      //  url: "/admin",
+      //  controller: 'AdminCtrl',
+      //  templateUrl: app_base + 'admin/admin.html',
+      //  resolve: {
+      //    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+      //      return $ocLazyLoad.load([
+      //        app_base + 'admin/js/adminCtrl.js'
+      //      ]);
+      //    }]
+      //  }
+      //})
+
 
     // Without server side support html5 must be disabled.
     $locationProvider.html5Mode(false);

@@ -16,11 +16,6 @@
   {
     "name": "短信息",
     "iconclass": "icon-msg-1"
-  },
-  {
-    "name": "系统管理",
-    "iconclass": "icon-settings3",
-    "routestate": "admin"
   }
 
 ]

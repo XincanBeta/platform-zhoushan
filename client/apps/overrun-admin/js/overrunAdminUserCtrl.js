@@ -1,6 +1,6 @@
-angular.module('app.admin').controller('AdminUserCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
   function ($scope, requestService, $modal, sliderService) {
-    var path = '../apps/admin/partials/';
+    var path = '../apps/overrun-admin/partials/';
 
     $scope.add = function () {
       var modalInstance
@@ -15,7 +15,7 @@ angular.module('app.admin').controller('AdminUserCtrl',
           keyboard: false,
           size: "lg",
           templateUrl: path + 'user-edit.html',
-          controller: 'AdminUserEditCtrl',
+          controller: 'OverrunAdminUserEditCtrl',
           resolve: {
             item: function () {return item;},
             itemIsNew: function(){return true}

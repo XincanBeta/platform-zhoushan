@@ -1,6 +1,6 @@
-angular.module('app.admin').controller('AdminDeptCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
   function ($scope, requestService, $modal, sliderService, $rootScope) {
-    var path = '../apps/admin/partials/';
+    var path = '../apps/overrun-admin/partials/';
 
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
@@ -61,7 +61,7 @@ angular.module('app.admin').controller('AdminDeptCtrl',
           keyboard: false,
           size: "lg",
           templateUrl: path + 'dept-edit.html',
-          controller: 'AdminDeptEditCtrl',
+          controller: 'OverrunAdminDeptEditCtrl',
           resolve: {
             item: function () {
               return item;
@@ -116,7 +116,7 @@ angular.module('app.admin').controller('AdminDeptCtrl',
         keyboard: false,
         size: "sm",
         templateUrl: path + 'dept-delete.html',
-        controller: 'AdminDeptDeleteCtrl',
+        controller: 'OverrunAdminDeptDeleteCtrl',
         resolve: {
           selectedItems: function () {
             return selectedItems

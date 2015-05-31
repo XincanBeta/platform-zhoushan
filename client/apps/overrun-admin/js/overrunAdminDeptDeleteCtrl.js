@@ -1,4 +1,4 @@
-angular.module('app.admin').controller('AdminDeptDeleteCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminDeptDeleteCtrl',
   function ($scope, $modalInstance, requestService, selectedItems, itemList, ngToast) {
 
     $scope.cancel = function () {

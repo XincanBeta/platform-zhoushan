@@ -24,7 +24,7 @@
     "description": "",
     "routestate": "myapp.overrun-admin",
     "imgsrc": "huo-che.png",
-    "disabled": true
+    "disabled": false
   },
   {
     "name": "视频监控",

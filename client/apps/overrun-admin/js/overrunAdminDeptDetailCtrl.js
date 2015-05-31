@@ -1,18 +1,18 @@
-angular.module('app.admin').controller('AdminDeptDetailCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminDeptDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope ) {
 
     // 更新案号年份
     $scope.ahnf = new Date().getFullYear();
 
     // 案件修改
-    var path = '../apps/admin/partials/';
+    var path = '../apps/overrun-admin/partials/';
     $scope.edit = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
         size: "lg",
         templateUrl: path + 'dept-edit.html',
-        controller: 'AdminDeptEditCtrl',
+        controller: 'OverrunAdminDeptEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope

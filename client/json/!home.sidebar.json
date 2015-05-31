@@ -1,24 +1,27 @@
 [
   {
     "name": "我的桌面",
-    "iconClass": "icon-desktop-1",
-    "templateUrl": "app/desktop/desktop.tplt.html",
-    "state": "desktop"
+    "iconclass": "icon-desktop-1",
+    "routestate": "desktop"
   },
   {
     "name": "我的应用",
-    "iconClass": "icon-app-1",
-    "templateUrl": "app/myapp/myapp.tplt.html",
-    "state": "myapp"
+    "iconclass": "icon-app-1",
+    "routestate": "myapp"
   },
   {
     "name": "通讯录",
-    "iconClass": "icon-tongxunlu",
-    "state": "myapp"
+    "iconclass": "icon-tongxunlu"
   },
   {
-    "name": "系统管理",
-    "iconClass": "icon-permission-1",
-    "state": "myapp"
+    "name": "短信息",
+    "iconclass": "icon-msg-1"
   }
+,
+  {
+    "name": "系统管理",
+    "iconclass": "icon-settings3",
+    "routestate": "admin"
+  }
+
 ]
