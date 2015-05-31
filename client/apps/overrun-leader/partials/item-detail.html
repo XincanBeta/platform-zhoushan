@@ -16,7 +16,7 @@
 </script>
 
 <script type="text/ng-template" id="detailOperator">
-  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="editInfo()">修改</button>
+  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="editInfo()">金额修改</button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">
@@ -193,7 +193,7 @@
         <span>案件信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
+        <div class="entity-info is-highlight">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
         <div class="entity-info">票据号：{{ item.aj_pjh }}</div>
         <div class="entity-info">停车点：{{ item.aj_pjh }}</div>
         <div class="entity-info">执法询问人：{{ item.aj_zfx }}</div>

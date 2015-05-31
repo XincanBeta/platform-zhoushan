@@ -28,7 +28,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
     }]
 
     // 区分待处理和已完结
-    if ($state.current.name == "myapp.overrun.done") {
+    if ($state.current.name == "myapp.overrun-leader.done") {
       tabset.push({
         name: '案卷',
         content: 'docContent',
@@ -49,7 +49,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
     /*--------------------------
      $ 案件修改（待处理）
      --------------------------*/
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/overrun-leader/partials/';
     $scope.editInfo = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
