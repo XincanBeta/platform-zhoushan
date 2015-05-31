@@ -3,7 +3,7 @@ angular.module('app.login', [
   'cfp.hotkeys'
 ])
   .controller('LoginCtrl', function ($scope, $http) {
-    var parentScope = parent.angular.element('#clientIndex').scope();
+    var parentScope = parent.angular.element('#client-index').scope();
 
     $scope.test = function(){
       $scope.isError = !$scope.isError;

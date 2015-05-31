@@ -1,8 +1,18 @@
 angular.module('app')
   .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast, userService) {
+    /*
+     目录：
+     保存用户信息
 
+    */
+
+    /*--------------------------
+      $ 保存用户信息
+    --------------------------*/
     var parentScope = parent.angular.element('#client-index').scope();
-    console.log('>>>', parentScope.getUser())
+    userService.setUser(parentScope.getUser())
+    console.log('++', userService.getUser());
+
 
 
     //userService
