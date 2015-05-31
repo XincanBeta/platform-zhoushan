@@ -10,8 +10,9 @@ angular.module('app')
       $ 保存用户信息
     --------------------------*/
     var parentScope = parent.angular.element('#client-index').scope();
-    userService.setUser(parentScope.getUser())
-    console.log('++', userService.getUser());
+    $scope.user = parentScope.getUser();
+    userService.setUser($scope.user);
+    //console.log('++', userService.getUser());
 
 
 
