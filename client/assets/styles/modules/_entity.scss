@@ -15,6 +15,7 @@
 
   entity-info
 
+  entity-upload-photo
   entity-photo
   entity-photo-hover 有缩放效果
 
@@ -53,107 +54,8 @@
 }
 
 /*--------------------------
-  $ entity-photo
-  作为图片的容器，用于编辑表单中
+  $ entity-upload-photo
 --------------------------*/
-/*
-  注：
-    1）图片上不能加伪元素
-    2）伪元素点击事件不友好
-*/
-
-.entity-photo {
-  height: 200px;
-  width: 400px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  &.no-upload {
-    // iconfont 就是伪元素
-    @extend .iconfont;
-    @extend .icon-tupian;
-    color: $app-border-color;
-    outline: 2px dashed $app-border-color;
-    text-align: center;
-    font-size: 60px;
-    padding-top: 70px;
-  }
-  // 作为一个整体来设计
-  &.with-delete {
-    // 父元素禁止浮动，以免干扰后面的元素
-    > .compact {
-      // compact 用来紧紧包裹图片
-      position: relative;
-      // 利用浮动的包裹性，让删除图标贴着图片
-      clear: left;
-      float: left;
-      height: auto;
-      width: auto;
-      > .delete {
-        // delete 实际上可以独立出去
-        content: '';
-        background: url("../img/element/delete-30.png") no-repeat center;
-        // 背景大小就是图片大小
-        background-size: 25px;
-        display: block;
-        position: absolute;
-        top: -20px;
-        right: -20px;
-        width: 40px;
-        height: 40px;
-        z-index: 10;
-        cursor: pointer;
-        @extend .shake;
-        @extend .shake-little;
-      }
-    }
-  }
-}
-// 让图片实体自由在模块顶级元素中，并且具有一个唯一性的类名
-.entity-photo--item {
-  // max 表示范围
-  max-height: 200px;
-  max-width: 400px;
-}
-
-
-/*--------------------------
-  $ entity-photo-hover
-  用于查看页面中
---------------------------*/
-.entity-photo-hover {
-  height: 200px;
-  width: 400px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  overflow: hidden;
-  position: relative;
-  > img {
-    max-height: 200px;
-    transition: all 1s;
-  }
-  &::after {
-    content: '';
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    color: #fff;
-    background: url(../img/element/zoom-in.png) no-repeat center rgba(24, 24, 24, 0.3);
-    background-size: 50px;
-    transition: all .5s;
-    -webkit-transition: all .5s;
-    cursor: pointer;
-  }
-  &:hover::after {
-    opacity: 1;
-  }
-  &:hover > img {
-    transform: scale(1.2);
-  }
-}
-
 .entity-upload-photo {
   // 清楚 .entity-photo.with-delete 带来的浮动
   clear: both;
@@ -195,6 +97,110 @@
     color: #fff;
   }
 }
+
+/*--------------------------
+  $ entity-photo
+  作为图片的容器，用于编辑表单中
+--------------------------*/
+/*
+  注：
+    1）图片上不能加伪元素
+    2）伪元素点击事件不友好
+*/
+
+.entity-photo {
+  //height: 200px;
+  width: 243px;
+  margin: 10px 10px 10px 0;
+  float: left;
+  &.no-upload {
+    // iconfont 已经是伪元素
+    @extend .iconfont;
+    @extend .icon-photo;
+    color: $app-border-color;
+    outline: 2px dashed $app-border-color;
+    text-align: center;
+    font-size: 60px;
+    padding: 40px 0;
+    cursor: pointer;
+  }
+  // 作为一个整体来设计
+  &.with-delete {
+    // 父元素禁止浮动，以免干扰后面的元素
+    > .compact {
+      // compact 用来紧紧包裹图片
+      position: relative;
+      // 利用浮动的包裹性，让删除图标贴着图片
+      clear: left;
+      float: left;
+      height: auto;
+      width: auto;
+      > .delete {
+        // delete 实际上可以独立出去
+        content: '';
+        background: url("../img/element/delete-30.png") no-repeat center;
+        // 背景大小就是图片大小
+        background-size: 25px;
+        display: block;
+        position: absolute;
+        top: -17px;
+        right: -17px;
+        width: 40px;
+        height: 40px;
+        z-index: 10;
+        cursor: pointer;
+        @extend .shake;
+        @extend .shake-little;
+      }
+    }
+  }
+}
+// 让图片实体自由在模块顶级元素中，并且具有一个唯一性的类名
+.entity-photo--item {
+  // max 表示范围
+  //max-height: 200px;
+  max-width: 240px;
+}
+
+
+/*--------------------------
+  $ entity-photo-hover
+  用于查看页面中
+--------------------------*/
+.entity-photo-hover {
+  height: 200px;
+  width: 400px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  position: relative;
+  > img {
+    max-height: 200px;
+    transition: all 1s;
+  }
+  &::after {
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #fff;
+    background: url(../img/element/zoom-in.png) no-repeat center rgba(24, 24, 24, 0.3);
+    background-size: 50px;
+    transition: all .5s;
+    -webkit-transition: all .5s;
+    cursor: pointer;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+  &:hover > img {
+    transform: scale(1.2);
+  }
+}
+
 
 /*
   表单编辑页面
