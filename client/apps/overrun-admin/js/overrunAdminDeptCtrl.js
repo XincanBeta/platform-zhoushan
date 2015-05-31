@@ -55,7 +55,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
         if (!res.success) {
           throw 'new id get failure !'
         }
-        item.dw_bh = res.data;
+        item.dwid = res.data;
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,

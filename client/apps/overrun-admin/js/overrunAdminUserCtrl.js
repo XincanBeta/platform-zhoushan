@@ -5,11 +5,11 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
     $scope.add = function () {
       var modalInstance
       var item = {};
-      requestService.getNewId().success(function (res) {
-        if (!res.success) {
+      //requestService.getNewId().success(function (res) {
+        /*if (!res.success) {
           throw 'new id get failure !'
         }
-        item.dw_bh = res.data;
+        item.wkno = res.data;*/
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,
@@ -32,7 +32,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
         }, function () {
           sliderService.startAutoHide();
         });
-      })
+      //})
     }
 
   }
