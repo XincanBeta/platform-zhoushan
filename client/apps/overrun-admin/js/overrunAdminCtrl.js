@@ -5,7 +5,7 @@ angular.module('app.overrun-admin', [])
   .controller('OverrunAdminCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     requestService.overrunAdminSidebarItems().success(function (menus) {
       $scope.menus = menus;
-      $scope.select(menus[0])
+      $scope.select(menus[1])
     })
 
     $scope.select = function (menu) {
@@ -32,9 +32,11 @@ angular.module('app.overrun-admin', [])
      */
     var apps = '../apps/overrun-admin/'
     $ocLazyLoad.load([
-      apps + 'js/overrunAdminDeptDetailCtrl.js',
       apps + 'js/overrunAdminDeptEditCtrl.js',
+      apps + 'js/overrunAdminDeptDetailCtrl.js',
       apps + 'js/overrunAdminDeptDeleteCtrl.js',
+
+      apps + 'js/overrunAdminUserEditCtrl.js',
       apps + 'js/overrunAdminUserDetailCtrl.js'
 
     ])

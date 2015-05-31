@@ -13,7 +13,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,
-          size: "lg",
+          size: "md",
           templateUrl: path + 'user-edit.html',
           controller: 'OverrunAdminUserEditCtrl',
           resolve: {
