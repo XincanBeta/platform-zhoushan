@@ -1,6 +1,6 @@
 [
   {
-    "appid": "01001",
+    "appid": "0101",
     "name": "现场超限处罚应用",
     "subname": "业务员版",
     "description": "",
@@ -9,7 +9,7 @@
     "disabled": false
   },
   {
-    "appid": "01002",
+    "appid": "0102",
     "name": "现场超限处罚应用",
     "subname": "领导版",
     "description": "",
@@ -18,7 +18,7 @@
     "disabled": false
   },
   {
-    "appid": "01003",
+    "appid": "0103",
     "name": "现场超限处罚应用",
     "subname": "管理员版",
     "description": "",
