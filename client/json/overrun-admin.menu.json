@@ -6,5 +6,9 @@
   {
     "menuname": "人员管理",
     "routestate": "myapp.overrun-admin.user"
+  },
+  {
+    "menuname": "案件管理",
+    "routestate": "myapp.overrun-admin.item"
   }
 ]

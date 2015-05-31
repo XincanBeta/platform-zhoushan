@@ -529,10 +529,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           templateUrl: apps + 'overrun/partials/docFullscreen.html',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
-            pdfurl: function () {
+            /*pdfurl: function () {
               return res.data
-            },
+            },*/
             item: function () {
+              $scope.item.currentPath = res.data;
               return $scope.item;
             }
           }

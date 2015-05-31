@@ -89,9 +89,6 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
         templateUrl: path + 'docFullscreen.html',
         controller: 'OverrunViewerFullscreenCtrl',
         resolve: {
-          pdfurl: function () {
-            return pdfUrl;
-          },
           item: function(){
             return $scope.item;
           }

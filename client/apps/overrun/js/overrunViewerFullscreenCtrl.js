@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunViewerFullscreenCtrl',
-  function ($scope, $modalInstance, pdfurl, item) {
+  function ($scope, $modalInstance, item) {
 
 
     $scope.closeFullscreenModal = function () {
@@ -8,7 +8,7 @@ angular.module('app.overrun').controller('OverrunViewerFullscreenCtrl',
 
     $scope.getPdfurl = function () {
       // pdfurl = fileUpLoad/xxx/xxx/xxx.pdf
-      return location.protocol + '//' + location.host + '/' + pdfurl;
+      return location.protocol + '//' + location.host + '/' + item.currentPath;
     }
 
     $scope.getItemId = function () {
