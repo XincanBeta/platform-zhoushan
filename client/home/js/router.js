@@ -147,6 +147,18 @@ angular.module('app')
           }]
         }
       })
+      .state('myapp.overrun-admin.item', {
+        url: '/item',
+        templateUrl: app_base + 'overrun-admin/partials/item.html',
+        controller: "OverrunAdminUserCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-admin/js/overrunAdminItemCtrl.js'
+            ]);
+          }]
+        }
+      })
 
 
       .state('myapp.monitor', {
