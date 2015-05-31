@@ -26,7 +26,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
       return $scope.selected == item ? "active" : "";
     }
 
-    sliderService.initRequestMethod(requestService.overrunAdminDeptItemDetail);
+    sliderService.initRequestMethod(requestService.overrunAdminUserDetail);
     $scope.mySliderToggle = function (item) {
       sliderService.setRequestData({dwid: item.dwid})
       if (!$scope.selected) {

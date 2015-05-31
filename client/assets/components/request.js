@@ -185,7 +185,6 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/dws/update.do', data);
     }
   }
-  //
   this.overrunAdminDeptItemDetail = function (data) {
     if (env == 'local') {
     } else {
@@ -212,6 +211,12 @@ angular.module("request", []).service('requestService', function ($http) {
     if (env == 'local') {
     } else {
       return _doPostRequest('/api/wks/update.do', data);
+    }
+  }
+  this.overrunAdminUserDetail = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
     }
   }
 
