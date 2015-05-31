@@ -195,7 +195,25 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunAdminDeptItemsDelete = function (data) {
     return _doPostRequest('/api/dws/delete.do', data);
   }
-
+  // 人员管理
+  this.overrunAdminUserQuery = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/wks/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+    }
+  }
+  this.overrunAdminUserInsert = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/wks/insert.do', data);
+    }
+  }
+  this.overrunAdminUserUpdate = function (data) {
+    if (env == 'local') {
+    } else {
+      return _doPostRequest('/api/wks/update.do', data);
+    }
+  }
 
   // 以下待整理
   this.userDetail = function (userno) {

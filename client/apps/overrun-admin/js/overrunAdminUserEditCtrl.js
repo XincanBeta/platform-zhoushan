@@ -1,5 +1,5 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
-  function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, ngToast) {
+  function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, ngToast, $q) {
     $scope.item = item;
 
     $scope.apps = [
@@ -19,22 +19,22 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       {
         dwid: '001',
         dwmc: '舟山市公路管理局'
-      },{
+      }, {
         dwid: '002',
         dwmc: '舟山跨海大桥超限运输检测站'
-      },{
+      }, {
         dwid: '003',
         dwmc: '朱家尖检测站'
-      },{
+      }, {
         dwid: '004',
         dwmc: '定海区公路管理局'
-      },{
+      }, {
         dwid: '005',
         dwmc: '普陀区公路管理局'
-      },{
+      }, {
         dwid: '006',
         dwmc: '岱山县公路管理局'
-      },{
+      }, {
         dwid: '007',
         dwmc: '嵊泗县公路管理局'
       }
@@ -65,13 +65,31 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       }
       $scope.item.appid = appid;
 
-      console.log($scope.item);
+
+      var savePromise;
+      if (itemIsNew) {
+        savePromise = requestService.overrunAdminUserInsert($scope.item)
+      } else {
+        savePromise = requestService.overrunAdminUserUpdate($scope.item)
+      }
+
+      savePromise.then(function (res) {
+        ngToast.create({
+          className: 'success',
+          content: '保存成功!'
+        })
+        $modalInstance.close();
+      }, function (res) {
+        ngToast.create({
+          className: 'danger',
+          content: '保存失败!'
+        });
+      });
     }
 
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
-
 
 
   })
