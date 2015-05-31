@@ -1,7 +1,6 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, ngToast) {
     $scope.item = item;
-    console.log(item);
 
     $scope.apps = [
       {
@@ -41,9 +40,11 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       }
     ]
 
+    // 对应 wk 表
     $scope.setDept = function (dept) {
       $scope.selectedDept = dept;
-      $scope.item.dwid = dept.dwid;
+      $scope.item.owngrp = dept.dwid;
+      $scope.dwmc = dept.dwmc;
     };
 
 
@@ -62,9 +63,9 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
           appid.push(app.appid)
         }
       }
-      $scope.appid = appid;
+      $scope.item.appid = appid;
 
-      console.log(appid);
+      console.log($scope.item);
 
 
     }
