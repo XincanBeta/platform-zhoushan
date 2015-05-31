@@ -12,8 +12,8 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserDetailCtrl',
         backdrop: "static",
         keyboard: false,
         size: "lg",
-        templateUrl: path + 'dept-edit.html',
-        controller: 'OverrunAdminDeptEditCtrl',
+        templateUrl: path + 'user-edit.html',
+        controller: 'OverrunAdminUserEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope
