@@ -28,11 +28,11 @@ angular.module('app.overrun-leader', [
      * 可对自己特有的组件进行延迟加载
      * todo: ocLazyLoad isLoaded 无效
      */
-    var apps = '../apps/'
+    var apps = '../apps/overrun-leader/'
     $ocLazyLoad.load([
-      apps + 'overrun-leader/js/overrunLeaderTodoCtrl.js',
-      apps + 'overrun-leader/js/overrunLeaderItemDetailCtrl.js',
-      apps + 'overrun-leader/js/overrunLeaderItemEditCtrl.js'
+      apps + 'js/overrunLeaderTodoCtrl.js',
+      apps + 'js/overrunLeaderItemDetailCtrl.js',
+      apps + 'js/overrunLeaderItemEditCtrl.js'
     ])
 
     // todo: 抽取成通用的服务

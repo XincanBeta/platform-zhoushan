@@ -13,8 +13,7 @@ angular.module('app.overrun', [
   'cgBusy',
   'anchorSmoothScroll',
   'car.helper',
-  'angucomplete-alt',
-  'angular-carousel'
+  'angucomplete-alt'
 ])
   .controller('OverrunCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     // todo: 把 apps 应用目录提取成一个 env 服务，因为依赖性很强，就算改起来很方便
@@ -37,16 +36,16 @@ angular.module('app.overrun', [
      * 可对自己特有的组件进行延迟加载
      * todo: ocLazyLoad isLoaded 无效
      */
-    var apps = '../apps/'
+    var apps = '../apps/overrun/'
     $ocLazyLoad.load([
-      apps + 'overrun/js/overrunItemDetailCtrl.js',
-      apps + 'overrun/js/overrunItemDetailPhotoCtrl.js',
-      apps + 'overrun/js/overrunItemEditCtrl.js',
-      apps + 'overrun/js/overrunItemDeleteCtrl.js',
-      apps + 'overrun/js/overrunForfeitService.js', // 服务
-      apps + 'overrun/js/overrunViewerFullscreenCtrl.js',
-      apps + 'overrun/js/overrunViewerCtrl.js',
-      apps + 'overrun/js/overrunPhotoDetailCtrl.js'
+      apps + 'js/overrunItemDetailCtrl.js',
+      apps + 'js/overrunItemDetailPhotoCtrl.js',
+      apps + 'js/overrunItemEditCtrl.js',
+      apps + 'js/overrunItemDeleteCtrl.js',
+      apps + 'js/overrunForfeitService.js', // 服务
+      apps + 'js/overrunViewerFullscreenCtrl.js',
+      apps + 'js/overrunViewerCtrl.js',
+      apps + 'js/overrunPhotoDetailCtrl.js'
     ])
 
     // todo: 抽取成通用的服务
