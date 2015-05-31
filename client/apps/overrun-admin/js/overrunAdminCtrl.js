@@ -17,6 +17,14 @@ angular.module('app.overrun-admin', [])
       return $scope.selected == menu ? "is-select" : "";
     }
 
+    // todo: 抽取成通用的服务
+    $scope.backToMyapp = function () {
+      $("#platform-body").removeClass("is-expand");
+      $timeout(function () {
+        $state.go("myapp")
+      }, 300)
+    }
+
     /**
      * 可对自己特有的组件进行延迟加载
      * todo: ocLazyLoad isLoaded 无效
@@ -26,7 +34,9 @@ angular.module('app.overrun-admin', [])
     $ocLazyLoad.load([
       apps + 'js/overrunAdminDeptDetailCtrl.js',
       apps + 'js/overrunAdminDeptEditCtrl.js',
-      apps + 'js/overrunAdminDeptDeleteCtrl.js'
+      apps + 'js/overrunAdminDeptDeleteCtrl.js',
+      apps + 'js/overrunAdminUserDetailCtrl.js'
+
     ])
 
 

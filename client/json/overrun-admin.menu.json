@@ -1,10 +1,10 @@
 [
   {
     "menuname": "单位管理",
-    "routestate": "admin.dept"
+    "routestate": "myapp.overrun-admin.dept"
   },
   {
     "menuname": "人员管理",
-    "routestate": "admin.user"
+    "routestate": "myapp.overrun-admin.user"
   }
 ]
