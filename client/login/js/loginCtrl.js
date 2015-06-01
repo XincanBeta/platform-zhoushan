@@ -10,17 +10,14 @@ angular.module('app.login', [
     }
 
 
-    $scope.wkno = 'test';
+    $scope.wkno = 'ali';
     $scope.passwd = '123';
 
     $scope.login = function () {
       $http.post('/api/logins/login.do', {wkno: $scope.wkno, passwd: $scope.passwd})
         .success(function (res) {
-          //console.log('res', res);
           if (res.success) {
-            parentScope.signIn();
-          }else{
-
+            parentScope.signIn(res.data);
           }
         })
     }

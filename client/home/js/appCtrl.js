@@ -3,7 +3,6 @@ angular.module('app')
     /*
      目录：
      保存用户信息
-
     */
 
     /*--------------------------
@@ -12,12 +11,6 @@ angular.module('app')
     var parentScope = parent.angular.element('#client-index').scope();
     $scope.user = parentScope.getUser();
     userService.setUser($scope.user);
-    //console.log('++', userService.getUser());
-
-
-
-    //userService
-    //console.log(userService.getUser());
 
     requestService.homeSidebarItems().success(function (items) {
       $scope.items = items;

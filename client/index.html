@@ -19,32 +19,34 @@
 
 <script src="assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="assets/lib/angular/angular.min.js"></script>
-<!--<script src="assets/components/user.js"></script>-->
 <script>
+
   var app = angular.module('entrypoint', [])
   app.controller('MyCtrl', function ($scope) {
-    var user = {
-      wkno: 'test',
-      wkna: '测试人员',
-      appid: ['0101', '0102', '0103']
-    }
+    var _user;
 
     $scope.getUser = function () {
-      return user;
+      return _user;
     }
 
-//    $scope.content = 'login/index.html';
-    $scope.content = 'home/index.html';
+    function setUser(user) {
+      _user = user;
+    }
 
-    $scope.signIn = function () {
+     $scope.content = 'login/index.html';
+//    $scope.content = 'home/index.html';
+
+    $scope.signIn = function (user) {
       $scope.content = 'home/index.html';
+      setUser(user)
       $scope.$apply()
+
     }
     $scope.signOut = function () {
       $scope.content = 'login/index.html';
+      setUser();
       $scope.$apply()
     }
-
   })
 </script>
 </body>
