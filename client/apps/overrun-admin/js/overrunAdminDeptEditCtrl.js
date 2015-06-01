@@ -15,19 +15,15 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptEditCtrl',
       } else {
         savePromise = requestService.overrunAdminDeptItemUpdate($scope.item)
       }
-      $q.all(savePromise).then(function (res) {
+      savePromise.success(function (res) {
         if (res.success) {
-          ngToast.create({
-            className: 'success',
-            content: '保存成功!'
-          })
+          myToast.successTip();
+          // 刷新：修改成功后调用刷新
+          $rootScope.$emit("paging.act")
           $modalInstance.close();
-        } else {
-          ngToast.create({
-            className: 'danger',
-            content: '保存失败!'
-          });
         }
+      }).error(function () {
+        myToast.failureTip();
       })
     }
 

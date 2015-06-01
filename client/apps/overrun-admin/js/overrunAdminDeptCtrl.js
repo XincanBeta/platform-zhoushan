@@ -15,8 +15,10 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
         }
       })
     }
-    // 1）分页点击初始化
+    // 刷新 1：页面初始化
     $scope.pagingAct();
+    // 刷新 2：用于保存成功后的调用
+    $rootScope.$on("paging.act", $scope.pagingAct)
 
 
     $scope.select = function (item) {
@@ -78,8 +80,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptCtrl',
 
         modalInstance.result.then(function () {
           sliderService.startAutoHide();
-          // 2）save 成功 modal 正常关闭时刷新
-          $scope.pagingAct();
         }, function () {
           sliderService.startAutoHide();
         });

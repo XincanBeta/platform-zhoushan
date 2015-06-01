@@ -74,12 +74,12 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
         savePromise = requestService.overrunAdminUserUpdate($scope.item)
       }
 
-      savePromise.then(function () {
+      savePromise.success(function () {
         myToast.successTip();
         // 刷新：修改成功后调用刷新
-        $rootScope.$emit("user.paging.act")
+        $rootScope.$emit("paging.act")
         $modalInstance.close();
-      }, function () {
+      }).error(function () {
         myToast.failureTip();
       });
     }

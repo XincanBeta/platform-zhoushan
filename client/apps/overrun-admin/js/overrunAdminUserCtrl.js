@@ -18,7 +18,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
     // 刷新 1：页面初始化
     $scope.pagingAct();
     // 刷新 2：用于保存成功后的调用
-    $rootScope.$on("user.paging.act", $scope.pagingAct)
+    $rootScope.$on("paging.act", $scope.pagingAct)
 
     $scope.select = function (item) {
       $scope.selected = item
