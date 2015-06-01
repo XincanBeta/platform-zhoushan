@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService, util, myToast) {
+            Upload, carService, util, myToast, $rootScope) {
 
     /*
      初始化
@@ -476,6 +476,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       savePromise.success(function (res) {
         if (res.success) {
           myToast.successTip();
+          // 刷新：修改成功后调用刷新
+          $rootScope.$emit("paging.act")
           $modalInstance.close();
         }
       }).error(function () {

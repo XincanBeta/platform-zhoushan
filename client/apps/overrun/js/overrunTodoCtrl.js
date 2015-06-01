@@ -14,8 +14,11 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         }
       })
     }
-    // 1）分页点击初始化
+    // 刷新 1：页面初始化
     $scope.pagingAct();
+
+    // 刷新 2：用于修改成功后的调用
+    $rootScope.$on("paging.act", $scope.pagingAct)
 
 
     $scope.select = function (item) {
@@ -85,8 +88,8 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
 
         modalInstance.result.then(function () {
           sliderService.startAutoHide();
-          // 刷新
-          $scope.pagingAct();
+          // 刷新 3：保存成功后刷新
+          //$scope.pagingAct();
         }, function () {
           sliderService.startAutoHide();
         });
