@@ -1,5 +1,15 @@
 angular.module('app.overrun').controller('OverrunTodoCtrl',
   function ($scope, $state, $rootScope, sliderService, requestService, $modal, $timeout) {
+    /* 
+     分页与刷新
+     侧边栏详情
+     新增
+     删除
+     */
+
+    /*--------------------------
+     $ 分页与刷新
+     --------------------------*/
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
@@ -20,6 +30,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     $rootScope.$on("paging.act", $scope.pagingAct)
 
 
+    /*--------------------------
+     $ 侧边栏详情
+     --------------------------*/
     $scope.select = function (item) {
       $scope.selected = item
     }
@@ -55,7 +68,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     })
 
 
-    // 新增(包含info 和 证件信息)
+    /*--------------------------
+     $ 新增
+     --------------------------*/
     var path = '../apps/overrun/partials/';
     $scope.add = function () {
       var modalInstance
@@ -93,9 +108,10 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       })
     }
 
-    /*
-     删除功能部分
-     */
+
+    /*--------------------------
+     $ 删除
+     --------------------------*/
     $scope.selectAllItem = function () {
       // 通过 ng-checked="item.selected" 来控制列表项的 checkbox 状态
       // ng-checked 只能反映 checkbox 的状态
@@ -147,9 +163,15 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       }, function () {
         sliderService.startAutoHide();
       });
+    }// delete
 
+    /*/!*--------------------------
+     $ 双击修改
+     --------------------------*!/
+    $scope.test = function(){
+      console.log('test');
+    }*/
 
-    }
 
 
 
