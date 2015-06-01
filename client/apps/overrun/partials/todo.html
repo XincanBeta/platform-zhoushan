@@ -1,10 +1,8 @@
 <header class="l-app-header">
   <div class="app-toolbar">
-    <div class="btn-group">
-      <button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>
-      <button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
-              ng-click="delete()" ></button>
-    </div>
+    <button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>
+    <button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
+            ng-click="delete()"></button>
   </div>
 </header>
 <section class="l-app-body on-footer">
@@ -20,6 +18,7 @@
         <th>轴数</th>
         <th>货车信息</th>
         <th>检测时间</th>
+        <th>状态</th>
       </tr>
       </thead>
       <tbody>
@@ -32,6 +31,7 @@
         <td>{{ item.cj_zs }}</td>
         <td>{{ item.cj_zz_lx }}</td>
         <td>{{ item.cj_sj }}</td>
+        <td><i></i></td>
       </tr>
       </tbody>
     </table>
