@@ -1,14 +1,21 @@
 <section class="l-entity-panel--header with-border">
-  <span class="entity-title">单位信息</span>
+  <span class="entity-title">人员信息</span>
 </section>
 <section class="l-entity-panel--body">
   <div class="entity-block-wrap">
     <div id="overrun-detail-checklist" class="entity-block">
       <section class="entity-block--body">
-        <div class="entity-info">账号：{{ item.wkno }}</div>
+        <div class="entity-info">登录账号：{{ item.wkno }}</div>
         <div class="entity-info">姓名：{{ item.wkna }}</div>
         <div class="entity-info is-clear-both">单位：{{ item.dw.dwmc }}</div>
-        <div class="entity-info is-clear-both">应用：{{ item.apps }}</div>
+        <div class="entity-info ">所有应用：
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div ng-repeat="app in item.apps">{{ app.name }}
+                <span ng-if="app.subname">（{{ app.subname }}）</span></div>
+            </div>
+          </div>
+        </div>
       </section>
     </div>
   </div>
