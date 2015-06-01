@@ -1,3 +1,9 @@
+/* 
+  1）平滑移进
+  2）等数据加载完毕
+  3）平滑移出
+*/
+
 angular.module("slider", []).service('sliderService', function ($rootScope, $document) {
   var _requestMethod, _postData;
   this.show = function () {
@@ -39,22 +45,20 @@ angular.module("slider", []).service('sliderService', function ($rootScope, $doc
   // 默认启动自动隐藏
   this.startAutoHide();
 })
-  .directive("mySliderShow", function ($rootScope, $document, sliderService) {
+  .directive("mySliderShow", function ($rootScope, $document, sliderService, $timeout) {
     return {
       restrict: "A",
       "link": function (scope, element, attrs) {
         var show = function () {
-            //console.log("slider show");
             element.animate({"width": sliderWidth}, "fast");
           },
           hide = function () {
-            //console.log("slider hide");
             element.animate({"width": "0"}, "fast");
           },
           showAfterHide = function () {
-            //console.log("slider show after hide");
             hide();
-            sliderService.show()
+            // 等动画执行完毕
+            $timeout(function(){sliderService.show()}, 300)
           },
         // 1024 * 0.6 = 614 < 650
           sliderWidth = attrs.sliderWidth || "650px";
