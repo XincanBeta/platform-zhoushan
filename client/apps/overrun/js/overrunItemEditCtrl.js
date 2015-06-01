@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
-  function ($scope, $state, sliderService, $modalInstance, $modal,
-            requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService, util, myToast, $rootScope) {
+  function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew,
+            ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll, Upload, carService,
+            util, myToast, $rootScope) {
 
     /*
      初始化
@@ -16,11 +16,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      证件获取
      证件上传
      证件删除
+     历史功能
      页内导航
      验证与格式化
      保存
      结案
-
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -467,6 +467,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         });
       })
     }
+
+    /*--------------------------
+      $ 历史功能
+    --------------------------*/
 
 
     /*--------------------------
