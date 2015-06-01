@@ -14,7 +14,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         }
       })
     }
-    // 分页点击初始化
+    // 1）分页点击初始化
     $scope.pagingAct();
 
 
@@ -141,6 +141,8 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       })
 
       modalInstance.result.then(function () {
+        // 2）保存后刷新
+        $scope.pagingAct();
         sliderService.startAutoHide();
       }, function () {
         sliderService.startAutoHide();

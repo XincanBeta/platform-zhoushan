@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService, util, $q) {
+            Upload, carService, util) {
 
     /*
      初始化
@@ -474,8 +474,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       } else {
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
-      // todo：$q 的 res 不一样的
-      $q.all(savePromise).then(function (res) {
+      savePromise.success(function (res) {
         console.log(res);
         if (res.success) {
           ngToast.create({
@@ -483,12 +482,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             content: '保存成功!'
           })
           $modalInstance.close();
-        } else {
-          ngToast.create({
-            className: 'danger',
-            content: '保存失败!'
-          });
         }
+      }).error(function () {
+        ngToast.create({
+          className: 'danger',
+          content: '保存失败!'
+        });
       })
     }
 
@@ -530,8 +529,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
             /*pdfurl: function () {
-              return res.data
-            },*/
+             return res.data
+             },*/
             item: function () {
               $scope.item.currentPath = res.data;
               return $scope.item;

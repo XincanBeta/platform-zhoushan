@@ -122,9 +122,9 @@
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-checklist')">初检单</a></li>
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-vehicle')">车辆信息</a></li>
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-driver')">驾驶员信息</a></li>
-    <!--<li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-party')">当事人信息</a></li>-->
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-case')">案件信息</a></li>
-    <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-reChecklist')">复检单</a></li>
+    <li ng-if="item.cj_kfxz=='可卸载'"><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-reChecklist')">
+      复检单</a></li>
   </ul>
   <div class="entity-block-wrap under-navbar">
     <!--初检单-->
@@ -222,7 +222,7 @@
       </section>
     </div>
     <!--复检单-->
-    <div id="overrun-detail-reChecklist" class="entity-block no-border">
+    <div id="overrun-detail-reChecklist" class="entity-block no-border" ng-if="item.cj_kfxz=='可卸载'">
       <header class="entity-block--header">
         <i class="entity-icon icon-reChecklist"></i>
         <span>复检单</span>
