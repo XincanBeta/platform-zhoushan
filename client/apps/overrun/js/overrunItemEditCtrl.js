@@ -7,8 +7,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      初始化
      下拉列表
      精度限制
-     车牌录入
      车牌获取
+     车牌录入
+     挂车获取
+     挂车录入
      日期设置
      罚金计算
      证件获取
@@ -166,15 +168,17 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     $scope.carData = carService.carData;
     // 车牌第一部分：下拉选中（angucomplete 的用法）
-    $scope.carSelected = function (selected) {
+    $scope.cpSelected = function (selected) {
       if (selected) {
         $scope.cp_part_1 = selected.title.toUpperCase();
+        console.log($scope.cp_part_1);
         _setCP();
       }
     }
     // 车牌第一部分：手输
-    $scope.angucompleteInputChanged = function (value) {
+    $scope.cpInputChanged = function (value) {
       if (value) {
+        console.log($scope.cp_part_1);
         $scope.cp_part_1 = value.toUpperCase();
         _setCP();
       }
@@ -183,13 +187,49 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.$watch('cp_part_2', function (value) {
       if (value) {
         $scope.cp_part_2 = value.toUpperCase()
-        console.log($scope.cp_part_2);
         _setCP();
       }
     })
     function _setCP() {
+      //console.log('$scope.cp_part_1', $scope.cp_part_1);
       $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
     }
+
+    /*--------------------------
+     $ 挂车获取
+     --------------------------*/
+    if (!itemIsNew && $scope.item.cl_gc) {
+      $scope.gc_part_1 = $scope.item.cl_gc.substring(0, 2);
+      $scope.gc_part_2 = $scope.item.cl_gc.substring(2);
+    }
+
+    /*--------------------------
+     $ 挂车录入
+     参考 车牌录入
+     --------------------------*/
+    $scope.gcSelected = function (selected) {
+      if (selected) {
+        $scope.gc_part_1 = selected.title.toUpperCase();
+        // 保留前两个字符
+        _setGC();
+      }
+    }
+    $scope.gcInputChanged = function (value) {
+      if (value) {
+        $scope.gc_part_1 = value.toUpperCase();
+        _setGC();
+      }
+    }
+    $scope.$watch('gc_part_2', function (value) {
+      if (value) {
+        $scope.gc_part_2 = value.toUpperCase()
+        _setGC();
+      }
+    })
+    function _setGC() {
+      $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
+    }
+
 
 
     /*--------------------------

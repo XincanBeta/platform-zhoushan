@@ -72,18 +72,18 @@
 
               <div style="display: inline-block">
                 <angucomplete-alt
-                    id="autocomplete-ex1"
+                    id="autocomplete-cp"
                     placeholder=""
                     pause="100"
                     initial-value="{{ cp_part_1 }}"
-                    selected-object="carSelected"
+                    selected-object="cpSelected"
                     local-data="carData"
                     search-fields="Pcode,city,code,province"
                     title-field="code"
                     minlength="1"
                     match-class="highlight"
                     input-class="form-control form-control-small"
-                    input-changed="angucompleteInputChanged"
+                    input-changed="cpInputChanged"
                     class="overrun-cp-angucomplete"
                     name="cp_part_1"
                     />
@@ -154,8 +154,30 @@
               <input type="text" class="form-control" ng-model="item.cj_cp" disabled/>
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">挂车</label>
-              <input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>
+              <label class="entity-label">（挂车）</label>
+              <div style="display: inline-block">
+                <angucomplete-alt
+                    id="autocomplete-gc"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ gc_part_1 }}"
+                    selected-object="gcSelected"
+                    local-data="carData"
+                    search-fields="Pcode,city,code,province"
+                    title-field="code"
+                    minlength="1"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="gcInputChanged"
+                    class="overrun-cp-angucomplete"
+                    name="gc_part_1"
+                    />
+              </div>
+              <span>&bull;</span>
+              <input type="text" class="form-control" name="gc_part_2" ng-model="gc_part_2"
+                     style=" width: 82px; display: inline-block;" maxlength="5"/>
+
+              <!--<input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>-->
             </div>
             <div class="col-sm-4">
               <label class="entity-label">核定载质量</label>
@@ -190,7 +212,7 @@
               <input type="text" class="form-control" name="cl_dh" ng-model="item.cl_dh" validator="required"/>
             </div>
             <div class="col-sm-8">
-              <label class="entity-label">营运证</label>
+              <label class="entity-label">（营运证）</label>
               <input type="text" class="form-control" name="cl_yyz" ng-model="item.cl_yyz" maxlength="12"/>
             </div>
           </div>
@@ -248,7 +270,7 @@
               <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh" maxlength="18" validator="required"/>
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">从业资格证</label>
+              <label class="entity-label">（从业资格证）</label>
               <input type="text" class="form-control" name="jsy_cy" ng-model="item.jsy_cy" maxlength="19"/>
             </div>
           </div>
