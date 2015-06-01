@@ -15,8 +15,10 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
         }
       })
     }
-    // 1）分页点击初始化
+    // 刷新 1：页面初始化
     $scope.pagingAct();
+    // 刷新 2：用于保存成功后的调用
+    $rootScope.$on("user.paging.act", $scope.pagingAct)
 
     $scope.select = function (item) {
       $scope.selected = item
@@ -28,7 +30,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
 
     sliderService.initRequestMethod(requestService.overrunAdminUserDetail);
     $scope.mySliderToggle = function (item) {
-      sliderService.setRequestData({dwid: item.dwid})
+      sliderService.setRequestData({wkno: item.wkno})
       if (!$scope.selected) {
         $scope.selected = item;
         sliderService.show()
@@ -72,8 +74,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserCtrl',
 
         modalInstance.result.then(function () {
           sliderService.startAutoHide();
-          // 2）save 成功 modal 正常关闭时刷新
-          $scope.pagingAct();
         }, function () {
           sliderService.startAutoHide();
         });

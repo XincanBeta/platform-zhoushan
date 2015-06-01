@@ -1,22 +1,20 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope ) {
 
-    $scope.select = function (tab) {
-      $scope.selected = tab;
-    }
-
-    // 案件修改
     var path = '../apps/overrun-admin/partials/';
-    $scope.editInfo = function () {
+    $scope.edit = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
-        size: "lg",
+        size: "md",
         templateUrl: path + 'user-edit.html',
         controller: 'OverrunAdminUserEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope
+          },
+          itemIsNew: function () {
+            return false;
           }
         }
       })

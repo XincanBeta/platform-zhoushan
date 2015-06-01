@@ -1,5 +1,5 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
-  function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, ngToast, $q) {
+  function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, myToast) {
     $scope.item = item;
 
     $scope.appList = [
@@ -74,17 +74,13 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
         savePromise = requestService.overrunAdminUserUpdate($scope.item)
       }
 
-      savePromise.then(function (res) {
-        ngToast.create({
-          className: 'success',
-          content: '保存成功!'
-        })
+      savePromise.then(function () {
+        myToast.successTip();
+        // 刷新：修改成功后调用刷新
+        $rootScope.$emit("user.paging.act")
         $modalInstance.close();
-      }, function (res) {
-        ngToast.create({
-          className: 'danger',
-          content: '保存失败!'
-        });
+      }, function () {
+        myToast.failureTip();
       });
     }
 

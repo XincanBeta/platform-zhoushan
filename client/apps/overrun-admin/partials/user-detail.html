@@ -5,21 +5,10 @@
   <div class="entity-block-wrap">
     <div id="overrun-detail-checklist" class="entity-block">
       <section class="entity-block--body">
-        <div class="entity-info">单位名称：{{ item.dwmc }}</div>
-        <div class="entity-info">单位电话：{{ item.dwdh }}</div>
-        <div class="entity-info is-clear-both">单位地址：{{ item.dwdz }}</div>
-
-        <div class="entity-info">负责单位：{{ item.fzdw }}</div>
-        <div class="entity-info">负责领导：{{ item.fzld }}</div>
-
-        <div class="entity-info is-clear-both">案号：{{ item.ahyd }}〔<span ng-bind="ahnf"></span>〕字第{{ item.ahed
-          }}0001号</span></div>
-        <div class="entity-info is-clear-both">缴款银行：{{ item.ykyh }}</div>
-        <div class="entity-info is-clear-both">银行账号：{{ item.yhzh }}</div>
-
-        <div class="entity-info is-clear-both">行政复议机关：{{ item.xzfy }}</div>
-        <div class="entity-info is-clear-both">行政诉讼机关：{{ item.xzss }}</div>
-        <div class="entity-info">下级单位：</div>
+        <div class="entity-info">账号：{{ item.wkno }}</div>
+        <div class="entity-info">姓名：{{ item.wkna }}</div>
+        <div class="entity-info is-clear-both">单位：{{ item.dw.dwmc }}</div>
+        <div class="entity-info is-clear-both">应用：{{ item.apps }}</div>
       </section>
     </div>
   </div>
