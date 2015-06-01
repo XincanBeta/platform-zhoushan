@@ -1,11 +1,11 @@
 /* 
-  1）平滑移进
-  2）等数据加载完毕
-  3）平滑移出
-*/
+ 1）平滑移进
+ 2）等数据加载完毕
+ 3）平滑移出
+ */
 
 angular.module("slider", []).service('sliderService', function ($rootScope, $document) {
-  var _requestMethod, _postData;
+  var _requestMethod, _postData, _this = this;
   this.show = function () {
     _requestMethod(_postData).success(function (data) {
       $rootScope.$emit("entity.update", data)
@@ -33,7 +33,7 @@ angular.module("slider", []).service('sliderService', function ($rootScope, $doc
         || $target.parents("tr").length > 0
         || $target.parents("ul").length > 0
         || $target.parents("ol").length > 0 )) {
-        hide()
+        _this.hide()
         // 做接口，供调用者实现
         $rootScope.$emit("row.clearSelected")
       }
@@ -49,19 +49,23 @@ angular.module("slider", []).service('sliderService', function ($rootScope, $doc
     return {
       restrict: "A",
       "link": function (scope, element, attrs) {
-        var show = function () {
-            element.animate({"width": sliderWidth}, "fast");
-          },
-          hide = function () {
-            element.animate({"width": "0"}, "fast");
-          },
-          showAfterHide = function () {
-            hide();
-            // 等动画执行完毕
-            $timeout(function(){sliderService.show()}, 300)
-          },
         // 1024 * 0.6 = 614 < 650
-          sliderWidth = attrs.sliderWidth || "650px";
+        var sliderWidth = attrs.sliderWidth || "650px";
+        var show = function () {
+          // 暴露接口：滑动隐藏完成供 detail 重置为第一个选项卡
+          $rootScope.$emit("slider.hide.done")
+          // 等动画执行完毕，增加平滑效果
+          $timeout(function () {
+            element.animate({"width": sliderWidth}, "fast");
+          }, 300)
+        }
+        var hide = function () {
+          element.animate({"width": "0"}, "fast");
+        }
+        var showAfterHide = function () {
+          hide();
+          sliderService.show()
+        }
         $rootScope.$on("slider.show", show)
         $rootScope.$on("slider.hide", hide)
         $rootScope.$on("slider.showAfterHide", showAfterHide)

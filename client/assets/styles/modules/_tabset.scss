@@ -1,5 +1,5 @@
 /*
- tab 基于 ui-bootstrap
+ tab 基于 ui-bootstrap 0.13.0
  此处只是修饰
 */
 
@@ -15,7 +15,7 @@
   }
 }
 
-.tabset-entity-heading {
+.tabset-entity-heading > a {
   color: $direction-color;
   font-weight: 600;
   &.active {

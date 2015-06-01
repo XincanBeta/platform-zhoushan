@@ -16,7 +16,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
     /*--------------------------
      $ 选项卡
      --------------------------*/
-    var tabset = [{
+    $scope.tabset = [{
       name: '案件',
       content: 'detailContent',
       operator: 'detailOperator'
@@ -28,7 +28,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
 
     // 区分待处理和已完结
     if ($state.current.name == "myapp.overrun.done") {
-      tabset.push({
+      $scope.tabset.push({
         name: '案卷',
         content: 'docContent',
         operator: 'docOperator'
@@ -36,20 +36,28 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       $scope.hideDetailOperator = true;
     }
 
-    $scope.tabset = tabset;
-    $scope.select = function (tab) {
-      $scope.selected = tab;
+    $rootScope.$on("slider.hide.done", function () {
+      // 每次都重置为第一个选项卡，因为只有 slider 只加载了第一个
+      resetTabActive();
+    })
+
+    function resetTabActive() {
+      _.each($scope.tabset, function (tab) {
+        tab.active = false;
+      });
+      $scope.tabset[0].active = true;
     }
 
-    $scope.isSelected = function (tab) {
-      return (tab === $scope.selected) ? 'active' : '';
+    // 默认会激活（active=true）第一个选项卡，并且调用 select 方法
+    $scope.select = function (tab) {
+      $scope.selected = tab;
     }
 
     /*--------------------------
      $ 案件修改（待处理）
      --------------------------*/
     var path = '../apps/overrun/partials/';
-    $scope.editInfo = function () {
+    $scope.edit = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
@@ -88,7 +96,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
         templateUrl: path + 'docFullscreen.html',
         controller: 'OverrunViewerFullscreenCtrl',
         resolve: {
-          item: function(){
+          item: function () {
             return $scope.item;
           }
         }

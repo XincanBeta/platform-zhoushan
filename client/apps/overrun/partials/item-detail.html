@@ -1,7 +1,7 @@
 <section class="l-entity-panel--header no-border">
   <tabset class="tabset-entity-location">
-    <tab select="select(tab)" ng-repeat="tab in tabset">
-      <tab-heading class="tabset-entity-heading" ng-class="isSelected(tab)">{{ tab.name }}</tab-heading>
+    <tab class="tabset-entity-heading" ng-repeat="tab in tabset" active="tab.active"
+         heading="{{ tab.name }}" select="select(tab)">
     </tab>
   </tabset>
 </section>
@@ -16,7 +16,7 @@
 </script>
 
 <script type="text/ng-template" id="detailOperator">
-  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="editInfo()">修改</button>
+  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator' ng-click="edit()">修改</button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">

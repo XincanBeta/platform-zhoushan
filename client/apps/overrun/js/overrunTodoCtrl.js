@@ -151,14 +151,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
 
     }
 
-    /*
 
-
-
-
-
-
-     */
 
 
   });
