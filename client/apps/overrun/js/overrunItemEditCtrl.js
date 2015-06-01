@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, itemIsNew, ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll,
-            Upload, carService, util) {
+            Upload, carService, util, myToast) {
 
     /*
      初始化
@@ -465,7 +465,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
     }
 
-
     $scope.save = function () {
       _beforeSave();
       var savePromise;
@@ -475,19 +474,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
       savePromise.success(function (res) {
-        console.log(res);
         if (res.success) {
-          ngToast.create({
-            className: 'success',
-            content: '保存成功!'
-          })
+          myToast.successTip();
           $modalInstance.close();
         }
       }).error(function () {
-        ngToast.create({
-          className: 'danger',
-          content: '保存失败!'
-        });
+        myToast.failureTip();
       })
     }
 
