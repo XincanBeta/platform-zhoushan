@@ -1,27 +1,26 @@
-angular.module("slider", []).factory('sliderService', function ($rootScope, $document, util) {
-  // 下划线开头的为方法内部使用
+angular.module("slider", []).service('sliderService', function ($rootScope, $document) {
   var _requestMethod, _postData;
-  var show = function () {
+  this.show = function () {
     _requestMethod(_postData).success(function (data) {
       $rootScope.$emit("entity.update", data)
       $rootScope.$emit("slider.show")
     })
   }
-  var hide = function () {
+  this.hide = function () {
     $rootScope.$emit("slider.hide")
   }
-  var showAfterHide = function () {
+  this.showAfterHide = function () {
     $rootScope.$emit("slider.showAfterHide")
   }
   // slider 只管调用，不管具体请求类型
-  var initRequestMethod = function (requestMethod) {
+  this.initRequestMethod = function (requestMethod) {
     _requestMethod = requestMethod;
   }
   // slider 只管设置参数，不管是设置给哪个请求方法
-  var setRequestData = function (postData) {
+  this.setRequestData = function (postData) {
     _postData = postData;
   }
-  var startAutoHide = function () {
+  this.startAutoHide = function () {
     $document.mousedown(function (event) {
       var $target = $(event.target);
       if (!($target.parents("[my-slider-show]").length > 0
@@ -34,19 +33,11 @@ angular.module("slider", []).factory('sliderService', function ($rootScope, $doc
       }
     })
   }
-  var stopAutoHide = function () {
+  this.stopAutoHide = function () {
     $document.unbind("mousedown")
   }
-  startAutoHide(); // 默认启动自动隐藏
-  return {
-    show: show,
-    hide: hide,
-    showAfterHide: showAfterHide,
-    initRequestMethod: initRequestMethod,
-    setRequestData: setRequestData,
-    startAutoHide: startAutoHide,
-    stopAutoHide: stopAutoHide
-  }
+  // 默认启动自动隐藏
+  this.startAutoHide();
 })
   .directive("mySliderShow", function ($rootScope, $document, sliderService) {
     return {
