@@ -154,49 +154,41 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
+     $ 车牌获取
+     --------------------------*/
+    if (!itemIsNew && $scope.item.cj_cp) {
+      $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
+      $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
+    }
+
+    /*--------------------------
      $ 车牌录入
      --------------------------*/
     $scope.carData = carService.carData;
-    var cp_part_1, cp_part_2;
-    // 注：angucomplete 的用法
-    // 车牌第一部分：下拉选中
+    // 车牌第一部分：下拉选中（angucomplete 的用法）
     $scope.carSelected = function (selected) {
       if (selected) {
-        cp_part_1 = selected.title.toUpperCase();
-      }
-      if (cp_part_2) {
+        $scope.cp_part_1 = selected.title.toUpperCase();
         _setCP();
       }
     }
     // 车牌第一部分：手输
     $scope.angucompleteInputChanged = function (value) {
       if (value) {
-        cp_part_1 = value.toUpperCase();
-      }
-      if (cp_part_2) {
+        $scope.cp_part_1 = value.toUpperCase();
         _setCP();
       }
     }
     // 车牌第二部分
     $scope.$watch('cp_part_2', function (value) {
       if (value) {
-        cp_part_2 = value.toUpperCase()
-        $scope.cp_part_2 = value.toUpperCase();
-      }
-      if (cp_part_1) {
+        $scope.cp_part_2 = value.toUpperCase()
+        console.log($scope.cp_part_2);
         _setCP();
       }
     })
     function _setCP() {
-      $scope.item.cj_cp = cp_part_1 + cp_part_2;
-    }
-
-    /*--------------------------
-     $ 车牌获取
-     --------------------------*/
-    if (!itemIsNew && $scope.item.cj_cp) {
-      $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
-      $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
+      $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
     }
 
 
