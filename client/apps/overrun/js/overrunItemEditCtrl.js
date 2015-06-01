@@ -171,14 +171,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.cpSelected = function (selected) {
       if (selected) {
         $scope.cp_part_1 = selected.title.toUpperCase();
-        console.log($scope.cp_part_1);
         _setCP();
       }
     }
     // 车牌第一部分：手输
     $scope.cpInputChanged = function (value) {
       if (value) {
-        console.log($scope.cp_part_1);
         $scope.cp_part_1 = value.toUpperCase();
         _setCP();
       }
@@ -191,7 +189,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
     })
     function _setCP() {
-      //console.log('$scope.cp_part_1', $scope.cp_part_1);
       $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
     }
 
@@ -223,13 +220,16 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.$watch('gc_part_2', function (value) {
       if (value) {
         $scope.gc_part_2 = value.toUpperCase()
+        if ($scope.gc_part_2.length >= 4
+          && $scope.gc_part_2[$scope.gc_part_2.length - 1] != '挂') {
+          $scope.gc_part_2 = $scope.gc_part_2.substring(0, 4) + '挂';
+        }
         _setGC();
       }
     })
     function _setGC() {
       $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
     }
-
 
 
     /*--------------------------
