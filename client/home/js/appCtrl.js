@@ -3,6 +3,10 @@ angular.module('app')
     /*
      目录：
      保存用户信息
+     延迟加载
+     快捷方式
+     退出
+     消息提醒
     */
 
     /*--------------------------
@@ -30,6 +34,10 @@ angular.module('app')
       //$scope.accountItemShown = ($scope.accountItemShown != true);
     }
 
+
+    /*--------------------------
+      $ 延迟加载
+    --------------------------*/
     /**
      * home 延迟加载的部分
      *
@@ -115,7 +123,9 @@ angular.module('app')
     $ocLazyLoad.load(lazyloadInSerie);
     //$ocLazyLoad.load(lazyloadForBuild);
 
-    // 快捷方式
+    /*--------------------------
+      $ 快捷方式
+    --------------------------*/
     $scope.toggleAppsSwitcher = function () {
       $scope.isShowAppSwitcher = !$scope.isShowAppSwitcher;
       $scope.setAppSwitcherBlock()
@@ -126,10 +136,23 @@ angular.module('app')
       return {"display": "block"}
     }
 
-    // 退出系统
+    /*--------------------------
+      $ 退出系统
+    --------------------------*/
     $scope.exit = function () {
       parentScope.signOut();
     }
+
+
+    /*--------------------------
+      $ 消息提醒
+    --------------------------*/
+    $scope.notiNum = 9;
+    $scope.notiTest = function(){
+      console.log('noti test');
+
+    }
+
 
 
   });

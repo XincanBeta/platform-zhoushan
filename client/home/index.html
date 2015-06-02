@@ -9,38 +9,47 @@
 </head>
 <body ng-controller="AppCtrl">
 <header class="l-platform-header">
-  <toast></toast> <!-- 共用 -->
+  <toast></toast>
+  <!-- 共用 -->
   <img class="platform-logo" src="../assets/img/website/logo-50.png">
+
   <h1 class="platform-title">舟山公路基础业务平台</h1>
   <ul class="platform-dock">
     <li>
       <a href="javascript:void(0)" title="快捷方式" ng-click="toggleAppsSwitcher()">快捷方式</a>
-      <div class="app-switcher slide-down " ng-show="isShowAppSwitcher" ng-style="setAppSwitcherBlock()">
+
+      <div class="app-switcher slide-down" ng-show="isShowAppSwitcher" ng-style="setAppSwitcherBlock()">
         <div class="app-shortcut">
           <img class="app-shortcut--icon" src="../assets/img/shortcut/desktop.png" alt=""/>
+
           <div class="app-shortcut--name">我的桌面</div>
         </div>
         <div class="app-shortcut">
           <img class="app-shortcut--icon" src="../assets/img/shortcut/myapp.png" alt=""/>
+
           <div class="app-shortcut--name">我的应用</div>
         </div>
         <div class="app-shortcut">
           <img class="app-shortcut--icon" src="../assets/img/shortcut/overrun.png" alt=""/>
+
           <div class="app-shortcut--name">现场超限处罚</div>
         </div>
       </div>
     </li>
     <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
-    <!--ng-click="toggleShowAccountItem()"-->
-    <li><a href="javascript:void(0);" class="user-identity">
-      <!--<img src="../assets/img/avatar/icon-40.png" alt="用户头像">-->
-      <span ng-bind="user.wkna"></span>
-      <span class="user-noti-number">2</span>
+    <li><a href="javascript:void(0);">
+      消息
+      <span class="user-noti-number" ng-bind="notiNum" ng-click="notiTest()"></span>
     </a>
     </li>
-    <li><a href="javascript:void(0);" class="narrow"
-           ng-click="exit()" ><i class="iconfont icon-exit-door icon-size20" alt=""></i></a></li>
   </ul>
+
+  <!--ng-bind="user.wkna" class="user-identity"-->
+  <!--<img src="../assets/img/avatar/icon-40.png" alt="用户头像">-->
+  <!--ng-click="toggleShowAccountItem()"-->
+  <!--<li><a href="javascript:void(0);" class="narrow"
+         ng-click="exit()"><i class="iconfont icon-exit-door icon-size20" alt=""></i></a></li>
+-->
 </header>
 <aside id="platform-sidebar" class="l-platform-sidebar">
   <ul class="platform-navbar">
