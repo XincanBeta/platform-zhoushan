@@ -6,18 +6,18 @@ angular.module('app.myapp', []).controller('MyappCtrl',
     $scope.hasBusiApp = false;
     $scope.hasSaApp = false;
 
-    //var userApps = userService.getUser().apps;
+    var userApps = userService.getUser().apps;
     requestService.myappBusiItems().success(function (apps) {
-      $scope.hasBusiApp = true;
-      $scope.busiApps = apps;
-      //$scope.busiApps = _filterUserApp(apps, userApps);
-      //$scope.busiApps.length > 0 ? $scope.hasBusiApp = true : '';
+      //$scope.hasBusiApp = true;
+      //$scope.busiApps = apps;
+      $scope.busiApps = _filterUserApp(apps, userApps);
+      $scope.busiApps.length > 0 ? $scope.hasBusiApp = true : '';
     })
 
-    /*requestService.myappSaItems().success(function (apps) {
+    requestService.myappSaItems().success(function (apps) {
       $scope.saApps = _filterUserApp(apps, userApps);
       $scope.saApps.length > 0 ? $scope.hasSaApp = true : '';
-    })*/
+    })
 
 
     function _filterUserApp(apps, userApps) {
