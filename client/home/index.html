@@ -39,7 +39,8 @@
     <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
     <li><a href="javascript:void(0);">
       消息
-      <span class="user-noti-number" ng-bind="notiNum" ng-click="notiTest()"></span>
+      <!-- 消息样式等待数据加载 -->
+      <span ng-class="{'user-noti-number': notiNum}" ng-bind="notiNum" ng-click="notiTest()"></span>
     </a>
     </li>
   </ul>
@@ -47,6 +48,18 @@
     <a href="javascript:void(0);">
       <span ng-bind="user.wkna"></span>
     </a>
+    <ul class="platform-profile--dropdown">
+      <li>
+        <a href="javascript:void(0)">
+          <i class="zg-icon zg-icon-dd-home"></i>我的主页
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0)">
+          <i class="zg-icon zg-icon-dd-logout"></i>退出
+        </a>
+      </li>
+    </ul>
   </div>
   <!-- class="user-identity"-->
   <!--<img src="../assets/img/avatar/icon-40.png" alt="用户头像">-->

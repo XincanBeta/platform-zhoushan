@@ -91,6 +91,7 @@
 .platform-profile{
   position: absolute;
   right: 150px;
+  z-index: 10; // 让 dropdown 显示
   > a {
     // 模仿 dock
     display: block;
@@ -103,14 +104,24 @@
     color: #9db1c5;
     font-size: $relative-font-size * 1.4;
     text-align: center;
-    transition: all .3s ;
+    transition: all .2s ;
     &:hover
     ,&:focus {
       color: #FFF;
-      //background-color: #25313e;
     }
   }
+  &:hover {
+    background-color: #25313e;
+  }
+  &:hover > .platform-profile--dropdown{
+    display: block;
+  }
+}
 
+.platform-profile--dropdown{
+  display: none;
+  top: 46px;
+  background-color: #25313e;
 }
 
 /*------------------------*\
