@@ -16,6 +16,7 @@
   platform-logo
   platform-title
   platform-dock
+  platform-profile
   platform-navbar
 */
 
@@ -47,7 +48,8 @@
 */
 /* ul */
 .platform-dock {
-  float: right;
+  position: absolute;
+  right: 300px;
   max-height: $platform-header-height;
   > li {
     position: relative;
@@ -66,10 +68,11 @@
       text-align: center;
       border-right: 1px solid rgba(0, 0, 0, 0.05);
       border-left: 1px solid rgba(255, 255, 255, 0.05);
-      &:hover,
-      &:focus {
+      transition: all .3s ;
+      &:hover
+      ,&:focus {
         color: #FFF;
-        background-color: #25313e;
+        //background-color: #25313e;
       }
       &:first-child {
         border-left: 0;
@@ -79,6 +82,35 @@
       }
     }
   }
+}
+
+
+/*--------------------------
+  $ platform-profile
+--------------------------*/
+.platform-profile{
+  position: absolute;
+  right: 150px;
+  > a {
+    // 模仿 dock
+    display: block;
+    min-width: 65px;
+    // 单行垂直居中
+    height: $platform-header-height;
+    line-height: $platform-header-height;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: #9db1c5;
+    font-size: $relative-font-size * 1.4;
+    text-align: center;
+    transition: all .3s ;
+    &:hover
+    ,&:focus {
+      color: #FFF;
+      //background-color: #25313e;
+    }
+  }
+
 }
 
 /*------------------------*\
@@ -136,6 +168,4 @@
   }
 }
 // end platform-navbar
-
-
 
