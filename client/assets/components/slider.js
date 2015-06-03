@@ -27,7 +27,7 @@ angular.module("slider", []).service('sliderService', function ($rootScope, $doc
     _postData = postData;
   }
   this.startAutoHide = function () {
-    $document.mousedown(function (event) {
+    $document.bind('mousedown.slider', function (event) {
       var $target = $(event.target);
       if (!($target.parents("[my-slider-show]").length > 0
         || $target.parents("tr").length > 0

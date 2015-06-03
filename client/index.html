@@ -23,16 +23,17 @@
 
   var app = angular.module('entrypoint', [])
   app.controller('MyCtrl', function ($scope, $http) {
+    var _user;
 
     // 判断是否登录
     $http.post('/api/logins/isLogin.do', {}).success(function (res) {
       if (res.success) {
         $scope.content = 'home/index.html';
-        $scope.$apply()
+        setUser(res.data)
+      } else {
+        $scope.content = 'login/index.html';
       }
     })
-
-    var _user;
 
     $scope.getUser = function () {
       return _user;
@@ -42,8 +43,6 @@
       _user = user;
     }
 
-    $scope.content = 'login/index.html';
-
     $scope.signIn = function (user) {
       $scope.content = 'home/index.html';
       setUser(user)
@@ -51,7 +50,7 @@
     }
 
     $scope.signOut = function () {
-      $http.post('/api/logins/isLogout.do', {}).success(function (res) {
+      $http.post('/api/logins/logoff.do', {}).success(function (res) {
         if (res.success) {
           $scope.content = 'login/index.html';
           setUser();

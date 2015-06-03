@@ -161,7 +161,7 @@ angular.module('app')
      $ 页面监听
      --------------------------*/
     // 监听关闭 noit
-    $document.mousedown(function (event) {
+    $document.bind('mousedown.noti', function (event) {
       var $target = $(event.target);
       if (!($target.parents(".noti-popup").length > 0
         || $target.parents("#platform-top-nav-noti").length > 0)) {
