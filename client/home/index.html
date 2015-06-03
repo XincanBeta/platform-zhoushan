@@ -39,7 +39,7 @@
         </div>
       </li>
       <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
-      <li><a href="javascript:void(0);" ng-click="toggleNotiPopup()">
+      <li id="platform-top-nav-noti"><a href="javascript:void(0);" ng-click="toggleNotiPopup()">
         消息
         <!-- 消息样式等待数据加载 -->
         <span ng-class="{'noti-count': notiCount}" ng-bind="notiCount"></span>
@@ -89,8 +89,6 @@
         <a href="javascript:void(0);" class="pull-right">查看全部 »</a>
       </div>
     </div>
-
-
   </div>
 
   <div class="platform-profile">

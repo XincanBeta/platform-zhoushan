@@ -81,7 +81,7 @@ $platform-profile-width: 120px;
       transition: all .3s;
       &:hover, &:focus {
         color: #FFF;
-        //background-color: #25313e;
+        //background-color: $platform-background-hover-color;
       }
       &:first-child {
         border-left: 0;

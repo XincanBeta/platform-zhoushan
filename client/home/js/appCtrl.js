@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast, userService) {
+  .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast, userService, $document) {
     /*
      目录：
      保存用户信息
@@ -7,6 +7,7 @@ angular.module('app')
      快捷方式
      退出
      消息提醒
+     页面监听
      */
 
     /*--------------------------
@@ -155,4 +156,19 @@ angular.module('app')
         $scope.notiPopupShow = 'show'
       }
     }
+
+    /*--------------------------
+     $ 页面监听
+     --------------------------*/
+    // 监听关闭 noit
+    $document.mousedown(function (event) {
+      var $target = $(event.target);
+      if (!($target.parents(".noti-popup").length > 0
+        || $target.parents("#platform-top-nav-noti").length > 0)) {
+        $scope.notiPopupShow = '';
+        $scope.$apply()
+      }
+    })
+
+
   });
