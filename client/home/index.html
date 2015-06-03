@@ -14,36 +14,39 @@
   <img class="platform-logo" src="../assets/img/website/logo-50.png">
 
   <h1 class="platform-title">舟山公路基础业务平台</h1>
-  <ul class="platform-dock">
-    <li>
-      <a href="javascript:void(0)" title="快捷方式" ng-click="toggleAppsSwitcher()">快捷方式</a>
+  <div class="platform-top-nav">
+    <ul>
+      <li>
+        <a href="javascript:void(0)" title="快捷方式" ng-click="toggleAppsSwitcher()">快捷方式</a>
 
-      <div class="app-switcher slide-down" ng-show="isShowAppSwitcher" ng-style="setAppSwitcherBlock()">
-        <div class="app-shortcut">
-          <img class="app-shortcut--icon" src="../assets/img/shortcut/desktop.png" alt=""/>
+        <div class="app-switcher slide-down" ng-show="isShowAppSwitcher" ng-style="setAppSwitcherBlock()">
+          <div class="app-shortcut">
+            <img class="app-shortcut--icon" src="../assets/img/shortcut/desktop.png" alt=""/>
 
-          <div class="app-shortcut--name">我的桌面</div>
+            <div class="app-shortcut--name">我的桌面</div>
+          </div>
+          <div class="app-shortcut">
+            <img class="app-shortcut--icon" src="../assets/img/shortcut/myapp.png" alt=""/>
+
+            <div class="app-shortcut--name">我的应用</div>
+          </div>
+          <div class="app-shortcut">
+            <img class="app-shortcut--icon" src="../assets/img/shortcut/overrun.png" alt=""/>
+
+            <div class="app-shortcut--name">现场超限处罚</div>
+          </div>
         </div>
-        <div class="app-shortcut">
-          <img class="app-shortcut--icon" src="../assets/img/shortcut/myapp.png" alt=""/>
+      </li>
+      <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
+      <li><a href="javascript:void(0);">
+        消息
+        <!-- 消息样式等待数据加载 -->
+        <span ng-class="{'user-noti-number': notiNum}" ng-bind="notiNum" ng-click="notiTest()"></span>
+      </a>
+      </li>
+    </ul>
+  </div>
 
-          <div class="app-shortcut--name">我的应用</div>
-        </div>
-        <div class="app-shortcut">
-          <img class="app-shortcut--icon" src="../assets/img/shortcut/overrun.png" alt=""/>
-
-          <div class="app-shortcut--name">现场超限处罚</div>
-        </div>
-      </div>
-    </li>
-    <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
-    <li><a href="javascript:void(0);">
-      消息
-      <!-- 消息样式等待数据加载 -->
-      <span ng-class="{'user-noti-number': notiNum}" ng-bind="notiNum" ng-click="notiTest()"></span>
-    </a>
-    </li>
-  </ul>
   <div class="platform-profile">
     <a href="javascript:void(0);">
       <span class="name" ng-bind="user.wkna"></span>
@@ -51,7 +54,7 @@
     </a>
     <ul class="platform-profile--dropdown">
       <li>
-        <a href="javascript:void(0)">
+        <a href="javascript:void(0)" ng-click="exit()">
           <i class="iconfont icon-exit"></i>退出
         </a>
       </li>

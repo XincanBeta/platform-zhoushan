@@ -16,7 +16,7 @@
   私有变量
   platform-logo
   platform-title
-  platform-dock
+  platform-top-nav
   platform-profile
   platform-navbar
 */
@@ -25,8 +25,6 @@
   $ 私有变量
 --------------------------*/
 $platform-profile-width: 120px;
-
-
 
 /*--------------------------
   $ platform 相关的模块
@@ -54,11 +52,15 @@ $platform-profile-width: 120px;
   li 默认是没有宽高的，要被参照是需要为其设置宽高，但是现在的设计是用 a 来填满整个点击区域，所以这是不设置 li 宽高的原因
 */
 /* ul */
-.platform-dock {
+.platform-top-nav {
   position: absolute;
   right: 300px;
-  max-height: $platform-header-height;
-  > li {
+  height: $platform-header-height;
+  > ul {
+    position: relative;
+    height: 100%;
+  }
+  > ul > li {
     position: relative;
     float: left;
     > a {
@@ -83,11 +85,8 @@ $platform-profile-width: 120px;
       &:first-child {
         border-left: 0;
       }
-      &.narrow {
-        min-width: 60px;
-      }
-    }
-  }
+    } // end a
+  } // end li
 }
 
 /*--------------------------
@@ -144,7 +143,7 @@ $platform-profile-width: 120px;
       color: #fff;
       text-decoration: none;
       border-top: 1px solid rgba(0, 0, 0, 0.05);
-      box-shadow: 0 1px 1px rgba(0,0,0,.4);
+      box-shadow: 0 1px 1px rgba(0, 0, 0, .4);
       white-space: nowrap;
       text-overflow: ellipsis;
       overflow: hidden;
@@ -157,16 +156,18 @@ $platform-profile-width: 120px;
         margin: 0 11px 0 15px;
         //vertical-align: -7px;
       }
-      &:hover{
+      &:hover {
         background-color: $platform-background-color;
       }
-    } // end a
+    }
+    // end a
     &:last-child > a {
       // 底边由最后的 li 的 link 控制
       border-bottom-right-radius: 4px;
       border-bottom-left-radius: 4px;
     }
-  } // end li
+  }
+  // end li
 }
 
 /*------------------------*\
