@@ -1,7 +1,8 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
   function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, myToast) {
-    $scope.item = item;
-
+    /*--------------------------
+     $ 临时数据
+     --------------------------*/
     $scope.appList = [
       {
         appid: '0101',
@@ -12,39 +13,64 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
         appid: '0102',
         name: '现场超限处罚应用',
         subname: "领导版"
+      },
+      {
+        appid: '0103',
+        name: '现场超限处罚应用',
+        subname: "管理员版"
       }
     ]
 
     $scope.deptlist = [
       {
-        dwid: '001',
+        dwid: '1',
         dwmc: '舟山市公路管理局'
       }, {
-        dwid: '002',
+        dwid: '2',
         dwmc: '舟山跨海大桥超限运输检测站'
       }, {
-        dwid: '003',
+        dwid: '3',
         dwmc: '朱家尖检测站'
       }, {
-        dwid: '004',
+        dwid: '4',
         dwmc: '定海区公路管理局'
       }, {
-        dwid: '005',
+        dwid: '5',
         dwmc: '普陀区公路管理局'
       }, {
-        dwid: '006',
+        dwid: '6',
         dwmc: '岱山县公路管理局'
       }, {
-        dwid: '007',
+        dwid: '7',
         dwmc: '嵊泗县公路管理局'
       }
     ]
+
+    /*--------------------------
+      $ 初始化
+    --------------------------*/
+    $scope.item = item;
+    $scope.dwmc = item.dw.dwmc;
+
+    // 通过 item.apps 更新 $scope.appList
+    for(var i=0; i<$scope.appList.length; i++){
+      _.each(item.apps, function(userApp){
+        if (userApp.appid == $scope.appList[i].appid ) {
+          $scope.appList[i].selected = true;
+        }
+      })
+    }
+
+
+    /*--------------------------
+      $ 其他处理
+    --------------------------*/
 
     // 对应 wk 表
     $scope.setDept = function (dept) {
       $scope.selectedDept = dept;
       $scope.item.owngrp = dept.dwid;
-      $scope.dwmc = dept.dwmc;
+      $scope.dwmc = dept.dwmc; // 显示
     };
 
     // 选完后再统一处理
