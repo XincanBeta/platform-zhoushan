@@ -22,7 +22,16 @@
 <script>
 
   var app = angular.module('entrypoint', [])
-  app.controller('MyCtrl', function ($scope) {
+  app.controller('MyCtrl', function ($scope, $http) {
+
+    // 判断是否登录
+    $http.post('/api/logins/isLogin.do', {}).success(function (res) {
+      if (res.success) {
+        $scope.content = 'home/index.html';
+        $scope.$apply()
+      }
+    })
+
     var _user;
 
     $scope.getUser = function () {
@@ -33,19 +42,22 @@
       _user = user;
     }
 
-     $scope.content = 'login/index.html';
-//    $scope.content = 'home/index.html';
+    $scope.content = 'login/index.html';
 
     $scope.signIn = function (user) {
       $scope.content = 'home/index.html';
       setUser(user)
       $scope.$apply()
-
     }
+
     $scope.signOut = function () {
-      $scope.content = 'login/index.html';
-      setUser();
-      $scope.$apply()
+      $http.post('/api/logins/isLogout.do', {}).success(function (res) {
+        if (res.success) {
+          $scope.content = 'login/index.html';
+          setUser();
+          $scope.$apply()
+        }
+      })
     }
   })
 </script>

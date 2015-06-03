@@ -37,12 +37,20 @@ angular.module("request", []).service('requestService', function ($http) {
    $ 目录
    --------------------------*/
   /*
+   登录
    通用
    overrun
    overrun-leader
    overrun-admin
    */
 
+  /*--------------------------
+   $ 登录
+   --------------------------*/
+  // 未用，因为保持 index.html 的简短
+  this.isSignIn = function () {
+    return _doPostRequest('/api/logins/isLogin.do');
+  }
 
   /*--------------------------
    $ 通用
@@ -54,6 +62,7 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/commons/generatorDataid.do');
     }
   }
+
 
   // 文件（附件）接口
   this.deleteFile = function (id) {
