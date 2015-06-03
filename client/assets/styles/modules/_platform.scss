@@ -13,12 +13,19 @@
   $ 目录
 --------------------------*/
 /*
+  私有变量
   platform-logo
   platform-title
   platform-dock
   platform-profile
   platform-navbar
 */
+
+/*--------------------------
+  $ 私有变量
+--------------------------*/
+$platform-profile-width: 120px;
+
 
 
 /*--------------------------
@@ -68,60 +75,98 @@
       text-align: center;
       border-right: 1px solid rgba(0, 0, 0, 0.05);
       border-left: 1px solid rgba(255, 255, 255, 0.05);
-      transition: all .3s ;
-      &:hover
-      ,&:focus {
+      transition: all .3s;
+      &:hover, &:focus {
         color: #FFF;
         //background-color: #25313e;
       }
       &:first-child {
         border-left: 0;
       }
-      &.narrow{
+      &.narrow {
         min-width: 60px;
       }
     }
   }
 }
 
-
 /*--------------------------
   $ platform-profile
 --------------------------*/
-.platform-profile{
+.platform-profile {
   position: absolute;
   right: 150px;
-  z-index: 10; // 让 dropdown 显示
+  z-index: 10; // 让 dropdown 能溢出显示
   > a {
-    // 模仿 dock
+    // 参考了 dock
     display: block;
-    min-width: 65px;
+    position: relative;
+    width: $platform-profile-width;
     // 单行垂直居中
     height: $platform-header-height;
     line-height: $platform-header-height;
-    padding-left: 10px;
-    padding-right: 10px;
+    text-indent: 45px; // 对子元素的文本，比 text-align 灵活
     color: #9db1c5;
     font-size: $relative-font-size * 1.4;
-    text-align: center;
-    transition: all .2s ;
-    &:hover
-    ,&:focus {
-      color: #FFF;
+    transition: all .2s;
+
+    > .name {
+    }
+    > .avatar {
+      position: absolute;
+      top: 14px;
+      left: 10px;
+      width: 25px;
+      height: 25px;
     }
   }
-  &:hover {
-    background-color: #25313e;
+  &:hover, &:focus {
+    color: #FFF;
+    background-color: $platform-background-hover-color;
   }
-  &:hover > .platform-profile--dropdown{
+  &:hover > .platform-profile--dropdown {
     display: block;
   }
 }
 
-.platform-profile--dropdown{
+.platform-profile--dropdown {
   display: none;
-  top: 46px;
-  background-color: #25313e;
+  position: absolute; // 用定位脱离父模块
+  top: $platform-header-height;
+  > li {
+    > a {
+      display: block;
+      width: $platform-profile-width;
+      height: 40px;
+      line-height: 40px;
+      // 底色给 link 控制
+      background-color: $platform-background-hover-color;
+      color: #fff;
+      text-decoration: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: 0 1px 1px rgba(0,0,0,.4);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      cursor: pointer;
+      text-shadow: 0 1px 1px rgba(0, 0, 0, .12);
+      font-size: $relative-font-size * 1.4;
+      > i {
+        width: 20px;
+        height: 20px;
+        margin: 0 11px 0 15px;
+        //vertical-align: -7px;
+      }
+      &:hover{
+        background-color: $platform-background-color;
+      }
+    } // end a
+    &:last-child > a {
+      // 底边由最后的 li 的 link 控制
+      border-bottom-right-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  } // end li
 }
 
 /*------------------------*\
@@ -164,19 +209,20 @@
       &.active {
         border-left: 1px solid $direction-color;
       }
-      & >.icon {
+      & > .icon {
         // iconfont 的使用方法
         @extend .iconfont;
         display: block;
         margin: 6px 0;
         font-size: $relative-font-size * 2.6;
       }
-      & >.text {
+      & > .text {
         display: block;
         font-size: $relative-font-size * 1.4;
       }
     }
   }
 }
+
 // end platform-navbar
 
