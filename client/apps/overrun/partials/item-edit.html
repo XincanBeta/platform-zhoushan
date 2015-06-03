@@ -24,8 +24,8 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">单号</label>
-              <input type="text" class="form-control" name="cj_dh" ng-model="item.cj_dh" validator="required"
-                     autofocus="autofocus"/>
+              <input type="text" class="form-control" name="cj_dh" ng-model="item.cj_dh" maxlength="20"
+                     validator="required" autofocus="autofocus"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">时间</label>
@@ -101,13 +101,13 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ zz_label }}</label>
-              <input type="text" class="form-control" name="cj_zz" ng-model="item.cj_zz"
+              <input type="text" class="form-control" name="cj_zz" ng-model="item.cj_zz" maxlength="6"
                      ng-keyup="calcChecklistOverValue(); precisionLimit($event, 'cj_zz')"
                      validator="required, isNumber"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ cz_label }}</label>
-              <input type="text" class=" form-control" name="cj_cz" ng-model="item.cj_cz"
+              <input type="text" class=" form-control" name="cj_cz" ng-model="item.cj_cz" maxlength="6"
                      ng-keyup="precisionLimit($event, 'cj_cz')"
                      validator="required, isNumber"/>
             </div>
@@ -115,15 +115,18 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">货物名称</label>
-              <input type="text" class="form-control" name="hw_mc" ng-model="item.hw_mc" validator="required"/>
+              <input type="text" class="form-control" name="hw_mc" ng-model="item.hw_mc" maxlength="20"
+                     validator="required"/>
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货起点</label>
-              <input type="text" class="form-control" name="hw_qd" ng-model="item.hw_qd" validator="required"/>
+              <input type="text" class="form-control" name="hw_qd" ng-model="item.hw_qd" maxlength="100"
+                     validator="required"/>
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货目的地</label>
-              <input type="text" class="form-control" name="hw_md" ng-model="item.hw_md" validator="required"/>
+              <input type="text" class="form-control" name="hw_md" ng-model="item.hw_md" maxlength="100"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -132,10 +135,7 @@
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
                    ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
                    ngf-accept="'image/*'"></div>
-
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in sceneImages">
-
-
                 <div class="compact" ng-if="image.fileid">
                   <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="现场照片"/>
                   <i class="delete" ng-click="deleteImage(sceneImages, image)"></i>
@@ -184,36 +184,40 @@
               <!--<input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>-->
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">核定载质量</label>
+              <label class="entity-label">核定载质量（吨）</label>
               <input type="text" class="form-control" name="cl_hdzzl" ng-model="item.cl_hdzzl"
-                     ng-keyup="precisionLimit($event, 'cl_hdzzl', 3)"
+                     ng-keyup="precisionLimit($event, 'cl_hdzzl', 3)" maxlength="6"
                      validator="required"/>
             </div>
             <div class="col-sm-4">
-              <label class="entity-label">整备质量</label>
+              <label class="entity-label">整备质量（吨）</label>
               <input type="text" class="form-control" name="cl_zbzl" ng-model="item.cl_zbzl"
-                     ng-keyup="precisionLimit($event, 'cl_zbzl', 3)"
+                     ng-keyup="precisionLimit($event, 'cl_zbzl', 3)" maxlength="6"
                      validator="required"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-8">
               <label class="entity-label">车籍地</label>
-              <input type="text" class="form-control" name="cl_cjd" ng-model="item.cl_cjd" validator="required"/>
+              <input type="text" class="form-control" name="cl_cjd" ng-model="item.cl_cjd" maxlength="100"
+                     validator="required"/>
             </div>
             <div class="col-sm-8">
               <label class="entity-label">车辆类型</label>
-              <input type="text" class="form-control" name="cl_lx" ng-model="item.cl_lx" validator="required"/>
+              <input type="text" class="form-control" name="cl_lx" ng-model="item.cl_lx" maxlength="20"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车辆所有人</label>
-              <input type="text" class="form-control" name="cl_syr" ng-model="item.cl_syr" validator="required"/>
+              <input type="text" class="form-control" name="cl_syr" ng-model="item.cl_syr" maxlength="10"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">所有人电话</label>
-              <input type="text" class="form-control" name="cl_dh" ng-model="item.cl_dh" validator="required"/>
+              <input type="text" class="form-control" name="cl_dh" ng-model="item.cl_dh" maxlength="20"
+                     validator="required"/>
             </div>
             <div class="col-sm-8">
               <label class="entity-label">（营运证）</label>
@@ -223,7 +227,8 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">所有人住址</label>
-              <input type="text" class="form-control" name="cl_zz" ng-model="item.cl_zz" validator="required"/>
+              <input type="text" class="form-control" name="cl_zz" ng-model="item.cl_zz" maxlength="100"
+                     validator="required"/>
             </div>
           </div>
         </div>
@@ -253,7 +258,8 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">姓名</label>
-              <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm" validator="required"/>
+              <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm" maxlength="10"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">性别</label>
@@ -281,11 +287,13 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">联系电话</label>
-              <input type="text" class="form-control" name="jsy_dh" ng-model="item.jsy_dh" validator="required"/>
+              <input type="text" class="form-control" name="jsy_dh" ng-model="item.jsy_dh" maxlength="20"
+                     validator="required"/>
             </div>
             <div class="col-sm-12">
               <label class="entity-label">住址</label>
-              <input type="text" class="form-control" name="jsy_zz" ng-model="item.jsy_zz" validator="required"/>
+              <input type="text" class="form-control" name="jsy_zz" ng-model="item.jsy_zz" maxlength="100"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -327,31 +335,37 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label ">罚款票据号</label>
-              <input type="text" class="form-control" name="aj_pjh" ng-model="item.aj_pjh" validator="required"/>
+              <input type="text" class="form-control" name="aj_pjh" ng-model="item.aj_pjh" maxlength="50"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">停车地点</label>
-              <input type="text" class="form-control" name="aj_tcdd" ng-model="item.aj_tcdd" validator="required"/>
+              <input type="text" class="form-control" name="aj_tcdd" ng-model="item.aj_tcdd" maxlength="50"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">询问人姓名</label>
-              <input type="text" class="form-control" name="aj_zfx" ng-model="item.aj_zfx" validator="required"/>
+              <input type="text" class="form-control" name="aj_zfx" ng-model="item.aj_zfx" maxlength="10"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">询问人证号</label>
-              <input type="text" class="form-control" name="aj_zfxz" ng-model="item.aj_zfxz" validator="required"/>
+              <input type="text" class="form-control" name="aj_zfxz" ng-model="item.aj_zfxz" maxlength="20"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人姓名</label>
-              <input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" validator="required"/>
+              <input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人证号</label>
-              <input type="text" class="form-control" name="aj_zfjz" ng-model="item.aj_zfjz" validator="required"/>
+              <input type="text" class="form-control" name="aj_zfjz" ng-model="item.aj_zfjz" maxlength="20"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -368,7 +382,8 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">案发地点</label>
-              <input type="text" class="form-control" name="aj_afdd" ng-model="item.aj_afdd" validator="required"/>
+              <input type="text" class="form-control" name="aj_afdd" ng-model="item.aj_afdd" maxlength="50"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -402,7 +417,8 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">询问笔录地点</label>
-              <input type="text" class="form-control" name="aj_xwbldd" ng-model="item.aj_xwbldd" validator="required"/>
+              <input type="text" class="form-control" name="aj_xwbldd" ng-model="item.aj_xwbldd" maxlength="50"
+                     validator="required"/>
             </div>
           </div>
           <div class="form-group">
@@ -433,7 +449,8 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">单号</label>
-              <input type="text" class="form-control" name="fj_dh" ng-model="item.fj_dh" validator="required"/>
+              <input type="text" class="form-control" name="fj_dh" ng-model="item.fj_dh" maxlength="20"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">时间</label>
@@ -461,10 +478,8 @@
               <label class="entity-label">{{ zz_label }}</label>
               <!-- ngIf 有自己的作用域，要么对象访问，要么通过 $parent -->
               <input type="text" class="form-control" name="fj_zz" ng-model="$parent.item.fj_zz"
-                     validator="required, isNumber"
+                     validator="required, isNumber" maxlength="6"
                      ng-keyup="calcReChecklistOverValue(); precisionLimit($event, 'fj_zz')"/>
-
-
             </div>
             <div class="col-sm-4">
               <label class="entity-label">{{ cz_label }}</label>
