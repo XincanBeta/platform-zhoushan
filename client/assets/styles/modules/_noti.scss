@@ -1,11 +1,21 @@
-.noti-count{
+/*
+  注：noti 为消息通知，用于平台页眉
+
+  noti-count
+  noti-popup
+*/
+
+/*--------------------------
+  $ noti-count
+--------------------------*/
+.noti-count {
   position: absolute;
   top: 10px;
   right: 10px;
   // 模仿知乎
   background: #BF1031;
   border: 1px solid #B11331;
-  box-shadow: 0 1px 2px rgba(0,0,0,.1),inset 0 1px 0 rgba(255,255,255,.15);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .1), inset 0 1px 0 rgba(255, 255, 255, .15);
   color: #fff;
   display: inline-block;
   font-size: 11px;
@@ -20,21 +30,101 @@
   text-decoration: none;
 }
 
-.noti-popup{
+/*--------------------------
+  $ noti-popup
+--------------------------*/
+/*
+  -- 表示模块，并且作为该模块的前缀
+  内部的类名则通过 - 来表示层级关系
+*/
+
+.noti-popup {
   display: none;
   position: absolute;
+  left: 22px;
+  top: $platform-header-height + 1px;
   z-index: 9;
-  background: #fff;
-  outline: 0;
   width: 315px;
-  left: 52px;
-  top: 48px;
+  // height: 370px
   border: 1px solid #ddd;
   border-radius: 5px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, .1);
+  background: #fff;
+  outline: 0;
+  // 箭头
+  &::after {
+    /* 对伪元素来说，content 是必须*/
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 141px;
+    width: 0;
+    height: 0;
+    font-size: 0;
+    border: solid 12px;
+    border-color: transparent transparent #fff transparent;
+  }
 }
 
+// 如果类名之间没有关联性，则显示地用子选择指定
+.noti-popup--iframe {
+  height: 300px;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid #ddd;
+  font-size: 13px;
+  > .noti-popup--scroller {
+    position: relative;
+    overflow: hidden;
+    height: 100%;
+    > .noti-popup--scroller-inner {
+      height: 100%;
+      width: 150%;
+      overflow: auto;
+    }
+  }
+}
 
+.noti-popup--body{
+  position: static;
+  display: block;
+  visibility: visible;
+  overflow: hidden;
+  width: 315px;
+  min-height: 100%;
+}
 
+.noti-popup--body-item {
+  padding: 7px 13px 7px 11px;
+  position: relative;
+  color: #555;
+  border-bottom: 1px solid #eee;
+  > a {
+    color: #259;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  &.unread {
+    background: #eff6fa;
+    border-bottom: 1px solid #d1e0e8;
+  }
+}
+
+.noti-popup--footer {
+  vertical-align: middle;
+  > a {
+    line-height: 1.7;
+    font-size: 13px;
+    color: #999;
+    display: inline-block;
+    padding: 6px 12px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
 
 
 

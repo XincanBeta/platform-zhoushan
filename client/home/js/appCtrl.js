@@ -147,7 +147,7 @@ angular.module('app')
     /*--------------------------
      $ 消息提醒
      --------------------------*/
-    $scope.notiCount = 9;
+    $scope.notiCount = 2;
     $scope.toggleNotiPopup = function () {
       if ($scope.notiPopupShow == 'show') {
         $scope.notiPopupShow = ''
