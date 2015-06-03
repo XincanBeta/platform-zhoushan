@@ -56,6 +56,7 @@ $platform-profile-width: 120px;
   position: absolute;
   right: 300px;
   height: $platform-header-height;
+  z-index: 10; // 让 popup 能溢出显示
   > ul {
     position: relative;
     height: 100%;

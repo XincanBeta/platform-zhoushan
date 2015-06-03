@@ -7,11 +7,11 @@ angular.module('app')
      快捷方式
      退出
      消息提醒
-    */
+     */
 
     /*--------------------------
-      $ 保存用户信息
-    --------------------------*/
+     $ 保存用户信息
+     --------------------------*/
     var parentScope = parent.angular.element('#client-index').scope();
     $scope.user = parentScope.getUser();
     userService.setUser($scope.user);
@@ -36,8 +36,8 @@ angular.module('app')
 
 
     /*--------------------------
-      $ 延迟加载
-    --------------------------*/
+     $ 延迟加载
+     --------------------------*/
     /**
      * home 延迟加载的部分
      *
@@ -124,8 +124,8 @@ angular.module('app')
     //$ocLazyLoad.load(lazyloadForBuild);
 
     /*--------------------------
-      $ 快捷方式
-    --------------------------*/
+     $ 快捷方式
+     --------------------------*/
     $scope.toggleAppsSwitcher = function () {
       $scope.isShowAppSwitcher = !$scope.isShowAppSwitcher;
       $scope.setAppSwitcherBlock()
@@ -137,22 +137,22 @@ angular.module('app')
     }
 
     /*--------------------------
-      $ 退出系统
-    --------------------------*/
+     $ 退出系统
+     --------------------------*/
     $scope.exit = function () {
       parentScope.signOut();
     }
 
 
     /*--------------------------
-      $ 消息提醒
-    --------------------------*/
-    $scope.notiNum = 9;
-    $scope.notiTest = function(){
-      console.log('noti test');
-
+     $ 消息提醒
+     --------------------------*/
+    $scope.notiCount = 9;
+    $scope.toggleNotiPopup = function () {
+      if ($scope.notiPopupShow == 'show') {
+        $scope.notiPopupShow = ''
+      } else {
+        $scope.notiPopupShow = 'show'
+      }
     }
-
-
-
   });

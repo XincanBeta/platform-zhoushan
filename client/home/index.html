@@ -38,14 +38,14 @@
         </div>
       </li>
       <li><a href="javascript:void(0)" target="_blank" title="帮助">帮助</a></li>
-      <li><a href="javascript:void(0);">
+      <li><a href="javascript:void(0);" ng-click="toggleNotiPopup()">
         消息
         <!-- 消息样式等待数据加载 -->
-        <span ng-class="{'noti-number': notiNum}" ng-bind="notiNum" ng-click="notiTest()"></span>
+        <span ng-class="{'noti-count': notiCount}" ng-bind="notiCount" ></span>
       </a>
       </li>
     </ul>
-    <div class=""></div>
+    <div class="noti-popup" ng-class="notiPopupShow"></div>
 
 
   </div>
