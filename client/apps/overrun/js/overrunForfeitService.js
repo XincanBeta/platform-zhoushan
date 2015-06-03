@@ -307,7 +307,7 @@ angular.module('app.overrun').service('forfeit', function () {
         return result;
       }
       if (i == (overValueRules.length - 1) && value > ruleValueRange[0]) {
-        var forfeit = 1500 + Math.floor([(overValue - ruleValueRange[0]) / maxLegalValue] / 0.05) * 1000;
+        var forfeit = 1500 + Math.floor([(value - ruleValueRange[0]) / maxLegalValue] / 0.05) * 1000;
         forfeit = forfeit > 30000 ? 30000 : forfeit;
         result.forfeit = forfeit;
         result.forfeitRange = [1500, 30000];
