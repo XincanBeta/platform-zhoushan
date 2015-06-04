@@ -170,5 +170,12 @@ angular.module('app')
       }
     })
 
-
+    $document.bind('mousedown.switcher', function (event) {
+      var $target = $(event.target);
+      if (!($target.parents(".app-switcher").length > 0
+        || $target.parents("#platform-top-nav-switcher").length > 0)) {
+        $scope.isShowAppSwitcher = false;
+        $scope.$apply()
+      }
+    })
   });
