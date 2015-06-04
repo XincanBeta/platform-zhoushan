@@ -109,7 +109,7 @@
               <label class="entity-label">{{ cz_label }}</label>
               <input type="text" class=" form-control" name="cj_cz" ng-model="item.cj_cz" maxlength="6"
                      ng-keyup="precisionLimit($event, 'cj_cz')"
-                     validator="required, isNumber"/>
+                     validator="required, isNumber" readonly/>
             </div>
           </div>
           <div class="form-group">

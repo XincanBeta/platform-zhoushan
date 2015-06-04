@@ -10,7 +10,7 @@ angular.module('app.login', [
     }
 
 
-    $scope.wkno = 'ali';
+    $scope.wkno = 'zhanglei';
     $scope.passwd = '123';
 
     $scope.login = function () {

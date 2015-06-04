@@ -10,7 +10,6 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
      全屏案卷
      页内导航
      详细信息
-     加载pdfUrl
      */
 
     /*--------------------------
