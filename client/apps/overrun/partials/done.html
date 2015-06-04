@@ -1,8 +1,18 @@
+<style>
+  .shame-btn-word {
+    position: absolute; bottom: -4px;
+  }
+</style>
 <header class="l-app-header">
   <div class="app-toolbar">
-    <div class="btn-group">
-      <button class="btn btn-sm btn-default fa-download" title="导出"></button>
-    </div>
+    <button class="btn btn-sm btn-default fa-download" style="position: relative"
+            ng-disabled="!selectIsActived()" title="导出 pdf">
+      <span class="shame-btn-word" style="right: 7px;">pdf</span></button>
+
+    <button class="btn btn-sm btn-default fa-download" style="position: relative"
+            ng-disabled="!selectIsActived()" title="导出 word">
+      <span class="shame-btn-word" style="right: 2px;">word</span>
+    </button>
     <div class="app-search">
       <input type="text" class="form-control" placeholder="案号、车牌"/>
       <span class="input-group-btn">
@@ -18,7 +28,7 @@
       <tr>
         <th class="with-checkbox">
           <!--用于导出-->
-          <input type="checkbox">
+          <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
         </th>
         <th>序号</th>
         <th>案号</th>
@@ -31,7 +41,7 @@
       <tbody>
       <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
         <td>
-          <input type="checkbox">
+          <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
         </td>
         <td>{{ $index+1 }}</td>
         <td>{{ item["aj_bh"] }}</td>

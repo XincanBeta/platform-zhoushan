@@ -1,5 +1,10 @@
 angular.module('app.overrun').controller('OverrunDoneCtrl',
   function ($scope, $http, $state, $rootScope, sliderService, requestService) {
+    /*
+     分页
+     侧边栏
+     checkbox 处理
+     */
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
@@ -45,6 +50,30 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
       $scope.selected = "";
       $scope.$apply();
     })
+
+
+    /*--------------------------
+     $ checkbox 处理
+     --------------------------*/
+    $scope.selectAllItem = function () {
+      // 通过 ng-checked="item.selected" 来控制列表项的 checkbox 状态
+      // ng-checked 只能反映 checkbox 的状态
+      // ng-model 能改变状态
+      $scope._($scope.itemList).each(function (item) {
+        item.selected = $scope.allItemIsChecked;
+      });
+    }
+
+    $scope.selectItem = function ($event) {
+      $event.stopPropagation();
+    }
+
+    $scope.selectIsActived = function () {
+      var found = $scope._($scope.itemList).find(function (item) {
+        return item.selected === true
+      });
+      return found;
+    }
 
 
   });

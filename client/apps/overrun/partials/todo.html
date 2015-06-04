@@ -38,7 +38,7 @@
         <td>{{ item.cj_zs }}</td>
         <td>{{ item.cj_zz_lx }}</td>
         <td>{{ item.cj_sj }}</td>
-        <td><i class="iconfont icon-jinzhi" title="领导审批中"></i></td>
+        <td><i ng-if="item.ld_spzt" class="iconfont icon-jinzhi" title="领导审批中"></i></td>
       </tr>
       </tbody>
     </table>
