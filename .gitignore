@@ -11,5 +11,5 @@ node_modules
 tmp
 bower_components
 client/assets/lib/**/*
-
+npm-debug.log
 

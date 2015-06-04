@@ -2,11 +2,15 @@
   "name": "platform-zhoushan",
   "version": "0.1.7",
   "description": "舟山公路基础业务平台",
-  "author": ["Chao Li"],
+  "author": [
+    "Chao Li"
+  ],
   "devDependencies": {
+    "bower": "^1.4.1",
     "glob": "^5.0.6",
     "grunt": "^0.4.5",
     "grunt-autoprefixer": "^2.0.0",
+    "grunt-cli": "^0.1.13",
     "grunt-concurrent": "^1.0.0",
     "grunt-connect-proxy": "^0.2.0",
     "grunt-contrib-clean": "^0.6.0",
