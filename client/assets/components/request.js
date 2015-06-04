@@ -42,6 +42,7 @@ angular.module("request", []).service('requestService', function ($http) {
    overrun
    overrun-leader
    overrun-admin
+   单位接口
    */
 
   /*--------------------------
@@ -168,6 +169,9 @@ angular.module("request", []).service('requestService', function ($http) {
   /*--------------------------
    $ overrun-admin
    --------------------------*/
+
+
+
   this.overrunAdminSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun-admin.menu.json');
   }
@@ -177,6 +181,9 @@ angular.module("request", []).service('requestService', function ($http) {
     } else {
       return _doPostRequest('/api/dws/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
     }
+  }
+  this.overrunAdminDeptQuery = function () {
+    return _doPostRequest('/api/dws/query.do');
   }
   this.overrunAdminDeptItemSave = function (data) {
     if (env == 'local') {
@@ -224,6 +231,8 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
     }
   }
+
+
 
   // 以下待整理
   this.userDetail = function (userno) {
