@@ -50,7 +50,10 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       $ 初始化
     --------------------------*/
     $scope.item = item;
-    $scope.dwmc = item.dw.dwmc;
+    if (!itemIsNew) {
+      $scope.dwmc = item.dw.dwmc;
+    }
+
 
     // 通过 item.apps 更新 $scope.appList
     for(var i=0; i<$scope.appList.length; i++){
