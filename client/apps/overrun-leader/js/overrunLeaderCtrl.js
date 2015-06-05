@@ -6,7 +6,9 @@ angular.module('app.overrun-leader', [
   'ngAnimate',
   'angular-loading-bar',
   'cgBusy',
-  'anchorSmoothScroll'
+  'anchorSmoothScroll',
+  'ui.bootstrap.datetimepicker'
+
 ])
   .controller('OverrunLeaderCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     // todo: 把 apps 应用目录提取成一个 env 服务，因为依赖性很强，让重构变得简单

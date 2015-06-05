@@ -373,7 +373,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     });
 
     $scope.$watch('recheckFiles', function () {
-      $scope.upload($scope.billFiles, 'recheckImages');
+      $scope.upload($scope.recheckFiles, 'recheckImages');
     });
 
     /* 
@@ -381,6 +381,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      */
     $scope.upload = function (files, datatype) {
       if (files && files.length) {
+
 
         if (_isFilesLengthLimited(files, datatype)) {
           ngToast.create({
