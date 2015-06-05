@@ -54,7 +54,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
-        size: "md",
+        size: "lg",
         templateUrl: path + 'item-edit.html',
         controller: 'OverrunLeaderItemEditCtrl',
         resolve: {

@@ -9,6 +9,41 @@
         <div class="entity-block--body">
           <div class="form-group">
             <div class="col-sm-4">
+              <label class="entity-label">主持人</label>
+              <input type="text" class="form-control" name="zcr" ng-model="item.zcr" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">记录人</label>
+              <input type="text" class="form-control" name="jlr" ng-model="item.jlr" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">讨论时间</label>
+              <input type="text" class="form-control" ng-model="item.tlsj" readonly
+                     today-text="今天" now-text="现在" date-text="日期"
+                     time-text="时刻" clear-text="清空" close-text="关闭"
+                     datetime-picker="yyyy-MM-dd HH:mm"
+                     datepicker-options="dateOptions"
+                     timepicker-options="timeOptions"
+                     is-open="openDatepicker.tlsj"
+                     ng-click="openCalendar($event, 'tlsj')"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">讨论地点</label>
+              <input type="text" class="form-control" name="tldd" ng-model="item.tldd" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label">参加人员</label>
+              <input type="text" class="form-control" name="cjry" ng-model="item.cjry" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4">
               <label class="entity-label">罚款金额</label>
               <input type="text" class="form-control" name="fkje" ng-model="item.fkje" validator="required"
                      autofocus="autofocus"/>
