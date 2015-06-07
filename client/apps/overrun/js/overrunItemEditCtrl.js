@@ -471,8 +471,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-      $ 历史功能
-    --------------------------*/
+     $ 历史功能
+     --------------------------*/
 
 
     /*--------------------------
@@ -596,46 +596,35 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-      $ 集体讨论
-    --------------------------*/
-    $scope.discuss = function(){
+     $ 集体讨论
+     --------------------------*/
+    $scope.discuss = function () {
       var modalInstance
-      var item = {};
-      requestService.getNewId().success(function (res) {
-        if (!res.success) {
-          throw 'new id get failure !'
-        }
-        item.aj_id = res.data;
-        modalInstance = $modal.open({
-          backdrop: "static",
-          keyboard: false,
-          size: "sm",
-          templateUrl: path + 'item-discuss.html',
-          controller: 'OverrunItemDiscussCtrl',
-          resolve: {
-            item: function () {
-              return item;
-            }
+      modalInstance = $modal.open({
+        backdrop: "static",
+        keyboard: false,
+        size: "sm",
+        templateUrl: path + 'item-discuss.html',
+        controller: 'OverrunItemDiscussCtrl',
+        resolve: {
+          item: function () {
+            return $scope.item;
           }
-        })
-
-        modalInstance.opened.then(function () {
-          sliderService.stopAutoHide();
-        })
-
-        modalInstance.result.then(function () {
-          // 更新状态
-          sliderService.startAutoHide();
-        }, function () {
-          sliderService.startAutoHide();
-        });
+        }
       })
+
+      modalInstance.opened.then(function () {
+        sliderService.stopAutoHide();
+      })
+
+      modalInstance.result.then(function () {
+        // 更新状态
+        $rootScope.$emit("slider.hide")
+        $modalInstance.close();
+        $rootScope.$emit("paging.act")
+        sliderService.startAutoHide();
+      }, function () {
+        sliderService.startAutoHide();
+      });
     }
-
-
-
-
-
-
-
   })

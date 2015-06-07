@@ -41,6 +41,7 @@ angular.module("request", []).service('requestService', function ($http) {
    消息
    通用
    overrun
+   集体讨论
    overrun-leader
    overrun-admin
    单位接口
@@ -163,6 +164,16 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDoneDoc = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
   }
+
+
+  /*--------------------------
+    $ 集体讨论
+  --------------------------*/
+  this.overrunItemsDiscussInsert = function (data) {
+    return _doPostRequest('/api/jttls/' + data.aj_id + '/insert.do', {jt_bh: data.jt_bh});
+  }
+
+
   /*--------------------------
    $ overrun-leader
    --------------------------*/
