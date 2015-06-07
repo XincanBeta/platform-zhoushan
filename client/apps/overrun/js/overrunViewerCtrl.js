@@ -5,7 +5,7 @@ angular.module('app.overrun').controller('OverrunViewerCtrl',
     
     $scope.getPdfurl = function () {
       // pdfurl = fileUpLoad/xxx/xxx/xxx.pdf
-      return location.protocol + '//' + location.host + '/' + $scope.item.currentPath;
+      return location.protocol + '//' + location.host + '/' + $scope.item.currentpath_pdf;
     }
 
 
