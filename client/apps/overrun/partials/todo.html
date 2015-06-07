@@ -9,27 +9,23 @@
   <section class="l-plate">
     <table class="app-table entity-view">
       <thead>
-      <!--
-      style="width: 60px;"
-      style="width: 100px;"
-      style="width: 150px;"
-      style="width: 150px;"
-      style="width: 150px;"
-      -->
       <tr>
-        <th  class="with-checkbox">
+        <th class="with-checkbox">
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
         </th>
-        <th >序号</th>
-        <th >车牌</th>
-        <th >轴数</th>
-        <th >货车信息</th>
+        <th>序号</th>
+        <th>车牌</th>
+        <th>轴数</th>
+        <th>货车信息</th>
         <th style="width: 180px;">检测时间</th>
-        <th>状态</th><!-- 最后一个字段宽度要自适应 -->
+        <th>状态</th>
+        <!-- 最后一个字段宽度要自适应 -->
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
+      <!-- 用对象方式添加多个类 -->
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
+          ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}">
         <td>
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
         </td>

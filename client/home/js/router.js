@@ -55,7 +55,7 @@ angular.module('app')
         }
       })
       .state('myapp.overrun.todo', {
-        url: '/todo',
+        url: '/todo?notid',
         templateUrl: app_base + 'overrun/partials/todo.html',
         controller: "OverrunTodoCtrl",
         resolve: {
@@ -105,7 +105,7 @@ angular.module('app')
         }
       })
       .state('myapp.overrun-leader.todo', {
-        url: '/todo',
+        url: '/todo?notid',
         templateUrl: app_base + 'overrun-leader/partials/todo.html',
         controller: "OverrunLeaderTodoCtrl",
         resolve: {

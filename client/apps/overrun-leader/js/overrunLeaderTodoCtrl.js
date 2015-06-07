@@ -30,9 +30,9 @@ angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
       $scope.selected = item
     }
 
-    $scope.isSelected = function (item) {
+    /*$scope.isSelected = function (item) {
       return $scope.selected == item ? "active" : "";
-    }
+    }*/
 
     /* 
      1）传入在 requestService 中的方法定义，好处是切换 env 环境能灵活适应

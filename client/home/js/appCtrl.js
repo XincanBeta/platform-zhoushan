@@ -175,7 +175,7 @@ angular.module('app')
     $scope.goNoti = function ($event, noti) {
       // 如果为当前路由，则不再跳转
       if ($state.current.name != noti.route) {
-        $state.go(noti.route)
+        $state.go(noti.route, {notid: noti.notid})
       }
       var parent = $($event.target).parent();
       if (parent.hasClass("unread")) {

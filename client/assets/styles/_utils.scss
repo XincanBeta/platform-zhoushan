@@ -1,7 +1,11 @@
 @import "utils/functions/z";
+
+// mixins
 @import "utils/mixins/position/vertical-align";
 @import "utils/mixins/position/origin-center";
 @import "utils/mixins/btn";
+@import "utils/mixins/animation/gradient-flash";
+
 @import "utils/iconfont";
 
 

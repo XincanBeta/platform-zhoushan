@@ -1,12 +1,15 @@
 angular.module('app.overrun').controller('OverrunTodoCtrl',
-  function ($scope, $state, $rootScope, sliderService, requestService, $modal) {
+  function ($scope, $state, $rootScope, sliderService, requestService, $modal, $stateParams) {
     /* 
-     分页与刷新
+     分页与刷新(消息高亮条目)
      侧边栏详情
      新增
      删除
+
      */
 
+
+    $scope.notid = $stateParams.notid;
     /*--------------------------
      $ 分页与刷新
      --------------------------*/
@@ -21,6 +24,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         if (res.success) {
           $scope.itemList = res.data.list;
           $scope.total = res.data.total;
+          for(var i=0; i<$scope.itemList.length; i++){
+
+          }
         }
       })
     }
@@ -37,9 +43,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       $scope.selected = item
     }
 
-    $scope.isSelected = function (item) {
-      return $scope.selected == item ? "active" : "";
-    }
+
 
     /* 
      1）传入在 requestService 中的方法定义，好处是切换 env 环境能灵活适应
@@ -164,13 +168,6 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         sliderService.startAutoHide();
       });
     }// delete
-
-    /*/!*--------------------------
-     $ 双击修改
-     --------------------------*!/
-    $scope.test = function(){
-      console.log('test');
-    }*/
 
 
 

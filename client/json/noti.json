@@ -2,28 +2,28 @@
   "success": true,
   "data": [
     {
-      "itemid": "1332",
+      "notid": "1332",
       "unread": true,
       "app": "overrun",
       "route": "myapp.overrun.todo",
       "content": "领导黄挺确定了 车牌为 浙L00001 案件的罚金修改"
     },
     {
-      "itemid": "1310",
+      "notid": "1310",
       "unread": true,
       "app": "overrun",
       "route": "myapp.overrun.todo",
       "content": "领导黄挺确定了车牌为 浙L22FFD 案件的罚金修改"
     },
     {
-      "itemid": "",
+      "notid": "",
       "unread": false,
       "app": "overrun",
       "route": "myapp.overrun.todo",
       "content": "领导黄挺确定了 车牌为 浙B77777 案件 案件的罚金修改"
     },
     {
-      "itemid": "",
+      "notid": "",
       "unread": false,
       "app": "overrun",
       "route": "myapp.overrun.todo",

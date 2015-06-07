@@ -20,7 +20,9 @@
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
+      <!--ng-class="isSelected(item)"-->
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
+          ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}" >
         <td>
           <input type="checkbox">
         </td>

@@ -1,0 +1,14 @@
+.gradient-flash {
+  -webkit-animation: gradient-flash;
+  -webkit-animation-duration: 1s;
+}
+
+@-webkit-keyframes gradient-flash {
+  from {
+    background-color: rgba(0,0,255,0.2);
+  }
+  to {
+    background-color: transparent;
+  }
+}
+
