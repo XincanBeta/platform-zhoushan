@@ -1,5 +1,13 @@
 angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
   function ($scope, $state, $rootScope, sliderService, requestService, $modal, $timeout) {
+    /*
+      分页
+    */
+
+
+    /*--------------------------
+      $ 分页
+    --------------------------*/
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
@@ -52,9 +60,8 @@ angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
       $scope.$apply();
     })
 
-
     // 新增(包含info 和 证件信息)
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/overrun-leader/partials/';
 
 
 
