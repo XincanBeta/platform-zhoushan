@@ -176,6 +176,8 @@ angular.module('app')
       // 如果为当前路由，则不再跳转
       if ($state.current.name != noti.route) {
         $state.go(noti.route, {notid: noti.notid})
+      }else{
+        $state.go(noti.route, {notid: noti.notid}, {reload: true})
       }
       var parent = $($event.target).parent();
       if (parent.hasClass("unread")) {
