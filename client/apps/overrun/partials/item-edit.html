@@ -328,7 +328,8 @@
                 <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk" readonly
                        validator="required, isNumber" message-id="forfeit-msg"/>
                 <div class="input-group-btn">
-                  <button class="btn btn-default fa-paper-plane-o" title="请领导审批" type="button" ></button>
+                  <button class="btn btn-default fa-paper-plane-o" title="发起集体讨论"
+                          ng-click="discuss()" type="button" ></button>
                 </div>
               </div>
               <span id="forfeit-msg"></span>

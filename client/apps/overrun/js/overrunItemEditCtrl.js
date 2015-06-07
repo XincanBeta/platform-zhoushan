@@ -21,6 +21,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      验证与格式化
      保存
      结案
+     集体讨论
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -28,6 +29,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 初始化
      --------------------------*/
+    var path = '../apps/overrun/partials/';
     $scope.item = item;
     var dateFormat = 'YYYY-MM-DD HH:mm';
 
@@ -592,6 +594,48 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
+
+    /*--------------------------
+      $ 集体讨论
+    --------------------------*/
+    $scope.discuss = function(){
+      var modalInstance
+      var item = {};
+      requestService.getNewId().success(function (res) {
+        if (!res.success) {
+          throw 'new id get failure !'
+        }
+        item.aj_id = res.data;
+        modalInstance = $modal.open({
+          backdrop: "static",
+          keyboard: false,
+          size: "sm",
+          templateUrl: path + 'item-discuss.html',
+          controller: 'OverrunItemDiscussCtrl',
+          resolve: {
+            item: function () {
+              return item;
+            }
+          }
+        })
+
+        modalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
+
+        modalInstance.result.then(function () {
+          // 更新状态
+          sliderService.startAutoHide();
+        }, function () {
+          sliderService.startAutoHide();
+        });
+      })
+    }
+
+
+
+
+
 
 
   })

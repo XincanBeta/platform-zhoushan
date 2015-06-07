@@ -69,9 +69,8 @@ angular.module('app')
               app_base + 'overrun/js/overrunForfeitService.js', // 服务
               app_base + 'overrun/js/overrunViewerFullscreenCtrl.js',
               app_base + 'overrun/js/overrunViewerCtrl.js',
-              app_base + 'overrun/js/overrunPhotoDetailCtrl.js'
-
-
+              app_base + 'overrun/js/overrunPhotoDetailCtrl.js',
+              app_base + 'overrun/js/overrunItemDiscussCtrl.js'
             ]);
           }]
         }
