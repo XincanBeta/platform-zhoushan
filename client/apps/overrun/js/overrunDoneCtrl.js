@@ -95,18 +95,6 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
           }
         })
       })
-
-
-      /*success(function(res){
-       if (res.success) {
-       var downloadUrl = res.data;
-       $scope[attr] = downloadUrl;
-       console.log($scope[attr]);
-
-       //window.location.assign(downloadUrl);
-
-       }
-       })*/
     }
 
 
