@@ -56,8 +56,8 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-    $ 消息
-  --------------------------*/
+   $ 消息
+   --------------------------*/
   this.getNotilist = function () {
     return _doGetRequest(localPath + 'noti.json');
   }
@@ -165,10 +165,14 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
   }
 
+  this.overrunItemExport = function (data) {
+    return _doPostRequest('/' + data.type + '/packZip.do', data.itemlist);
+  }
+
 
   /*--------------------------
-    $ 集体讨论
-  --------------------------*/
+   $ 集体讨论
+   --------------------------*/
   this.overrunItemsDiscussInsert = function (data) {
     return _doPostRequest('/api/jttls/' + data.aj_id + '/insert.do', {jt_bh: data.jt_bh});
   }
@@ -181,14 +185,12 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'overrun-leader.menu.json');
   }
   this.overrunLeaderTodoItems = function (data) {
-    // todo：临时
     return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
 
   /*--------------------------
    $ overrun-admin
    --------------------------*/
-
 
 
   this.overrunAdminSidebarItems = function () {
@@ -250,7 +252,6 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
     }
   }
-
 
 
   // 以下待整理

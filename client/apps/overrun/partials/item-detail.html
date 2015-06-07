@@ -16,9 +16,9 @@
 </script>
 
 <script type="text/ng-template" id="detailOperator">
-  <!--disabled="{{!item.ld_spzt}}"-->
+  <!---->
   <button type="button" class="btn btn-default" ng-if='!hideDetailOperator'
-           ng-click="edit()">修改</button>
+          ng-disabled="item.jttl.jt_zt == '在进行'"  ng-click="edit()">修改</button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">

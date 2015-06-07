@@ -4,6 +4,7 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
      分页
      侧边栏
      checkbox 处理
+     导出
      */
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
@@ -73,6 +74,23 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
         return item.selected === true
       });
       return found;
+    }
+
+    /*--------------------------
+      $ 导出
+    --------------------------*/
+    $scope.export = function(type){
+      var selectedItems = $scope._($scope.itemList).filter(function (item) {
+        return item.selected === true
+      })
+      requestService.overrunItemExport({type: type, itemlist: selectedItems}).success(function(res){
+        if (res.success) {
+
+
+
+
+        }
+      })
     }
 
 

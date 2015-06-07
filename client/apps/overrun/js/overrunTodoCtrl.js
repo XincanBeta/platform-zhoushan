@@ -24,9 +24,6 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         if (res.success) {
           $scope.itemList = res.data.list;
           $scope.total = res.data.total;
-          for(var i=0; i<$scope.itemList.length; i++){
-
-          }
         }
       })
     }
