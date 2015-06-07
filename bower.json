@@ -1,6 +1,6 @@
 {
   "name": "platform-zhoushan",
-  "version": "0.5.0",
+  "version": "1.0.0-alpha",
   "authors": [
     "wenling-lichao <wenling.lichao@gmail.com>"
   ],
@@ -40,6 +40,7 @@
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
     "csshake": "*",
     "angucomplete-alt": "~0.0.40",
-    "angular-carousel": "~0.3.10"
+    "angular-carousel": "~0.3.10",
+    "angular-downloader": "~0.1.1"
   }
 }

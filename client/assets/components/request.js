@@ -165,8 +165,8 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
   }
 
-  this.overrunItemExport = function (data) {
-    return _doPostRequest('/' + data.type + '/packZip.do', data.itemlist);
+  this.overrunDoneItemExport = function (data) {
+    return _doPostRequest('/api/cxcfs/' + data.type + '/packZip.do', data.itemlist);
   }
 
 

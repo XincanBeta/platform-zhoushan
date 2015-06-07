@@ -83,11 +83,10 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
       var selectedItems = $scope._($scope.itemList).filter(function (item) {
         return item.selected === true
       })
-      requestService.overrunItemExport({type: type, itemlist: selectedItems}).success(function(res){
+      requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).success(function(res){
         if (res.success) {
-
-
-
+          var downloadUrl = location.protocol + '//' + location.host + '/' + res.data;
+          window.location.assign(downloadUrl);
 
         }
       })
