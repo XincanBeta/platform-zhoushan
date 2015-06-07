@@ -77,19 +77,35 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
     }
 
     /*--------------------------
-      $ 导出
-    --------------------------*/
-    $scope.export = function(type){
+     $ 导出
+     --------------------------*/
+    $scope.export = function (type) {
       var selectedItems = $scope._($scope.itemList).filter(function (item) {
         return item.selected === true
       })
-      requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).success(function(res){
-        if (res.success) {
-          var downloadUrl = location.protocol + '//' + location.host + '/' + res.data;
-          window.location.assign(downloadUrl);
-
-        }
+      requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).then(function (response) {
+        var contentType = response.headers('Content-Type');
+        var url = location.protocol + '//' + location.host + '/' + response.data.data;
+        $http({
+          method: 'GET',
+          url: url,
+          headers: {
+            'Content-Type': contentType
+          }
+        })
       })
+
+
+      /*success(function(res){
+       if (res.success) {
+       var downloadUrl = res.data;
+       $scope[attr] = downloadUrl;
+       console.log($scope[attr]);
+
+       //window.location.assign(downloadUrl);
+
+       }
+       })*/
     }
 
 

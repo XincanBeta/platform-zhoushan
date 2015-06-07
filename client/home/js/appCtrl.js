@@ -84,6 +84,7 @@ angular.module('app')
       // angucomplete-alt.js 反馈提示
       '../assets/components/angucomplete-alt.min.js',
       '../assets/components/angucomplete-alt.css'
+
     ]
     /*
      串行加载解决依赖关系
