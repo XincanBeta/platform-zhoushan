@@ -11,7 +11,7 @@
   {
     "appid": "0102",
     "name": "现场超限处罚应用",
-    "subname": "领导版",
+    "subname": "集体讨论版",
     "description": "",
     "routestate": "myapp.overrun-leader",
     "imgsrc": "huo-che.png",
