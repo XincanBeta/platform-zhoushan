@@ -42,7 +42,7 @@
       <li id="platform-top-nav-noti"><a href="javascript:void(0);" ng-click="toggleNotiPopup()">
         消息
         <!-- 消息样式等待数据加载 -->
-        <span ng-class="{'noti-count': notiCount}" ng-bind="notiCount"></span>
+        <span ng-if="notiCount" ng-class="{'noti-count': notiCount}" ng-bind="notiCount"></span>
       </a>
       </li>
     </ul>
@@ -51,35 +51,8 @@
         <div class="noti-popup--scroller">
           <div class="noti-popup--scroller-inner">
             <div class="noti-popup--body">
-              <div class="noti-popup--body-item unread">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙ALLLLL 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item unread">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙L99999 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B77777 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B2hFGH 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B77777 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B23FGH 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B77777 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B23FGH 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B77777 案件</a> 的罚金修改
-              </div>
-              <div class="noti-popup--body-item">
-                领导黄挺确定了 <a href="javascript:void(0);">车牌为 浙B23FGH 案件</a> 的罚金修改
+              <div class="noti-popup--body-item " ng-class="{'unread': noti.unread}" ng-repeat="noti in notilist">
+                <a href="javascript:void(0);" ng-click="goNoti($event, noti)" ng-bind="noti.content"></a>
               </div>
             </div>
           </div>

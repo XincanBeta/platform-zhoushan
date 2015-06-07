@@ -38,6 +38,7 @@ angular.module("request", []).service('requestService', function ($http) {
    --------------------------*/
   /*
    登录
+   消息
    通用
    overrun
    overrun-leader
@@ -51,6 +52,13 @@ angular.module("request", []).service('requestService', function ($http) {
   // 未用，因为保持 index.html 的简短
   this.isSignIn = function () {
     return _doPostRequest('/api/logins/isLogin.do');
+  }
+
+  /*--------------------------
+    $ 消息
+  --------------------------*/
+  this.getNotilist = function () {
+    return _doGetRequest(localPath + 'noti.json');
   }
 
   /*--------------------------

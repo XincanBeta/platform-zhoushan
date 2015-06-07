@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunTodoCtrl',
-  function ($scope, $state, $rootScope, sliderService, requestService, $modal, $timeout) {
+  function ($scope, $state, $rootScope, sliderService, requestService, $modal) {
     /* 
      分页与刷新
      侧边栏详情
@@ -171,7 +171,6 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     $scope.test = function(){
       console.log('test');
     }*/
-
 
 
 

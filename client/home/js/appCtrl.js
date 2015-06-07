@@ -145,10 +145,25 @@ angular.module('app')
     }
 
 
+
+
     /*--------------------------
      $ 消息提醒
      --------------------------*/
-    $scope.notiCount = 2;
+    // 从消息表中读取所有消息，并动态生成链接
+
+    requestService.getNotilist().success(function(res){
+      if (res.success) {
+        $scope.notiCount = 0;
+        $scope.notilist = res.data;
+        for(var i=0; i<$scope.notilist.length; i++){
+          if ($scope.notilist[i].unread) {
+            $scope.notiCount++;
+          }
+        }
+      }
+    })
+
     $scope.toggleNotiPopup = function () {
       if ($scope.notiPopupShow == 'show') {
         $scope.notiPopupShow = ''
@@ -156,6 +171,23 @@ angular.module('app')
         $scope.notiPopupShow = 'show'
       }
     }
+
+    $scope.goNoti = function ($event, noti) {
+      // 如果为当前路由，则不再跳转
+      if ($state.current.name != noti.route) {
+        $state.go(noti.route)
+      }
+      var parent = $($event.target).parent();
+      if (parent.hasClass("unread")) {
+        parent.removeClass("unread");
+        // ajax 更新消息的状态，应用类型：overrun，提醒对象：业务员/领导
+        $scope.notiCount--;
+      }
+      $scope.notiPopupShow = '';
+    }
+
+
+
 
     /*--------------------------
      $ 页面监听
@@ -178,4 +210,8 @@ angular.module('app')
         $scope.$apply()
       }
     })
+
+
+
+
   });

@@ -12,8 +12,6 @@ angular.module('app')
        overrun
        overrun-leader
        */
-
-
       .state('desktop', {
         url: "/desktop",
         controller: 'DesktopCtrl',
@@ -63,7 +61,17 @@ angular.module('app')
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun/js/overrunTodoCtrl.js'
+              app_base + 'overrun/js/overrunTodoCtrl.js',
+              app_base + 'overrun/js/overrunItemDetailCtrl.js',
+              app_base + 'overrun/js/overrunItemDetailPhotoCtrl.js',
+              app_base + 'overrun/js/overrunItemEditCtrl.js',
+              app_base + 'overrun/js/overrunItemDeleteCtrl.js',
+              app_base + 'overrun/js/overrunForfeitService.js', // 服务
+              app_base + 'overrun/js/overrunViewerFullscreenCtrl.js',
+              app_base + 'overrun/js/overrunViewerCtrl.js',
+              app_base + 'overrun/js/overrunPhotoDetailCtrl.js'
+
+
             ]);
           }]
         }
@@ -103,7 +111,9 @@ angular.module('app')
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-leader/js/overrunLeaderTodoCtrl.js'
+              app_base + 'overrun-leader/js/overrunLeaderTodoCtrl.js',
+              app_base + 'overrun-leader/js/overrunLeaderItemDetailCtrl.js',
+              app_base + 'overrun-leader/js/overrunLeaderItemEditCtrl.js'
             ]);
           }]
         }
