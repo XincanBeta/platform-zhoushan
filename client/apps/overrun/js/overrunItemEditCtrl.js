@@ -633,8 +633,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
       $ 常用信息
     --------------------------*/
-    requestService.getCommonOverrunJlr().success(function(res){
-      console.log('记录人',res);
+    requestService.getCommonOverrunDict().success(function(res){
+      console.log(res);
       if (res.success) {
 
       }

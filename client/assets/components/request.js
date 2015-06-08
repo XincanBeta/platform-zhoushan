@@ -107,8 +107,8 @@ angular.module("request", []).service('requestService', function ($http) {
   /*--------------------------
     $ 超限常用信息
   --------------------------*/
-  this.getCommonOverrunJlr = function () {
-    return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf', dictname: 'ZFJLR'});
+  this.getCommonOverrunDict = function () {
+    return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf'});
   }
 
 
