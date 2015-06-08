@@ -84,16 +84,8 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
         return item.selected === true
       })
       // then 与 success 返回的不同，then 返回了更多的信息
-      requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).then(function (response) {
-        var contentType = response.headers('Content-Type');
-        var url = location.protocol + '//' + location.host + '/' + response.data.data;
-        $http({
-          method: 'GET',
-          url: url,
-          headers: {
-            'Content-Type': contentType
-          }
-        })
+      requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).success(function (res) {
+        requestService.overrunDoneItemDownload({filename: res.data})
       })
     }
 

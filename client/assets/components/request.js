@@ -179,7 +179,10 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDoneItemExport = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.type + '/packZip.do', data.itemlist);
   }
-
+  // export 执行后，再调用 download
+  this.overrunDoneItemDownload = function (data) {
+    return _doPostRequest('/api/cxcfs/downloadFile.do', data);
+  }
 
   /*--------------------------
    $ 集体讨论
