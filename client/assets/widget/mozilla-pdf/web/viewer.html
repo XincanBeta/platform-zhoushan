@@ -20,7 +20,7 @@
   </script>
 
   <style>
-    .hide{
+    .hide {
       display: none;
     }
   </style>
@@ -56,11 +56,11 @@
   </div>
 
   <div id="mainContainer">
-    <div class="findbar hidden doorHanger hiddenSmallView hide" id="findbar" >
+    <div class="findbar hidden doorHanger hiddenSmallView hide" id="findbar">
       <label for="findInput" class="toolbarLabel" data-l10n-id="find_label">Find:</label>
       <input id="findInput" class="toolbarField" tabindex="91">
 
-      <div class="splitToolbarButton hide" >
+      <div class="splitToolbarButton hide">
         <button class="toolbarButton findPrevious" title="" id="findPrevious" tabindex="92"
                 data-l10n-id="find_previous">
           <span data-l10n-id="find_previous_label">Previous</span>
@@ -80,7 +80,7 @@
     </div>
     <!-- findbar -->
 
-    <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight" >
+    <div id="secondaryToolbar" class="secondaryToolbar hidden doorHangerRight">
       <div id="secondaryToolbarButtonContainer">
         <button id="secondaryPresentationMode" class="secondaryToolbarButton presentationMode visibleLargeView"
                 title="Switch to Presentation Mode" tabindex="51" data-l10n-id="presentation_mode">
@@ -143,7 +143,7 @@
           <span data-l10n-id="document_properties_label">Document Properties…</span>
         </button>
       </div>
-    </div >
+    </div>
 
     <div class="toolbar hide">
       <div id="toolbarContainer">
@@ -193,7 +193,7 @@
                     data-l10n-id="download">
               <span data-l10n-id="download_label">Download</span>
             </button>
-             <div class="toolbarButtonSpacer"></div>
+            <div class="toolbarButtonSpacer"></div>
             <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView"
                title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
               <span data-l10n-id="bookmark_label">Current View</span>
@@ -456,12 +456,11 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script>
   var app = angular.module('myWidget.pdf', [])
-  var DEFAULT_URL ;
+  var DEFAULT_URL;
   app.controller("PDFCtrl", function ($scope) {
     var parentScope = parent.angular.element('#viewer-container').scope();
-    DEFAULT_URL = parentScope.getPdfurl();
-
-
+    var filename = parentScope.getPdfurl();
+    DEFAULT_URL = '/api/files/downloadFile.do?filename=' + filename;
   })
 
 </script>

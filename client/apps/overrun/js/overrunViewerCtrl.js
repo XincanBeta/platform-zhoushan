@@ -4,8 +4,9 @@ angular.module('app.overrun').controller('OverrunViewerCtrl',
     console.log($scope.item);
     
     $scope.getPdfurl = function () {
-      // pdfurl = fileUpLoad/xxx/xxx/xxx.pdf
-      return location.protocol + '//' + location.host + '/' + $scope.item.currentpath_pdf;
+      //"fileUpLoad\\201506\\20150680808_浙舟公路罚(2015)000001.docx"
+      return $scope.item.currentpath_pdf;
+      //return location.protocol + '//' + location.host + '/' + $scope.item.currentpath_pdf;
     }
 
 

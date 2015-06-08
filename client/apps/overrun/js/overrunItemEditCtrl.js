@@ -566,7 +566,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
              return res.data
              },*/
             item: function () {
-              $scope.item.currentPath = res.data;
+              $scope.item.currentpath_pdf = res.data;
               return $scope.item;
             }
           }

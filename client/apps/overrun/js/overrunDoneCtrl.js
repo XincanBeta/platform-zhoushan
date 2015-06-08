@@ -85,9 +85,14 @@ angular.module('app.overrun').controller('OverrunDoneCtrl',
       })
       // then 与 success 返回的不同，then 返回了更多的信息
       requestService.overrunDoneItemExport({type: type, itemlist: selectedItems}).success(function (res) {
-        requestService.overrunDoneItemDownload({filename: res.data})
+        if (res.success) {
+          $('#filename').val(res.data)
+          $("#formForDownload").submit();
+        }
       })
     }
+
+
 
 
   });
