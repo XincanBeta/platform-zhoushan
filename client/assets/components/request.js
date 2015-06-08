@@ -40,6 +40,7 @@ angular.module("request", []).service('requestService', function ($http) {
    登录
    消息
    通用
+   超限常用信息
    overrun
    集体讨论
    overrun-leader
@@ -102,6 +103,16 @@ angular.module("request", []).service('requestService', function ($http) {
   this.myappSaItems = function () {
     return _doGetRequest(localPath + 'myapp.sa.item.json');
   }
+
+  /*--------------------------
+    $ 超限常用信息
+  --------------------------*/
+  this.getCommonOverrunJlr = function () {
+    return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf', dictname: 'ZFJLR'});
+  }
+
+
+
   /*--------------------------
    $ overrun
    --------------------------*/
@@ -185,7 +196,7 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'overrun-leader.menu.json');
   }
   this.overrunLeaderTodoItems = function (data) {
-    return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+    return _doPostRequest('/api/jttls/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
 
   /*--------------------------

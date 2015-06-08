@@ -22,6 +22,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      保存
      结案
      集体讨论
+     常用信息
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -171,7 +172,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     // 车牌第一部分：下拉选中（angucomplete 的用法）
     $scope.cpSelected = function (selected) {
       if (selected) {
-        $scope.cp_part_1 = selected.title.toUpperCase();
+        //$scope.cp_part_1 = selected.title.toUpperCase();
+        $scope.cp_part_1 = selected.title;
         _setCP();
       }
     }
@@ -207,7 +209,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     $scope.gcSelected = function (selected) {
       if (selected) {
-        $scope.gc_part_1 = selected.title.toUpperCase();
+        $scope.gc_part_1 = selected.title;
         // 保留前两个字符
         _setGC();
       }
@@ -627,4 +629,17 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         sliderService.startAutoHide();
       });
     }
+
+    /*--------------------------
+      $ 常用信息
+    --------------------------*/
+    requestService.getCommonOverrunJlr().success(function(res){
+      console.log('记录人',res);
+      if (res.success) {
+
+      }
+    })
+
+
+
   })
