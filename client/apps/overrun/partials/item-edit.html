@@ -358,8 +358,8 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label ">罚款金额
-                <span ng-if="item.aj_fk">（<span ng-bind="forfeitRange"></span>）</span></label>
-
+                <span ng-bind="item.cj_zyclq"></span></label>
+                <!--<span ng-if="item.aj_fk">（<span ng-bind="item.cj_zyclq"></span>）</span></label>-->
               <div class="input-group">
                 <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk" readonly
                        validator="required, isNumber" message-id="forfeit-msg"/>

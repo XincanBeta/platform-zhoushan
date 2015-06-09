@@ -345,8 +345,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
       $scope.item.aj_fk = resutl.forfeit;
-      // todo：要存储？
       $scope.forfeitRange = resutl.forfeitRange ? resutl.forfeitRange.join('-') : '';
+      // 存储自由裁量权  
+      $scope.item.cj_zyclq = $scope.forfeitRange + '（' + resutl.forfeit + '）';
     }
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
