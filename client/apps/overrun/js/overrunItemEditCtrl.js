@@ -483,7 +483,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.gotoAnchor = function (id) {
       $location.hash(id);
       anchorSmoothScroll.scrollTo(id);
-      //$anchorScroll();
     }
 
 
@@ -631,15 +630,69 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-      $ 常用信息
-    --------------------------*/
-    requestService.getCommonOverrunDict().success(function(res){
-      console.log(res);
+     $ 常用信息
+     --------------------------*/
+    requestService.getCommonOverrunDict().success(function (res) {
       if (res.success) {
-
+        $scope.afddData = res.data.AFDD;
+        $scope.xcblddData = res.data.XCBLDD;
+        $scope.xwblddData = res.data.XWBLDD;
+        $scope.zfxwrData = res.data.ZFXWR;
       }
     })
-
-
-
+    /* 案发地点 */
+    // 历史带回
+    $scope.afddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_afdd = selected.title;
+      } else {
+        $scope.item.aj_afdd = '';
+      }
+    }
+    // 手输
+    $scope.afddInputChanged = function (value) {
+      $scope.item.aj_afdd = value;
+    }
+    /* 现场笔录地点 */
+    // 历史带回
+    $scope.xcblddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_xcbldd = selected.title;
+      } else {
+        $scope.item.aj_xcbldd = '';
+      }
+    }
+    // 手输
+    $scope.xcblddInputChanged = function (value) {
+      $scope.item.aj_xcbldd = value;
+    }
+    /* 询问笔录地点 */
+    // 历史带回
+    $scope.xwblddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_xwbldd = selected.title;
+      } else {
+        $scope.item.aj_xwbldd = '';
+      }
+    }
+    // 手输
+    $scope.xwblddInputChanged = function (value) {
+      $scope.item.aj_xwbldd = value;
+    }
+    /* 执法询问人 */
+    // 历史带回
+    $scope.zfxwrSelected = function (selected) {
+      console.log('selected=',selected);
+      if (selected) {
+        $scope.item.aj_zfx = selected.originalObject.aj_zfx;
+        $scope.item.aj_zfxz = selected.originalObject.aj_zfxz;
+      } else {
+        $scope.item.aj_zfx = '';
+      }
+    }
+    // 手输
+    $scope.zfxwrInputChanged = function (value) {
+      console.log('value=', value);
+      $scope.item.aj_zfx = value;
+    }
   })

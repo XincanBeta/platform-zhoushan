@@ -82,7 +82,7 @@ angular.module('app')
       '../assets/components/anchorSmoothScroll.min.js',
       '../assets/components/car-city.min.js',
       // angucomplete-alt.js 反馈提示
-      '../assets/components/angucomplete-alt.min.js',
+      '../assets/components/angucomplete-alt.js',
       '../assets/components/angucomplete-alt.css'
 
     ]
