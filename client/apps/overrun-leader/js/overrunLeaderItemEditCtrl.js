@@ -1,12 +1,25 @@
 angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
-            requestService, item, ngToast, $anchorScroll, $location, anchorSmoothScroll, util, $q) {
+            requestService, item) {
 
-    // fixme：临时初始化
-    $scope.item = {}
+    /*
+     初始化
+     表单
+     保存
+     */
+
+    /*--------------------------
+     $ 初始化
+     --------------------------*/
+    $scope.item = item.jttl;
+    $scope.item.aj_fk = item.aj_fk;
+
+    /*--------------------------
+     $ 表单
+     --------------------------*/
     var dateFormat = 'YYYY-MM-DD HH:mm';
     $scope.openDatepicker = {
-      tlsj: false
+      jt_sj: false
     };
     $scope.dateOptions = {
       showWeeks: false, // 标准
@@ -23,9 +36,9 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
     };
 
     // 时间初始化
-    if (!$scope.item.tlsj) {
+    if (!$scope.item.jt_sj) {
       var date = moment().format(dateFormat);
-      $scope.item.tlsj = date
+      $scope.item.jt_sj = date
     }
 
     // 正常关闭本层
@@ -35,6 +48,22 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
     // 错误关闭本层
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
+    }
+
+
+    /*--------------------------
+     $ 保存
+     --------------------------*/
+    $scope.save = function () {
+      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+        if (res.success) {
+          myToast.successTip();
+          $rootScope.$emit("paging.act")
+          $modalInstance.close();
+        }
+      }).error(function () {
+        myToast.failureTip();
+      })
     }
 
 

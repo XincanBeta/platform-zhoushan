@@ -205,7 +205,9 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPageForJTZT.do');
   }
 
-
+  this.overrunLeaderItemUpdate = function (data) {
+    return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPageForJTZT.do');
+  }
 
 
   /*--------------------------

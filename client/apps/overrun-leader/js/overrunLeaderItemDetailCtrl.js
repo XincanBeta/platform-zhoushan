@@ -59,10 +59,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
         controller: 'OverrunLeaderItemEditCtrl',
         resolve: {
           item: function () {
-            return $scope.item // 指令内部控制器，不能访问到外部 scope
-          },
-          itemIsNew: function () {
-            return false
+            return $scope.item
           }
         }
       })

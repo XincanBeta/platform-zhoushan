@@ -12,5 +12,10 @@
   {
     "name": "通讯录",
     "iconclass": "icon-tongxunlu"
+  },
+  {
+    "name": "短信息",
+    "iconclass": "icon-msg-1"
   }
+
 ]
