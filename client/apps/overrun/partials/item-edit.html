@@ -93,24 +93,25 @@
               <!--<div style=" width: 82px; display: inline-block;">-->
               <div>
                 <angucomplete-alt
-                    id="autocomplete-cp-part-2"
+                    id="autocomplete-cp"
                     placeholder=""
                     pause="100"
-                    initial-value="{{ item.aj_zfx }}"
-                    selected-object="zfxwrSelected"
-                    local-data="zfxwrData"
-                    input-changed="zfxwrInputChanged"
-                    title-field="aj_zfx"
-                    description-field="aj_zfxz"
-                    search-fields="aj_zfx"
-                    minlength="5"
+                    initial-value="{{ item.cj_cp }}"
+                    selected-object="cpSelected"
+                    local-data="cpData"
+                    input-changed="cpInputChanged"
+                    title-field="cj_cp"
+                    description-field="cp_info"
+                    search-fields="cj_cp"
+                    minlength="7"
+                    maxlength="7"
                     match-class="highlight"
                     input-class="form-control form-control-small"
                     />
               </div>
-              <input type="hidden" class="form-control" name="cp_part_2" ng-model="cp_part_2" maxlength="7"
-                     validator="required" message-id="cp-part-2-message"/>
-              <span id="cp-part-2-message"></span>
+              <input type="hidden" class="form-control" name="cj_cp" ng-model="item.cj_cp" maxlength="7"
+                     validator="required" message-id="cj-cp-message"/>
+              <span id="cj-cp-message"></span>
 
 
 
@@ -185,7 +186,7 @@
             <div class="col-sm-4">
               <label class="entity-label">（挂车）</label>
 
-              <div style="display: inline-block">
+             <!-- <div style="display: inline-block">
                 <angucomplete-alt
                     id="autocomplete-gc"
                     placeholder=""
@@ -203,11 +204,11 @@
                     name="gc_part_1"
                     />
               </div>
-              <span>&bull;</span>
-              <input type="text" class="form-control" name="gc_part_2" ng-model="gc_part_2"
-                     style=" width: 82px; display: inline-block;" maxlength="5"/>
+              <span>&bull;</span>-->
+              <!--<input type="text" class="form-control" name="gc_part_2" ng-model="gc_part_2"
+                     style=" width: 82px; display: inline-block;" maxlength="5"/>-->
 
-              <!--<input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>-->
+              <input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc" maxlength="7"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">核定载质量（吨）</label>
@@ -406,8 +407,28 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人姓名</label>
-              <input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
-                     validator="required"/>
+              <div >
+                <angucomplete-alt
+                    id="autocomplete-zfjlr"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_zfj }}"
+                    selected-object="zfjlrSelected"
+                    local-data="zfjlrData"
+                    input-changed="zfjlrInputChanged"
+                    title-field="aj_zfj"
+                    description-field="aj_zfjz"
+                    search-fields="aj_zfj"
+                    minlength="1"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
+                     validator="required" message-id="zfj-message"/>
+              <span id="zfj-message"></span>
+              <!--<input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
+                     validator="required"/>-->
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人证号</label>

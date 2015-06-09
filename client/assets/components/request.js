@@ -110,8 +110,10 @@ angular.module("request", []).service('requestService', function ($http) {
   this.getCommonOverrunDict = function () {
     return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf'});
   }
-
-
+  // 车牌
+  this.getCommonOverrunCpInfo = function (data) {
+    return _doPostRequest('/api/dicts/queryCp.do', data);
+  }
 
   /*--------------------------
    $ overrun

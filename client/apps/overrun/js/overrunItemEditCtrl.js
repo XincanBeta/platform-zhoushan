@@ -7,10 +7,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      初始化
      下拉列表
      精度限制
-     车牌获取
-     车牌录入
-     挂车获取
-     挂车录入
+     车牌
+     ！车牌获取
+     ！车牌录入
+     ！挂车获取
+     ！挂车录入
      日期设置
      罚金计算
      证件获取
@@ -157,82 +158,113 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
     }
 
-    /*--------------------------
-     $ 车牌获取
-     --------------------------*/
-    if (!itemIsNew && $scope.item.cj_cp) {
-      $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
-      $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
-    }
 
     /*--------------------------
-     $ 车牌录入
+     $ 车牌
      --------------------------*/
-    $scope.carData = carService.carData;
-    // 车牌第一部分：下拉选中（angucomplete 的用法）
+    // 历史带回
     $scope.cpSelected = function (selected) {
+      console.log('selected=', selected);
       if (selected) {
-        //$scope.cp_part_1 = selected.title.toUpperCase();
-        $scope.cp_part_1 = selected.title;
-        _setCP();
+        $scope.item.cj_cp = selected.title;
+      } else {
+        $scope.item.cj_cp = '';
       }
     }
-    // 车牌第一部分：手输
+    // 手输
     $scope.cpInputChanged = function (value) {
-      if (value) {
-        $scope.cp_part_1 = value.toUpperCase();
-        _setCP();
+      console.log('value=', value);
+      $scope.item.cj_cp = value;
+      if (value.length == 7) {
+        requestService.getCommonOverrunCpInfo({cj_cp: $scope.item.cj_cp}).success(function (res) {
+          console.log('res', res);
+          if (res.success) {
+            $scope.cpData = res.data;
+          }
+        })
       }
-    }
-    // 车牌第二部分
-    $scope.$watch('cp_part_2', function (value) {
-      if (value) {
-        $scope.cp_part_2 = value.toUpperCase()
-        _setCP();
-      }
-    })
-    function _setCP() {
-      $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
+
+      //$scope.item.aj_zfx = value;
     }
 
-    /*--------------------------
+    /*/!*--------------------------
+     $ 车牌获取
+     --------------------------*!/
+     if (!itemIsNew && $scope.item.cj_cp) {
+     $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
+     $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
+     }*/
+
+
+    /*
+     /!*--------------------------
+     $ 车牌录入
+     --------------------------*!/
+     $scope.carData = carService.carData;
+     // 车牌第一部分：下拉选中（angucomplete 的用法）
+     $scope.cpSelected = function (selected) {
+     if (selected) {
+     //$scope.cp_part_1 = selected.title.toUpperCase();
+     $scope.cp_part_1 = selected.title;
+     _setCP();
+     }
+     }
+     // 车牌第一部分：手输
+     $scope.cpInputChanged = function (value) {
+     if (value) {
+     $scope.cp_part_1 = value.toUpperCase();
+     _setCP();
+     }
+     }
+     // 车牌第二部分
+     $scope.$watch('cp_part_2', function (value) {
+     if (value) {
+     $scope.cp_part_2 = value.toUpperCase()
+     _setCP();
+     }
+     })
+     function _setCP() {
+     $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
+     }
+
+     /!*--------------------------
      $ 挂车获取
-     --------------------------*/
-    if (!itemIsNew && $scope.item.cl_gc) {
-      $scope.gc_part_1 = $scope.item.cl_gc.substring(0, 2);
-      $scope.gc_part_2 = $scope.item.cl_gc.substring(2);
-    }
+     --------------------------*!/
+     if (!itemIsNew && $scope.item.cl_gc) {
+     $scope.gc_part_1 = $scope.item.cl_gc.substring(0, 2);
+     $scope.gc_part_2 = $scope.item.cl_gc.substring(2);
+     }
 
-    /*--------------------------
+     /!*--------------------------
      $ 挂车录入
      参考 车牌录入
-     --------------------------*/
-    $scope.gcSelected = function (selected) {
-      if (selected) {
-        $scope.gc_part_1 = selected.title;
-        // 保留前两个字符
-        _setGC();
-      }
-    }
-    $scope.gcInputChanged = function (value) {
-      if (value) {
-        $scope.gc_part_1 = value.toUpperCase();
-        _setGC();
-      }
-    }
-    $scope.$watch('gc_part_2', function (value) {
-      if (value) {
-        $scope.gc_part_2 = value.toUpperCase()
-        if ($scope.gc_part_2.length >= 4
-          && $scope.gc_part_2[$scope.gc_part_2.length - 1] != '挂') {
-          $scope.gc_part_2 = $scope.gc_part_2.substring(0, 4) + '挂';
-        }
-        _setGC();
-      }
-    })
-    function _setGC() {
-      $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
-    }
+     --------------------------*!/
+     $scope.gcSelected = function (selected) {
+     if (selected) {
+     $scope.gc_part_1 = selected.title;
+     // 保留前两个字符
+     _setGC();
+     }
+     }
+     $scope.gcInputChanged = function (value) {
+     if (value) {
+     $scope.gc_part_1 = value.toUpperCase();
+     _setGC();
+     }
+     }
+     $scope.$watch('gc_part_2', function (value) {
+     if (value) {
+     $scope.gc_part_2 = value.toUpperCase()
+     if ($scope.gc_part_2.length >= 4
+     && $scope.gc_part_2[$scope.gc_part_2.length - 1] != '挂') {
+     $scope.gc_part_2 = $scope.gc_part_2.substring(0, 4) + '挂';
+     }
+     _setGC();
+     }
+     })
+     function _setGC() {
+     $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
+     }*/
 
 
     /*--------------------------
@@ -638,6 +670,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.xcblddData = res.data.XCBLDD;
         $scope.xwblddData = res.data.XWBLDD;
         $scope.zfxwrData = res.data.ZFXWR;
+        $scope.zfjlrData = res.data.ZFJLR;
       }
     })
     /* 案发地点 */
@@ -682,7 +715,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /* 执法询问人 */
     // 历史带回
     $scope.zfxwrSelected = function (selected) {
-      console.log('selected=',selected);
+      console.log('selected=', selected);
       if (selected) {
         $scope.item.aj_zfx = selected.originalObject.aj_zfx;
         $scope.item.aj_zfxz = selected.originalObject.aj_zfxz;
@@ -694,5 +727,21 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.zfxwrInputChanged = function (value) {
       console.log('value=', value);
       $scope.item.aj_zfx = value;
+    }
+    /* 执法记录人 */
+    // 历史带回
+    $scope.zfjlrSelected = function (selected) {
+      console.log('selected=', selected);
+      if (selected) {
+        $scope.item.aj_zfj = selected.originalObject.aj_zfj;
+        $scope.item.aj_zfjz = selected.originalObject.aj_zfjz;
+      } else {
+        $scope.item.aj_zfj = '';
+      }
+    }
+    // 手输
+    $scope.zfjlrInputChanged = function (value) {
+      console.log('value=', value);
+      $scope.item.aj_zfj = value;
     }
   })
