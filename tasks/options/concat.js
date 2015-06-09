@@ -29,7 +29,7 @@ module.exports = {
       '<%= pkg.path.build %>/assets/components/anchorSmoothScroll.min.js',
 
       '<%= pkg.path.build %>/assets/components/car-city.min.js',
-      '<%= pkg.path.build %>/assets/components/angucomplete-alt.js',
+      '<%= pkg.path.build %>/assets/components/angucomplete-alt.min.js',
 
 
       // 串行

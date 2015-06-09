@@ -24,6 +24,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      结案
      集体讨论
      常用信息
+     消息推送
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -762,4 +763,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       console.log('value=', value);
       $scope.item.aj_zfj = value;
     }
+
+    /*--------------------------
+      $ 消息推送
+    --------------------------*/
+
+
+
+
+
+
   })
