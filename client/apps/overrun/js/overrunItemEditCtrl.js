@@ -7,7 +7,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      初始化
      下拉列表
      精度限制
-     车牌
+     新车牌
      ！车牌获取
      ！车牌录入
      ！挂车获取
@@ -160,28 +160,46 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 车牌
+     $ 新车牌
      --------------------------*/
     // 历史带回
     $scope.cpSelected = function (selected) {
-      console.log('selected=', selected);
       if (selected) {
-        $scope.item.cj_cp = selected.title;
+        $scope.item.cj_cp = selected.originalObject.cj_cp;
+        $scope.item.cj_zs = selected.originalObject.cj_zs;
+        $scope.item.cl_gc = selected.originalObject.cl_gc;
+        $scope.item.cl_hdzzl = selected.originalObject.cl_hdzzl;
+        $scope.item.cl_zbzl = selected.originalObject.cl_zbzl;
+        $scope.item.cl_cjd = selected.originalObject.cl_cjd;
+        $scope.item.cl_lx = selected.originalObject.cl_lx;
+        $scope.item.cl_syr = selected.originalObject.cl_syr;
+        $scope.item.cl_dh = selected.originalObject.cl_dh;
+        $scope.item.cl_yyz = selected.originalObject.cl_yyz;
+        $scope.item.cl_zz = selected.originalObject.cl_zz;
+        $scope.item.jsy_xm = selected.originalObject.jsy_xm;
+        $scope.item.jsy_xb = selected.originalObject.jsy_xb;
+        $scope.item.jsy_zh = selected.originalObject.jsy_zh;
+        $scope.item.jsy_cy = selected.originalObject.jsy_cy;
+        $scope.item.jsy_dh = selected.originalObject.jsy_dh;
+        $scope.item.jsy_zz = selected.originalObject.jsy_zz;
       } else {
         $scope.item.cj_cp = '';
       }
     }
     // 手输
+    $scope.cpData = [];
     $scope.cpInputChanged = function (value) {
-      console.log('value=', value);
       $scope.item.cj_cp = value;
-      if (value.length == 7) {
+      if (value.length >= 6) {
         requestService.getCommonOverrunCpInfo({cj_cp: $scope.item.cj_cp}).success(function (res) {
           console.log('res', res);
           if (res.success) {
             $scope.cpData = res.data;
+            console.log('$scope.cpData', $scope.cpData);
           }
         })
+      }else{
+        $scope.cpData = [];
       }
 
       //$scope.item.aj_zfx = value;
