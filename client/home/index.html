@@ -51,7 +51,7 @@
         <div class="noti-popup--scroller">
           <div class="noti-popup--scroller-inner">
             <div class="noti-popup--body">
-              <div class="noti-popup--body-item " ng-class="{'unread': noti.unread}" ng-repeat="noti in notilist">
+              <div class="noti-popup--body-item " ng-class="{'unread': noti.unread=='是'}" ng-repeat="noti in notilist">
                 <a href="javascript:void(0);" ng-click="goNoti($event, noti)" ng-bind="noti.content"></a>
               </div>
             </div>

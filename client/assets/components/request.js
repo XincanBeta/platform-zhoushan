@@ -59,7 +59,7 @@ angular.module("request", []).service('requestService', function ($http) {
    $ 消息通知
    --------------------------*/
   this.getNotilist = function (data) {
-    return _doGetRequest('/api/notis/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+    return _doPostRequest('/api/notis/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
   this.notiInsert = function (data) {
     return _doPostRequest('/api/notis/insert.do', data);

@@ -1,5 +1,5 @@
 angular.module('app.overrun').controller('OverrunItemDiscussCtrl',
-  function ($scope, $modalInstance, requestService, item, ngToast, myToast) {
+  function ($scope, $rootScope, $modalInstance, requestService, item, ngToast, myToast) {
     $scope.cancel = function () {
       $modalInstance.dismiss('取消');
     }
@@ -20,14 +20,17 @@ angular.module('app.overrun').controller('OverrunItemDiscussCtrl',
               // 让“子页面”去刷新
               $modalInstance.close();
               // 发送消息通知
-              requestService.notiInsert({
-                unread: false,
-                app: "overrun-leader",
-                route: "myapp.overrun-leader.todo",
-                content: "车牌为 " + item.cj_cp + " 案件 需要进行集体讨论"
+              requestService.getNewId().success(function (res) {
+                requestService.notiInsert({
+                  notid: res.data,
+                  appid: "0102", // appid 给 后端做关联 ，overrun-leader
+                  route: "myapp.overrun-leader.todo",
+                  content: "车牌为 " + item.cj_cp + " 案件 需要进行集体讨论"
+                }).success(function(res){
+                  console.log('发送消息通知', res);
+                  $rootScope.$emit("noti.refresh")
+                })
               })
-
-
             }
           }).error(function () {
             myToast.failureTip('操作失败!');

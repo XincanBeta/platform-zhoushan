@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('AppCtrl', function ($scope, $state, $ocLazyLoad, requestService, ngToast, userService, $document) {
+  .controller('AppCtrl', function ($scope, $rootScope, $state, $ocLazyLoad, requestService, ngToast, userService, $document) {
     /*
      目录：
      保存用户信息
@@ -146,27 +146,29 @@ angular.module('app')
     }
 
 
-
-
     /*--------------------------
      $ 消息提醒
      --------------------------*/
     // 从消息表中读取所有消息，并动态生成链接
 
-    requestService.getNotilist({
-      currentPage: 1,
-      pageSize: 20
-    }).success(function(res){
-      if (res.success) {
-        $scope.notiCount = 0;
-        $scope.notilist = res.data;
-        for(var i=0; i<$scope.notilist.length; i++){
-          if ($scope.notilist[i].unread) {
-            $scope.notiCount++;
+    function notiRefresh() {
+      requestService.getNotilist({
+        currentPage: 1,
+        pageSize: 20
+      }).success(function (res) {
+        if (res.success) {
+          $scope.notiCount = 0;
+          $scope.notilist = res.data.list;
+          for (var i = 0; i < $scope.notilist.length; i++) {
+            if ($scope.notilist[i].unread == '是') {
+              $scope.notiCount++;
+            }
           }
         }
-      }
-    })
+      })
+    }
+    notiRefresh();
+    $rootScope.$on("noti.refresh", notiRefresh)
 
     $scope.toggleNotiPopup = function () {
       if ($scope.notiPopupShow == 'show') {
@@ -180,18 +182,17 @@ angular.module('app')
       // 如果为当前路由，则不再跳转
       if ($state.current.name != noti.route) {
         $state.go(noti.route, {notid: noti.notid})
-      }else{
+      } else {
         $state.go(noti.route, {notid: noti.notid}, {reload: true})
       }
       var parent = $($event.target).parent();
       if (parent.hasClass("unread")) {
         parent.removeClass("unread");
         // ajax 更新消息的状态，应用类型：overrun，提醒对象：业务员/领导
-        noti.unread = false;
-        requestService.notiUpdate(noti).success(function(){
+        noti.unread = '否';
+        requestService.notiUpdate(noti).success(function () {
           $scope.notiCount--;
         })
-
       }
       $scope.notiPopupShow = '';
     }
@@ -218,8 +219,6 @@ angular.module('app')
         $scope.$apply()
       }
     })
-
-
 
 
   });
