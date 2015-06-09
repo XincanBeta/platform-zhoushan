@@ -96,7 +96,7 @@ angular.module("request", []).service('requestService', function ($http) {
     }
   }
   this.queryContentImages = function (data) {
-    return _doPostRequest('/api/files/querycontent.do', data);
+    return _doPostRequest('/api/files/' + data.fileid + '/content.do');
   }
   this.homeSidebarItems = function () {
     // 目前没有 remote 版本，所以固定用 localPath，而且是 get 请求
