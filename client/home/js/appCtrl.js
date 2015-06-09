@@ -153,7 +153,10 @@ angular.module('app')
      --------------------------*/
     // 从消息表中读取所有消息，并动态生成链接
 
-    requestService.getNotilist().success(function(res){
+    requestService.getNotilist({
+      currentPage: 1,
+      pageSize: 20
+    }).success(function(res){
       if (res.success) {
         $scope.notiCount = 0;
         $scope.notilist = res.data;
@@ -184,12 +187,14 @@ angular.module('app')
       if (parent.hasClass("unread")) {
         parent.removeClass("unread");
         // ajax 更新消息的状态，应用类型：overrun，提醒对象：业务员/领导
-        $scope.notiCount--;
+        noti.unread = false;
+        requestService.notiUpdate(noti).success(function(){
+          $scope.notiCount--;
+        })
+
       }
       $scope.notiPopupShow = '';
     }
-
-
 
 
     /*--------------------------

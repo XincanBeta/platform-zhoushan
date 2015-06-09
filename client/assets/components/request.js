@@ -38,7 +38,7 @@ angular.module("request", []).service('requestService', function ($http) {
    --------------------------*/
   /*
    登录
-   消息（通用）
+   消息通知
    通用
    超限常用信息
    overrun
@@ -56,15 +56,17 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ 消息（通用）
+   $ 消息通知
    --------------------------*/
-  this.getNotilist = function () {
-    return _doGetRequest(localPath + 'noti.json');
+  this.getNotilist = function (data) {
+    return _doGetRequest('/api/notis/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
-  this.notilist = function () {
-    return _doGetRequest(localPath + 'noti.json');
+  this.notiInsert = function (data) {
+    return _doPostRequest('/api/notis/insert.do', data);
   }
-
+  this.notiUpdate = function (data) {
+    return _doPostRequest('/api/notis/update.do', data);
+  }
 
   /*--------------------------
    $ 通用
@@ -206,7 +208,7 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   this.overrunLeaderItemUpdate = function (data) {
-    return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPageForJTZT.do');
+    return _doPostRequest('/api/jttls/update.do', data);
   }
 
 

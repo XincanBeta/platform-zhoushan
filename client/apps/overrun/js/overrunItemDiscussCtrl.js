@@ -1,7 +1,5 @@
 angular.module('app.overrun').controller('OverrunItemDiscussCtrl',
-  function ($scope, $modalInstance, requestService, item, ngToast) {
-
-
+  function ($scope, $modalInstance, requestService, item, ngToast, myToast) {
     $scope.cancel = function () {
       $modalInstance.dismiss('取消');
     }
@@ -12,15 +10,27 @@ angular.module('app.overrun').controller('OverrunItemDiscussCtrl',
           throw 'new id get failure !'
         }
         var jt_bh = res.data;
+        if (item.jtbh) {
+          jt_bh = item.jtbh;
+        }
         requestService.overrunItemsDiscussInsert({aj_id: item.aj_id, jt_bh: jt_bh})
           .success(function (res) {
             if (res.success) {
-              ngToast.create({
-                className: 'success',
-                content: '操作成功!'
-              })
+              myToast.successTip('操作成功!');
+              // 让“子页面”去刷新
               $modalInstance.close();
+              // 发送消息通知
+              requestService.notiInsert({
+                unread: false,
+                app: "overrun-leader",
+                route: "myapp.overrun-leader.todo",
+                content: "车牌为 " + item.cj_cp + " 案件 需要进行集体讨论"
+              })
+
+
             }
+          }).error(function () {
+            myToast.failureTip('操作失败!');
           })
       })
     }

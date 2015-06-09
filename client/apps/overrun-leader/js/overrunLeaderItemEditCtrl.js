@@ -1,11 +1,12 @@
 angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
-            requestService, item) {
+            requestService, item, myToast, $rootScope) {
 
     /*
      初始化
      表单
      保存
+     确定
      */
 
     /*--------------------------
@@ -66,5 +67,21 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
       })
     }
 
+    /*--------------------------
+      $ 确定
+    --------------------------*/
+    $scope.confim = function(){
+      $scope.item.jt_zt = '已完成';
+      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+        if (res.success) {
+          $rootScope.$emit("slider.hide")
+          myToast.successTip('操作成功！');
+          $rootScope.$emit("paging.act")
+          $modalInstance.close();
+        }
+      }).error(function () {
+        myToast.failureTip('操作失败！');
+      })
+    }
 
   })
