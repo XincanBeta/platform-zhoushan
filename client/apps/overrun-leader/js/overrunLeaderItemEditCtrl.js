@@ -78,6 +78,18 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
           myToast.successTip('操作成功！');
           $rootScope.$emit("paging.act")
           $modalInstance.close();
+          // 发送消息通知
+          requestService.getNewId().success(function (res) {
+            requestService.notiInsert({
+              notid: res.data,
+              appid: "0101", // appid 给 后端做关联 ，overrun
+              route: "myapp.overrun.todo",
+              content: "已确定了 车牌为 " + item.cj_cp + " 案件 的罚金修改"
+            }).success(function(res){
+              console.log('发送消息通知', res);
+              $rootScope.$emit("noti.refresh")
+            })
+          })
         }
       }).error(function () {
         myToast.failureTip('操作失败！');
