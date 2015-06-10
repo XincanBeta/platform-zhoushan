@@ -19,7 +19,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      证件删除
      历史功能
      页内导航
-     验证与格式化
+     验证
      保存
      结案
      集体讨论
@@ -534,9 +534,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 验证与格式化
+     $ 验证
      --------------------------*/
-    // todo：过滤空格
+
+
 
 
     /*--------------------------
