@@ -1,17 +1,13 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew,
             ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll, Upload, carService,
-            util, myToast, $rootScope) {
+            util, myToast, $rootScope, $validationProvider) {
 
     /*
      初始化
      下拉列表
      精度限制
-     新车牌
-     ！车牌获取
-     ！车牌录入
-     ！挂车获取
-     ！挂车录入
+     车牌
      日期设置
      罚金计算
      证件获取
@@ -160,7 +156,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 新车牌
+     $ 车牌
      --------------------------*/
     // 历史带回
     $scope.cpSelected = function (selected) {
@@ -199,89 +195,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }else{
         $scope.cpData = [];
       }
-
-      //$scope.item.aj_zfx = value;
     }
-
-    /*/!*--------------------------
-     $ 车牌获取
-     --------------------------*!/
-     if (!itemIsNew && $scope.item.cj_cp) {
-     $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
-     $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
-     }*/
-
-
-    /*
-     /!*--------------------------
-     $ 车牌录入
-     --------------------------*!/
-     $scope.carData = carService.carData;
-     // 车牌第一部分：下拉选中（angucomplete 的用法）
-     $scope.cpSelected = function (selected) {
-     if (selected) {
-     //$scope.cp_part_1 = selected.title.toUpperCase();
-     $scope.cp_part_1 = selected.title;
-     _setCP();
-     }
-     }
-     // 车牌第一部分：手输
-     $scope.cpInputChanged = function (value) {
-     if (value) {
-     $scope.cp_part_1 = value.toUpperCase();
-     _setCP();
-     }
-     }
-     // 车牌第二部分
-     $scope.$watch('cp_part_2', function (value) {
-     if (value) {
-     $scope.cp_part_2 = value.toUpperCase()
-     _setCP();
-     }
-     })
-     function _setCP() {
-     $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
-     }
-
-     /!*--------------------------
-     $ 挂车获取
-     --------------------------*!/
-     if (!itemIsNew && $scope.item.cl_gc) {
-     $scope.gc_part_1 = $scope.item.cl_gc.substring(0, 2);
-     $scope.gc_part_2 = $scope.item.cl_gc.substring(2);
-     }
-
-     /!*--------------------------
-     $ 挂车录入
-     参考 车牌录入
-     --------------------------*!/
-     $scope.gcSelected = function (selected) {
-     if (selected) {
-     $scope.gc_part_1 = selected.title;
-     // 保留前两个字符
-     _setGC();
-     }
-     }
-     $scope.gcInputChanged = function (value) {
-     if (value) {
-     $scope.gc_part_1 = value.toUpperCase();
-     _setGC();
-     }
-     }
-     $scope.$watch('gc_part_2', function (value) {
-     if (value) {
-     $scope.gc_part_2 = value.toUpperCase()
-     if ($scope.gc_part_2.length >= 4
-     && $scope.gc_part_2[$scope.gc_part_2.length - 1] != '挂') {
-     $scope.gc_part_2 = $scope.gc_part_2.substring(0, 4) + '挂';
-     }
-     _setGC();
-     }
-     })
-     function _setGC() {
-     $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
-     }*/
-
 
     /*--------------------------
      $ 日期设置
@@ -578,22 +492,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
-      //var savePromise;
-      // 先保存
       _beforeSave();
-      /*if (itemIsNew) {
-       savePromise = requestService.overrunTodoItemSave($scope.item)
-       } else {
-       savePromise = requestService.overrunTodoItemUpdate($scope.item)
-       }
-       $q.all(savePromise).then(function (res) {
-       console.log(res.success);
-       if (res.success) {
-       console.log('success');
-       }
-
-       })*/
-
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
         //console.log('done res', res);
         if (!res.success) {
