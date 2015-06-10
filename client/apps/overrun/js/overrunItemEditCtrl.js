@@ -509,8 +509,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           }
         })
         fullscreenModalInstance.result.then(function () {
-          sliderService.startAutoHide();
           $modalInstance.close(); // 全屏关闭后，再关闭本层
+          $rootScope.$emit("paging.act")
+          $rootScope.$emit("slider.hide")
+          sliderService.startAutoHide();
+
         }, function () {
           sliderService.startAutoHide();
           $modalInstance.close();
