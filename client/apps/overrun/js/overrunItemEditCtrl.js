@@ -19,6 +19,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      结案
      集体讨论
      常用信息（带回历史）
+     最新的结案信息
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -634,5 +635,34 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.tcddInputChanged = function (value) {
       $scope.item.aj_tcdd = value;
     }
+
+    /*--------------------------
+      $ 最新的结案信息
+    --------------------------*/
+    if (itemIsNew) {
+      _getLastDoneItem();
+    }
+
+    function _getLastDoneItem(){
+      requestService.overrunDoneLastItem().success(function(res){
+        // 带回案件信息
+        if (res.success) {
+          $scope.item.aj_zfx = res.data.aj_zfx;
+          $scope.item.aj_zfxz = res.data.aj_zfxz;
+          $scope.item.aj_zfj = res.data.aj_zfj;
+          $scope.item.aj_zfjz = res.data.aj_zfjz;
+          $scope.item.aj_afdd = res.data.aj_afdd;
+          $scope.item.aj_xcbldd = res.data.aj_xcbldd;
+          $scope.item.aj_xwbldd = res.data.aj_xwbldd;
+          $scope.item.aj_tcdd = res.data.aj_tcdd;
+        }
+      })
+    }
+
+
+
+
+
+
 
   })

@@ -110,10 +110,10 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-    $ 超限常用信息
-  --------------------------*/
+   $ 超限常用信息
+   --------------------------*/
   this.getCommonOverrunDict = function () {
-    return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf'});
+    return _doPostRequest('/api/dicts/queryCommonData.do', {appname: 'cxcf'});
   }
   // 车牌
   this.getCommonOverrunCpInfo = function (data) {
@@ -160,6 +160,10 @@ angular.module("request", []).service('requestService', function ($http) {
   /* 
    现场超限已完结接口
    */
+  this.overrunDoneLastItem = function () {
+    return _doPostRequest('/api/cxcfs/getLatestJa.do');
+  }
+
   this.overrunDoneItems = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.done.item.json');
@@ -188,8 +192,8 @@ angular.module("request", []).service('requestService', function ($http) {
   }
   // export 执行后，再调用 download
   /*this.overrunDoneItemDownload = function (data) {
-    return _doPostRequest('/api/files/downloadFile.do', data);
-  }*/
+   return _doPostRequest('/api/files/downloadFile.do', data);
+   }*/
 
 
   /*--------------------------
