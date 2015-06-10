@@ -434,8 +434,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      */
     $scope.upload = function (files, datatype) {
       if (files && files.length) {
-
-
         if (_isFilesLengthLimited(files, datatype)) {
           ngToast.create({
             className: 'danger',
