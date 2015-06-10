@@ -13,13 +13,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      证件获取
      证件上传
      证件删除
-     历史功能
      页内导航
-     验证
+     手动验证
      保存
      结案
      集体讨论
-     常用信息
+     常用信息（带回历史）
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -192,7 +191,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
             console.log('$scope.cpData', $scope.cpData);
           }
         })
-      }else{
+      } else {
         $scope.cpData = [];
       }
     }
@@ -400,7 +399,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       imageNumber += newFiles.length;
       if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
         limited = true;
-      } else if (datatype == 'sceneImages' && imageNumber > 2) {
+      } else if ((datatype == 'sceneImages' || datatype == 'recheckImages') && imageNumber > 2) {
         limited = true;
       } else if (datatype == 'billImages' && imageNumber > 1) {
         limited = true;
@@ -433,10 +432,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       })
     }
 
-    /*--------------------------
-     $ 历史功能
-     --------------------------*/
-
 
     /*--------------------------
      $ 页内导航
@@ -448,10 +443,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 验证
+     $ 手动验证
      --------------------------*/
-
-
 
 
     /*--------------------------
@@ -508,9 +501,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           templateUrl: apps + 'overrun/partials/docFullscreen.html',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
-            /*pdfurl: function () {
-             return res.data
-             },*/
             item: function () {
               $scope.item.currentpath_pdf = res.data;
               return $scope.item;
@@ -528,11 +518,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         fullscreenModalInstance.opened.then(function () {
           sliderService.stopAutoHide();
         })
-
       })
-
-
     }
+
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     // 正常关闭本层
     $scope.closeModal = function () {
@@ -577,7 +565,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-     $ 常用信息
+     $ 常用信息（带回历史）
      --------------------------*/
     requestService.getCommonOverrunDict().success(function (res) {
       if (res.success) {
@@ -645,12 +633,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.zfjlrInputChanged = function (value) {
       $scope.item.aj_zfj = value;
     }
-
-
-
-
-
-
 
 
   })
