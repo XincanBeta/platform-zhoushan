@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew,
             ngToast, $anchorScroll, $location, $injector, forfeit, anchorSmoothScroll, Upload, carService,
-            util, myToast, $rootScope, $validationProvider) {
+            util, myToast, $rootScope) {
 
     /*
      初始化
@@ -572,8 +572,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.afddData = res.data.AFDD;
         $scope.xcblddData = res.data.XCBLDD;
         $scope.xwblddData = res.data.XWBLDD;
-        $scope.zfxwrData = res.data.ZFXWR;
-        $scope.zfjlrData = res.data.ZFJLR;
+        $scope.zfrData = res.data.ZFR;
+        $scope.tcddData = res.data.TCDD;
       }
     })
     /* 案发地点 */
@@ -588,51 +588,51 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_afdd = value;
     }
     /* 现场笔录地点 */
-    // 历史带回
     $scope.xcblddSelected = function (selected) {
       if (selected) {
         $scope.item.aj_xcbldd = selected.title;
       }
     }
-    // 手输
     $scope.xcblddInputChanged = function (value) {
       $scope.item.aj_xcbldd = value;
     }
     /* 询问笔录地点 */
-    // 历史带回
     $scope.xwblddSelected = function (selected) {
       if (selected) {
         $scope.item.aj_xwbldd = selected.title;
       }
     }
-    // 手输
     $scope.xwblddInputChanged = function (value) {
       $scope.item.aj_xwbldd = value;
     }
     /* 执法询问人 */
-    // 历史带回
     $scope.zfxwrSelected = function (selected) {
       if (selected) {
-        $scope.item.aj_zfx = selected.originalObject.aj_zfx;
-        $scope.item.aj_zfxz = selected.originalObject.aj_zfxz;
+        $scope.item.aj_zfx = selected.originalObject.aj_zfr;
+        $scope.item.aj_zfxz = selected.originalObject.aj_zfrz;
       }
     }
-    // 手输
     $scope.zfxwrInputChanged = function (value) {
       $scope.item.aj_zfx = value;
     }
     /* 执法记录人 */
-    // 历史带回
     $scope.zfjlrSelected = function (selected) {
       if (selected) {
-        $scope.item.aj_zfj = selected.originalObject.aj_zfj;
-        $scope.item.aj_zfjz = selected.originalObject.aj_zfjz;
+        $scope.item.aj_zfj = selected.originalObject.aj_zfr;
+        $scope.item.aj_zfjz = selected.originalObject.aj_zfrz;
       }
     }
-    // 手输
     $scope.zfjlrInputChanged = function (value) {
       $scope.item.aj_zfj = value;
     }
-
+    /* 停车地点 */
+    $scope.tcddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_tcdd = selected.title;
+      }
+    }
+    $scope.tcddInputChanged = function (value) {
+      $scope.item.aj_tcdd = value;
+    }
 
   })
