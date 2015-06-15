@@ -34,7 +34,8 @@
         <td>{{ item.cj_zs }}</td>
         <td>{{ item.cj_zz_lx }}</td>
         <td>{{ item.cj_sj }}</td>
-        <td><i ng-if="item.jttl.jt_zt == '在进行'" class="iconfont icon-jinzhi" title="在进行集体讨论"></i></td>
+        <td style="text-indent: 6px;">
+          <i ng-if="item.jttl.jt_zt == '在进行'" class="iconfont icon-jinzhi"  style="color:red;" title="在进行集体讨论"></i></td>
       </tr>
       </tbody>
     </table>

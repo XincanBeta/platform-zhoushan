@@ -38,12 +38,11 @@ angular.module("request", []).service('requestService', function ($http) {
    --------------------------*/
   /*
    登录
-   消息
+   消息通知
    通用
    超限常用信息
    overrun
-   集体讨论
-   overrun-leader
+   overrun-leader（改为 集体讨论）
    overrun-admin
    单位接口
    */
@@ -57,10 +56,16 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ 消息
+   $ 消息通知
    --------------------------*/
-  this.getNotilist = function () {
-    return _doGetRequest(localPath + 'noti.json');
+  this.getNotilist = function (data) {
+    return _doPostRequest('/api/notis/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+  }
+  this.notiInsert = function (data) {
+    return _doPostRequest('/api/notis/insert.do', data);
+  }
+  this.notiUpdate = function (data) {
+    return _doPostRequest('/api/notis/update.do', data);
   }
 
   /*--------------------------
@@ -91,7 +96,7 @@ angular.module("request", []).service('requestService', function ($http) {
     }
   }
   this.queryContentImages = function (data) {
-    return _doPostRequest('/api/files/querycontent.do', data);
+    return _doPostRequest('/api/files/' + data.fileid + '/content.do');
   }
   this.homeSidebarItems = function () {
     // 目前没有 remote 版本，所以固定用 localPath，而且是 get 请求
@@ -105,13 +110,15 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-    $ 超限常用信息
-  --------------------------*/
-  this.getCommonOverrunJlr = function () {
-    return _doPostRequest('/api/dicts/queryCommonData.do', {appname:'cxcf', dictname: 'ZFJLR'});
+   $ 超限常用信息
+   --------------------------*/
+  this.getCommonOverrunDict = function () {
+    return _doPostRequest('/api/dicts/queryCommonData.do', {appname: 'cxcf'});
   }
-
-
+  // 车牌
+  this.getCommonOverrunCpInfo = function (data) {
+    return _doPostRequest('/api/dicts/queryCp.do', data);
+  }
 
   /*--------------------------
    $ overrun
@@ -153,6 +160,10 @@ angular.module("request", []).service('requestService', function ($http) {
   /* 
    现场超限已完结接口
    */
+  this.overrunDoneLastItem = function () {
+    return _doPostRequest('/api/cxcfs/getLatestJa.do');
+  }
+
   this.overrunDoneItems = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.done.item.json');
@@ -179,31 +190,35 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDoneItemExport = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.type + '/packZip.do', data.itemlist);
   }
+  // export 执行后，再调用 download
+  /*this.overrunDoneItemDownload = function (data) {
+   return _doPostRequest('/api/files/downloadFile.do', data);
+   }*/
 
 
   /*--------------------------
-   $ 集体讨论
+   $ overrun-leader（改为 集体讨论）
    --------------------------*/
   this.overrunItemsDiscussInsert = function (data) {
     return _doPostRequest('/api/jttls/' + data.aj_id + '/insert.do', {jt_bh: data.jt_bh});
   }
 
-
-  /*--------------------------
-   $ overrun-leader
-   --------------------------*/
   this.overrunLeaderSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun-leader.menu.json');
   }
+
   this.overrunLeaderTodoItems = function (data) {
-    return _doPostRequest('/api/jttls/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+    return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPageForJTZT.do');
   }
+
+  this.overrunLeaderItemUpdate = function (data) {
+    return _doPostRequest('/api/jttls/update.do', data);
+  }
+
 
   /*--------------------------
    $ overrun-admin
    --------------------------*/
-
-
   this.overrunAdminSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun-admin.menu.json');
   }

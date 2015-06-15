@@ -8,7 +8,8 @@ angular.module('app.overrun').controller('OverrunViewerFullscreenCtrl',
 
     $scope.getPdfurl = function () {
       // pdfurl = fileUpLoad/xxx/xxx/xxx.pdf
-      return location.protocol + '//' + location.host + '/' + item.currentpath_pdf;
+      return item.currentpath_pdf;
+      //return location.protocol + '//' + location.host + '/' + item.currentpath_pdf;
     }
 
     $scope.getItemId = function () {

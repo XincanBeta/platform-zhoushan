@@ -22,8 +22,10 @@ angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
         }
       })
     }
-    // 分页点击初始化
+    // 刷新 1：页面初始化
     $scope.pagingAct();
+    // 刷新 2：用于保存成功后的调用
+    $rootScope.$on("paging.act", $scope.pagingAct)
 
 
     $scope.select = function (item) {

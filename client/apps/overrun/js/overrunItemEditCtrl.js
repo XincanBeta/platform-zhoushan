@@ -7,22 +7,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      初始化
      下拉列表
      精度限制
-     车牌获取
-     车牌录入
-     挂车获取
-     挂车录入
+     车牌
      日期设置
      罚金计算
      证件获取
      证件上传
      证件删除
-     历史功能
      页内导航
-     验证与格式化
+     手动验证
      保存
      结案
      集体讨论
-     常用信息
+     常用信息（带回历史）
+     最新的结案信息
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -157,83 +154,48 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
     }
 
-    /*--------------------------
-     $ 车牌获取
-     --------------------------*/
-    if (!itemIsNew && $scope.item.cj_cp) {
-      $scope.cp_part_1 = $scope.item.cj_cp.substring(0, 2);
-      $scope.cp_part_2 = $scope.item.cj_cp.substring(2);
-    }
 
     /*--------------------------
-     $ 车牌录入
+     $ 车牌
      --------------------------*/
-    $scope.carData = carService.carData;
-    // 车牌第一部分：下拉选中（angucomplete 的用法）
+    // 历史带回
     $scope.cpSelected = function (selected) {
       if (selected) {
-        //$scope.cp_part_1 = selected.title.toUpperCase();
-        $scope.cp_part_1 = selected.title;
-        _setCP();
+        $scope.item.cj_cp = selected.originalObject.cj_cp;
+        $scope.item.cj_zs = selected.originalObject.cj_zs;
+        $scope.item.cl_gc = selected.originalObject.cl_gc;
+        $scope.item.cl_hdzzl = selected.originalObject.cl_hdzzl;
+        $scope.item.cl_zbzl = selected.originalObject.cl_zbzl;
+        $scope.item.cl_cjd = selected.originalObject.cl_cjd;
+        $scope.item.cl_lx = selected.originalObject.cl_lx;
+        $scope.item.cl_syr = selected.originalObject.cl_syr;
+        $scope.item.cl_dh = selected.originalObject.cl_dh;
+        $scope.item.cl_yyz = selected.originalObject.cl_yyz;
+        $scope.item.cl_zz = selected.originalObject.cl_zz;
+        $scope.item.jsy_xm = selected.originalObject.jsy_xm;
+        $scope.item.jsy_xb = selected.originalObject.jsy_xb;
+        $scope.item.jsy_zh = selected.originalObject.jsy_zh;
+        $scope.item.jsy_cy = selected.originalObject.jsy_cy;
+        $scope.item.jsy_dh = selected.originalObject.jsy_dh;
+        $scope.item.jsy_zz = selected.originalObject.jsy_zz;
       }
     }
-    // 车牌第一部分：手输
+    // 手输
+    $scope.cpData = [];
     $scope.cpInputChanged = function (value) {
-      if (value) {
-        $scope.cp_part_1 = value.toUpperCase();
-        _setCP();
+      $scope.item.cj_cp = value;
+      if (value.length >= 6) {
+        requestService.getCommonOverrunCpInfo({cj_cp: $scope.item.cj_cp}).success(function (res) {
+          console.log('res', res);
+          if (res.success) {
+            $scope.cpData = res.data;
+            console.log('$scope.cpData', $scope.cpData);
+          }
+        })
+      } else {
+        $scope.cpData = [];
       }
     }
-    // 车牌第二部分
-    $scope.$watch('cp_part_2', function (value) {
-      if (value) {
-        $scope.cp_part_2 = value.toUpperCase()
-        _setCP();
-      }
-    })
-    function _setCP() {
-      $scope.item.cj_cp = ($scope.cp_part_1 || '') + ($scope.cp_part_2 || '');
-    }
-
-    /*--------------------------
-     $ 挂车获取
-     --------------------------*/
-    if (!itemIsNew && $scope.item.cl_gc) {
-      $scope.gc_part_1 = $scope.item.cl_gc.substring(0, 2);
-      $scope.gc_part_2 = $scope.item.cl_gc.substring(2);
-    }
-
-    /*--------------------------
-     $ 挂车录入
-     参考 车牌录入
-     --------------------------*/
-    $scope.gcSelected = function (selected) {
-      if (selected) {
-        $scope.gc_part_1 = selected.title;
-        // 保留前两个字符
-        _setGC();
-      }
-    }
-    $scope.gcInputChanged = function (value) {
-      if (value) {
-        $scope.gc_part_1 = value.toUpperCase();
-        _setGC();
-      }
-    }
-    $scope.$watch('gc_part_2', function (value) {
-      if (value) {
-        $scope.gc_part_2 = value.toUpperCase()
-        if ($scope.gc_part_2.length >= 4
-          && $scope.gc_part_2[$scope.gc_part_2.length - 1] != '挂') {
-          $scope.gc_part_2 = $scope.gc_part_2.substring(0, 4) + '挂';
-        }
-        _setGC();
-      }
-    })
-    function _setGC() {
-      $scope.item.cl_gc = ($scope.gc_part_1 || '') + ($scope.gc_part_2 || '');
-    }
-
 
     /*--------------------------
      $ 日期设置
@@ -294,8 +256,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
       $scope.item.aj_fk = resutl.forfeit;
-      // todo：要存储？
       $scope.forfeitRange = resutl.forfeitRange ? resutl.forfeitRange.join('-') : '';
+      // 存储自由裁量权  
+      $scope.item.cj_zyclq = $scope.forfeitRange + '（' + resutl.forfeit + '）';
     }
     // 计算复检超值
     $scope.calcReChecklistOverValue = function () {
@@ -385,8 +348,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      */
     $scope.upload = function (files, datatype) {
       if (files && files.length) {
-
-
         if (_isFilesLengthLimited(files, datatype)) {
           ngToast.create({
             className: 'danger',
@@ -439,7 +400,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       imageNumber += newFiles.length;
       if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
         limited = true;
-      } else if (datatype == 'sceneImages' && imageNumber > 2) {
+      } else if ((datatype == 'sceneImages' || datatype == 'recheckImages') && imageNumber > 2) {
         limited = true;
       } else if (datatype == 'billImages' && imageNumber > 1) {
         limited = true;
@@ -472,10 +433,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       })
     }
 
-    /*--------------------------
-     $ 历史功能
-     --------------------------*/
-
 
     /*--------------------------
      $ 页内导航
@@ -483,14 +440,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.gotoAnchor = function (id) {
       $location.hash(id);
       anchorSmoothScroll.scrollTo(id);
-      //$anchorScroll();
     }
 
 
     /*--------------------------
-     $ 验证与格式化
+     $ 手动验证
      --------------------------*/
-    // todo：过滤空格
 
 
     /*--------------------------
@@ -531,22 +486,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
-      //var savePromise;
-      // 先保存
       _beforeSave();
-      /*if (itemIsNew) {
-       savePromise = requestService.overrunTodoItemSave($scope.item)
-       } else {
-       savePromise = requestService.overrunTodoItemUpdate($scope.item)
-       }
-       $q.all(savePromise).then(function (res) {
-       console.log(res.success);
-       if (res.success) {
-       console.log('success');
-       }
-
-       })*/
-
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
         //console.log('done res', res);
         if (!res.success) {
@@ -562,18 +502,18 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           templateUrl: apps + 'overrun/partials/docFullscreen.html',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
-            /*pdfurl: function () {
-             return res.data
-             },*/
             item: function () {
-              $scope.item.currentPath = res.data;
+              $scope.item.currentpath_pdf = res.data;
               return $scope.item;
             }
           }
         })
         fullscreenModalInstance.result.then(function () {
-          sliderService.startAutoHide();
           $modalInstance.close(); // 全屏关闭后，再关闭本层
+          $rootScope.$emit("paging.act")
+          $rootScope.$emit("slider.hide")
+          sliderService.startAutoHide();
+
         }, function () {
           sliderService.startAutoHide();
           $modalInstance.close();
@@ -582,11 +522,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         fullscreenModalInstance.opened.then(function () {
           sliderService.stopAutoHide();
         })
-
       })
-
-
     }
+
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     // 正常关闭本层
     $scope.closeModal = function () {
@@ -631,14 +569,102 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     }
 
     /*--------------------------
-      $ 常用信息
-    --------------------------*/
-    requestService.getCommonOverrunJlr().success(function(res){
-      console.log('记录人',res);
+     $ 常用信息（带回历史）
+     --------------------------*/
+    requestService.getCommonOverrunDict().success(function (res) {
       if (res.success) {
-
+        $scope.afddData = res.data.AFDD;
+        $scope.xcblddData = res.data.XCBLDD;
+        $scope.xwblddData = res.data.XWBLDD;
+        $scope.zfrData = res.data.ZFR;
+        $scope.tcddData = res.data.TCDD;
       }
     })
+    /* 案发地点 */
+    // 历史带回
+    $scope.afddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_afdd = selected.title;
+      }
+    }
+    // 手输
+    $scope.afddInputChanged = function (value) {
+      $scope.item.aj_afdd = value;
+    }
+    /* 现场笔录地点 */
+    $scope.xcblddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_xcbldd = selected.title;
+      }
+    }
+    $scope.xcblddInputChanged = function (value) {
+      $scope.item.aj_xcbldd = value;
+    }
+    /* 询问笔录地点 */
+    $scope.xwblddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_xwbldd = selected.title;
+      }
+    }
+    $scope.xwblddInputChanged = function (value) {
+      $scope.item.aj_xwbldd = value;
+    }
+    /* 执法询问人 */
+    $scope.zfxwrSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_zfx = selected.originalObject.aj_zfr;
+        $scope.item.aj_zfxz = selected.originalObject.aj_zfrz;
+      }
+    }
+    $scope.zfxwrInputChanged = function (value) {
+      $scope.item.aj_zfx = value;
+    }
+    /* 执法记录人 */
+    $scope.zfjlrSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_zfj = selected.originalObject.aj_zfr;
+        $scope.item.aj_zfjz = selected.originalObject.aj_zfrz;
+      }
+    }
+    $scope.zfjlrInputChanged = function (value) {
+      $scope.item.aj_zfj = value;
+    }
+    /* 停车地点 */
+    $scope.tcddSelected = function (selected) {
+      if (selected) {
+        $scope.item.aj_tcdd = selected.title;
+      }
+    }
+    $scope.tcddInputChanged = function (value) {
+      $scope.item.aj_tcdd = value;
+    }
+
+    /*--------------------------
+      $ 最新的结案信息
+    --------------------------*/
+    if (itemIsNew) {
+      _getLastDoneItem();
+    }
+
+    function _getLastDoneItem(){
+      requestService.overrunDoneLastItem().success(function(res){
+        // 带回案件信息
+        if (res.success) {
+          $scope.item.aj_zfx = res.data.aj_zfx;
+          $scope.item.aj_zfxz = res.data.aj_zfxz;
+          $scope.item.aj_zfj = res.data.aj_zfj;
+          $scope.item.aj_zfjz = res.data.aj_zfjz;
+          $scope.item.aj_afdd = res.data.aj_afdd;
+          $scope.item.aj_xcbldd = res.data.aj_xcbldd;
+          $scope.item.aj_xwbldd = res.data.aj_xwbldd;
+          $scope.item.aj_tcdd = res.data.aj_tcdd;
+        }
+      })
+    }
+
+
+
+
 
 
 

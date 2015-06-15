@@ -1,12 +1,26 @@
 angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
-            requestService, item, ngToast, $anchorScroll, $location, anchorSmoothScroll, util, $q) {
+            requestService, item, myToast, $rootScope) {
 
-    // fixme：临时初始化
-    $scope.item = {}
+    /*
+     初始化
+     表单
+     保存
+     确定
+     */
+
+    /*--------------------------
+     $ 初始化
+     --------------------------*/
+    $scope.item = item.jttl;
+    $scope.item.aj_fk = item.aj_fk;
+
+    /*--------------------------
+     $ 表单
+     --------------------------*/
     var dateFormat = 'YYYY-MM-DD HH:mm';
     $scope.openDatepicker = {
-      tlsj: false
+      jt_sj: false
     };
     $scope.dateOptions = {
       showWeeks: false, // 标准
@@ -23,9 +37,9 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
     };
 
     // 时间初始化
-    if (!$scope.item.tlsj) {
+    if (!$scope.item.jt_sj) {
       var date = moment().format(dateFormat);
-      $scope.item.tlsj = date
+      $scope.item.jt_sj = date
     }
 
     // 正常关闭本层
@@ -37,5 +51,49 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
       $modalInstance.dismiss('cancel');
     }
 
+
+    /*--------------------------
+     $ 保存
+     --------------------------*/
+    $scope.save = function () {
+      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+        if (res.success) {
+          myToast.successTip();
+          $rootScope.$emit("paging.act")
+          $modalInstance.close();
+        }
+      }).error(function () {
+        myToast.failureTip();
+      })
+    }
+
+    /*--------------------------
+      $ 确定
+    --------------------------*/
+    $scope.confim = function(){
+      $scope.item.jt_zt = '已完成';
+      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+        if (res.success) {
+          $rootScope.$emit("slider.hide")
+          myToast.successTip('操作成功！');
+          $rootScope.$emit("paging.act")
+          $modalInstance.close();
+          // 发送消息通知
+          requestService.getNewId().success(function (res) {
+            requestService.notiInsert({
+              notid: res.data,
+              appid: "0101", // appid 给 后端做关联 ，overrun
+              route: "myapp.overrun.todo",
+              content: "已确定了 车牌为 " + item.cj_cp + " 案件 的罚金修改"
+            }).success(function(res){
+              console.log('发送消息通知', res);
+              $rootScope.$emit("noti.refresh")
+            })
+          })
+        }
+      }).error(function () {
+        myToast.failureTip('操作失败！');
+      })
+    }
 
   })

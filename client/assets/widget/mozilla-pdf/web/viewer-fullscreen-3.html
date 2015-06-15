@@ -492,7 +492,8 @@
 
   app.controller("PDFCtrl", function ($scope, requestService) {
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
-    DEFAULT_URL = parentScope.getPdfurl();
+    var filename = parentScope.getPdfurl();
+    DEFAULT_URL = '/api/files/downloadFile.do?filename=' + filename;
     itemId = parentScope.getItemId();
 
     $scope.exitFile = function () {

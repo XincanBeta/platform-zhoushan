@@ -47,6 +47,10 @@ angular.module('app.overrun').service('forfeit', function () {
     result.overValue = convertNumber(result.overValue)
     result.overValue = (result.overValue >= 0) ? result.overValue : 0;
     result.forfeit = convertNumber(result.forfeit)
+    // 去除小数点
+    result.forfeit = result.forfeit >> 0;
+    // 罚金精确到 50
+    result.forfeit = result.forfeit - (result.forfeit % 50);
     return result;
   };
 

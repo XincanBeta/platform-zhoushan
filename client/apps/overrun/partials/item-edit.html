@@ -1,3 +1,9 @@
+<style>
+  #autocomplete-cp .angucomplete-dropdown {
+    width: 500px;
+  }
+</style>
+
 <form name="form" class="form-horizontal form-modal " method="post" action="">
   <div class="modal-header">
     <button type="button" class="close" ng-click="cancel()">&times;</button>
@@ -12,7 +18,6 @@
       <li ng-if="item.cj_kfxz=='可卸载'"><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-edit-reChecklist')">
         复检单</a></li>
     </ul>
-    <!--ng-if="modal.contentShow"-->
     <div class="entity-block-wrap under-navbar slide-down">
       <!--初检单-->
       <div id="overrun-edit-checklist" class="entity-block under-navbar">
@@ -70,29 +75,28 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
-
-              <div style="display: inline-block">
+              <div>
                 <angucomplete-alt
                     id="autocomplete-cp"
                     placeholder=""
                     pause="100"
-                    initial-value="{{ cp_part_1 }}"
+                    initial-value="{{ item.cj_cp }}"
                     selected-object="cpSelected"
-                    local-data="carData"
-                    search-fields="Pcode,city,code,province"
-                    title-field="code"
-                    minlength="1"
+                    local-data="cpData"
+                    input-changed="cpInputChanged"
+                    title-field="cj_cp"
+                    description-field="cp_info"
+                    search-fields="cj_cp"
+                    minlength="6"
+                    maxlength="7"
                     match-class="highlight"
                     input-class="form-control form-control-small"
-                    input-changed="cpInputChanged"
-                    class="overrun-cp-angucomplete"
-                    name="cp_part_1"
                     />
               </div>
-              <span>&bull;</span>
-              <input type="text" class="form-control" name="cp_part_2" ng-model="cp_part_2"
-                     style=" width: 82px; display: inline-block;"
-                     validator="required" maxlength="5"/>
+              <input type="hidden" class="form-control" name="cj_cp" ng-model="item.cj_cp" maxlength="7"
+                     validator="required" message-id="cj-cp-message"/>
+              <span id="cj-cp-message"></span>
+
             </div>
             <div class="col-sm-4">
               <label class="entity-label">轴数</label>
@@ -116,7 +120,7 @@
             <div class="col-sm-4">
               <label class="entity-label">货物名称</label>
               <input type="text" class="form-control" name="hw_mc" ng-model="item.hw_mc" maxlength="20"
-                     validator="required"/>
+                     validator="required" />
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货起点</label>
@@ -132,8 +136,9 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label ">上传现场照片（ 2 张 ）</label>
+
               <div ngf-drop ngf-select ng-model="sceneFiles" class="entity-upload-photo drop-box"
-                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="false"
                    ngf-accept="'image/*'"></div>
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in sceneImages">
                 <div class="compact" ng-if="image.fileid">
@@ -159,29 +164,8 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">（挂车）</label>
-              <div style="display: inline-block">
-                <angucomplete-alt
-                    id="autocomplete-gc"
-                    placeholder=""
-                    pause="100"
-                    initial-value="{{ gc_part_1 }}"
-                    selected-object="gcSelected"
-                    local-data="carData"
-                    search-fields="Pcode,city,code,province"
-                    title-field="code"
-                    minlength="1"
-                    match-class="highlight"
-                    input-class="form-control form-control-small"
-                    input-changed="gcInputChanged"
-                    class="overrun-cp-angucomplete"
-                    name="gc_part_1"
-                    />
-              </div>
-              <span>&bull;</span>
-              <input type="text" class="form-control" name="gc_part_2" ng-model="gc_part_2"
-                     style=" width: 82px; display: inline-block;" maxlength="5"/>
-
-              <!--<input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc"/>-->
+              <!--validator="length=7"-->
+              <input type="text" class="form-control" name="cl_gc" ng-model="item.cl_gc" maxlength="7"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">核定载质量（吨）</label>
@@ -209,7 +193,7 @@
             </div>
           </div>
           <div class="form-group">
-            <div class="col-sm-4">
+            <div class="col-sm-8">
               <label class="entity-label">车辆所有人</label>
               <input type="text" class="form-control" name="cl_syr" ng-model="item.cl_syr" maxlength="10"
                      validator="required"/>
@@ -219,7 +203,7 @@
               <input type="text" class="form-control" name="cl_dh" ng-model="item.cl_dh" maxlength="20"
                      validator="required"/>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-4">
               <label class="entity-label">（营运证）</label>
               <input type="text" class="form-control" name="cl_yyz" ng-model="item.cl_yyz" maxlength="12"/>
             </div>
@@ -237,7 +221,7 @@
             <label class="entity-label">上传车辆证件（ 1 ~ 3 张 ）</label>
 
             <div ngf-drop ngf-select ng-model="vehicleFiles" class="entity-upload-photo drop-box"
-                 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                 ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="false"
                  ngf-accept="'image/*'"></div>
             <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in vehicleImages">
               <div class="compact" ng-if="image.fileid">
@@ -301,7 +285,7 @@
               <label class="entity-label">上传驾驶员证件（ 1 ~ 3 张 ）</label>
 
               <div ngf-drop ngf-select ng-model="driverFiles" class="entity-upload-photo drop-box"
-                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="false"
                    ngf-accept="'image/*'"></div>
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in driverImages">
                 <div class="compact" ng-if="image.fileid">
@@ -323,13 +307,15 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label ">罚款金额
-                <span ng-if="item.aj_fk">（<span ng-bind="forfeitRange"></span>）</span></label>
+                <span ng-bind="item.cj_zyclq"></span></label>
+              <!--<span ng-if="item.aj_fk">（<span ng-bind="item.cj_zyclq"></span>）</span></label>-->
               <div class="input-group">
                 <input type="text" class="entity-input form-control" name="aj_fk" ng-model="item.aj_fk" readonly
                        validator="required, isNumber" message-id="forfeit-msg"/>
+
                 <div class="input-group-btn">
                   <button class="btn btn-default fa-paper-plane-o" title="发起集体讨论"
-                          ng-click="discuss()" type="button" ></button>
+                          ng-click="discuss()" type="button"></button>
                 </div>
               </div>
               <span id="forfeit-msg"></span>
@@ -343,15 +329,51 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">停车地点</label>
-              <input type="text" class="form-control" name="aj_tcdd" ng-model="item.aj_tcdd" maxlength="50"
-                     validator="required"/>
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-tcdd"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_tcdd }}"
+                    selected-object="tcddSelected"
+                    local-data="tcddData"
+                    search-fields="value"
+                    title-field="value"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="tcddInputChanged"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_tcdd" ng-model="item.aj_tcdd" maxlength="50"
+                     validator="required" message-id="tcdd-message"/>
+              <span id="tcdd-message"></span>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">询问人姓名</label>
-              <input type="text" class="form-control" name="aj_zfx" ng-model="item.aj_zfx" maxlength="10"
-                     validator="required"/>
+
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-zfxwr"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_zfx }}"
+                    selected-object="zfxwrSelected"
+                    local-data="zfrData"
+                    input-changed="zfxwrInputChanged"
+                    title-field="aj_zfr"
+                    description-field="aj_zfrz"
+                    search-fields="aj_zfr"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_zfx" ng-model="item.aj_zfx" maxlength="10"
+                     validator="required" message-id="zfx-message"/>
+              <span id="zfx-message"></span>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">询问人证号</label>
@@ -360,8 +382,27 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人姓名</label>
-              <input type="text" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
-                     validator="required"/>
+
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-zfjlr"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_zfj }}"
+                    selected-object="zfjlrSelected"
+                    local-data="zfrData"
+                    input-changed="zfjlrInputChanged"
+                    title-field="aj_zfr"
+                    description-field="aj_zfrz"
+                    search-fields="aj_zfr"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_zfj" ng-model="item.aj_zfj" maxlength="10"
+                     validator="required" message-id="zfj-message"/>
+              <span id="zfj-message"></span>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">记录人证号</label>
@@ -383,8 +424,26 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">案发地点</label>
-              <input type="text" class="form-control" name="aj_afdd" ng-model="item.aj_afdd" maxlength="50"
-                     validator="required"/>
+              <!-- 一定要用 div 包裹，隐藏input的验证才生效 -->
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-afdd"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_afdd }}"
+                    selected-object="afddSelected"
+                    local-data="afddData"
+                    search-fields="value"
+                    title-field="value"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="afddInputChanged"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_afdd" ng-model="item.aj_afdd" maxlength="50"
+                     validator="required" message-id="afdd-message"/>
+              <span id="afdd-message"></span>
             </div>
           </div>
           <div class="form-group">
@@ -401,7 +460,26 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">现场笔录地点</label>
-              <input type="text" class="form-control" name="aj_xcbldd" ng-model="item.aj_xcbldd" validator="required"/>
+
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-xcbldd"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_xcbldd }}"
+                    selected-object="xcblddSelected"
+                    local-data="xcblddData"
+                    search-fields="value"
+                    title-field="value"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="xcblddInputChanged"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_xcbldd" ng-model="item.aj_xcbldd" maxlength="50"
+                     validator="required" message-id="xcbldd-message"/>
+              <span id="xcbldd-message"></span>
             </div>
           </div>
           <div class="form-group">
@@ -418,8 +496,26 @@
             </div>
             <div class="col-sm-12">
               <label class="entity-label">询问笔录地点</label>
-              <input type="text" class="form-control" name="aj_xwbldd" ng-model="item.aj_xwbldd" maxlength="50"
-                     validator="required"/>
+
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-xwbldd"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.aj_xwbldd }}"
+                    selected-object="xwblddSelected"
+                    local-data="xwblddData"
+                    search-fields="value"
+                    title-field="value"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="xwblddInputChanged"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="aj_xwbldd" ng-model="item.aj_xwbldd" maxlength="50"
+                     validator="required" message-id="xwbldd-message"/>
+              <span id="xwbldd-message"></span>
             </div>
           </div>
           <div class="form-group">
@@ -427,7 +523,7 @@
               <label class="entity-label">上传发票证件（ 1 张 ）</label>
 
               <div ngf-drop ngf-select ng-model="billFiles" class="entity-upload-photo drop-box"
-                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+                   ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false"
                    ngf-accept="'image/*'"></div>
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in billImages">
                 <div class="compact" ng-if="image.fileid">
@@ -494,8 +590,9 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label ">上传复检照片（ 2 张 ）</label>
-              <div ngf-drop ngf-select ng-model="recheckFiles" class="entity-upload-photo drop-box"
-                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="true"
+
+              <div ngf-drop ngf-select ng-model="$parent.recheckFiles" class="entity-upload-photo drop-box"
+                   ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="false"
                    ngf-accept="'image/*'"></div>
               <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in recheckImages">
                 <div class="compact" ng-if="image.fileid">
@@ -511,7 +608,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
-    <button type="button" class="btn btn-default" validation-submit="form" ng-click="save()">保存</button>
+    <button type="button" class="btn btn-default" ng-click="save()">保存</button>
     <button type="button" class="btn btn-primary" validation-submit="form" ng-click="done()">结案</button>
   </div>
 </form>
