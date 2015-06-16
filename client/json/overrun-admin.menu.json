@@ -1,14 +1,19 @@
 [
   {
-    "menuname": "单位管理",
-    "routestate": "myapp.overrun-admin.dept"
+    "menuname": "案件管理",
+    "routestate": "myapp.overrun-admin.item"
+  },
+  {
+    "menuname": "常用信息管理",
+    "routestate": "myapp.overrun-admin.common"
   },
   {
     "menuname": "人员管理",
     "routestate": "myapp.overrun-admin.user"
   },
   {
-    "menuname": "案件管理",
-    "routestate": "myapp.overrun-admin.item"
+    "menuname": "单位管理",
+    "routestate": "myapp.overrun-admin.dept"
   }
+
 ]
