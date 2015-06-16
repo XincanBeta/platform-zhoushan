@@ -1,6 +1,6 @@
 angular.module('app.overrun-admin').controller('OverrunAdminDeptEditCtrl',
   function ($scope, $state, sliderService, $modalInstance,
-            requestService, item, itemIsNew, ngToast, $q) {
+            requestService, item, itemIsNew, myToast, $rootScope) {
 
     // 挂在 $scope
     $scope.item = item;
