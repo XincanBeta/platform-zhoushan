@@ -3,7 +3,6 @@
 .tmp
 *.iml
 *.css.map
-*.css
 deploy
 dist
 build
