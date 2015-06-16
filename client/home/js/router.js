@@ -132,14 +132,26 @@ angular.module('app')
           }]
         }
       })
-      .state('myapp.overrun-admin.dept', {
-        url: '/dept',
-        templateUrl: app_base + 'overrun-admin/partials/dept.html',
-        controller: "OverrunAdminDeptCtrl",
+      .state('myapp.overrun-admin.item', {
+        url: '/item',
+        templateUrl: app_base + 'overrun-admin/partials/item.html',
+        controller: "OverrunAdminUserCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-admin/js/overrunAdminDeptCtrl.js'
+              app_base + 'overrun-admin/js/overrunAdminItemCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.overrun-admin.dict', {
+        url: '/dict',
+        templateUrl: app_base + 'overrun-admin/partials/dict.html',
+        controller: "OverrunAdminDictCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-admin/js/overrunAdminDictCtrl.js'
             ]);
           }]
         }
@@ -156,18 +168,20 @@ angular.module('app')
           }]
         }
       })
-      .state('myapp.overrun-admin.item', {
-        url: '/item',
-        templateUrl: app_base + 'overrun-admin/partials/item.html',
-        controller: "OverrunAdminUserCtrl",
+      .state('myapp.overrun-admin.dept', {
+        url: '/dept',
+        templateUrl: app_base + 'overrun-admin/partials/dept.html',
+        controller: "OverrunAdminDeptCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-admin/js/overrunAdminItemCtrl.js'
+              app_base + 'overrun-admin/js/overrunAdminDeptCtrl.js'
             ]);
           }]
         }
       })
+
+
 
 
       .state('myapp.monitor', {

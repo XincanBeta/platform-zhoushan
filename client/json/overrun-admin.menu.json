@@ -5,7 +5,7 @@
   },
   {
     "menuname": "常用信息管理",
-    "routestate": "myapp.overrun-admin.common"
+    "routestate": "myapp.overrun-admin.dict"
   },
   {
     "menuname": "人员管理",
