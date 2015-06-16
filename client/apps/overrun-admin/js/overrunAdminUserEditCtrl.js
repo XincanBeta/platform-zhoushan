@@ -1,5 +1,8 @@
 angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
   function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, myToast) {
+    $scope.itemIsNew = itemIsNew;
+
+
     /*--------------------------
      $ 临时数据
      --------------------------*/
@@ -12,7 +15,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       {
         appid: '0102',
         name: '现场超限处罚应用',
-        subname: "领导版"
+        subname: "集体讨论版"
       },
       {
         appid: '0103',
@@ -24,34 +27,9 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
     requestService.overrunAdminDeptQuery().success(function(res){
       if (res.success) {
         $scope.deptlist = res.data;
-        console.log($scope.deptlist);
+        //console.log($scope.deptlist);
       }
     })
-
-    //$scope.deptlist = [
-    //  {
-    //    dwid: '1',
-    //    dwmc: '舟山市公路管理局'
-    //  }, {
-    //    dwid: '2',
-    //    dwmc: '舟山跨海大桥超限运输检测站'
-    //  }, {
-    //    dwid: '3',
-    //    dwmc: '朱家尖检测站'
-    //  }, {
-    //    dwid: '4',
-    //    dwmc: '定海区公路管理局'
-    //  }, {
-    //    dwid: '5',
-    //    dwmc: '普陀区公路管理局'
-    //  }, {
-    //    dwid: '6',
-    //    dwmc: '岱山县公路管理局'
-    //  }, {
-    //    dwid: '7',
-    //    dwmc: '嵊泗县公路管理局'
-    //  }
-    //]
 
     /*--------------------------
       $ 初始化
