@@ -120,6 +120,14 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDictQueryPage = function (data) {
     return _doPostRequest('/api/dicts/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
+  this.overrunDictInsert = function (data) {
+    return _doPostRequest('/api/dicts/insert.do', data);
+  }
+  this.overrunDictDelete = function (data) {
+    return _doPostRequest('/api/dicts/delete.do', data);
+  }
+
+
 
   // 车牌
   this.getCommonOverrunCpInfo = function (data) {

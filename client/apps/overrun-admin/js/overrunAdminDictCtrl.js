@@ -27,26 +27,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminDictCtrl',
     $scope.isSelected = function (item) {
       return $scope.selected == item ? "active" : "";
     }
-    /*
-     sliderService.initRequestMethod(requestService.overrunAdminUserDetail);
-     $scope.mySliderToggle = function (item) {
-     sliderService.setRequestData({wkno: item.wkno})
-     if (!$scope.selected) {
-     $scope.selected = item;
-     sliderService.show()
-     } else if ($scope.selected && $scope.selected === item) {
-     $scope.selected = "";
-     sliderService.hide()
-     } else {
-     $scope.selected = item;
-     sliderService.showAfterHide()
-     }
-     }
-
-     $rootScope.$on("row.clearSelected", function () {
-     $scope.selected = "";
-     $scope.$apply();
-     })*/
 
     $scope.add = function () {
       var modalInstance, item = {};
@@ -106,8 +86,8 @@ angular.module('app.overrun-admin').controller('OverrunAdminDictCtrl',
         backdrop: "static",
         keyboard: false,
         size: "sm",
-        templateUrl: path + 'dept-delete.html',
-        controller: 'OverrunAdminDeptDeleteCtrl',
+        templateUrl: path + 'dict-delete.html',
+        controller: 'OverrunAdminDictDeleteCtrl',
         resolve: {
           selectedItems: function () {
             return selectedItems
