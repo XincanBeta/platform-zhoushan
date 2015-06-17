@@ -5,7 +5,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemCtrl',
      分页
      侧边栏
      checkbox 处理
-     设置
      */
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
@@ -77,8 +76,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemCtrl',
       return found;
     }
 
-    /*--------------------------
-     $ 设置
-    --------------------------*/
+
 
   })

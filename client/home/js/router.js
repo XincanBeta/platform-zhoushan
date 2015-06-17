@@ -87,7 +87,18 @@ angular.module('app')
           }]
         }
       })
-
+      .state('myapp.overrun.report', {
+        url: '/report',
+        templateUrl: app_base + 'overrun/partials/report.html',
+        controller: "OverrunReportCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun/js/overrunReportCtrl.js'
+            ]);
+          }]
+        }
+      })
       /*--------------------------
         $ overrun-leader
       --------------------------*/

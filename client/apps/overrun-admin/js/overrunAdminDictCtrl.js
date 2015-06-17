@@ -27,57 +27,55 @@ angular.module('app.overrun-admin').controller('OverrunAdminDictCtrl',
     $scope.isSelected = function (item) {
       return $scope.selected == item ? "active" : "";
     }
-/*
-    sliderService.initRequestMethod(requestService.overrunAdminUserDetail);
-    $scope.mySliderToggle = function (item) {
-      sliderService.setRequestData({wkno: item.wkno})
-      if (!$scope.selected) {
-        $scope.selected = item;
-        sliderService.show()
-      } else if ($scope.selected && $scope.selected === item) {
-        $scope.selected = "";
-        sliderService.hide()
-      } else {
-        $scope.selected = item;
-        sliderService.showAfterHide()
-      }
-    }
+    /*
+     sliderService.initRequestMethod(requestService.overrunAdminUserDetail);
+     $scope.mySliderToggle = function (item) {
+     sliderService.setRequestData({wkno: item.wkno})
+     if (!$scope.selected) {
+     $scope.selected = item;
+     sliderService.show()
+     } else if ($scope.selected && $scope.selected === item) {
+     $scope.selected = "";
+     sliderService.hide()
+     } else {
+     $scope.selected = item;
+     sliderService.showAfterHide()
+     }
+     }
 
-    $rootScope.$on("row.clearSelected", function () {
-      $scope.selected = "";
-      $scope.$apply();
-    })*/
+     $rootScope.$on("row.clearSelected", function () {
+     $scope.selected = "";
+     $scope.$apply();
+     })*/
 
     $scope.add = function () {
-      var modalInstance
-      var item = {};
-      //requestService.getNewId().success(function (res) {
-      /*if (!res.success) {
-       throw 'new id get failure !'
-       }
-       item.wkno = res.data;*/
-      modalInstance = $modal.open({
-        backdrop: "static",
-        keyboard: false,
-        size: "md",
-        templateUrl: path + 'user-edit.html',
-        controller: 'OverrunAdminUserEditCtrl',
-        resolve: {
-          item: function () {return item;},
-          itemIsNew: function(){return true}
+      var modalInstance, item = {};
+      requestService.getNewId().success(function (res) {
+        if (!res.success) {
+          throw 'new id get failure !'
         }
-      })
+        item.dictid = res.data;
+        modalInstance = $modal.open({
+          backdrop: "static",
+          keyboard: false,
+          size: "md",
+          templateUrl: path + 'dict-edit.html',
+          controller: 'OverrunAdminDictEditCtrl',
+          resolve: {
+            item: function () {return item;}
+          }
+        })
 
-      modalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
-      })
+        modalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
 
-      modalInstance.result.then(function () {
-        sliderService.startAutoHide();
-      }, function () {
-        sliderService.startAutoHide();
-      });
-      //})
+        modalInstance.result.then(function () {
+          sliderService.startAutoHide();
+        }, function () {
+          sliderService.startAutoHide();
+        });
+      })
     }// add
 
     /*

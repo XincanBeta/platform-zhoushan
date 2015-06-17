@@ -1,0 +1,54 @@
+<form name="form" class="form-horizontal form-modal " method="post" action="">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title">新增常用信息</h4>
+  </div>
+  <div class="modal-body" style="height: 470px;" id="info-edit-body">
+    <div class="entity-block-wrap">
+      <div class="entity-block">
+        <div class="entity-block--body">
+          <div class="form-group">
+            <div class="col-sm-8">
+              <label class="entity-label">信息类型</label>
+
+              <div class="entity-input dropdown" dropdown>
+                <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
+                  <span>{{ dictname }}</span> <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                  <li ng-repeat="dict in dictlist" ng-class="(dict.dictname === selectedDict.dictname)? 'disabled':''">
+                    <a href="javascript:void(0)" ng-click="setDict(dict)">{{dict.dictname}}</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div ng-if="selectedDict.dictname !== '执法人'" class="form-group">
+            <div class="col-sm-8">
+              <label class="entity-label">信息内容</label>
+              <input type="text" class="form-control" name="dictvalue" ng-model="$parent.item.dictvalue" validator="required"/>
+            </div>
+          </div>
+
+          <div ng-if="selectedDict.dictname === '执法人'" class="form-group">
+            <div class="col-sm-8">
+              <label class="entity-label">执法人姓名</label>
+              <input type="text" class="form-control" name="dictvalue_1" ng-model="$parent.dictvalue_1" validator="required"/>
+            </div>
+            <div class="col-sm-8">
+              <label class="entity-label">执法人姓名</label>
+              <input type="text" class="form-control" name="dictvalue_1" ng-model="$parent.dictvalue_2" validator="required"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+    <button type="button" class="btn btn-primary" validation-submit="form" ng-click="save()">保存</button>
+  </div>
+</form>
+
+
