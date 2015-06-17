@@ -135,7 +135,7 @@ angular.module('app')
       .state('myapp.overrun-admin.item', {
         url: '/item',
         templateUrl: app_base + 'overrun-admin/partials/item.html',
-        controller: "OverrunAdminUserCtrl",
+        controller: "OverrunAdminItemCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([

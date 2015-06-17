@@ -5,7 +5,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminDictCtrl',
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
-      requestService.overrunAdminUserQuery({
+      requestService.overrunDictQueryPage({
         currentPage: $scope.currentPage,
         pageSize: $scope.pageSize
       }).success(function (res) {

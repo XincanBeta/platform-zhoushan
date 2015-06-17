@@ -37,10 +37,10 @@ angular.module("request", []).service('requestService', function ($http) {
    $ 目录
    --------------------------*/
   /*
-   登录
-   消息通知
-   通用
-   超限常用信息
+   登录接口
+   消息接口
+   通用接口
+   超限常用信息（字典）接口
    overrun
    overrun-leader（改为 集体讨论）
    overrun-admin
@@ -48,15 +48,17 @@ angular.module("request", []).service('requestService', function ($http) {
    */
 
   /*--------------------------
-   $ 登录
+   $ 登录接口
    --------------------------*/
-  // 未用，因为保持 index.html 的简短
+  /*
+   是否登陆
+   */
   this.isSignIn = function () {
     return _doPostRequest('/api/logins/isLogin.do');
   }
 
   /*--------------------------
-   $ 消息通知
+   $ 消息接口
    --------------------------*/
   this.getNotilist = function (data) {
     return _doPostRequest('/api/notis/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
@@ -69,7 +71,7 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ 通用
+   $ 通用接口
    --------------------------*/
   this.getNewId = function () {
     if (env == 'local') {
@@ -110,11 +112,15 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ 超限常用信息
+   $ 超限常用信息（字典）接口
    --------------------------*/
   this.getCommonOverrunDict = function () {
     return _doPostRequest('/api/dicts/queryCommonData.do', {appname: 'cxcf'});
   }
+  this.overrunDictQueryPage = function (data) {
+    return _doPostRequest('/api/dicts/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
+  }
+
   // 车牌
   this.getCommonOverrunCpInfo = function (data) {
     return _doPostRequest('/api/dicts/queryCp.do', data);
