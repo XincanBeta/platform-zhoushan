@@ -102,8 +102,12 @@ angular.module('app.overrun-admin').controller('OverrunAdminDictCtrl',
         sliderService.stopAutoHide();
       })
 
-      modalInstance.result.then(function () {
+      modalInstance.result.then(function (itemList) {
         sliderService.startAutoHide();
+        $scope.itemList = itemList;
+        $scope.allItemIsChecked = false;
+        $rootScope.$emit("paging.act");
+
       }, function () {
         sliderService.startAutoHide();
       });

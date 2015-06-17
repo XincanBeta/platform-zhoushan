@@ -1,6 +1,9 @@
 angular.module('app.overrun-admin').controller('OverrunAdminDictEditCtrl',
   function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal, requestService, item, myToast) {
 
+    $scope.cancel = function () {
+      $modalInstance.dismiss('取消');
+    }
 
     // 初始化
     $scope.item = item;
