@@ -121,9 +121,9 @@ angular.module('app')
       'js/homeLazyLoad.js'
     ];
 
-    $ocLazyLoad.load(lazyloadInParallel);
-    $ocLazyLoad.load(lazyloadInSerie);
-    //$ocLazyLoad.load(lazyloadForBuild);
+    //$ocLazyLoad.load(lazyloadInParallel);
+    //$ocLazyLoad.load(lazyloadInSerie);
+    $ocLazyLoad.load(lazyloadForBuild);
 
     /*--------------------------
      $ 快捷方式
