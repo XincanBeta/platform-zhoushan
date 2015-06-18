@@ -188,8 +188,25 @@
             </div>
             <div class="col-sm-8">
               <label class="entity-label">车辆类型</label>
-              <input type="text" class="form-control" name="cl_lx" ng-model="item.cl_lx" maxlength="30"
-                     validator="required"/>
+              <div>
+                <angucomplete-alt
+                    id="autocomplete-clxx"
+                    placeholder=""
+                    pause="100"
+                    initial-value="{{ item.cl_lx }}"
+                    selected-object="clxxSelected"
+                    local-data="clxxData"
+                    search-fields="value"
+                    title-field="value"
+                    minlength="0"
+                    match-class="highlight"
+                    input-class="form-control form-control-small"
+                    input-changed="clxxInputChanged"
+                    />
+              </div>
+              <input type="hidden" class="form-control" name="cl_lx" ng-model="item.cl_lx" maxlength="50"
+                     validator="required" message-id="clxx-message"/>
+              <span id="clxx-message"></span>
             </div>
           </div>
           <div class="form-group">

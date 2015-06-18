@@ -579,6 +579,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.xwblddData = res.data.XWBLDD;
         $scope.zfrData = res.data.ZFR;
         $scope.tcddData = res.data.TCDD;
+        $scope.clxxData = res.data.CLXX;
       }
     })
     /* 案发地点 */
@@ -639,6 +640,16 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.tcddInputChanged = function (value) {
       $scope.item.aj_tcdd = value;
     }
+    /* 车辆类型 */
+    $scope.clxxSelected = function (selected) {
+      if (selected) {
+        $scope.item.cl_lx = selected.title;
+      }
+    }
+    $scope.clxxInputChanged = function (value) {
+      $scope.item.cl_lx = value;
+    }
+
 
     /*--------------------------
       $ 最新的结案信息
