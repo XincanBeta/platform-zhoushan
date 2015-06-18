@@ -8,23 +8,18 @@
 <section class="l-entity-panel--body" ng-include="selected.content"></section>
 <section class="l-entity-panel--footer" ng-include="selected.operator"></section>
 
-
 <!--operator start -->
 <script type="text/ng-template" id="docOperator">
   <button type="button" class="btn btn-default" ng-click="fullscreenDoc()">全屏</button>
-  <!--<button type="button" class="btn btn-default" ng-click="downloadDoc()">下载</button>-->
 </script>
 
 <script type="text/ng-template" id="detailOperator">
-  <!---->
-  <button type="button" class="btn btn-default" ng-if='!hideDetailOperator'
-          ng-disabled="item.jttl.jt_zt == '在进行'"  ng-click="edit()">修改</button>
+  <button type="button" class="btn btn-default" ng-click="edit()">修改</button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">
 </script>
 <!--operator end -->
-
 
 <!--content start -->
 <!-- script 上的 id 是给 templateUrl 用的 -->

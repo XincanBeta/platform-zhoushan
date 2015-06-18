@@ -498,71 +498,25 @@
     }
 
     $scope.print = function (part) {
-
-
       requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
-        $(function () {
-          var
-              iframeId = 'pdfIframe',
-              $iframe = $('#' + iframeId);
-          if (res.success) {
-
-            /*$iframe.load(function () {
-
-            });*/
-
-            $iframe.attr('src', '/api/files/downloadFile.do?filename=' + res.data);
-            console.log('load');
-            callPrint(iframeId);
-
-            //initiates print once content has been loaded into iframe
-            function callPrint(iframeId) {
-              var PDF = document.getElementById(iframeId);
-              PDF.focus();
-              PDF.contentWindow.print();
-            }
-          }
-        })
-
+        var iframe = document.getElementById('pdfIframe');
+        iframe.src = '/api/files/downloadFile.do?print=true&filename=' + res.data;
+        // 等待 iframe 加载完毕
+        if (iframe.attachEvent) {
+          iframe.attachEvent("onload", function () {
+            _doit();
+          });
+        } else {
+          // chrome in
+          iframe.onload = function () {
+            _doit();
+          };
+        }
+        function _doit() {
+          iframe.focus();
+          iframe.contentWindow.print();
+        }
       })
-
-
-      /*var iframe = document.getElementById('pdfIframe');
-
-       var iframe = document.createElement("iframe");
-       iframe.src =
-
-       if (iframe.attachEvent){
-       iframe.attachEvent("onload", function(){
-       alert("Local iframe is now loaded.");
-       });
-       } else {
-       iframe.onload = function(){
-       alert("Local iframe is now loaded.");
-       };
-       }
-
-       document.body.appendChild(iframe);*/
-//          iframe.src = urlHead + '/api/files/downloadFile.do?filename=' + res.data;
-      /*iframe.src = urlHead + '/sample.pdf';
-       // 等待 iframe 加载完毕
-       if (iframe.attachEvent) {
-       iframe.attachEvent("onload", function () {
-       _doit();
-       });
-       } else {
-       // chrome in
-       iframe.onload = function () {
-       _doit();
-       };
-       }
-       // 执行
-       iframe.onload();
-       function _doit() {
-       console.log(iframe.src );
-       iframe.focus();
-       iframe.contentWindow.print();
-       }*/
     }
 
     $scope.printCurrent = function () {

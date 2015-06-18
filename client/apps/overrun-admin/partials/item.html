@@ -11,10 +11,10 @@
     <table class="app-table entity-view">
       <thead>
       <tr>
-        <th class="with-checkbox">
-          <!--用于导出-->
+        <!--<th class="with-checkbox">
+          &lt;!&ndash;用于导出&ndash;&gt;
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
-        </th>
+        </th>-->
         <th>序号</th>
         <th>案号</th>
         <th>车牌</th>
@@ -25,9 +25,9 @@
       </thead>
       <tbody>
       <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
-        <td>
+        <!--<td>
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
-        </td>
+        </td>-->
         <td>{{ $index+1 }}</td>
         <td>{{ item["aj_bh"] }}</td>
         <td>{{ item["cj_cp"] }}</td>
@@ -60,8 +60,8 @@
 </footer>
 <!-- 平级的位置 -->
 <div my-slider-show class="l-entity-panel"
-     ng-controller="OverrunItemDetailCtrl"
-     ng-include="'../apps/overrun/partials/item-detail.html'">
+     ng-controller="OverrunAdminItemDetailCtrl"
+     ng-include="'../apps/overrun-admin/partials/item-detail.html'">
 </div>
 <form id="formForDownload" target="" method="post" action="/api/files/downloadFile.do"
       style="display: none;">
