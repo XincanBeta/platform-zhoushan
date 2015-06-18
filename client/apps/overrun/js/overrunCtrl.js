@@ -36,7 +36,7 @@ angular.module('app.overrun', [
      * 可对自己特有的组件进行延迟加载
      * todo: ocLazyLoad isLoaded 无效
      */
-    var apps = '../apps/overrun/'
+    var apps = '../apps/overrun/';
     $ocLazyLoad.load([
       apps + 'js/overrunItemDetailCtrl.js',
       apps + 'js/overrunItemDetailPhotoCtrl.js',
@@ -46,7 +46,8 @@ angular.module('app.overrun', [
       apps + 'js/overrunViewerFullscreenCtrl.js',
       apps + 'js/overrunViewerCtrl.js',
       apps + 'js/overrunPhotoDetailCtrl.js',
-      apps + 'js/overrunItemDiscussCtrl.js'
+      apps + 'js/overrunItemDiscussCtrl.js',
+      apps + 'js/overrunReportSettingCtrl.js'
     ])
 
     // todo: 抽取成通用的服务

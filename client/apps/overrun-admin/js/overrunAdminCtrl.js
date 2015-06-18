@@ -35,9 +35,11 @@ angular.module('app.overrun-admin', [])
       apps + 'js/overrunAdminDeptEditCtrl.js',
       apps + 'js/overrunAdminDeptDetailCtrl.js',
       apps + 'js/overrunAdminDeptDeleteCtrl.js',
-
       apps + 'js/overrunAdminUserEditCtrl.js',
-      apps + 'js/overrunAdminUserDetailCtrl.js'
+      apps + 'js/overrunAdminUserDetailCtrl.js',
+      apps + 'js/overrunAdminDictEditCtrl.js',
+      apps + 'js/overrunAdminDictDeleteCtrl.js'
+
 
     ])
 
