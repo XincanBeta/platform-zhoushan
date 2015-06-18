@@ -15,6 +15,7 @@ angular.module('validation.rule', ['validation'])
           }
           return true;
         },
+        alphabet:/^[A-Za-z0-9]{3,12}$/,
         url: /((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/,
         email: /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/,
         isNumber: /(^\d*\.?\d*[0-9]+\d*$)|(^[0-9]+\d*\.\d*$)/,
@@ -32,8 +33,8 @@ angular.module('validation.rule', ['validation'])
           return value.length == param;
         },
         date: function (value, scope, element, attrs, param) {
-          console.log('value', value);
-          console.log(moment(value, 'YYYY-MM-DD HH:mm', true).isValid());
+          //console.log('value', value);
+          //console.log(moment(value, 'YYYY-MM-DD HH:mm', true).isValid());
           return moment(value, 'YYYY-MM-DD HH:mm', true).isValid();
         }
       };
@@ -44,6 +45,9 @@ angular.module('validation.rule', ['validation'])
       var defaultMsg = {
         required: {
           error: '必填'
+        },
+        alphabet:{
+          error: '只允许英文字母，并至少输入三个字符'
         },
         url: {
           error: 'This should be Url'

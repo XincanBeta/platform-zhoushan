@@ -572,6 +572,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 常用信息（带回历史）
      --------------------------*/
     requestService.getCommonOverrunDict().success(function (res) {
+      console.log('>>>', res);
       if (res.success) {
         $scope.afddData = res.data.AFDD;
         $scope.xcblddData = res.data.XCBLDD;
