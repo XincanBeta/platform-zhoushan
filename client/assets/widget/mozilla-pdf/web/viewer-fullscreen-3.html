@@ -476,7 +476,7 @@
 </div>
 
 <!-- 案件打印，隐藏的iframe -->
-<iframe id="pdfIframe" height="600" type="application/pdf" width="800"
+<iframe id="pdfIframe" height="600" width="800"
         src="" style="display: none;"></iframe>
 
 </body>
@@ -487,7 +487,7 @@
 <script>
   var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL, itemId
-  var urlHead = location.protocol + '//' + location.host + '/';
+//  var urlHead = location.protocol + '//' + location.host + '/';
 //  urlHead = 'http://120.26.91.44/'
 
   app.controller("PDFCtrl", function ($scope, requestService) {
@@ -505,7 +505,9 @@
       var iframe = document.getElementById('pdfIframe');
       requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
         if (res.success) {
-          iframe.src = urlHead + res.data;
+          iframe.src = '/api/files/downloadFile.do?filename=' + res.data;
+          console.log('--------------------');
+
           // 等待 iframe 加载完毕
           if (iframe.attachEvent){
             iframe.attachEvent("onload", function(){
@@ -516,9 +518,9 @@
               _doit();
             };
           }
-
           function _doit(){
             iframe.focus();
+            console.log('do it');
             iframe.contentWindow.print();
           }
         }
