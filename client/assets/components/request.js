@@ -292,6 +292,10 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
     }
   }
+  // 案件管理
+  this.overrunAdminItemUpdate = function (data) {
+    return _doPostRequest('/api/cxcfs/updateForJiean.do', data);
+  }
 
 
   // 以下待整理

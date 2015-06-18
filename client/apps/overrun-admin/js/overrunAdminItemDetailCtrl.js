@@ -50,14 +50,14 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailCtrl',
     /*--------------------------
      $ 案件修改（待处理）
      --------------------------*/
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/overrun-admin/partials/';
     $scope.edit = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
         size: "lg",
         templateUrl: path + 'item-edit.html',
-        controller: 'OverrunItemEditCtrl',
+        controller: 'OverrunAdminItemEditCtrl',
         resolve: {
           item: function () {
             return $scope.item // 指令内部控制器，不能访问到外部 scope
