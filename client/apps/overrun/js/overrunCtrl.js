@@ -21,7 +21,7 @@ angular.module('app.overrun', [
 
     requestService.overrunSidebarItems().success(function (menus) {
       $scope.menus = menus;
-      $scope.select(menus[2])
+      $scope.select(menus[0])
     })
 
     $scope.select = function (menu) {

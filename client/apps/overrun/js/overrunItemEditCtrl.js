@@ -8,6 +8,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      下拉列表
      精度限制
      车牌
+     挂车
      日期设置
      罚金计算
      证件获取
@@ -158,7 +159,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 车牌
      --------------------------*/
-    // 历史带回
+    // 通过车牌带回车辆信息
     $scope.cpSelected = function (selected) {
       if (selected) {
         $scope.item.cj_cp = selected.originalObject.cj_cp;
@@ -196,6 +197,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.cpData = [];
       }
     }
+
+
+    /*--------------------------
+     $ 挂车
+     --------------------------*/
+    $scope.$watch('item.cl_gc', function (value) {
+      if (value.length >= 7 && value[value.length - 1] != '挂') {
+        value = value.substring(0, 6) + '挂';
+      }
+      $scope.item.cl_gc = value;
+      // .toUpperCase() 会有 zhe浙 bug
+    })
+
 
     /*--------------------------
      $ 日期设置
@@ -444,11 +458,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 手动验证
-     --------------------------*/
-
-
-    /*--------------------------
      $ 保存
      --------------------------*/
     function _beforeSave() {
@@ -651,14 +660,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-      $ 最新的结案信息
-    --------------------------*/
+     $ 最新的结案信息
+     --------------------------*/
     if (itemIsNew) {
       _getLastDoneItem();
     }
 
-    function _getLastDoneItem(){
-      requestService.overrunDoneLastItem().success(function(res){
+    function _getLastDoneItem() {
+      requestService.overrunDoneLastItem().success(function (res) {
         // 带回案件信息
         if (res.success) {
           $scope.item.aj_zfx = res.data.aj_zfx;
@@ -672,11 +681,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }
       })
     }
-
-
-
-
-
 
 
   })
