@@ -1,3 +1,8 @@
+<style>
+  .w120 {
+    width: 120px;
+  }
+</style>
 <form name="form" class="form-horizontal form-modal " method="post" action="">
   <div class="modal-header">
     <button type="button" class="close" ng-click="cancel()">&times;</button>
@@ -8,49 +13,33 @@
       <div class="entity-block">
         <div class="entity-block--body">
           <div class="form-group">
-            <div class="col-sm-8">
-              <label class="entity-label">登录账号</label>
+            <div class="col-sm-4">
+              <label class="entity-label">统计月份</label>
               <input type="text" class="form-control" name="wkno" ng-model="item.wkno" validator="required"
-                    ng-readonly="!itemIsNew" autofocus="autofocus"/>
+                     autofocus="autofocus"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-8">
-              <label class="entity-label">姓名</label>
-              <input type="text" class="form-control" name="wkna" ng-model="item.wkna" validator="required"/>
+              <label class="entity-label">月报表截止时间：每月</label>
+              <input type="text" class="form-control"  ng-model="item.wkna" validator="required"/>
             </div>
             <div class="col-sm-8">
-              <label class="entity-label">密码</label>
-              <input type="password" class="form-control" name="passwd" ng-model="item.passwd" validator="required"/>
+              <label class="entity-label">抄告表截止时间：每月</label>
+              <input type="password" class="form-control"  ng-model="item.passwd" validator="required"/>
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-16">
-              <label class="entity-label">单位</label>
-
-              <div class="entity-input dropdown" dropdown>
-                <button type="button" class="form-control btn btn-default dropdown-toggle" dropdown-toggle>
-                  <span>{{ dwmc }}</span> <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li ng-repeat="dept in deptlist" ng-class="(dept.dwmc === selectedDept.dwmc)? 'disabled':''">
-                    <a href="javascript:void(0)" ng-click="setDept(dept)">{{dept.dwmc}}</a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-16">
-              <label class="entity-label">应用</label>
+              <label class="entity-label">可见单位</label>
 
               <div class="panel panel-default">
                 <div class="panel-body" style="height: 175px; overflow: auto">
-                  <div ng-repeat="app in appList">
+                  <div ng-repeat="dept in deptList">
                     <label style="margin-left: 10px;" class="ng-binding">
-                      <input type="checkbox" ng-model="app.selected" ng-checked="app.selected"
-                             ng-click="selectApp($event)" style="vertical-align:middle; margin-top:-2px;">
-                      {{ app.name }}（{{ app.subname }}）</label>
+                      <input type="checkbox" ng-model="dept.selected" ng-checked="dept.selected"
+                             ng-click="selectDept($event)" style="vertical-align:middle; margin-top:-2px;">
+                      {{ dept.dwmc }}</label>
                   </div>
                 </div>
               </div>
@@ -61,7 +50,6 @@
     </div>
   </div>
   <div class="modal-footer">
-    <!---->
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
     <button type="button" class="btn btn-primary" validation-submit="form" ng-click="save()">保存</button>
   </div>

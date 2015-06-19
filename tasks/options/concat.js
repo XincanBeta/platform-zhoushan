@@ -40,6 +40,7 @@ module.exports = {
       '<%= pkg.path.build %>/assets/components/datetime-picker.tpls.min.js',
       '<%= pkg.path.build %>/assets/lib/moment/min/moment.min.js',
       '<%= pkg.path.build %>/assets/components/moment.locale.zh-cn.min.js',
+      '<%= pkg.path.build %>/assets/components/sb-date-select.js',
       '<%= pkg.path.build %>/assets/lib/angular-validation/dist/angular-validation.min.js',
       '<%= pkg.path.build %>/assets/components/angular-validation-rule.js' // 未压缩
     ],

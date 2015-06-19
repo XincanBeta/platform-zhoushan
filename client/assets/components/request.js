@@ -128,7 +128,6 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
 
-
   // 车牌
   this.getCommonOverrunCpInfo = function (data) {
     return _doPostRequest('/api/dicts/queryCp.do', data);
@@ -247,10 +246,7 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/dws/query.do');
   }
   this.overrunAdminDeptItemSave = function (data) {
-    if (env == 'local') {
-    } else {
-      return _doPostRequest('/api/dws/insert.do', data);
-    }
+    return _doPostRequest('/api/dws/insert.do', data);
   }
   this.overrunAdminDeptItemUpdate = function (data) {
     if (env == 'local') {

@@ -13,14 +13,15 @@ angular.module('app.overrun', [
   'cgBusy',
   'anchorSmoothScroll',
   'car.helper',
-  'angucomplete-alt'
+  'angucomplete-alt',
+  'sbDateSelect'
 ])
   .controller('OverrunCtrl', function ($scope, requestService, $state, $ocLazyLoad, $timeout) {
     // todo: 把 apps 应用目录提取成一个 env 服务，因为依赖性很强，就算改起来很方便
 
     requestService.overrunSidebarItems().success(function (menus) {
       $scope.menus = menus;
-      $scope.select(menus[0])
+      $scope.select(menus[2])
     })
 
     $scope.select = function (menu) {

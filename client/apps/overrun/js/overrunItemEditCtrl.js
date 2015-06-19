@@ -530,7 +530,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.closeModal = function () {
       $modalInstance.close();
     }
-    // 错误关闭本层
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }

@@ -101,6 +101,8 @@ angular.module('app')
         '../assets/components/datetime-picker.tpls.min.js',
         '../assets/lib/moment/min/moment.min.js',
         '../assets/components/moment.locale.zh-cn.min.js',
+        '../assets/components/sb-date-select.js',
+
         '../assets/lib/angular-validation/dist/angular-validation.min.js',
         /*1) date 验证依赖 moment
          2) validation-submit 依赖 input[name] */
@@ -121,9 +123,9 @@ angular.module('app')
       'js/homeLazyLoad.js'
     ];
 
-    //$ocLazyLoad.load(lazyloadInParallel);
-    //$ocLazyLoad.load(lazyloadInSerie);
-    $ocLazyLoad.load(lazyloadForBuild);
+    $ocLazyLoad.load(lazyloadInParallel);
+    $ocLazyLoad.load(lazyloadInSerie);
+    //$ocLazyLoad.load(lazyloadForBuild);
 
     /*--------------------------
      $ 快捷方式

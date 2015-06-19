@@ -1,5 +1,8 @@
 angular.module('app.overrun').controller('OverrunReportCtrl',
   function ($scope, requestService, $modal, sliderService, $rootScope) {
+
+    $scope.tjsj = '2015-04-10'
+
     var path = '../apps/overrun/partials/';
     /*--------------------------
      $ 设置
