@@ -26,7 +26,7 @@
 <script type="text/ng-template" id="docContent">
   <!-- top 值小 因为全屏上方是有工具栏 -->
   <!-- viewer-container 是给 iframe 内的 angular 用的 -->
-  <div id="viewer-container" ng-controller="OverrunViewerCtrl"
+  <div id="viewer-container" ng-controller="OverrunAdminViewerCtrl"
        style="position: absolute; left: 2px; right: 2px; top: -32px; bottom: 2px; ">
     <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer.html"
             height="100%" width="100%" frameborder="no" ></iframe>
@@ -44,7 +44,7 @@
 
 
 <script type="text/ng-template" id="photoContent">
-  <div class="entity-block-wrap" ng-controller="OverrunItemDetailPhotoCtrl">
+  <div class="entity-block-wrap" ng-controller="OverrunAdminItemDetailPhotoCtrl">
     <div class="entity-block">
       <header class="entity-block--header">
         <i class="entity-icon icon-tupian"></i>

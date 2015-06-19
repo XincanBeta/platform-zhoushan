@@ -88,7 +88,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailCtrl',
         keyboard: true,
         size: "fullscreen",
         templateUrl: path + 'docFullscreen.html',
-        controller: 'OverrunViewerFullscreenCtrl',
+        controller: 'OverrunAdminViewerFullscreenCtrl',
         resolve: {
           item: function () {
             return $scope.item;
