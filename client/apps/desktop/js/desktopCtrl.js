@@ -1,5 +1,4 @@
-angular.module('app.desktop', []).controller('DesktopCtrl',
-  ['$scope', '$http', '$state', function ($scope, $http, $state) {
+angular.module('app.desktop', []).controller('DesktopCtrl', function ($scope, $http, $state) {
 
 
 
@@ -113,4 +112,4 @@ angular.module('app.desktop', []).controller('DesktopCtrl',
 
 
 
-  }]);
+  });

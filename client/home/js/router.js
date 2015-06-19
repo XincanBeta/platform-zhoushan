@@ -11,7 +11,7 @@ angular.module('app')
        myapp
        overrun
        overrun-leader
-       concat
+       contact
        */
       .state('desktop', {
         url: "/desktop",
@@ -220,6 +220,9 @@ angular.module('app')
           }]
         }
       })
+      /*--------------------------
+       $ contact
+      --------------------------*/
       .state('contact', {
         url: "/contact",
         controller: 'ContactCtrl',

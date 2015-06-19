@@ -43,8 +43,10 @@ angular.module("request", []).service('requestService', function ($http) {
    超限常用信息（字典）接口
    overrun
    overrun-leader（改为 集体讨论）
-   overrun-admin
+   overrun-admin 现场超限处罚管理员
+   通讯录管理
    单位接口
+
    */
 
   /*--------------------------
@@ -230,7 +232,7 @@ angular.module("request", []).service('requestService', function ($http) {
 
 
   /*--------------------------
-   $ overrun-admin
+   $ overrun-admin 现场超限处罚管理员
    --------------------------*/
   this.overrunAdminSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun-admin.menu.json');
@@ -292,6 +294,15 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunAdminItemUpdate = function (data) {
     return _doPostRequest('/api/cxcfs/updateForJiean.do', data);
   }
+
+  /*--------------------------
+   $ 通讯录管理
+   --------------------------*/
+  this.contactDeptList = function () {
+    return _doGetRequest(localPath + 'contact.dept.json');
+  }
+
+
 
 
   // 以下待整理

@@ -19,7 +19,7 @@ angular.module('app')
 
     requestService.homeSidebarItems().success(function (items) {
       $scope.items = items;
-      $scope.select(items[1])
+      $scope.select(items[0])
     })
 
     $scope.select = function (item) {
