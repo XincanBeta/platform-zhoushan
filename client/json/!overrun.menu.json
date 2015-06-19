@@ -10,5 +10,9 @@
   {
     "menuname": "数据报送",
     "routestate": "myapp.overrun.report"
+  },
+  {
+    "menuname": "信用档案",
+    "routestate": "myapp.overrun.blacklist"
   }
 ]

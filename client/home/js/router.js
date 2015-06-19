@@ -11,6 +11,7 @@ angular.module('app')
        myapp
        overrun
        overrun-leader
+       concat
        */
       .state('desktop', {
         url: "/desktop",
@@ -219,6 +220,19 @@ angular.module('app')
           }]
         }
       })
+      .state('contact', {
+        url: "/contact",
+        controller: 'ContactCtrl',
+        templateUrl: app_base + 'contact/contact.html',
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'contact/js/contactCtrl.js'
+            ]);
+          }]
+        }
+      })
+
       //.state('admin', {
       //  url: "/admin",
       //  controller: 'AdminCtrl',

@@ -104,9 +104,13 @@ angular.module('app')
         '../assets/components/sb-date-select.js',
 
         '../assets/lib/angular-validation/dist/angular-validation.min.js',
-        /*1) date 验证依赖 moment
-         2) validation-submit 依赖 input[name] */
-        '../assets/components/angular-validation-rule.js' //未压缩
+        /*
+          1) date 验证依赖 moment
+          2) validation-submit 依赖 input[name] */
+        //未压缩
+        '../assets/components/angular-validation-rule.js',
+        '../assets/lib/jstree/dist/jstree.min.js',
+        '../assets/lib/ng-js-tree/dist/ngJsTree.min.js'
       ]
     }
     /*
