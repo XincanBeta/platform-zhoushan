@@ -306,7 +306,10 @@ angular.module("request", []).service('requestService', function ($http) {
    $ 单位接口
   --------------------------*/
   // 根据权限
-  // data 应该只包含 dwid
+  /*
+    1、没有data：返回当前登陆用户单位和下属单位
+    2、有 data，data 应只包含 dwid ，返回该单位和其下属单位
+  */
   this.getDeptlistWithPermission = function (data) {
     return _doPostRequest('/api/dws/query.do', data);
   }
