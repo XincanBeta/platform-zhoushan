@@ -1,5 +1,21 @@
 angular.module('app.overrun-admin').controller('OverrunAdminDeptDetailCtrl',
-  function ($scope, $state, $modal, sliderService, $rootScope ) {
+  function ($scope, $state, $modal, sliderService, $rootScope, requestService ) {
+
+    // 接收详细信息
+    $rootScope.$on("entity.update", function (event, res) {
+      $scope.item = res.data;
+
+      // 获取下级单位
+      requestService.getDeptlistWithPermission({dwid: $scope.item.dwid}).success(function(res){
+        if(res.success){
+          // 过滤本单位
+          var deptList = _.filter(res.data, function(dept){
+            return $scope.item.dwid == dept.dwid ? false : true ;
+          })
+          $scope.deptList = deptList;
+        }
+      })
+    })
 
     // 更新案号年份
     $scope.ahnf = new Date().getFullYear();
@@ -33,16 +49,13 @@ angular.module('app.overrun-admin').controller('OverrunAdminDeptDetailCtrl',
     }
 
 
-
-
     $scope.isSelected = function (tab) {
       return (tab === $scope.selected) ? 'active' : '';
     }
 
 
-    // 接收详细信息
-    $rootScope.$on("entity.update", function (event, res) {
-      $scope.item = res.data;
-    })
+
+
+
 
   })

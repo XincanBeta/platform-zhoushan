@@ -19,7 +19,15 @@
 
         <div class="entity-info is-clear-both">行政复议机关：{{ item.xzfy }}</div>
         <div class="entity-info is-clear-both">行政诉讼机关：{{ item.xzss }}</div>
-        <div class="entity-info">下级单位：</div>
+
+        <div class="entity-info ">下级单位：
+          <div class="panel panel-default" ng-if="deptList.length != 0">
+            <div class="panel-body">
+              <div ng-repeat="dept in deptList ">{{ dept.dwmc }}</div>
+            </div>
+          </div>
+          <span ng-if="deptList.length == 0">无</span>
+        </div>
       </section>
     </div>
   </div>

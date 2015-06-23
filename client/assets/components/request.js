@@ -302,6 +302,16 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doGetRequest(localPath + 'contact.dept.json');
   }
 
+  /*--------------------------
+   $ 单位接口
+  --------------------------*/
+  // 根据权限
+  // data 应该只包含 dwid
+  this.getDeptlistWithPermission = function (data) {
+    return _doPostRequest('/api/dws/query.do', data);
+  }
+
+
 
 
 
