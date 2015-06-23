@@ -10,7 +10,7 @@ angular.module('app')
        desktop
        myapp
        overrun
-       overrun-leader
+       overrun-group
        contact
        */
       .state('desktop', {
@@ -101,30 +101,30 @@ angular.module('app')
         }
       })
       /*--------------------------
-        $ overrun-leader
+        $ overrun-group
       --------------------------*/
-      .state('myapp.overrun-leader', {
-        url: '/overrun-leader',
-        templateUrl: app_base + 'overrun-leader/overrun-leader.html',
+      .state('myapp.overrun-group', {
+        url: '/overrun-group',
+        templateUrl: app_base + 'overrun-group/overrun-group.html',
         controller: "OverrunLeaderCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-leader/js/overrunLeaderCtrl.js'
+              app_base + 'overrun-group/js/overrunLeaderCtrl.js'
             ]);
           }]
         }
       })
-      .state('myapp.overrun-leader.todo', {
+      .state('myapp.overrun-group.todo', {
         url: '/todo?notid',
-        templateUrl: app_base + 'overrun-leader/partials/todo.html',
+        templateUrl: app_base + 'overrun-group/partials/todo.html',
         controller: "OverrunLeaderTodoCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-leader/js/overrunLeaderTodoCtrl.js',
-              app_base + 'overrun-leader/js/overrunLeaderItemDetailCtrl.js',
-              app_base + 'overrun-leader/js/overrunLeaderItemEditCtrl.js'
+              app_base + 'overrun-group/js/overrunLeaderTodoCtrl.js',
+              app_base + 'overrun-group/js/overrunLeaderItemDetailCtrl.js',
+              app_base + 'overrun-group/js/overrunLeaderItemEditCtrl.js'
             ]);
           }]
         }

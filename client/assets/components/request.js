@@ -42,7 +42,7 @@ angular.module("request", []).service('requestService', function ($http) {
    通用接口
    超限常用信息（字典）接口
    overrun
-   overrun-leader（改为 集体讨论）
+   overrun-group（集体讨论）
    overrun-admin 现场超限处罚管理员
    通讯录管理
    单位接口
@@ -212,21 +212,21 @@ angular.module("request", []).service('requestService', function ($http) {
 
 
   /*--------------------------
-   $ overrun-leader（改为 集体讨论）
+   $ overrun-group（集体讨论）
    --------------------------*/
   this.overrunItemsDiscussInsert = function (data) {
     return _doPostRequest('/api/jttls/' + data.aj_id + '/insert.do', {jt_bh: data.jt_bh});
   }
 
-  this.overrunLeaderSidebarItems = function () {
-    return _doGetRequest(localPath + 'overrun-leader.menu.json');
+  this.overrunGroupSidebarItems = function () {
+    return _doGetRequest(localPath + 'overrun-group.menu.json');
   }
 
-  this.overrunLeaderTodoItems = function (data) {
+  this.overrunGroupTodoItems = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPageForJTZT.do');
   }
 
-  this.overrunLeaderItemUpdate = function (data) {
+  this.overrunGroupItemUpdate = function (data) {
     return _doPostRequest('/api/jttls/update.do', data);
   }
 

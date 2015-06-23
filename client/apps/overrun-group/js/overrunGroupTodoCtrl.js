@@ -1,4 +1,4 @@
-angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
+angular.module('app.overrun-group').controller('OverrunGroupTodoCtrl',
   function ($scope, $state, $rootScope, sliderService, requestService, $modal, $timeout) {
     /*
       分页
@@ -11,7 +11,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
-      requestService.overrunLeaderTodoItems({
+      requestService.overrunGroupTodoItems({
         currentPage: $scope.currentPage,
         pageSize: $scope.pageSize,
         aj_jazt: null
@@ -63,7 +63,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderTodoCtrl',
     })
 
     // 新增(包含info 和 证件信息)
-    var path = '../apps/overrun-leader/partials/';
+    var path = '../apps/overrun-group/partials/';
 
 
 

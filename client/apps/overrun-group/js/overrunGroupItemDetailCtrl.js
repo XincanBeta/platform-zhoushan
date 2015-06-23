@@ -1,4 +1,4 @@
-angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
+angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
   function ($scope, $state, $modal, sliderService, $rootScope, $location, anchorSmoothScroll) {
 
     /*--------------------------
@@ -28,7 +28,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
     }]
 
     // 区分待处理和已完结
-    if ($state.current.name == "myapp.overrun-leader.done") {
+    if ($state.current.name == "myapp.overrun-group.done") {
       tabset.push({
         name: '案卷',
         content: 'docContent',
@@ -49,14 +49,14 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
     /*--------------------------
      $ 案件修改（待处理）
      --------------------------*/
-    var path = '../apps/overrun-leader/partials/';
+    var path = '../apps/overrun-group/partials/';
     $scope.editInfo = function () {
       var modalInstance = $modal.open({
         backdrop: "static",
         keyboard: false,
         size: "lg",
         templateUrl: path + 'item-edit.html',
-        controller: 'OverrunLeaderItemEditCtrl',
+        controller: 'OverrunGroupItemEditCtrl',
         resolve: {
           item: function () {
             return $scope.item
@@ -94,6 +94,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
           }
         }
       })
+
       fullscreenModalInstance.result.then(function () {
         sliderService.startAutoHide();
       }, function () {
@@ -104,6 +105,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemDetailCtrl',
         sliderService.stopAutoHide();
       })
     }
+
     // modalInstance.close 依赖 modalInstance.result 和 modalInstance.opened
     $scope.closeModal = function () {
       fullscreenModalInstance.close()

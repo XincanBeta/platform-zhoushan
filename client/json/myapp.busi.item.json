@@ -13,7 +13,7 @@
     "name": "现场超限处罚应用",
     "subname": "集体讨论版",
     "description": "",
-    "routestate": "myapp.overrun-leader",
+    "routestate": "myapp.overrun-group",
     "imgsrc": "huo-che.png",
     "disabled": false
   },

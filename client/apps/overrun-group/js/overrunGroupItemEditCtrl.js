@@ -1,4 +1,4 @@
-angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
+angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl',
   function ($scope, $state, sliderService, $modalInstance, $modal,
             requestService, item, myToast, $rootScope) {
 
@@ -56,7 +56,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
      $ 保存
      --------------------------*/
     $scope.save = function () {
-      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+      requestService.overrunGroupItemUpdate($scope.item).success(function (res) {
         if (res.success) {
           myToast.successTip();
           $rootScope.$emit("paging.act")
@@ -72,7 +72,7 @@ angular.module('app.overrun-leader').controller('OverrunLeaderItemEditCtrl',
     --------------------------*/
     $scope.confim = function(){
       $scope.item.jt_zt = '已完成';
-      requestService.overrunLeaderItemUpdate($scope.item).success(function (res) {
+      requestService.overrunGroupItemUpdate($scope.item).success(function (res) {
         if (res.success) {
           $rootScope.$emit("slider.hide")
           myToast.successTip('操作成功！');
