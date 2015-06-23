@@ -101,7 +101,7 @@ angular.module('app')
         '../assets/components/datetime-picker.tpls.min.js',
         '../assets/lib/moment/min/moment.min.js',
         '../assets/components/moment.locale.zh-cn.min.js',
-        '../assets/components/sb-date-select.js',
+        '../assets/components/sb-date-select.js', // 依赖 moment
 
         '../assets/lib/angular-validation/dist/angular-validation.min.js',
         /*
