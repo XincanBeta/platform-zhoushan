@@ -1,7 +1,8 @@
+<!-- 必要的页面样式，用 id 开头-->
 <style>
-  .date-select-wrap {
+  #tjsj {
     position: absolute;
-    right: 0px;
+    right: 0;
     top: 5px;
     width: 200px;
     font-weight: normal;
@@ -9,6 +10,9 @@
     font-size: 14px;
     line-height: 1.428571429;
     color: #333;
+  }
+  #tjsj .sb-date-select-day {
+    display: none;
   }
 </style>
 
@@ -18,7 +22,7 @@
     <button class="btn btn-sm btn-default">超限月报表导出</button>
     <button class="btn btn-sm btn-default">超限抄告表导出</button>
     <button class="btn btn-sm btn-default fa-cog" ng-click="setting()"></button>
-    <div class="date-select-wrap">
+    <div id="tjsj">
       <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="tjsj"></div>
     </div>
   </div>

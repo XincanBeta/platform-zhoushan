@@ -4,6 +4,7 @@ angular.module('sbDateSelect', [])
 
   .directive('sbDateSelect', [function () {
 
+    // 通过类（sb-date-select-day）来控制显示隐藏
     var template = [
       '<div class="sb-date-select">',
       '<select class="sb-date-select-year sb-date-select-select" ng-class="selectClass" ng-model="val.year" ng-options="y for y in years">',
@@ -11,6 +12,9 @@ angular.module('sbDateSelect', [])
       '</select>',
       '<select class="sb-date-select-month sb-date-select-select" ng-class="selectClass" ng-model="val.month", ng-options="m.value as m.name for m in months">',
       '<option value disabled>月</option>',
+      '</select>',
+      '<select class="sb-date-select-day sb-date-select-select" ng-class="selectClass" ng-model="val.date", ng-options="d for d in dates">',
+      '<option value disabled selected>日</option>',
       '</select>',
       '</div>'
     ];

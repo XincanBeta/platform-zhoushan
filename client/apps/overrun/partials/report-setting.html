@@ -1,6 +1,9 @@
 <style>
-  .w120 {
-    width: 120px;
+  #report-setting-date .sb-date-select-year {
+    display: none;
+  }
+  #report-setting-date .sb-date-select-month {
+    display: none;
   }
 </style>
 <form name="form" class="form-horizontal form-modal " method="post" action="">
@@ -12,27 +15,21 @@
     <div class="entity-block-wrap">
       <div class="entity-block">
         <div class="entity-block--body">
-          <!--<div class="form-group">
-            <div class="col-sm-4">
-              <label class="entity-label">统计月份</label>
-              <input type="text" class="form-control" name="wkno" ng-model="item.wkno" validator="required"
-                     autofocus="autofocus"/>
-            </div>
-          </div>-->
-          <div class="form-group">
+          <div class="form-group" id="report-setting-date">
             <div class="col-sm-8">
-              <label class="entity-label">月报表截止时间：每月</label>
-              <input type="text" class="form-control"  ng-model="item.wkna" validator="required"/>
+              <label class="entity-label">月报表截止时间：每月 <span ng-bind="item.ybbjzsj"></span> 0点0分 </label>
+              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="item.ybbjzsj"></div>
+              <!--<input type="text" class="form-control"  ng-model="item.ybbjzsj" validator="required"/>-->
             </div>
             <div class="col-sm-8">
-              <label class="entity-label">抄告表截止时间：每月</label>
-              <input type="password" class="form-control"  ng-model="item.passwd" validator="required"/>
+              <label class="entity-label">抄告表截止时间：每月 <span ng-bind="item.cgbjzsj"></span> 0点0分 </label>
+              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="item.cgbjzsj"></div>
+              <!--<input type="password" class="form-control"  ng-model="item.cgbjzsj" validator="required"/>-->
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">可见单位</label>
-
               <div class="panel panel-default">
                 <div class="panel-body" style="height: 175px; overflow: auto">
                   <div ng-repeat="dept in deptList">

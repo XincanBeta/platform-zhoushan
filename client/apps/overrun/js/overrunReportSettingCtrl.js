@@ -1,6 +1,20 @@
 angular.module('app.overrun').controller('OverrunReportSettingCtrl',
   function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal,
             requestService, myToast) {
+
+    /*
+      目录
+
+      获取单位
+
+
+    */
+
+    $scope.item = {}
+    $scope.item.ybbjzsj = '2015-04-10'
+    $scope.item.cgbjzsj = '2015-05-22'
+
+
     $scope.cancel = function () {
       $modalInstance.dismiss('cancel');
     }
@@ -37,6 +51,22 @@ angular.module('app.overrun').controller('OverrunReportSettingCtrl',
         myToast.failureTip();
       });
     }
+
+
+    /*--------------------------
+     $ 获取单位
+    --------------------------*/
+    requestService.getDeptlistWithPermission().success(function(res){
+      if(res.success){
+        $scope.deptList = res.data;
+      }
+    })
+
+
+
+
+
+
 
 
   })
