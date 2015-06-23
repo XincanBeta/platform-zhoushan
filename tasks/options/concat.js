@@ -42,7 +42,11 @@ module.exports = {
       '<%= pkg.path.build %>/assets/components/moment.locale.zh-cn.min.js',
       '<%= pkg.path.build %>/assets/components/sb-date-select.js',
       '<%= pkg.path.build %>/assets/lib/angular-validation/dist/angular-validation.min.js',
-      '<%= pkg.path.build %>/assets/components/angular-validation-rule.js' // 未压缩
+      '<%= pkg.path.build %>/assets/components/angular-validation-rule.js',
+
+      '<%= pkg.path.build %>/assets/lib/jstree/dist/jstree.min.js',
+      '<%= pkg.path.build %>/assets/lib/ng-js-tree/dist/ngJsTree.min.js'
+
     ],
     dest: '<%= pkg.path.build %>/home/js/homeLazyLoad.js'
   }

@@ -2,11 +2,9 @@ angular.module('app.contact', [
   "ngJsTree"
 ])
   .controller('ContactCtrl', function ($scope, requestService, $http, $state) {
+    requestService.contactDeptList().success(function (res) {
 
-    console.log('hello');
-
-    /*requestService.contactDeptList().success(function (data) {
-      $scope.treeData = data;
+      $scope.treeData = res.data;
       $scope.treeConfig = {
         core: {
           strings: {'Loading ...': '玩命加载中！'},
@@ -55,6 +53,6 @@ angular.module('app.contact', [
 
     $scope.hideTreeContentMenu = function () {
       //$.vakata.context.hide();
-    }*/
+    }
 
   });

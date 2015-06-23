@@ -44,7 +44,7 @@ angular.module("request", []).service('requestService', function ($http) {
    overrun
    overrun-group（集体讨论）
    overrun-admin 现场超限处罚管理员
-   通讯录管理
+   通讯录接口
    单位接口
 
    */
@@ -296,10 +296,11 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ 通讯录管理
+   $ 通讯录接口
    --------------------------*/
   this.contactDeptList = function () {
-    return _doGetRequest(localPath + 'contact.dept.json');
+    return _doPostRequest('/api/dws/queryByTier.do');
+
   }
 
   /*--------------------------

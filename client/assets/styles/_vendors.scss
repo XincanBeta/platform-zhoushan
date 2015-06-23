@@ -6,6 +6,8 @@
   1 当发现冲突时，就在 vendors-override 封装自定义引入
   2 库往往非常大，请在 vendors-override 封装引入实际用到的功能
 
+  将比较独立的 样式 放到 assets/component 中
+
   注：对第三方工具库的看法是，要有选择地借助他们的力量
 */
 
@@ -63,3 +65,5 @@
 @import "vendors-override/angular-validation/angular-validation";
 
 @import "vendors-override/sb-date-select";
+
+@import "vendors-override/jstree";

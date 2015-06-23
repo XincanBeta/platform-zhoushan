@@ -83,7 +83,7 @@ angular.module('app')
       '../assets/components/car-city.min.js',
       // angucomplete-alt.js 反馈提示
       '../assets/components/angucomplete-alt.min.js',
-      '../assets/components/angucomplete-alt.css'
+      '../assets/components/angucomplete-alt.css',
 
     ]
     /*
@@ -107,8 +107,7 @@ angular.module('app')
         /*
           1) date 验证依赖 moment
           2) validation-submit 依赖 input[name] */
-        //未压缩
-        '../assets/components/angular-validation-rule.js',
+        '../assets/components/angular-validation-rule.js', //未压缩
         '../assets/lib/jstree/dist/jstree.min.js',
         '../assets/lib/ng-js-tree/dist/ngJsTree.min.js'
       ]
