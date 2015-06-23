@@ -106,25 +106,35 @@ angular.module('app')
       .state('myapp.overrun-group', {
         url: '/overrun-group',
         templateUrl: app_base + 'overrun-group/overrun-group.html',
-        controller: "OverrunLeaderCtrl",
+        controller: "OverrunGroupCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-group/js/overrunLeaderCtrl.js'
+              app_base + 'overrun-group/js/overrunGroupCtrl.js'
             ]);
           }]
         }
       })
       .state('myapp.overrun-group.todo', {
-        url: '/todo?notid',
+        url: '/todo?notid', // notid 罚金修改的消息通知
         templateUrl: app_base + 'overrun-group/partials/todo.html',
-        controller: "OverrunLeaderTodoCtrl",
+        controller: "OverrunGroupTodoCtrl",
         resolve: {
           loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
             return $ocLazyLoad.load([
-              app_base + 'overrun-group/js/overrunLeaderTodoCtrl.js',
-              app_base + 'overrun-group/js/overrunLeaderItemDetailCtrl.js',
-              app_base + 'overrun-group/js/overrunLeaderItemEditCtrl.js'
+              app_base + 'overrun-group/js/overrunGroupTodoCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.overrun-group.done', {
+        url: '/done',
+        templateUrl: app_base + 'overrun-group/partials/done.html',
+        controller: "OverrunGroupDoneCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'overrun-group/js/overrunGroupDoneCtrl.js'
             ]);
           }]
         }

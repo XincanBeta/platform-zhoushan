@@ -6,11 +6,9 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
      --------------------------*/
     /*
      选项卡
-     案件修改（待处理）
      全屏案卷
      页内导航
      详细信息
-     加载pdfUrl
      */
 
 
@@ -25,17 +23,12 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
       name: '证件',
       content: 'photoContent',
       operator: 'photoOperator'
+    }, {
+      name: '案卷',
+      content: 'docContent',
+      operator: 'docOperator'
     }]
 
-    // 区分待处理和已完结
-    if ($state.current.name == "myapp.overrun-group.done") {
-      tabset.push({
-        name: '案卷',
-        content: 'docContent',
-        operator: 'docOperator'
-      })
-      $scope.hideDetailOperator = true;
-    }
 
     $scope.tabset = tabset;
     $scope.select = function (tab) {
@@ -46,49 +39,19 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
       return (tab === $scope.selected) ? 'active' : '';
     }
 
-    /*--------------------------
-     $ 案件修改（待处理）
-     --------------------------*/
-    var path = '../apps/overrun-group/partials/';
-    $scope.editInfo = function () {
-      var modalInstance = $modal.open({
-        backdrop: "static",
-        keyboard: false,
-        size: "lg",
-        templateUrl: path + 'item-edit.html',
-        controller: 'OverrunGroupItemEditCtrl',
-        resolve: {
-          item: function () {
-            return $scope.item
-          }
-        }
-      })
-
-      modalInstance.result.then(function () {
-        sliderService.startAutoHide();
-      }, function () {
-        sliderService.startAutoHide();
-      });
-
-      modalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
-      })
-    }
 
     /*--------------------------
      $ 全屏案卷
      --------------------------*/
+    var path = '../apps/overrun-group/partials/';
     var fullscreenModalInstance;
     $scope.fullscreenDoc = function () {
       fullscreenModalInstance = $modal.open({
         keyboard: true,
         size: "fullscreen",
         templateUrl: path + 'docFullscreen.html',
-        controller: 'OverrunViewerFullscreenCtrl',
+        controller: 'OverrunGroupViewerFullscreenCtrl',
         resolve: {
-          pdfurl: function () {
-            return pdfUrl;
-          },
           item: function(){
             return $scope.item;
           }

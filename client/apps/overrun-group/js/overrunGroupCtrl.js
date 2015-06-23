@@ -31,9 +31,12 @@ angular.module('app.overrun-group', [
      */
     var apps = '../apps/overrun-group/'
     $ocLazyLoad.load([
-      apps + 'js/overrunGroupTodoCtrl.js',
       apps + 'js/overrunGroupItemDetailCtrl.js',
-      apps + 'js/overrunGroupItemEditCtrl.js'
+      apps + 'js/overrunGroupItemEditCtrl.js',
+      apps + 'js/overrunGroupItemDetailPhotoCtrl.js',
+      apps + 'js/overrunGroupPhotoDetailCtrl.js',
+      apps + 'js/overrunGroupViewerCtrl.js',
+      apps + 'js/overrunGroupViewerFullscreenCtrl.js'
     ])
 
     // todo: 抽取成通用的服务
