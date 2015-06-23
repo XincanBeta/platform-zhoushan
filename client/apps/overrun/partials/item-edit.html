@@ -2,6 +2,19 @@
   #autocomplete-cp .angucomplete-dropdown {
     width: 500px;
   }
+
+  #is-owner {
+    float: right;
+    margin-bottom: -1px;
+  }
+
+  #is-owner > .btn {
+    font-size: 10px;
+    padding: 2px 5px;
+  }
+  #is-owner > .btn.active{
+
+  }
 </style>
 
 <form name="form" class="form-horizontal form-modal " method="post" action="">
@@ -51,7 +64,8 @@
                   <span>{{ item.cj_cxlx }}</span> <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu">
-                  <li ng-repeat="type in overrunTypes" ng-class="(type.name === selectedOverrunType.name)? 'disabled':''">
+                  <li ng-repeat="type in overrunTypes"
+                      ng-class="(type.name === selectedOverrunType.name)? 'disabled':''">
                     <a href="javascript:void(0)" ng-click="setOverrunType(type)">{{type.name}}</a>
                   </li>
                 </ul>
@@ -75,6 +89,7 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">车牌</label>
+
               <div>
                 <angucomplete-alt
                     id="autocomplete-cp"
@@ -120,7 +135,7 @@
             <div class="col-sm-4">
               <label class="entity-label">货物名称</label>
               <input type="text" class="form-control" name="hw_mc" ng-model="item.hw_mc" maxlength="20"
-                     validator="required" />
+                     validator="required"/>
             </div>
             <div class="col-sm-6">
               <label class="entity-label">运货起点</label>
@@ -188,6 +203,7 @@
             </div>
             <div class="col-sm-8">
               <label class="entity-label">车辆类型</label>
+
               <div>
                 <angucomplete-alt
                     id="autocomplete-clxx"
@@ -258,7 +274,13 @@
         <div class="entity-block--body">
           <div class="form-group">
             <div class="col-sm-4">
-              <label class="entity-label">姓名</label>
+              <label class="entity-label" style="display: inline-block">姓名</label>
+
+              <div class="btn-group" style="display: inline-block" id="is-owner">
+                <button type="button" class="btn " ng-click="setOwner('非车主')" ng-class="isOwner('非车主')">非车主</button>
+                <button type="button" class="btn " ng-click="setOwner('车主')" ng-class="isOwner('车主')">车主</button>
+              </div>
+
               <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm" maxlength="10"
                      validator="required"/>
             </div>
@@ -270,7 +292,8 @@
                   <span>{{ item.jsy_xb }}</span><span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                  <li ng-repeat="type in genderTypes" ng-class="(type.name === selectedGenderTypes.name)? 'disabled':''">
+                  <li ng-repeat="type in genderTypes"
+                      ng-class="(type.name === selectedGenderTypes.name)? 'disabled':''">
                     <a href="javascript:void(0)" ng-click="setGenderTypes(type)">{{type.name}}</a>
                   </li>
                 </ul>
@@ -278,7 +301,8 @@
             </div>
             <div class="col-sm-4">
               <label class="entity-label">驾驶证号</label>
-              <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh" maxlength="18" validator="required"/>
+              <input type="text" class="form-control" name="jsy_zh" ng-model="item.jsy_zh" maxlength="18"
+                     validator="required"/>
             </div>
             <div class="col-sm-4">
               <label class="entity-label">（从业资格证）</label>
@@ -515,6 +539,7 @@
           <div class="form-group">
             <div class="col-sm-16">
               <label class="entity-label">停车地点</label>
+
               <div>
                 <angucomplete-alt
                     id="autocomplete-tcdd"

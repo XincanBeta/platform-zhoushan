@@ -21,6 +21,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      集体讨论
      常用信息（带回历史）
      最新的结案信息
+     是否车主
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -185,7 +186,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.cpData = [];
     $scope.cpInputChanged = function (value) {
       $scope.item.cj_cp = value;
-      if (value.length >= 6) {
+      if (value && value.length >= 6) {
         requestService.getCommonOverrunCpInfo({cj_cp: $scope.item.cj_cp}).success(function (res) {
           console.log('res', res);
           if (res.success) {
@@ -203,7 +204,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 挂车
      --------------------------*/
     $scope.$watch('item.cl_gc', function (value) {
-      if (value.length >= 7 && value[value.length - 1] != '挂') {
+      if (value && value.length >= 7 && value[value.length - 1] != '挂') {
         value = value.substring(0, 6) + '挂';
       }
       $scope.item.cl_gc = value;
@@ -580,7 +581,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 常用信息（带回历史）
      --------------------------*/
     requestService.getCommonOverrunDict().success(function (res) {
-      console.log('>>>', res);
       if (res.success) {
         $scope.afddData = res.data.AFDD;
         $scope.xcblddData = res.data.XCBLDD;
@@ -681,6 +681,22 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }
       })
     }
+
+    /*--------------------------
+     $ 是否车主
+    --------------------------*/
+    $scope.owner = '非车主';
+    $scope.setOwner = function(value){
+      $scope.owner = value;
+    }
+    $scope.isOwner = function(value){
+      return $scope.owner == value ? 'btn-primary' : 'btn-default'
+    }
+
+
+
+
+
 
 
   })
