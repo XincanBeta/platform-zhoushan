@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunTodoCtrl',
+angular.module('app.contact').controller('ContactListCtrl',
   function ($scope, $rootScope, sliderService, requestService, $modal, $stateParams) {
     /* 
      分页与刷新(消息高亮条目)
@@ -9,7 +9,8 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
      */
 
 
-    $scope.notid = $stateParams.notid;
+    var dwid = $stateParams.dwid;
+    console.log('list ', dwid);
     /*--------------------------
      $ 分页与刷新
      --------------------------*/
@@ -72,7 +73,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
     /*--------------------------
      $ 新增
      --------------------------*/
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/contact/partials/';
     $scope.add = function () {
       var modalInstance
       var item = {};
@@ -84,9 +85,9 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
         modalInstance = $modal.open({
           backdrop: "static",
           keyboard: false,
-          size: "lg",
-          templateUrl: path + 'item-edit.html',
-          controller: 'OverrunItemEditCtrl',
+          size: "md",
+          templateUrl: path + 'edit.html',
+          controller: 'ContactEditCtrl',
           resolve: {
             item: function () {
               return item;

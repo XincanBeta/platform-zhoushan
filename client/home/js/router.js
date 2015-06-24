@@ -11,6 +11,7 @@ angular.module('app')
        myapp
        overrun
        overrun-group
+       overrun-admin
        contact
        */
       .state('desktop', {
@@ -204,8 +205,6 @@ angular.module('app')
       })
 
 
-
-
       .state('myapp.monitor', {
         url: '/monitor',
         templateUrl: app_base + 'monitor/monitor.html',
@@ -245,20 +244,18 @@ angular.module('app')
           }]
         }
       })
-
-      //.state('admin', {
-      //  url: "/admin",
-      //  controller: 'AdminCtrl',
-      //  templateUrl: app_base + 'admin/admin.html',
-      //  resolve: {
-      //    loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
-      //      return $ocLazyLoad.load([
-      //        app_base + 'admin/js/adminCtrl.js'
-      //      ]);
-      //    }]
-      //  }
-      //})
-
+      .state('contact.list', {
+        url: '/list',
+        templateUrl: app_base + 'contact/partials/list.html',
+        controller: "ContactListCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'contact/js/contactListCtrl.js'
+            ]);
+          }]
+        }
+      })
 
     // Without server side support html5 must be disabled.
     $locationProvider.html5Mode(false);

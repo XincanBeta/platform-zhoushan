@@ -1,5 +1,5 @@
 angular.module('app.overrun-group').controller('OverrunGroupDoneCtrl',
-  function ($scope, $http, $state, $rootScope, sliderService, requestService) {
+  function ($scope, $http, $rootScope, sliderService, requestService) {
     /*
      分页
      侧边栏

@@ -1,5 +1,5 @@
 angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl',
-  function ($scope, $state, sliderService, $modalInstance, $modal,
+  function ($scope, sliderService, $modalInstance, $modal,
             requestService, item, myToast, $rootScope) {
 
     /*

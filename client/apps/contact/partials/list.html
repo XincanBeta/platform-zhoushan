@@ -1,8 +1,8 @@
 <header class="l-app-header">
   <div class="app-toolbar">
     <button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>
-    <!--<button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
-            ng-click="delete()"></button>-->
+    <button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
+            ng-click="delete()"></button>
   </div>
 </header>
 <section class="l-app-body on-footer">
@@ -14,24 +14,27 @@
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
         </th>
         <th>序号</th>
-        <th>登陆账号</th>
         <th>姓名</th>
-        <th>单位名称</th>
-        <th>&nbsp;</th>
-        <th>&nbsp;</th>
+        <th>职位</th>
+        <th>手机号</th>
+        <th>固定电话</th>
+        <th>状态</th>
       </tr>
       </thead>
       <tbody>
-      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
+      <!-- 用对象方式添加多个类 -->
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
+          ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}">
         <td>
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
         </td>
         <td>{{ $index+1 }}</td>
-        <td>{{ item.wkno }}</td>
-        <td>{{ item.wkna }}</td>
-        <td>{{ item.dw.dwmc }}</td>
-        <td>&nbsp;</td>
-        <td>&nbsp;</td>
+        <td>{{ item.name }}</td>
+        <td>{{ item.position }}</td>
+        <td>{{ item.mobile }}</td>
+        <td>{{ item.telephone }}</td>
+        <td>{{ item.state }}</td>
+        <td></td>
       </tr>
       </tbody>
     </table>
@@ -56,7 +59,7 @@
   </paging>
 </footer>
 <!-- 平级的位置 -->
-<div my-slider-show class="l-entity-panel" slider-width="550px"
-     ng-controller="OverrunAdminUserDetailCtrl"
-     ng-include="'../apps/overrun-admin/partials/user-detail.html'">
+<div my-slider-show class="l-entity-panel"
+     ng-controller="ContactDetailCtrl"
+     ng-include="'../apps/contact/partials/detail.html'">
 </div>
