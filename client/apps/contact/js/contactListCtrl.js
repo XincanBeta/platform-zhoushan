@@ -1,6 +1,7 @@
 angular.module('app.contact').controller('ContactListCtrl',
-  function ($scope, $rootScope, sliderService, requestService, $modal, $stateParams) {
-    /* 
+  function ($scope, $rootScope, sliderService, requestService, $modal, $stateParams, userService) {
+    /*
+     操作栏权限
      分页与刷新(消息高亮条目)
      侧边栏详情
      新增
@@ -9,8 +10,18 @@ angular.module('app.contact').controller('ContactListCtrl',
      */
 
 
+    /*--------------------------
+     $ 操作栏权限
+    --------------------------*/
+    // 用在 app-toolbar 和 checbox 上
+    $scope.hasOpeAuth = false;
     var dwid = $stateParams.dwid;
-    console.log('in list ', dwid);
+    var user = userService.getUser()
+    if( user.dw.dwid == dwid  ){
+      $scope.hasOpeAuth = true;
+    }
+
+
     /*--------------------------
      $ 分页与刷新
      --------------------------*/

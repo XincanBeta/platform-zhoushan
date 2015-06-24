@@ -1,8 +1,11 @@
 <header class="l-app-header">
-  <div class="app-toolbar">
+  <div class="app-toolbar" ng-if="hasOpeAuth">
     <button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>
     <button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
             ng-click="delete()"></button>
+  </div>
+  <div style="height: 50px; line-height: 50px; padding-left: 15px;" ng-if="!hasOpeAuth">
+    非本单位只有查看权限
   </div>
 </header>
 <section class="l-app-body on-footer">
@@ -10,7 +13,7 @@
     <table class="app-table entity-view">
       <thead>
       <tr>
-        <th class="with-checkbox">
+        <th class="with-checkbox" ng-if="hasOpeAuth">
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
         </th>
         <th>序号</th>
@@ -25,7 +28,7 @@
       <!-- 用对象方式添加多个类 -->
       <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
           ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}">
-        <td>
+        <td ng-if="hasOpeAuth">
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
         </td>
         <td>{{ $index+1 }}</td>
