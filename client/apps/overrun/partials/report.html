@@ -23,7 +23,7 @@
     <button class="btn btn-sm btn-default">超限抄告表导出</button>
     <button class="btn btn-sm btn-default fa-cog" ng-click="setting()"></button>
     <div id="tjsj">
-      <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="tjsj"></div>
+      <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="tjsj_search"></div>
     </div>
   </div>
 </header>
@@ -32,7 +32,7 @@
     <table class="app-table entity-view">
       <thead>
       <tr>
-        <th colspan="6" style="text-align: center;">2015年5月</th>
+        <th colspan="6" style="text-align: center;" ng-bind="tjsj_title"></th>
       </tr>
       <tr>
         <th class="with-checkbox">
@@ -55,8 +55,7 @@
         <td>{{ item["aj_bh"] }}</td>
         <td>{{ item["cj_cp"] }}</td>
         <td>{{ item["cj_zs"] }}</td>
-        <td>{{ item["cj_zz_lx"] }}</td>
-        <td>&nbsp;</td>
+        <td>{{ item.dw.dwmc }}</td>
       </tr>
       </tbody>
     </table>

@@ -17,13 +17,13 @@
         <div class="entity-block--body">
           <div class="form-group" id="report-setting-date">
             <div class="col-sm-8">
-              <label class="entity-label">月报表截止时间：每月 <span ng-bind="item.ybbjzsj"></span> 0点0分 </label>
-              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="item.ybbjzsj"></div>
+              <label class="entity-label">月报表截止时间：每月<span ng-bind="item.ybbjzsj"></span>号0点0分 </label>
+              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="ybbjzsj"></div>
               <!--<input type="text" class="form-control"  ng-model="item.ybbjzsj" validator="required"/>-->
             </div>
             <div class="col-sm-8">
-              <label class="entity-label">抄告表截止时间：每月 <span ng-bind="item.cgbjzsj"></span> 0点0分 </label>
-              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="item.cgbjzsj"></div>
+              <label class="entity-label">抄告表截止时间：每月<span ng-bind="item.cgbjzsj"></span>号0点0分 </label>
+              <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="cgbjzsj"></div>
               <!--<input type="password" class="form-control"  ng-model="item.cgbjzsj" validator="required"/>-->
             </div>
           </div>
@@ -35,7 +35,7 @@
                   <div ng-repeat="dept in deptList">
                     <label style="margin-left: 10px;" class="ng-binding">
                       <input type="checkbox" ng-model="dept.selected" ng-checked="dept.selected"
-                             ng-click="selectDept($event)" style="vertical-align:middle; margin-top:-2px;">
+                             ng-click="selectDept($event, dept)" style="vertical-align:middle; margin-top:-2px;">
                       {{ dept.dwmc }}</label>
                   </div>
                 </div>

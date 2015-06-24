@@ -1,7 +1,9 @@
 angular.module('app.overrun').controller('OverrunReportCtrl',
   function ($scope, requestService, $modal, sliderService, $rootScope) {
 
-    $scope.tjsj = '2015-04-10'
+    var date = moment().add(-1, 'months')
+    $scope.tjsj_search = date.format('YYYY-MM')
+    $scope.tjsj_title = date.format('YYYY年MM月')
 
     var path = '../apps/overrun/partials/';
     /*--------------------------
@@ -27,6 +29,5 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
         sliderService.startAutoHide();
       });
     }
-
 
   });

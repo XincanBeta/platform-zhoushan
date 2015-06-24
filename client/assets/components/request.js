@@ -41,9 +41,9 @@ angular.module("request", []).service('requestService', function ($http) {
    消息接口
    通用接口
    超限常用信息（字典）接口
-   overrun
-   overrun-group（集体讨论）
-   overrun-admin 现场超限处罚管理员
+   现场超限 业务员版
+   现场超限 集体讨论版
+   现场超限 管理员
    通讯录接口
    单位接口
 
@@ -136,12 +136,12 @@ angular.module("request", []).service('requestService', function ($http) {
   }
 
   /*--------------------------
-   $ overrun
+   $ 现场超限 业务员版
    --------------------------*/
   this.overrunSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun.menu.json');
   }
-  /*现场超限待处理接口*/
+  /*待处理接口*/
   this.overrunTodoItems = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.todo.item.json');
@@ -173,12 +173,11 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/cxcfs/' + data.itemId.toString() + '/' + data.part + 'printPdf.do');
   }
   /* 
-   现场超限已完结接口
+   已完结接口
    */
   this.overrunDoneLastItem = function () {
     return _doPostRequest('/api/cxcfs/getLatestJa.do');
   }
-
   this.overrunDoneItems = function (data) {
     if (env == 'local') {
       return _doGetRequest(localPath + 'overrun.done.item.json');
@@ -186,7 +185,6 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
         {aj_jazt: data.aj_jazt});
     }
-
   }
   this.overrunDoneItemDetail = function (data) {
     if (env == 'local') {
@@ -197,7 +195,6 @@ angular.module("request", []).service('requestService', function ($http) {
       //return doPostRequest(remotePath + '/app/xccfs/query.do' + _parseGetRequestParams(data));
     }
   }
-  // 已完结的案卷用在详情和全屏
   this.overrunDoneDoc = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.aj_id + '/all/-1/printPdf.do');
   }
@@ -205,14 +202,19 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunDoneItemExport = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.type + '/packZip.do', data.itemlist);
   }
-  // export 执行后，再调用 download
-  /*this.overrunDoneItemDownload = function (data) {
-   return _doPostRequest('/api/files/downloadFile.do', data);
-   }*/
+  /*
+   报送配置
+   */
+  this.overrunReportSettingQuery = function(){
+    return _doPostRequest('/api/bspzs/queryByDwid.do');
+  }
+  this.overrunReportSettingUpdate = function(data){
+    return _doPostRequest('/api/bspzs/update.do', data);
+  }
 
 
   /*--------------------------
-   $ overrun-group（集体讨论）
+   $ 现场超限 集体讨论版
    --------------------------*/
   this.overrunItemsDiscussInsert = function (data) {
     return _doPostRequest('/api/jttls/' + data.aj_id + '/insert.do', {jt_bh: data.jt_bh});
@@ -232,7 +234,7 @@ angular.module("request", []).service('requestService', function ($http) {
 
 
   /*--------------------------
-   $ overrun-admin 现场超限处罚管理员
+   $ 现场超限 管理员
    --------------------------*/
   this.overrunAdminSidebarItems = function () {
     return _doGetRequest(localPath + 'overrun-admin.menu.json');
@@ -300,23 +302,19 @@ angular.module("request", []).service('requestService', function ($http) {
    --------------------------*/
   this.contactDeptList = function () {
     return _doPostRequest('/api/dws/queryByTier.do');
-
   }
 
   /*--------------------------
    $ 单位接口
-  --------------------------*/
+   --------------------------*/
   // 根据权限
   /*
-    1、没有data：返回当前登陆用户单位和下属单位
-    2、有 data，data 应只包含 dwid ，返回该单位和其下属单位
-  */
+   1、没有data：返回当前登陆用户单位和下属单位
+   2、有 data，data 应只包含 dwid ，返回该单位和其下属单位
+   */
   this.getDeptlistWithPermission = function (data) {
     return _doPostRequest('/api/dws/query.do', data);
   }
-
-
-
 
 
   // 以下待整理
