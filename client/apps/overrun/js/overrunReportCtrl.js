@@ -1,13 +1,47 @@
 angular.module('app.overrun').controller('OverrunReportCtrl',
   function ($scope, requestService, $modal, sliderService, $rootScope) {
 
+    /*--------------------------
+     $ 日期处理
+    --------------------------*/
     var date = moment().add(-1, 'months')
     $scope.tjsj_search = date.format('YYYY-MM')
     $scope.tjsj_title = date.format('YYYY年MM月')
+    var exportDate =  date.format('YYYYMM')
+    // 监听 tjsj_search
+    $scope.$watch('tjsj_search', function(value){
+      var date = moment(value)
+      $scope.tjsj_title = date.format('YYYY年MM月')
+      exportDate =  date.format('YYYYMM')
+      $scope.pagingAct();
+    })
+
+    /*--------------------------
+     $ 分页
+    --------------------------*/
+    $scope.pagingAct = function (str, currentPage) {
+      $scope.currentPage = currentPage || 1;
+      $scope.pageSize = 20; // 每页显示 20 条
+      requestService.overrunReportQueryPage({
+        exportDate: exportDate,
+        currentPage: $scope.currentPage,
+        pageSize: $scope.pageSize
+      }).success(function (res) {
+        if (res.success) {
+          $scope.itemList = res.data.list;
+          $scope.total = res.data.total;
+        }
+      })
+    }
+    // 刷新 1：页面初始化
+    $scope.pagingAct();
+    // 刷新 2：用于保存成功后的调用
+    $rootScope.$on("paging.act", $scope.pagingAct)
+
 
     var path = '../apps/overrun/partials/';
     /*--------------------------
-     $ 设置
+     $ 打开设置
      --------------------------*/
     $scope.setting = function () {
       var modalInstance

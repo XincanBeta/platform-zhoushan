@@ -211,6 +211,10 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunReportSettingUpdate = function(data){
     return _doPostRequest('/api/bspzs/update.do', data);
   }
+  this.overrunReportQueryPage = function(data){
+    return _doPostRequest('/api/cxcfs/' + data.exportDate + '/' + data.currentPage + '/' + data.pageSize + '/querySjbs.do');
+  }
+
 
 
   /*--------------------------
