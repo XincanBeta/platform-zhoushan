@@ -587,17 +587,15 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.xwblddData = res.data.XWBLDD;
         $scope.zfrData = res.data.ZFR;
         $scope.tcddData = res.data.TCDD;
-        $scope.clxxData = res.data.CLXX;
+        $scope.cllxData = res.data.CLLX;
       }
     })
     /* 案发地点 */
-    // 历史带回
     $scope.afddSelected = function (selected) {
       if (selected) {
         $scope.item.aj_afdd = selected.title;
       }
     }
-    // 手输
     $scope.afddInputChanged = function (value) {
       $scope.item.aj_afdd = value;
     }
@@ -649,12 +647,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_tcdd = value;
     }
     /* 车辆类型 */
-    $scope.clxxSelected = function (selected) {
+    $scope.cllxSelected = function (selected) {
       if (selected) {
         $scope.item.cl_lx = selected.title;
       }
     }
-    $scope.clxxInputChanged = function (value) {
+    $scope.cllxInputChanged = function (value) {
       $scope.item.cl_lx = value;
     }
 
@@ -669,7 +667,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     function _getLastDoneItem() {
       requestService.overrunDoneLastItem().success(function (res) {
         // 带回案件信息
-        if (res.success) {
+        if (res.success && res.data) {
           $scope.item.aj_zfx = res.data.aj_zfx;
           $scope.item.aj_zfxz = res.data.aj_zfxz;
           $scope.item.aj_zfj = res.data.aj_zfj;
