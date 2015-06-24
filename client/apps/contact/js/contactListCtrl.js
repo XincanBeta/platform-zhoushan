@@ -10,7 +10,7 @@ angular.module('app.contact').controller('ContactListCtrl',
 
 
     var dwid = $stateParams.dwid;
-    console.log('list ', dwid);
+    console.log('in list ', dwid);
     /*--------------------------
      $ 分页与刷新
      --------------------------*/

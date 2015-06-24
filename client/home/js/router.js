@@ -245,7 +245,7 @@ angular.module('app')
         }
       })
       .state('contact.list', {
-        url: '/list',
+        url: '/list?dwid',
         templateUrl: app_base + 'contact/partials/list.html',
         controller: "ContactListCtrl",
         resolve: {

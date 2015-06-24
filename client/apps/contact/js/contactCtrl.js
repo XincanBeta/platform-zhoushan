@@ -1,14 +1,11 @@
 angular.module('app.contact', [
   "ngJsTree"
-]).controller('ContactCtrl', function ($scope, requestService, $http, $state, $ocLazyLoad, userService) {
+]).controller('ContactCtrl', function ($scope, requestService, $http, $state, $ocLazyLoad) {
   /*
    树目录
-   指向通讯录内容
    懒加载
-   */
 
-  var user = userService.getUser();
-  //console.log('---', );
+   */
 
 
   /*--------------------------
@@ -39,25 +36,15 @@ angular.module('app.contact', [
 
   $scope.readyCB = function () {
     if ($scope.treeData) {
-      // 触发点击事件，并且附有了点击样式
+      // 初始化总是显示第一条
       $scope.treeInstance.jstree('select_node', $scope.treeData[0].id)
     }
   }
+
   // 点击事件
   $scope.selectNodeCB = function (node, selected) {
-    /*if(user.dw.dwid == selected.node.id){
-      $state.go('contact.list');
-    }else{
-      $state.go('contact.list', {dwid: selected.node.id}, {reload: true});
-    }*/
+    $state.go('contact.list', {dwid: selected.node.id});
   }
-
-
-  /*--------------------------
-   $ 指向通讯录内容
-   --------------------------*/
-  $state.go('contact.list');
-
 
   /*--------------------------
    $ 懒加载
