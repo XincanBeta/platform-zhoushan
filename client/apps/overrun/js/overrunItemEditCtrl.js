@@ -683,9 +683,17 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 是否车主
     --------------------------*/
-    $scope.owner = '非车主';
+
+    if(!$scope.item.isowner){
+      $scope.item.isowner = '否'
+      $scope.owner = '非车主';
+    }else{
+      $scope.owner = ($scope.item.isowner == '否'?'非车主':'车主')
+    }
     $scope.setOwner = function(value){
       $scope.owner = value;
+      $scope.item.isowner = (value=='非车主')?'否':'是';
+
     }
     $scope.isOwner = function(value){
       return $scope.owner == value ? 'btn-primary' : 'btn-default'
