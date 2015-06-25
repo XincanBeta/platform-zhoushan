@@ -7,7 +7,7 @@ angular.module('validation.rule', ['validation'])
     function ($validationProvider) {
       var expression = {
         required: function (value) {
-          if (value === undefined || value === "" ) {
+          if (value === undefined || value === "" || value === null  ) {
             return false;
           }
           if(value == 0){
