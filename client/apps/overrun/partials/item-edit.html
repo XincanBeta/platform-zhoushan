@@ -281,7 +281,7 @@
                 <button type="button" class="btn " ng-click="setOwner('车主')" ng-class="isOwner('车主')">车主</button>
               </div>
 
-              <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm" maxlength="10"
+              <input type="text" class="form-control" name="jsy_xm" ng-model="item.jsy_xm" ng-readonly="owner == '车主'" maxlength="10"
                      validator="required"/>
             </div>
             <div class="col-sm-4">
