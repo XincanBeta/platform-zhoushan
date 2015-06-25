@@ -6,16 +6,20 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
      --------------------------*/
     /*
      选项卡
+     集体讨论
      全屏案卷
      页内导航
      详细信息
      */
 
 
+    var path = '../apps/overrun-group/partials/';
+
     /*--------------------------
      $ 选项卡
+      必须从 overrun 拷贝更新
      --------------------------*/
-    var tabset = [{
+    $scope.tabset = [{
       name: '案件',
       content: 'detailContent',
       operator: 'detailOperator'
@@ -30,20 +34,56 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
     }]
 
 
-    $scope.tabset = tabset;
+    $rootScope.$on("slider.hide.done", function () {
+      // 每次都重置为第一个选项卡，因为只有 slider 只加载了第一个
+      resetTabActive();
+    })
+
+    function resetTabActive() {
+      _.each($scope.tabset, function (tab) {
+        tab.active = false;
+      });
+      $scope.tabset[0].active = true;
+    }
+
+    // 默认会激活（active=true）第一个选项卡，并且调用 select 方法
     $scope.select = function (tab) {
       $scope.selected = tab;
     }
 
-    $scope.isSelected = function (tab) {
-      return (tab === $scope.selected) ? 'active' : '';
+
+    /*--------------------------
+     $ 集体讨论
+     --------------------------*/
+    $scope.edit = function () {
+      var modalInstance = $modal.open({
+        backdrop: "static",
+        keyboard: false,
+        size: "lg",
+        templateUrl: path + 'item-edit.html',
+        controller: 'OverrunGroupItemEditCtrl',
+        resolve: {
+          item: function () {
+            return $scope.item
+          }
+        }
+      })
+
+      modalInstance.result.then(function () {
+        sliderService.startAutoHide();
+      }, function () {
+        sliderService.startAutoHide();
+      });
+
+      modalInstance.opened.then(function () {
+        sliderService.stopAutoHide();
+      })
     }
 
 
     /*--------------------------
      $ 全屏案卷
      --------------------------*/
-    var path = '../apps/overrun-group/partials/';
     var fullscreenModalInstance;
     $scope.fullscreenDoc = function () {
       fullscreenModalInstance = $modal.open({
