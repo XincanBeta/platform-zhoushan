@@ -2,18 +2,13 @@
   #autocomplete-cp .angucomplete-dropdown {
     width: 500px;
   }
-
   #is-owner {
     float: right;
     margin-bottom: -1px;
   }
-
   #is-owner > .btn {
     font-size: 10px;
     padding: 2px 5px;
-  }
-  #is-owner > .btn.active{
-
   }
 </style>
 
@@ -361,11 +356,11 @@
               </div>
               <span id="forfeit-msg"></span>
             </div>
-            <div class="col-sm-4">
+            <!--<div class="col-sm-4">
               <label class="entity-label ">罚款票据号</label>
               <input type="text" class="form-control" name="aj_pjh" ng-model="item.aj_pjh" maxlength="50"
                      validator="required"/>
-            </div>
+            </div>-->
           </div>
 
           <div class="form-group">
@@ -561,22 +556,6 @@
               <span id="tcdd-message"></span>
             </div>
           </div>
-          <div class="form-group">
-            <div class="col-sm-16">
-              <label class="entity-label">上传发票证件（ 1 张 ）</label>
-
-              <div ngf-drop ngf-select ng-model="billFiles" class="entity-upload-photo drop-box"
-                   ngf-drag-over-class="dragover" ngf-multiple="false" ngf-allow-dir="false"
-                   ngf-accept="'image/*'"></div>
-              <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in billImages">
-                <div class="compact" ng-if="image.fileid">
-                  <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
-                  <i class="delete" ng-click="deleteImage(billImages, image)"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
       </div>
       <!--复检单-->

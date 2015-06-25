@@ -291,7 +291,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.sceneImages = [{}, {}];
     $scope.vehicleImages = [{}, {}, {}];
     $scope.driverImages = [{}, {}, {}];
-    $scope.billImages = [{}];
     $scope.recheckImages = [{}, {}];
 
     // 证件初始化
@@ -299,7 +298,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       _loadImage($scope.item.aj_id, 'sceneImages');
       _loadImage($scope.item.aj_id, 'vehicleImages');
       _loadImage($scope.item.aj_id, 'driverImages');
-      _loadImage($scope.item.aj_id, 'billImages');
       _loadImage($scope.item.aj_id, 'recheckImages');
     }
 
@@ -348,10 +346,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     $scope.$watch('driverFiles', function () {
       $scope.upload($scope.driverFiles, 'driverImages');
-    });
-
-    $scope.$watch('billFiles', function () {
-      $scope.upload($scope.billFiles, 'billImages');
     });
 
     $scope.$watch('recheckFiles', function () {
@@ -416,8 +410,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
         limited = true;
       } else if ((datatype == 'sceneImages' || datatype == 'recheckImages') && imageNumber > 2) {
-        limited = true;
-      } else if (datatype == 'billImages' && imageNumber > 1) {
         limited = true;
       }
       return limited;

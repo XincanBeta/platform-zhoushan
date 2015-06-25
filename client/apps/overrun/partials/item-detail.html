@@ -90,19 +90,6 @@
         </div>
       </section>
     </div>
-    <!--发票证件-->
-    <div class="entity-block no-border">
-      <header class="entity-block--header">
-        <i class="entity-icon icon-tupian"></i>
-        <span>发票证件</span>
-      </header>
-      <section class="entity-block--body no-border">
-        <div class="entity-photo-hover" ng-repeat="image in billImages"
-             ng-click="openPhotoModal('billImages', $index, image)">
-          <img ng-src="{{image.thumbnaildata}}" alt="发票证件"/>
-        </div>
-      </section>
-    </div>
     <!--复检照片-->
     <div class="entity-block no-border">
       <header class="entity-block--header">
@@ -187,20 +174,6 @@
         <div class="entity-info">住址：{{ item.jsy_zz }}</div>
       </section>
     </div>
-    <!--当事人信息-->
-    <!--<div id="overrun-detail-party" class="entity-block">
-      <header class="entity-block&#45;&#45;header">
-        <i class="entity-icon icon-party"></i>
-        <span>当事人信息</span>
-      </header>
-      <section class="entity-block&#45;&#45;body">
-        <div class="entity-info">当事人：{{ item.xccfDsr.dsr }}</div>
-        <div class="entity-info">法人：{{ item.xccfDsr.fr }}</div>
-        <div class="entity-info">联系电话：{{ item.xccfDsr.lxdh }}</div>
-        <div class="entity-info">营运证：{{ item.xccfDsr.yyz }}</div>
-        <div class="entity-info">住址：{{ item.xccfDsr.zz }}</div>
-      </section>
-    </div>-->
     <!--案件信息-->
     <div id="overrun-detail-case" class="entity-block">
       <header class="entity-block--header">
@@ -208,8 +181,8 @@
         <span>案件信息</span>
       </header>
       <section class="entity-block--body">
-        <div class="entity-info">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
-        <div class="entity-info">票据号：{{ item.aj_pjh }}</div>
+        <div class="entity-info is-clear-both">罚款金额：{{ item.aj_fk }}<span ng-if="item.aj_fk">元</span></div>
+        <!--<div class="entity-info">票据号：{{ item.aj_pjh }}</div>-->
 
         <div class="entity-info">执法询问人：{{ item.aj_zfx }}</div>
         <div class="entity-info">证号：{{ item.aj_zfxz }}</div>
