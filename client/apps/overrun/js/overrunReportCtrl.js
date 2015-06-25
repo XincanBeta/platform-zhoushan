@@ -1,24 +1,38 @@
 angular.module('app.overrun').controller('OverrunReportCtrl',
-  function ($scope, requestService, $modal, sliderService, $rootScope) {
+  function ($scope, requestService, $modal, sliderService, $rootScope, $sce) {
+
+    /*
+     目录
+
+     日期处理
+     分页
+     打开设置
+     导出
+     */
 
     /*--------------------------
      $ 日期处理
-    --------------------------*/
-    var date = moment().add(-1, 'months')
+     --------------------------*/
+    // 初始化
+    var date = moment().add(0, 'months')
     $scope.tjsj_search = date.format('YYYY-MM')
     $scope.tjsj_title = date.format('YYYY年MM月')
-    var exportDate =  date.format('YYYYMM')
+    var exportDate = date.format('YYYYMM')
+    var ybbAction = '/api/cxcfs/' + exportDate + '/exportYbbExcel.do';
+    var cgbAction = '/api/cxcfs/' + exportDate + '/exportCgbExcel.do';
     // 监听 tjsj_search
-    $scope.$watch('tjsj_search', function(value){
+    $scope.$watch('tjsj_search', function (value) {
       var date = moment(value)
       $scope.tjsj_title = date.format('YYYY年MM月')
-      exportDate =  date.format('YYYYMM')
+      exportDate = date.format('YYYYMM')
+      ybbAction = '/api/cxcfs/' + exportDate + '/exportYbbExcel.do';
+      cgbAction = '/api/cxcfs/' + exportDate + '/exportCgbExcel.do';
       $scope.pagingAct();
     })
 
     /*--------------------------
      $ 分页
-    --------------------------*/
+     --------------------------*/
     $scope.pagingAct = function (str, currentPage) {
       $scope.currentPage = currentPage || 1;
       $scope.pageSize = 20; // 每页显示 20 条
@@ -63,5 +77,22 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
         sliderService.startAutoHide();
       });
     }
+
+
+    /*--------------------------
+     $ 导出
+     --------------------------*/
+    var formForDownload = $("#formForDownload")
+    // 月报表
+    $scope.export_ybb = function () {
+      formForDownload.attr('action', ybbAction)
+      formForDownload.submit();
+    }
+    // 抄告表
+    $scope.export_cgb = function () {
+      formForDownload.attr('action', cgbAction)
+      formForDownload.submit();
+    }
+
 
   });

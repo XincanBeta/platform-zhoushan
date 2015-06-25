@@ -19,8 +19,8 @@
 <header class="l-app-header">
   <div class="app-toolbar">
     <button class="btn btn-sm btn-default">案件详细数据导出</button>
-    <button class="btn btn-sm btn-default">超限月报表导出</button>
-    <button class="btn btn-sm btn-default">超限抄告表导出</button>
+    <button class="btn btn-sm btn-default" ng-click="export_ybb()">超限月报表导出</button>
+    <button class="btn btn-sm btn-default" ng-click="export_cgb()">超限抄告表导出</button>
     <button class="btn btn-sm btn-default fa-cog" ng-click="setting()"></button>
     <div id="tjsj">
       <div class="date-select" sb-date-select sb-select-class="form-control"  ng-model="tjsj_search"></div>
@@ -84,3 +84,7 @@
      ng-controller="OverrunItemDetailCtrl"
      ng-include="'../apps/overrun/partials/item-detail.html'">
 </div>
+<!-- 下载 -->
+<form id="formForDownload" target="" method="post" action="#"
+      style="display: none;">
+</form>
