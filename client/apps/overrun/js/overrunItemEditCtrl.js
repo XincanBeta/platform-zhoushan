@@ -470,7 +470,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
     }
 
-    $scope.save = function () {
+    $scope.save = function (option) {
+      option = angular.extend({}, {modalClose: true}, option);
+
       _beforeSave();
       var savePromise;
       if (itemIsNew) {
@@ -483,7 +485,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           myToast.successTip();
           // 刷新：修改成功后调用刷新
           $rootScope.$emit("paging.act")
-          $modalInstance.close();
+          if (option.modalClose) {
+            $modalInstance.close();
+          }
         }
       }).error(function () {
         myToast.failureTip();
@@ -548,33 +552,46 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 集体讨论
      --------------------------*/
     $scope.discuss = function () {
-      var modalInstance
-      modalInstance = $modal.open({
-        backdrop: "static",
-        keyboard: false,
-        size: "sm",
-        templateUrl: path + 'item-discuss.html',
-        controller: 'OverrunItemDiscussCtrl',
-        resolve: {
-          item: function () {
-            return $scope.item;
-          }
+      _beforeSave();
+      var savePromise;
+      if (itemIsNew) {
+        savePromise = requestService.overrunTodoItemSave($scope.item)
+      } else {
+        savePromise = requestService.overrunTodoItemUpdate($scope.item)
+      }
+      savePromise.success(function (res) {
+        if (res.success) {
+          myToast.successTip();
+          $rootScope.$emit("paging.act")
+          // 集体讨论
+          var modalInstance
+          modalInstance = $modal.open({
+            backdrop: "static",
+            keyboard: false,
+            size: "sm",
+            templateUrl: path + 'item-discuss.html',
+            controller: 'OverrunItemDiscussCtrl',
+            resolve: {
+              item: function () {
+                return $scope.item;
+              }
+            }
+          })
+          modalInstance.opened.then(function () {
+            sliderService.stopAutoHide();
+          })
+          modalInstance.result.then(function () {
+            $rootScope.$emit("slider.hide")
+            $modalInstance.close();
+            $rootScope.$emit("paging.act")
+            sliderService.startAutoHide();
+          }, function () {
+            sliderService.startAutoHide();
+          });
         }
+      }).error(function () {
+        myToast.failureTip();
       })
-
-      modalInstance.opened.then(function () {
-        sliderService.stopAutoHide();
-      })
-
-      modalInstance.result.then(function () {
-        // 更新状态
-        $rootScope.$emit("slider.hide")
-        $modalInstance.close();
-        $rootScope.$emit("paging.act")
-        sliderService.startAutoHide();
-      }, function () {
-        sliderService.startAutoHide();
-      });
     }
 
     /*--------------------------
