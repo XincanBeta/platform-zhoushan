@@ -10,8 +10,12 @@
           <div class="form-group">
             <div class="col-sm-8">
               <label class="entity-label">登录账号</label>
-              <input type="text" class="form-control" name="wkno" ng-model="item.wkno" validator="required, alphabet"
-                    ng-readonly="!itemIsNew" autofocus="autofocus"/>
+              <input type="text" class="form-control" name="wkno" ng-model="item.wkno" ng-keyup="validateWkno()"
+                     validator="required, alphabet"
+                     ng-readonly="!itemIsNew" autofocus="autofocus"/>
+              <span ng-if="!wknoIsValid" >
+                <p class="validation-invalid">已存在的账号</p>
+              </span>
             </div>
           </div>
           <div class="form-group">

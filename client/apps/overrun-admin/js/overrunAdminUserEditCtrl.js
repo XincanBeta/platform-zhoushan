@@ -2,10 +2,30 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
   function ($scope, $rootScope, $state, sliderService, $modalInstance, $modal, requestService, item, itemIsNew, myToast) {
     $scope.itemIsNew = itemIsNew;
 
+    /*
+     目录：
+
+     验证账户
+     应用
+     单位
+     保存
+     */
 
     /*--------------------------
-     $ 临时数据
+     $ 验证账户是否存在
      --------------------------*/
+    $scope.wknoIsValid = true // 初始化
+    $scope.validateWkno = function(){
+      //console.log('>>',item.wkno);
+      //$scope.wknoIsValid = false
+    }
+
+
+
+    /*--------------------------
+     $ 初始化应用信息
+     --------------------------*/
+    // 临时数据
     $scope.appList = [
       {
         appid: '0101',
@@ -24,16 +44,13 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       }
     ]
 
-    requestService.overrunAdminDeptQuery().success(function(res){
+    requestService.overrunAdminDeptQuery().success(function (res) {
       if (res.success) {
         $scope.deptlist = res.data;
         //console.log($scope.deptlist);
       }
     })
 
-    /*--------------------------
-      $ 初始化
-    --------------------------*/
     $scope.item = item;
     if (!itemIsNew) {
       $scope.dwmc = item.dw.dwmc;
@@ -41,9 +58,9 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
 
 
     // 通过 item.apps 更新 $scope.appList
-    for(var i=0; i<$scope.appList.length; i++){
-      _.each(item.apps, function(userApp){
-        if (userApp.appid == $scope.appList[i].appid ) {
+    for (var i = 0; i < $scope.appList.length; i++) {
+      _.each(item.apps, function (userApp) {
+        if (userApp.appid == $scope.appList[i].appid) {
           $scope.appList[i].selected = true;
         }
       })
@@ -51,8 +68,8 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
 
 
     /*--------------------------
-      $ 其他处理
-    --------------------------*/
+     $ 单位
+     --------------------------*/
 
     // 对应 wk 表
     $scope.setDept = function (dept) {
@@ -61,6 +78,10 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       $scope.dwmc = dept.dwmc; // 显示
     };
 
+
+    /*--------------------------
+     $ 保存
+     --------------------------*/
     // 选完后再统一处理
     $scope.selectApp = function ($event) {
       $event.stopPropagation();
