@@ -25,8 +25,8 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       operator: 'photoOperator'
     }]
 
-    // 区分待处理和已完结
-    if ($state.current.name == "myapp.overrun.done") {
+    // 待处理不显示案卷
+    if ($state.current.name != "myapp.overrun.todo") {
       $scope.tabset.push({
         name: '案卷',
         content: 'docContent',

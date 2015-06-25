@@ -6,10 +6,15 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
 
      日期处理
      分页
+     侧边栏
      打开设置
      月报表、抄告表导出
      案件详情导出
      */
+
+
+    var path = '../apps/overrun/partials/';
+
 
     /*--------------------------
      $ 日期处理
@@ -54,7 +59,38 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
     $rootScope.$on("paging.act", $scope.pagingAct)
 
 
-    var path = '../apps/overrun/partials/';
+    /*--------------------------
+     $ 侧边栏
+     --------------------------*/
+    $scope.select = function (item) {
+      $scope.selected = item
+    }
+
+    $scope.isSelected = function (item) {
+      return $scope.selected == item ? "active" : "";
+    }
+
+    sliderService.initRequestMethod(requestService.overrunDoneItemDetail);
+    $scope.mySliderToggle = function (item) {
+      sliderService.setRequestData({aj_id: item.aj_id})
+      if (!$scope.selected) {
+        $scope.selected = item;
+        sliderService.show()
+      } else if ($scope.selected && $scope.selected === item) {
+        $scope.selected = "";
+        sliderService.hide()
+      } else {
+        $scope.selected = item;
+        sliderService.showAfterHide()
+      }
+    }
+
+    $rootScope.$on("row.clearSelected", function () {
+      $scope.selected = "";
+      $scope.$apply();
+    })
+
+
     /*--------------------------
      $ 打开设置
      --------------------------*/
