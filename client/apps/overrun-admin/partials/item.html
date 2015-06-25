@@ -1,20 +1,24 @@
 <style>
   .shame-btn-word {
-    position: absolute; bottom: -4px;
+    position: absolute;
+    bottom: -4px;
   }
 </style>
 <header class="l-app-header">
-
+  <div class="app-toolbar">
+    <div class="app-search">
+      <input type="text" class="form-control" placeholder="请输入案号或车牌查询" ng-model="searchText"/>
+      <span class="input-group-btn">
+        <button class="btn btn-sm btn-default fa-search" title="搜索" ng-click="search()"></button>
+      </span>
+    </div>
+  </div>
 </header>
 <section class="l-app-body on-footer">
   <section class="l-plate">
     <table class="app-table entity-view">
       <thead>
       <tr>
-        <!--<th class="with-checkbox">
-          &lt;!&ndash;用于导出&ndash;&gt;
-          <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
-        </th>-->
         <th>序号</th>
         <th>案号</th>
         <th>车牌</th>
@@ -25,9 +29,6 @@
       </thead>
       <tbody>
       <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
-        <!--<td>
-          <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
-        </td>-->
         <td>{{ $index+1 }}</td>
         <td>{{ item["aj_bh"] }}</td>
         <td>{{ item["cj_cp"] }}</td>
@@ -65,7 +66,7 @@
 </div>
 <form id="formForDownload" target="" method="post" action="/api/files/downloadFile.do"
       style="display: none;">
-  <input type="hidden" id="filename" name="filename" />
+  <input type="hidden" id="filename" name="filename"/>
 </form>
 
 

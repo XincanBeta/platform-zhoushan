@@ -98,16 +98,5 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
     /*--------------------------
      $ 案件详情导出
     --------------------------*/
-    $scope.selectAllItem = function () {
-      // 通过 ng-checked="item.selected" 来控制列表项的 checkbox 状态
-      // ng-checked 只能反映 checkbox 的状态
-      // ng-model 能改变状态
-      $scope._($scope.itemList).each(function (item) {
-        item.selected = $scope.allItemIsChecked;
-      });
-    }
 
-    $scope.selectItem = function ($event) {
-      $event.stopPropagation();
-    }
   });

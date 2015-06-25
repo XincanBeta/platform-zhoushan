@@ -183,7 +183,7 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doGetRequest(localPath + 'overrun.done.item.json');
     } else {
       return _doPostRequest('/api/cxcfs/' + data.currentPage + '/' + data.pageSize + '/queryPage.do',
-        {aj_jazt: data.aj_jazt});
+        {aj_jazt: data.aj_jazt, searchText: data.searchText});
     }
   }
   this.overrunDoneItemDetail = function (data) {

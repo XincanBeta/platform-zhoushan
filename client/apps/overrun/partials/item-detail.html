@@ -17,7 +17,8 @@
 <script type="text/ng-template" id="detailOperator">
   <!---->
   <button type="button" class="btn btn-default" ng-if='!hideDetailOperator'
-          ng-disabled="item.jttl.jt_zt == '在进行'"  ng-click="edit()">修改</button>
+          ng-disabled="item.jttl.jt_zt == '在进行'" ng-click="edit()">修改
+  </button>
 </script>
 
 <script type="text/ng-template" id="photoOperator">
@@ -33,17 +34,17 @@
   <div id="viewer-container" ng-controller="OverrunViewerCtrl"
        style="position: absolute; left: 2px; right: 2px; top: -32px; bottom: 2px; ">
     <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer.html"
-            height="100%" width="100%" frameborder="no" ></iframe>
+            height="100%" width="100%" frameborder="no"></iframe>
   </div>
 </script>
 
 
 <!-- todo: 这个应该没在用了，用另一个全屏 -->
 <script type="text/ng-template" id="docContentFullscreen.html">
-<div style="position: absolute; top: 0; bottom: 0; width: 100% ; " >
-  <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer-fullscreen.html"
-          height="100%" width="100%" frameborder="no"></iframe>
-</div>
+  <div style="position: absolute; top: 0; bottom: 0; width: 100% ; ">
+    <iframe ng-src="../assets/widget/mozilla-pdf/web/viewer-fullscreen.html"
+            height="100%" width="100%" frameborder="no"></iframe>
+  </div>
 </script>
 
 
@@ -106,7 +107,6 @@
 </script>
 
 
-
 <script type="text/ng-template" id="detailContent">
   <ul class="entity-navbar">
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-checklist')">初检单</a></li>
@@ -117,6 +117,11 @@
       复检单</a></li>
   </ul>
   <div class="entity-block-wrap under-navbar">
+    <div class="entity-block" ng-if="item.aj_jazt == '是'">
+      <section class="entity-block--body" style="min-height:30px;">
+        <div class="entity-info">案号：{{ item.aj_bh }}</div>
+      </section>
+    </div>
     <!--初检单-->
     <div id="overrun-detail-checklist" class="entity-block">
       <header class="entity-block--header">

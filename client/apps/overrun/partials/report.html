@@ -35,10 +35,10 @@
         <th colspan="6" style="text-align: center;" ng-bind="tjsj_title"></th>
       </tr>
       <tr>
-        <th class="with-checkbox">
+        <!--<th class="with-checkbox">
           <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false"
                  ng-click="selectAllItem()">
-        </th>
+        </th>-->
         <th>序号</th>
         <th>案号</th>
         <th>车牌</th>
@@ -48,9 +48,9 @@
       </thead>
       <tbody>
       <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
-        <td>
+        <!--<td>
           <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
-        </td>
+        </td>-->
         <td>{{ $index+1 }}</td>
         <td>{{ item["aj_bh"] }}</td>
         <td>{{ item["cj_cp"] }}</td>

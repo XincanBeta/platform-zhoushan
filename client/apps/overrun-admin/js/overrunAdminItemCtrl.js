@@ -3,6 +3,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemCtrl',
     var path = '../apps/overrun-admin/partials/';
     /*
      分页
+     查询
      侧边栏
      checkbox 处理
      */
@@ -12,7 +13,8 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemCtrl',
       requestService.overrunDoneItems({
         currentPage: $scope.currentPage,
         pageSize: $scope.pageSize,
-        aj_jazt: '是'
+        aj_jazt: '是',
+        searchText: $scope.searchText
       }).success(function (res) {
         if (res.success) {
           $scope.itemList = res.data.list;
@@ -23,7 +25,16 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemCtrl',
     // 分页点击初始化
     $scope.pagingAct();
 
+    /*--------------------------
+     $ 查询
+     --------------------------*/
+    $scope.search = function(){
+      $scope.pagingAct();
+    }
 
+    /*--------------------------
+     $ 侧边栏
+     --------------------------*/
     $scope.select = function (item) {
       $scope.selected = item
     }

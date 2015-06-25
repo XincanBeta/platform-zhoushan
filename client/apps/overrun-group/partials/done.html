@@ -16,9 +16,9 @@
       <span class="shame-btn-word" style="right: 2px;">word</span>
     </button>
     <div class="app-search">
-      <input type="text" class="form-control" placeholder="案号、车牌"/>
+      <input type="text" class="form-control" placeholder="请输入案号或车牌查询" ng-model="searchText"/>
       <span class="input-group-btn">
-        <button class="btn btn-sm btn-default fa-search" title="搜索"></button>
+        <button class="btn btn-sm btn-default fa-search" title="搜索" ng-click="search()"></button>
       </span>
     </div>
   </div>
