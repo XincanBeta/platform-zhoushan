@@ -160,6 +160,7 @@ angular.module('app.overrun').controller('OverrunTodoCtrl',
       modalInstance.result.then(function () {
         // 2）保存后刷新
         $scope.pagingAct();
+        $scope.allItemIsChecked = false;
         sliderService.startAutoHide();
       }, function () {
         sliderService.startAutoHide();
