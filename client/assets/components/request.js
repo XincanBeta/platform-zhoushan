@@ -205,13 +205,13 @@ angular.module("request", []).service('requestService', function ($http) {
   /*
    报送配置
    */
-  this.overrunReportSettingQuery = function(){
+  this.overrunReportSettingQuery = function () {
     return _doPostRequest('/api/bspzs/queryByDwid.do');
   }
-  this.overrunReportSettingUpdate = function(data){
+  this.overrunReportSettingUpdate = function (data) {
     return _doPostRequest('/api/bspzs/update.do', data);
   }
-  this.overrunReportQueryPage = function(data){
+  this.overrunReportQueryPage = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.exportDate + '/' + data.currentPage + '/' + data.pageSize + '/querySjbs.do');
   }
 
@@ -271,29 +271,21 @@ angular.module("request", []).service('requestService', function ($http) {
     return _doPostRequest('/api/dws/delete.do', data);
   }
   // 人员管理
+
+  this.overrunAdminWknoExist = function (data) {
+    return _doPostRequest('/api/wks/' + data.wkno + '/isWkExist.do');
+  }
   this.overrunAdminUserQuery = function (data) {
-    if (env == 'local') {
-    } else {
-      return _doPostRequest('/api/wks/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
-    }
+    return _doPostRequest('/api/wks/' + data.currentPage + '/' + data.pageSize + '/queryPage.do');
   }
   this.overrunAdminUserInsert = function (data) {
-    if (env == 'local') {
-    } else {
-      return _doPostRequest('/api/wks/insert.do', data);
-    }
+    return _doPostRequest('/api/wks/insert.do', data);
   }
   this.overrunAdminUserUpdate = function (data) {
-    if (env == 'local') {
-    } else {
-      return _doPostRequest('/api/wks/update.do', data);
-    }
+    return _doPostRequest('/api/wks/update.do', data);
   }
   this.overrunAdminUserDetail = function (data) {
-    if (env == 'local') {
-    } else {
-      return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
-    }
+    return _doPostRequest('/api/wks/' + data.wkno + '/query.do');
   }
   // 案件管理
   this.overrunAdminItemUpdate = function (data) {

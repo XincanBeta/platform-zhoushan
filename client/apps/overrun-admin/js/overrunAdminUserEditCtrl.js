@@ -5,21 +5,12 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
     /*
      目录：
 
-     验证账户
+     初始化
      应用
+     验证账户
      单位
      保存
      */
-
-    /*--------------------------
-     $ 验证账户是否存在
-     --------------------------*/
-    $scope.wknoIsValid = true // 初始化
-    $scope.validateWkno = function(){
-      //console.log('>>',item.wkno);
-      //$scope.wknoIsValid = false
-    }
-
 
 
     /*--------------------------
@@ -47,7 +38,6 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
     requestService.overrunAdminDeptQuery().success(function (res) {
       if (res.success) {
         $scope.deptlist = res.data;
-        //console.log($scope.deptlist);
       }
     })
 
@@ -56,12 +46,26 @@ angular.module('app.overrun-admin').controller('OverrunAdminUserEditCtrl',
       $scope.dwmc = item.dw.dwmc;
     }
 
-
     // 通过 item.apps 更新 $scope.appList
     for (var i = 0; i < $scope.appList.length; i++) {
       _.each(item.apps, function (userApp) {
         if (userApp.appid == $scope.appList[i].appid) {
           $scope.appList[i].selected = true;
+        }
+      })
+    }
+
+
+    /*--------------------------
+     $ 验证账户是否存在
+     --------------------------*/
+    $scope.wknoIsValid = true // 初始化
+    $scope.validateWkno = function () {
+      requestService.overrunAdminWknoExist({wkno: $scope.item.wkno}).success(function (res) {
+        if(!res.success){
+          $scope.wknoIsValid = false
+        }else{
+          $scope.wknoIsValid = true
         }
       })
     }
