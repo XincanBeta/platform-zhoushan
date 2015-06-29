@@ -7,6 +7,7 @@ angular.module('app.myapp', []).controller('MyappCtrl',
     $scope.hasSaApp = false;
 
     var userApps = userService.getUser().apps;
+    console.log('app', userApps);
     requestService.myappBusiItems().success(function (apps) {
       //$scope.hasBusiApp = true;
       //$scope.busiApps = apps;

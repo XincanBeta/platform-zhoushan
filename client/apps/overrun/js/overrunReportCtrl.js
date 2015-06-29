@@ -8,8 +8,7 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
      分页
      侧边栏
      打开设置
-     月报表、抄告表导出
-     案件详情导出
+     导出
      */
 
 
@@ -26,6 +25,7 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
     var exportDate = date.format('YYYYMM')
     var ybbAction = '/api/cxcfs/' + exportDate + '/exportYbbExcel.do';
     var cgbAction = '/api/cxcfs/' + exportDate + '/exportCgbExcel.do';
+    var ajAction  = '/api/cxcfs/' + exportDate + '/exportDetailExcel.do';
     // 监听 tjsj_search
     $scope.$watch('tjsj_search', function (value) {
       var date = moment(value)
@@ -33,6 +33,7 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
       exportDate = date.format('YYYYMM')
       ybbAction = '/api/cxcfs/' + exportDate + '/exportYbbExcel.do';
       cgbAction = '/api/cxcfs/' + exportDate + '/exportCgbExcel.do';
+      ajAction  = '/api/cxcfs/' + exportDate + '/exportDetailExcel.do';
       $scope.pagingAct();
     })
 
@@ -117,7 +118,7 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
 
 
     /*--------------------------
-     $ 月报表、抄告表导出
+     $ 导出
      --------------------------*/
     var formForDownload = $("#formForDownload")
     // 月报表
@@ -130,9 +131,10 @@ angular.module('app.overrun').controller('OverrunReportCtrl',
       formForDownload.attr('action', cgbAction)
       formForDownload.submit();
     }
-
-    /*--------------------------
-     $ 案件详情导出
-    --------------------------*/
+    // 案件详情
+    $scope.export_aj = function () {
+      formForDownload.attr('action', ajAction)
+      formForDownload.submit();
+    }
 
   });
