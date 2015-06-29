@@ -37,8 +37,8 @@
 
 
 
-<!-- 必须从 overrun 拷贝更新
- todo：注意控制器的名字
+<!--
+ PS：直接从 overrun 拷贝更新，但注意控制器的名字
  -->
 <script type="text/ng-template" id="photoContent">
   <div class="entity-block-wrap" ng-controller="OverrunGroupItemDetailPhotoCtrl">
@@ -99,7 +99,8 @@
 </script>
 
 
-<!-- 必须从 overrun 拷贝更新 -->
+<!-- PS：直接从 overrun 拷贝更新 -->
+
 <script type="text/ng-template" id="detailContent">
   <ul class="entity-navbar">
     <li><a href="javascript:void(0)" ng-click="gotoAnchor('overrun-detail-checklist')">初检单</a></li>
@@ -110,6 +111,11 @@
       复检单</a></li>
   </ul>
   <div class="entity-block-wrap under-navbar">
+    <div class="entity-block" ng-if="item.aj_jazt == '是'">
+      <section class="entity-block--body" style="min-height:30px;">
+        <div class="entity-info">案号：{{ item.aj_bh }}</div>
+      </section>
+    </div>
     <!--初检单-->
     <div id="overrun-detail-checklist" class="entity-block">
       <header class="entity-block--header">
@@ -125,8 +131,8 @@
         <div class="entity-info">超限类型：{{ item.cj_cxlx }}</div>
         <div class="entity-info">可否卸载：{{ item.cj_kfxz }}</div>
 
-        <div class="entity-info">总重：{{ item.cj_zz }}<span ng-if="item.cj_zz">{{ unit }}</span></div>
-        <div class="entity-info">超重：{{ item.cj_cz }}<span ng-if="item.cj_cz">{{ unit }}</span></div>
+        <div class="entity-info"><span ng-bind="cj_zz_label"></span>：{{ item.cj_zz }}<span ng-if="item.cj_zz">{{ unit }}</span></div>
+        <div class="entity-info"><span ng-bind="item.cj_cxlx"></span>：{{ item.cj_cz }}<span ng-if="item.cj_cz">{{ unit }}</span></div>
         <div class="entity-info">货物名称：{{ item.hw_mc }}</div>
         <div class="entity-info">运货起点：{{ item.hw_qd }}</div>
         <div class="entity-info">运货目的地：{{ item.hw_md }}</div>
@@ -141,8 +147,8 @@
       <section class="entity-block--body">
         <div class="entity-info">车头：{{ item.cj_cp }}</div>
         <div class="entity-info">挂车：{{ item.cl_gc }}</div>
-        <div class="entity-info">核定载质量：{{ item.cl_hdz }}</div>
-        <div class="entity-info">整备质量：{{ item.cl_zb }}</div>
+        <div class="entity-info">核定载质量：{{ item.cl_hdzzl }}</div>
+        <div class="entity-info">整备质量：{{ item.cl_zbzl }}</div>
         <div class="entity-info">车籍地：{{ item.cl_cjd }}</div>
         <div class="entity-info">车辆类型：{{ item.cl_lx }}</div>
 
@@ -188,7 +194,7 @@
         <div class="entity-info">现场笔录地点：{{ item.aj_xcbldd }}</div>
         <div class="entity-info">询问笔录时间：{{ item.aj_xwblsj }}</div>
         <div class="entity-info">询问笔录地点：{{ item.aj_xwbldd }}</div>
-        <div class="entity-info is-clear-both">停车点：{{ item.aj_pjh }}</div>
+        <div class="entity-info is-clear-both">停车点：{{ item.aj_tcdd }}</div>
       </section>
     </div>
     <!--复检单-->
@@ -202,8 +208,8 @@
         <div class="entity-info">时间：{{ item.fj_sj }}</div>
         <div class="entity-info">车牌：{{ item.cj_cp }}</div>
         <div class="entity-info">轴数：{{ item.cj_zs }}</div>
-        <div class="entity-info">总重：{{ item.fj_zz }}<span ng-if="item.fj_zz">{{ unit }}</span></div>
-        <div class="entity-info">超重：{{ item.fj_cz }}<span ng-if="item.fj_cz">{{ unit }}</span></div>
+        <div class="entity-info"><span ng-bind="cj_zz_label"></span>：{{ item.fj_zz }}<span ng-if="item.fj_zz">{{ unit }}</span></div>
+        <div class="entity-info"><span ng-bind="item.cj_cxlx"></span>：{{ item.fj_cz }}<span ng-if="item.fj_cz">{{ unit }}</span></div>
       </section>
     </div>
   </div>

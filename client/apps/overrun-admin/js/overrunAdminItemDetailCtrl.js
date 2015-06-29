@@ -127,6 +127,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailCtrl',
       $scope.item = res.data;
       // 设置单位
       $scope.unit = _getUnit($scope.item.cj_cxlx)
+      $scope.cj_zz_label = _getLabel($scope.item.cj_cxlx)
     })
 
 
@@ -138,6 +139,20 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailCtrl',
         return '吨'
       } else {
         return '米'
+      }
+    }
+
+    function _getLabel(cxlx) {
+      if (cxlx == '超重') {
+        return '总重'
+      } else if (cxlx == '超长') {
+        return '总长'
+      } else if (cxlx == '超宽') {
+        return '总宽'
+      } else if (cxlx == '超高') {
+        return '总高'
+      } else if (cxlx == '集装箱超高') {
+        return '集装箱总高'
       }
     }
 
