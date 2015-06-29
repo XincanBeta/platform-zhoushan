@@ -42,14 +42,14 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailPhotoCtrl'
      $ 证件全屏
      --------------------------*/
     // 由于 img 会被 ::after 挡住，所以点击事件在 div 上
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/overrun-admin/partials/';
     $scope.openPhotoModal = function (imageType, index, image) {
       var modalInstance = $modal.open({
         backdrop: true,
         keyboard: true,
         size: "lg",
         templateUrl: path + 'photo-detail.html',
-        controller: 'OverrunPhotoDetailCtrl',
+        controller: 'OverrunAdminPhotoDetailCtrl',
         resolve: {
           imageInfo: function () {
             return {

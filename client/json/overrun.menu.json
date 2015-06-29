@@ -8,7 +8,7 @@
     "routestate": "myapp.overrun.done"
   },
   {
-    "menuname": "数据报送",
+    "menuname": "数据统计",
     "routestate": "myapp.overrun.report"
   }
 ]

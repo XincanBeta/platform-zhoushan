@@ -1,19 +1,22 @@
 <style>
-  .modal-lg{
-    width: 600px;;
+  .modal {
+    text-align: center;
   }
-  /*内嵌*/
+
+  .modal-lg {
+    display: inline-block;
+    width: auto;
+  }
+
   .modal-body {
     height: 500px;
-    overflow-y: auto;
+    overflow-y: hidden;
     overflow-x: hidden;
   }
 </style>
 
-<form class="form-horizontal form-validate form-modal " method="post" action="">
-  <div class="modal-body">
-    <img ng-src="{{ image.contentdata }}"  style="width: 570px; height: auto ; text-align: center;"/>
-  </div>
-</form>
+<div class="modal-body" ng-show="loaded">
+  <img ng-src="{{ image.contentdata }}" style="width: auto; max-width: 900px; height: 480px; ; text-align: center;"/>
+</div>
 
 

@@ -1,4 +1,4 @@
-angular.module('app.overrun').controller('OverrunPhotoDetailCtrl',
+angular.module('app.overrun-admin').controller('OverrunAdminPhotoDetailCtrl',
   function ($scope, $modalInstance, imageInfo, requestService) {
 
     $scope.loaded = false;

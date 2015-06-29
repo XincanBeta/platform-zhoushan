@@ -45,6 +45,7 @@ angular.module('app.overrun-admin', [])
       apps + 'js/overrunAdminItemDetailCtrl.js',
       apps + 'js/overrunAdminItemEditCtrl.js',
       apps + 'js/overrunAdminItemDetailPhotoCtrl.js',
+      apps + 'js/overrunAdminPhotoDetailCtrl.js',
       apps + 'js/overrunAdminForfeitService.js',
       apps + 'js/overrunAdminViewerCtrl.js',
       apps + 'js/overrunAdminViewerFullscreenCtrl.js'
