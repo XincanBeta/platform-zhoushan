@@ -709,12 +709,24 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.isowner = (value == '非车主') ? '否' : '是';
       if ($scope.owner == '车主') {
         $scope.item.jsy_xm = $scope.item.cl_syr
+        $scope.item.jsy_dh = $scope.item.cl_dh
+        $scope.item.jsy_zz = $scope.item.cl_zz
       }
     }
-
+    // 监听 车主信息
     $scope.$watch('item.cl_syr', function (value) {
       if ($scope.owner == '车主') {
         $scope.item.jsy_xm = value
+      }
+    })
+    $scope.$watch('item.cl_dh', function (value) {
+      if ($scope.owner == '车主') {
+        $scope.item.jsy_dh = value
+      }
+    })
+    $scope.$watch('item.cl_zz', function (value) {
+      if ($scope.owner == '车主') {
+        $scope.item.jsy_zz = value
       }
     })
 

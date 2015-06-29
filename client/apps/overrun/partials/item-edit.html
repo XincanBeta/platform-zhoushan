@@ -307,12 +307,12 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">联系电话</label>
-              <input type="text" class="form-control" name="jsy_dh" ng-model="item.jsy_dh" maxlength="20"
+              <input type="text" class="form-control" name="jsy_dh" ng-model="item.jsy_dh" ng-readonly="owner == '车主'" maxlength="20"
                      validator="required"/>
             </div>
             <div class="col-sm-12">
               <label class="entity-label">住址</label>
-              <input type="text" class="form-control" name="jsy_zz" ng-model="item.jsy_zz" maxlength="100"
+              <input type="text" class="form-control" name="jsy_zz" ng-model="item.jsy_zz" ng-readonly="owner == '车主'" maxlength="100"
                      validator="required"/>
             </div>
           </div>
