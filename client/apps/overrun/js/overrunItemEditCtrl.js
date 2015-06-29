@@ -180,6 +180,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.item.jsy_cy = selected.originalObject.jsy_cy;
         $scope.item.jsy_dh = selected.originalObject.jsy_dh;
         $scope.item.jsy_zz = selected.originalObject.jsy_zz;
+        // 是否车主
+        $scope.item.isowner = selected.originalObject.isowner;
+        $scope.owner = ($scope.item.isowner == '否' ? '非车主' : '车主')
+
       }
     }
     // 手输
@@ -713,6 +717,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         $scope.item.jsy_zz = $scope.item.cl_zz
       }
     }
+
+
     // 监听 车主信息
     $scope.$watch('item.cl_syr', function (value) {
       if ($scope.owner == '车主') {
