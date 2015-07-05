@@ -49,8 +49,8 @@ angular.module('app.overrun').service('forfeit', function () {
     result.forfeit = convertNumber(result.forfeit)
     // 去除小数点
     result.forfeit = result.forfeit >> 0;
-    // 罚金精确到 50
-    result.forfeit = result.forfeit - (result.forfeit % 50);
+    // 罚金精确到 100
+    result.forfeit = result.forfeit - (result.forfeit % 100);
     return result;
   };
 
