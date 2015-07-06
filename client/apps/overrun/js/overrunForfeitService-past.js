@@ -1,11 +1,5 @@
 /*
-  变更内容：
-  1、 向上取整，公式
-    if money%100 > 0 then
-      money = money - money%100 + 100
-    end if
-  2、特别严重的计算方式变更
-
+  这是罚金计算老版本，暂时保留
 */
 
 
@@ -60,19 +54,10 @@ angular.module('app.overrun').service('forfeit', function () {
     result.forfeit = convertNumber(result.forfeit)
     // 去除小数点
     result.forfeit = result.forfeit >> 0;
-    // 罚金向上取整；精确到 100
-    result.forfeit = _ceil(result.forfeit)
+    // 罚金精确到 100
+    result.forfeit = result.forfeit - (result.forfeit % 100);
     return result;
   };
-
-  // 罚金向上取整；精确到 100
-  function _ceil( value ){
-    if(value % 100 > 0){
-      return (value - (value % 100) + 100);
-    }
-    return value
-  }
-
 
   function convertNumber(str) {
     if (str == "" || str == null) {
@@ -242,18 +227,6 @@ angular.module('app.overrun').service('forfeit', function () {
     forfeitRange: [1500, 30000]
   }];
 
-  //获取特别严重（长宽高）的斜率
-  function _getGravelyK(type){
-    if (type == "length") {
-      return 700
-    } else if (type == "width") {
-      return 5000
-    } else if (type == "height") {
-      return 4000
-    } else if (type == "containerHeight") {
-      return 4000
-    }
-  }
 
   function _getMaxLegalValue(type, axles) {
     if (type == "weight") {
@@ -299,7 +272,7 @@ angular.module('app.overrun').service('forfeit', function () {
 
   /*
    1、生成线性方程
-   2、带入 x ，求出 y(y=罚金)
+   2、带入 x ，求出 y
    */
   function _linearEquation(xRange, yRange, xValue) {
     var k, b, yValue;
@@ -343,10 +316,7 @@ angular.module('app.overrun').service('forfeit', function () {
         return result;
       }
       if (i == (overValueRules.length - 1) && value > ruleValueRange[0]) {
-        var k = _getGravelyK(type)
-        var b = 1500 - k * ruleValueRange[0];
-        var forfeit = b + k * value;
-        //var forfeit = 1500 + Math.floor([(value - ruleValueRange[0]) / maxLegalValue] / 0.05) * 1000;
+        var forfeit = 1500 + Math.floor([(value - ruleValueRange[0]) / maxLegalValue] / 0.05) * 1000;
         forfeit = forfeit > 30000 ? 30000 : forfeit;
         result.forfeit = forfeit;
         result.forfeitRange = [1500, 30000];
