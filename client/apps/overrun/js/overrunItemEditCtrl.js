@@ -22,6 +22,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      常用信息（带回历史）
      最新的结案信息
      是否车主
+     责停
+     复检
      */
 
     //调试帮助：区分 $scope 上的 item 与 普通值
@@ -274,8 +276,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
       var resutl = forfeit.calcOverForfeit($scope.selectedOverrunType.name, $scope.item.cj_zz, $scope.item.cj_zs);
       $scope.item.cj_cz = resutl.overValue;
-      if($scope.item.jttl && $scope.item.jttl.jt_zt == '已完成'){
-        return ;
+      if ($scope.item.jttl && $scope.item.jttl.jt_zt == '已完成') {
+        return;
       }
       $scope.item.aj_fk = resutl.forfeit;
       $scope.forfeitRange = resutl.forfeitRange ? resutl.forfeitRange.join('-') : '';
@@ -740,5 +742,76 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       return $scope.owner == value ? 'btn-primary' : 'btn-default'
     }
 
+    /*--------------------------
+     $ 责停
+     传递 item
+     自动保存
+     责停
+     --------------------------*/
+    $scope.zt = function () {
+      // 两个接口
+      // 验证当前案件的表单合法性：接口，success 是 url，fail 是 提示
+      // 对接
+      _beforeSave();
+      requestService.overrunItemsZeTing($scope.item).success(function (res) {
+        //console.log('done res', res);
+        if (!res.success) {
+          ngToast.create({
+            className: 'danger',
+            content: '责停失败：' + res.msg
+          });
+          return false;
+        }
+        fullscreenModalInstance = $modal.open({
+          keyboard: true,
+          size: "fullscreen",
+          templateUrl: apps + 'overrun/partials/docFullscreen.html',
+          controller: 'OverrunViewerFullscreenCtrl',
+          resolve: {
+            item: function () {
+              // 将案卷pdf和word 字段用于临时存储责停信息
+              $scope.item.currentpath_pdf = res.data.zt_pdfpath;
+              $scope.item.currentpath_word = res.data.zt_wordpath;
+              $scope.item.ztzt = res.data.ztzt; // 责停状态，用于监听结案按钮
+              return $scope.item;
+            }
+          }
+        })
+        fullscreenModalInstance.result.then(function () {
+          $modalInstance.close(); // 全屏关闭后，再关闭本层
+          $rootScope.$emit("paging.act")
+          $rootScope.$emit("slider.hide")
+          sliderService.startAutoHide();
+
+        }, function () {
+          sliderService.startAutoHide();
+          $modalInstance.close();
+        });
+
+        fullscreenModalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
+      })
+    }
+
+
+    /*--------------------------
+     $ 复检
+     --------------------------*/
+    $scope.fj = function () {
+      // 两个接口
+      // 验证当前案件的表单合法性：接口，success 是 url，fail 是 提示
+      // 对接
+
+
+    }
+
+
+
+
+
 
   })
+
+
+

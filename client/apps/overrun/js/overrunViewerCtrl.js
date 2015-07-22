@@ -1,7 +1,7 @@
 angular.module('app.overrun').controller('OverrunViewerCtrl',
   function ($scope) {
 
-    console.log($scope.item);
+    //console.log($scope.item);
     
     $scope.getPdfurl = function () {
       //"fileUpLoad\\201506\\20150680808_浙舟公路罚(2015)000001.docx"

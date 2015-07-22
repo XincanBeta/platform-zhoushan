@@ -172,6 +172,14 @@ angular.module("request", []).service('requestService', function ($http) {
   this.overrunItemsPrint = function (data) {
     return _doPostRequest('/api/cxcfs/' + data.itemId.toString() + '/' + data.part + 'printPdf.do');
   }
+  // 责停和复检
+  this.overrunItemsZeTing = function (data) {
+    return _doPostRequest('/api/cxcfs/zeting.do', data);
+  }
+  this.overrunItemsFuJian = function (data) {
+    return _doPostRequest('/api/cxcfs/fujian.do', data);
+  }
+
   /* 
    已完结接口
    */

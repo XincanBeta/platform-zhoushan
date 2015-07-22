@@ -7,6 +7,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
     /*
      选项卡
      案件修改（待处理）
+
      全屏案卷
      页内导航
      详细信息
@@ -26,7 +27,7 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       operator: 'photoOperator'
     }]
 
-    // 待处理不显示案卷
+    // 待处理与已完结
     if ($state.current.name != "myapp.overrun.todo") {
       $scope.tabset.push({
         name: '案卷',
@@ -85,10 +86,12 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       })
     }
 
+    var fullscreenModalInstance;
+
     /*--------------------------
      $ 全屏案卷
      --------------------------*/
-    var fullscreenModalInstance;
+
     $scope.fullscreenDoc = function () {
       fullscreenModalInstance = $modal.open({
         keyboard: true,

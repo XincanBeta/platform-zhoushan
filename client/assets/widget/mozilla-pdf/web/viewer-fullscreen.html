@@ -491,14 +491,14 @@
     var parentScope = parent.angular.element('#viewer-fullscreen-container').scope();
     var filename = parentScope.getPdfurl();
     DEFAULT_URL = '/api/files/downloadFile.do?filename=' + filename;
-    itemId = parentScope.getItemId();
+    item = parentScope.getItem();
 
     $scope.exitFile = function () {
       parentScope.closeFullscreenModal()
     }
 
     $scope.print = function (part) {
-      requestService.overrunItemsPrint({itemId: itemId, part: part}).success(function (res) {
+      requestService.overrunItemsPrint({itemId: item.aj_id, part: part}).success(function (res) {
         var iframe = document.getElementById('pdfIframe');
         iframe.src = '/api/files/downloadFile.do?print=true&filename=' + res.data;
         // 等待 iframe 加载完毕

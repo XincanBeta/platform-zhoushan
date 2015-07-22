@@ -624,6 +624,15 @@
     </div>
   </div>
   <div class="modal-footer">
+    <!---->
+    <button type="button" class="btn btn-default" ng-if='!hideDetailOperator'
+            ng-click="zt()">责停
+    </button>
+    <button type="button" class="btn btn-default m-r-2" ng-if="item.cj_kfxz=='可卸载'"
+            ng-click="fj()">复检
+    </button>
+
+
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
     <button type="button" class="btn btn-default" ng-click="save()">保存</button>
     <button type="button" class="btn btn-primary" validation-submit="form" ng-click="done()">结案</button>
