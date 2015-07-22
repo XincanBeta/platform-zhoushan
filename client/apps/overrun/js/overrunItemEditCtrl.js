@@ -791,7 +791,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         fullscreenModalInstance = $modal.open({
           keyboard: true,
           size: "fullscreen",
-          templateUrl: apps + 'overrun/partials/docFullscreen.html',
+          templateUrl: apps + 'overrun/partials/docFullscreen-zt.html',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
             item: function () {
@@ -804,10 +804,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           }
         })
         fullscreenModalInstance.result.then(function () {
-          $modalInstance.close(); // 全屏关闭后，再关闭本层
-          $rootScope.$emit("paging.act")
-          $rootScope.$emit("slider.hide")
-          sliderService.startAutoHide();
+          //$modalInstance.close(); // 全屏关闭后，再关闭本层
+          //$rootScope.$emit("paging.act")
+          //$rootScope.$emit("slider.hide")
+          //sliderService.startAutoHide();
 
         }, function () {
           sliderService.startAutoHide();
