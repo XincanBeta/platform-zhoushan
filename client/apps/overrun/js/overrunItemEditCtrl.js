@@ -17,6 +17,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      页内导航
      手动验证
      保存
+     是否可以结案
      结案
      集体讨论
      常用信息（带回历史）
@@ -496,12 +497,37 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       })
     }
 
+
+    /*--------------------------
+     $ 是否可以结案
+    --------------------------*/
+    var getDoneValid = function(){
+      var res = {success: true, msg:''};
+      if($scope.item.ztzt != '是'){
+        res.success = false;
+        res.msg = '请先点击责停按钮'
+      } else if($scope.item.cj_kfxz == '可卸载' && $scope.item.fjzt != '是'){
+        res.success = false;
+        res.msg = '请先点击复检按钮'
+      }
+      return res;
+    }
+
     /*--------------------------
      $ 结案
      --------------------------*/
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
+      var res = getDoneValid();
+      if(!res.success){
+        ngToast.create({
+          className: 'danger',
+          content: res.msg
+        });
+        return ;
+      }
+
       _beforeSave();
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
         //console.log('done res', res);
@@ -758,7 +784,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         if (!res.success) {
           ngToast.create({
             className: 'danger',
-            content: '责停失败：' + res.msg
+            content: '责停错误：' + res.msg
           });
           return false;
         }

@@ -12,8 +12,8 @@ angular.module('app.overrun').controller('OverrunViewerFullscreenCtrl',
       //return location.protocol + '//' + location.host + '/' + item.currentpath_pdf;
     }
 
-    $scope.getItemId = function () {
-      return item.aj_id;
+    $scope.getItem = function () {
+      return item;
     }
 
 
