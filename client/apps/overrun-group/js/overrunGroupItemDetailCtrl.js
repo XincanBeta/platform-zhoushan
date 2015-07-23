@@ -27,11 +27,17 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
       name: '证件',
       content: 'photoContent',
       operator: 'photoOperator'
-    }, {
-      name: '案卷',
-      content: 'docContent',
-      operator: 'docOperator'
     }]
+
+    // 集体讨论待处理无案卷
+    if ($state.current.name != "myapp.overrun-group.todo") {
+      $scope.tabset.push({
+        name: '案卷',
+        content: 'docContent',
+        operator: 'docOperator'
+      })
+      $scope.hideDetailOperator = true;
+    }
 
 
     $rootScope.$on("slider.hide.done", function () {
