@@ -1,3 +1,8 @@
+<style>
+  .jt-zt-done{
+    color: green;
+  }
+</style>
 <header class="l-app-header">
   <div class="app-toolbar">
   </div>
@@ -34,7 +39,7 @@
         <td>{{ item.cj_sj }}</td>
         <td>{{ item.cj_zyclq }}</td>
         <td>{{ item.aj_fk }}</td>
-        <td>{{ item.jttl.jt_zt }}</td>
+        <td ng-class="{'jt-zt-done': (item.jttl.jt_zt == '已完成')}">{{ item.jttl.jt_zt }}</td>
       </tr>
       </tbody>
     </table>

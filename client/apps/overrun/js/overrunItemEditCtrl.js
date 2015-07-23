@@ -500,13 +500,13 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     /*--------------------------
      $ 是否可以结案
-    --------------------------*/
-    var getDoneValid = function(){
-      var res = {success: true, msg:''};
-      if($scope.item.ztzt != '是'){
+     --------------------------*/
+    var getDoneValid = function () {
+      var res = {success: true, msg: ''};
+      if ($scope.item.ztzt != '是') {
         res.success = false;
         res.msg = '请先点击责停按钮'
-      } else if($scope.item.cj_kfxz == '可卸载' && $scope.item.fjzt != '是'){
+      } else if ($scope.item.cj_kfxz == '可卸载' && $scope.item.fjzt != '是') {
         res.success = false;
         res.msg = '请先点击复检按钮'
       }
@@ -520,12 +520,12 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var fullscreenModalInstance;
     $scope.done = function () {
       var res = getDoneValid();
-      if(!res.success){
+      if (!res.success) {
         ngToast.create({
           className: 'danger',
           content: res.msg
         });
-        return ;
+        return;
       }
 
       _beforeSave();
@@ -823,18 +823,53 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
     /*--------------------------
      $ 复检
+     实现方式与责停雷同，与责停共用一份 html template
      --------------------------*/
     $scope.fj = function () {
       // 两个接口
       // 验证当前案件的表单合法性：接口，success 是 url，fail 是 提示
       // 对接
+      _beforeSave();
+      requestService.overrunItemsFuJian($scope.item).success(function (res) {
+        //console.log('done res', res);
+        if (!res.success) {
+          ngToast.create({
+            className: 'danger',
+            content: '复检错误：' + res.msg
+          });
+          return false;
+        }
+        fullscreenModalInstance = $modal.open({
+          keyboard: true,
+          size: "fullscreen",
+          templateUrl: apps + 'overrun/partials/docFullscreen-zt.html',
+          controller: 'OverrunViewerFullscreenCtrl',
+          resolve: {
+            item: function () {
+              // 将案卷pdf和word 字段用于临时存储责停信息
+              $scope.item.currentpath_pdf = res.data.fj_pdfpath;
+              $scope.item.currentpath_word = res.data.fj_wordpath;
+              $scope.item.fjzt = res.data.fjzt;
+              return $scope.item;
+            }
+          }
+        })
+        fullscreenModalInstance.result.then(function () {
+          //$modalInstance.close(); // 全屏关闭后，再关闭本层
+          //$rootScope.$emit("paging.act")
+          //$rootScope.$emit("slider.hide")
+          //sliderService.startAutoHide();
 
+        }, function () {
+          sliderService.startAutoHide();
+          $modalInstance.close();
+        });
 
+        fullscreenModalInstance.opened.then(function () {
+          sliderService.stopAutoHide();
+        })
+      })
     }
-
-
-
-
 
 
   })
