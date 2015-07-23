@@ -1,0 +1,489 @@
+<!--
+    Auto-generated test-site
+-->
+<html>
+<head>
+<title>test page for object fbcontrol</title>
+<meta charset="utf-8"/>
+</head>
+    <script type="text/javascript">
+	
+		var dev1;
+		var dev2;
+		var video1;
+		var video2;
+		
+		function plugin()
+        {
+            return document.getElementById('view1');
+        }
+	
+        function view1()
+        {
+            return document.getElementById('view1');
+        }
+        
+		function view2()
+        {
+            return document.getElementById('view2');
+        }
+		
+		function thumb1()
+        {
+            return document.getElementById('thumb1');
+        }
+		
+		function addEvent(obj, name, func)
+        {
+            if (obj.attachEvent) {
+                obj.attachEvent("on"+name, func);
+            } else {
+                obj.addEventListener(name, func, false); 
+            }
+        }
+		
+        function Load()
+        {
+			// 添加事件
+			addEvent(plugin(), 'DevChange', function(type,idx,dbt)
+			{
+				if (1 == type)
+				{
+					if (0 == idx)
+					{
+						if (1 == dbt)
+						{
+							dev1 = plugin().Global_CreateDevice(1, 0);
+							if (dev1)
+							{
+								video1 = plugin().Device_CreateVideo(dev1, 0, 1);
+								if (video1)
+								{
+									view1().View_SelectVideo(video1);
+									view1().View_SetText("打开视频中，请等待...", 0);
+								}
+							}						
+						}
+						else if (2 == dbt)
+						{
+							if (video1)
+							{
+								view1().View_SetText("", 0);
+								plugin().Video_Release(video1);
+								video1 = null;
+								plugin().Device_Release(dev1);
+								dev1 = null;
+							}							
+							else if (video2)
+							{
+								view2().View_SetText("", 0);
+								plugin().Video_Release(video2);
+								video2 = null;
+								plugin().Device_Release(dev2);
+								dev2 = null;
+							}
+						}						
+					}
+					else if (1 == idx)
+					{
+						if (1 == dbt)
+						{
+							dev2 = plugin().Global_CreateDevice(1, 1);
+							if (dev2)
+							{
+								video2 = plugin().Device_CreateVideo(dev2, 0, 1);
+								if (video2)
+								{
+									view2().View_SelectVideo(video2);
+									view2().View_SetText("打开视频中，请等待...", 0);	
+								}
+							}						
+						}
+						else if (2 == dbt)
+						{
+							if (video2)
+							{
+								view2().View_SetText("", 0);
+								plugin().Video_Release(video2);
+								video2 = null;
+								plugin().Device_Release(dev2);
+								dev2 = null;
+							}
+						}
+					}		
+				}
+            });
+
+			addEvent(plugin(), 'Ocr', function(flag, ret)
+			{
+				if (1 == flag && 0 == ret)
+				{
+					var ret = plugin().Global_GetOcrPlainText(0);
+					alert(ret);
+				}
+			});
+			
+			addEvent(plugin(), 'IdCard', function(ret)
+			{
+				if (1 == ret)
+				{
+					var str = "";
+					str += plugin().Global_GetIdCardData(1);
+					str += ";";
+					str += plugin().Global_GetIdCardData(2);
+					str += ";";
+					str += plugin().Global_GetIdCardData(3);
+					str += ";";		
+					str += plugin().Global_GetIdCardData(4);
+					str += "年";		
+					str += plugin().Global_GetIdCardData(5);
+					str += "月";		
+					str += plugin().Global_GetIdCardData(6);
+					str += "日";
+					str += ";";			
+					str += plugin().Global_GetIdCardData(7);
+					str += ";";	
+					str += plugin().Global_GetIdCardData(8);
+					str += ";";	
+					str += plugin().Global_GetIdCardData(9);
+					str += ";";	
+					str += plugin().Global_GetIdCardData(10);
+					str += "年";		
+					str += plugin().Global_GetIdCardData(11);
+					str += "月";		
+					str += plugin().Global_GetIdCardData(12);
+					str += "日";
+					str += "-";					
+					str += plugin().Global_GetIdCardData(13);
+					str += "年";		
+					str += plugin().Global_GetIdCardData(14);
+					str += "月";		
+					str += plugin().Global_GetIdCardData(15);
+					str += "日";	
+				
+					document.getElementById("idcard").value=str;	
+				}
+			});
+			
+			addEvent(plugin(), 'Biokey', function(ret)
+			{
+				if (1 == ret)
+				{
+					// 采集模板成功
+					var mem = plugin().Global_GetBiokeyTemplateData();
+					if (mem)
+					{
+						if (plugin().Memory_Save(mem, "D:\\1.tmp"))
+						{
+							document.getElementById("biokey").value="获取模板成功，存储路径为D:\\1.tmp";
+						}						
+						plugin().Memory_Release(mem);
+					}
+				}
+				else if (2 == ret)
+				{
+					// 采集特征成功
+					var mem = plugin().Global_GetBiokeyFeatureData();
+					{
+						// 读取模板并进行比较
+						var mem2 = plugin().Global_CreateMemoryFromFile("D:\\1.tmp");
+						if (mem2)
+						{
+							// 比较
+							var ret = plugin().Global_BiokeyVerify(mem, mem2);
+							if (ret > 50)
+							{
+								document.getElementById("biokey").value="匹配成功";
+							}
+							else
+							{
+								document.getElementById("biokey").value="匹配失败";
+							}
+							
+							plugin().Memory_Release(mem2);
+						}
+					
+						plugin().Memory_Release(mem);
+					}
+				}
+			});
+			
+			addEvent(plugin(), 'Reader', function(ret)
+			{
+				var str = "";
+				if (4 == ret)
+				{
+					str += "[CPU卡] Id:";
+					str += plugin().Global_ReaderGetCpuId();
+					str += "; CardNumber:";
+					str += plugin().Global_ReaderGetCpuCreditCardNumber();
+				}
+				else if (2 == ret)
+				{
+					str += "[M1卡] Id:";
+					str += plugin().Global_ReaderGetM1Id();
+				}
+				else if (1 == ret)
+				{
+					str += "[磁卡] CardNumber:";
+					str += plugin().Global_ReaderGetMagCardNumber();
+				}
+				else if (3 == ret)
+				{
+					str += "[Memory卡] Id:";
+					str += plugin().Global_ReaderGetMemoryId();	
+				}
+				
+				document.getElementById("reader").value=str;
+			});
+		
+			view1().Global_SetWindowName("view");
+			view2().Global_SetWindowName("view");
+			thumb1().Global_SetWindowName("thumb");
+		
+			plugin().Global_InitDevs();	
+			plugin().Global_InitOcr();
+			plugin().Global_InitIdCard();
+			plugin().Global_InitBiokey();
+			plugin().Global_InitReader();
+			
+			plugin().Global_DiscernIdCard();
+			plugin().Global_ReaderStart();
+
+        }
+		
+		function Unload()
+		{
+			if (video1)
+			{
+				view1().View_SetText("", 0);
+				plugin().Video_Release(video1);
+				video1 = null;
+				plugin().Device_Release(dev1);
+				dev1 = null;
+			}
+			
+			if (video2)
+			{
+				view2().View_SetText("", 0);
+				plugin().Video_Release(video2);
+				video2 = null;
+				plugin().Device_Release(dev2);
+				dev2 = null;
+			}
+			
+			plugin().Global_DeinitReader();
+			plugin().Global_DeinitBiokey();
+			plugin().Global_DeinitIdCard();
+			plugin().Global_DeinitOcr();
+			plugin().Global_DeinitDevs();
+		}
+		
+		function ShowProperty()
+		{
+			plugin().Device_ShowProperty(dev1, view1().View_GetObject());
+		}
+		
+		function Deskew()
+		{
+			plugin().Video_EnableDeskewEx(video1, 1);
+		}
+		
+		function UnDeskew()
+		{
+			plugin().Video_DisableDeskew(video1);
+		}
+		
+		function Left()
+		{
+			plugin().Video_RotateLeft(video1);
+			plugin().Video_RotateLeft(video2);
+		}
+		
+		function Right()
+		{
+			plugin().Video_RotateRight(video1);
+			plugin().Video_RotateRight(video2);		
+		}
+		
+		function Scan()
+		{
+			var imgList = plugin().Video_CreateImageList(video1, 0, view1().View_GetObject());
+			if (imgList)
+			{
+				var len = plugin().ImageList_GetCount(imgList);
+				for (var i = 0; i < len; i++)
+				{
+					var img = plugin().ImageList_GetImage(imgList, i);
+					
+					var date = new Date();
+					var yy = date.getFullYear().toString();
+					var mm = (date.getMonth() + 1).toString();
+					var dd = date.getDate().toString();
+					var hh = date.getHours().toString();
+					var nn = date.getMinutes().toString();
+					var ss = date.getSeconds().toString();
+					var mi = date.getMilliseconds().toString();
+					var Name = "D:\\" + yy + mm + dd + hh + nn + ss + mi + ".jpg";
+				
+					var b = plugin().Image_Save(img, Name, 0);
+					if (b)
+					{
+						view1().View_PlayCaptureEffect();
+						thumb1().Thumbnail_Add(Name);
+					}
+					
+					plugin().Image_Release(img);
+				}
+				
+				plugin().ImageList_Release(imgList);
+			}
+		}
+		
+		function SetState()
+		{
+			var stat1 = view1().View_GetState();
+			if (1 == stat1)
+			{
+				view1().View_SetState(2);
+			}
+			else if (2 == stat1)
+			{
+				view1().View_SetState(1);
+			}
+			
+			var stat2 = view2().View_GetState();
+			if (1 == stat2)
+			{
+				view2().View_SetState(2);
+			}
+			else if (2 == stat2)
+			{
+				view2().View_SetState(1);
+			}
+		}
+		
+		function Ocr()
+		{
+			var img = plugin().Video_CreateImage(video1, 0, view1().View_GetObject());
+			if (img)
+			{
+				plugin().Global_DiscernOcr(1, img);
+				plugin().Image_Release(img);
+			}		
+		}
+		
+		function GetTemplate()
+		{
+			var b = plugin().Global_GetBiokeyTemplate();
+			if (b)
+			{
+				document.getElementById("biokey").value="开始获取模板...";
+			}
+		}
+		
+		function StopGetTemplate()
+		{
+			var b = plugin().Global_StopGetBiokeyTemplate();
+			if (b)
+			{
+				document.getElementById("biokey").value="已停止获取模板";
+			}
+		}
+		
+		function GetFeature()
+		{
+			var b = plugin().Global_GetBiokeyFeature();
+			if (b)
+			{
+				document.getElementById("biokey").value="开始获取特征...";
+			}
+		}
+		
+		function StopGetFeature()
+		{
+			var b = plugin().Global_StopGetBiokeyFeature();
+			if (b)
+			{
+				document.getElementById("biokey").value="已停止获取特征";
+			}
+		}
+		
+		function UploadToHttpServer()
+		{
+			var http = plugin().Global_CreateHttp("http://192.168.1.193:8080/upload.asp");
+			if (http)
+			{
+				var b = plugin().Http_UploadImageFile(http, "D:\\1.jpg", "2.jpg");
+				if (b)
+				{
+					alert("上传成功");
+				}
+				else
+				{
+					alert("上传失败");
+				}
+				
+				plugin().Http_Release(http);
+			}
+			else
+			{
+				alert("url 错误");
+			}
+		}
+		
+		function ScanToHttpServer()
+		{
+			var img = plugin().Video_CreateImage(video1, 0, view1().View_GetObject());
+			if (img)
+			{
+				var http = plugin().Global_CreateHttp("http://192.168.1.193:8080/upload.asp");
+				if (http)
+				{
+					var b = plugin().Http_UploadImage(http, img, 2, 0, "2.jpg");
+					if (b)
+					{
+						alert("上传成功");
+					}
+					else
+					{
+						alert("上传失败");
+					}
+					
+					plugin().Http_Release(http);
+				}
+
+				plugin().Image_Release(img);
+			}
+		}
+        
+    </script>
+<body onload="Load()" onunload="Unload()">
+
+<object id="view1" type="application/x-eloamplugin" width="600" height="300" name="view">
+</object>
+<object id="view2" type="application/x-eloamplugin" width="600" height="300" name="view">
+</object><br />
+<object id="thumb1" type="application/x-eloamplugin" width="1208" height="150" name="thumb">
+</object><br />
+
+<input class="submit_01" type="button" value="属性"	onclick="ShowProperty()" />
+<input class="submit_01" type="button" value="纠偏"	onclick="Deskew()" />
+<input class="submit_01" type="button" value="取消纠偏"	onclick="UnDeskew()" />
+<input class="submit_01" type="button" value="左转"	onclick="Left()" />
+<input class="submit_01" type="button" value="右转"	onclick="Right()" />
+<input class="submit_01" type="button" value="拍照"	onclick="Scan()" />
+<input class="submit_01" type="button" value="普通/自定义"	onclick="SetState()" />
+<input class="submit_01" type="button" value="OCR"	onclick="Ocr()" />
+<input class="submit_01" type="button" value="采集模板"	onclick="GetTemplate()" />
+<input class="submit_01" type="button" value="停止采集模板"	onclick="StopGetTemplate()" />
+<input class="submit_01" type="button" value="采集特征"	onclick="GetFeature()" />
+<input class="submit_01" type="button" value="停止采集特征"	onclick="StopGetFeature()" />
+<input class="submit_01" type="button" value="上传本地文件"	onclick="UploadToHttpServer()" />
+<input class="submit_01" type="button" value="扫描直接上传"	onclick="ScanToHttpServer()" />
+<input type="text" id="idcard" size = "195"/>
+<input type="text" id="biokey" size = "195"/>
+<input type="text" id="reader" size = "195"/>
+
+</body>
+</html>
