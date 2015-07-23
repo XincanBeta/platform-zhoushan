@@ -13,6 +13,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      罚金计算
      证件获取
      证件上传
+     高拍仪（eloam）
      证件删除
      页内导航
      手动验证
@@ -432,6 +433,42 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
       return limited;
     }
+
+
+    /*--------------------------
+     $ 高拍仪
+    --------------------------*/
+    $scope.eloam = function(){
+      var modalInstance
+      modalInstance = $modal.open({
+        keyboard: true,
+        size: "lg",
+        templateUrl: apps + 'overrun/partials/eloam.html',
+        controller: 'OverrunEloamCtrl'
+        //,
+        /*resolve: {
+          item: function () {
+            $scope.item.currentpath_pdf = res.data;
+            return $scope.item;
+          }
+        }*/
+      })
+      modalInstance.result.then(function () {
+        //$modalInstance.close(); // 全屏关闭后，再关闭本层
+        //$rootScope.$emit("paging.act")
+        //$rootScope.$emit("slider.hide")
+        //sliderService.startAutoHide();
+      }, function () {
+        //sliderService.startAutoHide();
+        //$modalInstance.close();
+      });
+      modalInstance.opened.then(function () {
+        //sliderService.stopAutoHide();
+      })
+    }
+
+
+
 
     /*--------------------------
      $ 证件删除

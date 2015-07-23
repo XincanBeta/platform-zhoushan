@@ -251,7 +251,7 @@
             <div ngf-drop ngf-select ng-model="vehicleFiles" class="entity-upload-photo drop-box"
                  ngf-drag-over-class="dragover" ngf-multiple="true" ngf-allow-dir="false"
                  ngf-accept="'image/*'"></div>
-            <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in vehicleImages">
+            <div class="entity-photo" ng-class="isUploaded(image)" ng-repeat="image in vehicleImages" ng-click="eloam()">
               <div class="compact" ng-if="image.fileid">
                 <img class="entity-photo--item" ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
                 <i class="delete" ng-click="deleteImage(vehicleImages, image)"></i>

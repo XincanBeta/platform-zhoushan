@@ -50,7 +50,8 @@ angular.module('app.overrun', [
       apps + 'js/overrunViewerCtrl.js',
       apps + 'js/overrunPhotoDetailCtrl.js',
       apps + 'js/overrunItemDiscussCtrl.js',
-      apps + 'js/overrunReportSettingCtrl.js'
+      apps + 'js/overrunReportSettingCtrl.js',
+      apps + 'js/overrunEloamCtrl.js'
     ])
 
     // todo: 抽取成通用的服务
