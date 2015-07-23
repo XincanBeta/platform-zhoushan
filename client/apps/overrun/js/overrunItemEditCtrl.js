@@ -438,7 +438,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     /*--------------------------
      $ 高拍仪
     --------------------------*/
-    $scope.eloam = function(){
+    $scope.eloam = function(image){
+      if(image.fileid){
+        return ;
+      }
       var modalInstance
       modalInstance = $modal.open({
         keyboard: true,
@@ -454,20 +457,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }*/
       })
       modalInstance.result.then(function () {
-        //$modalInstance.close(); // 全屏关闭后，再关闭本层
-        //$rootScope.$emit("paging.act")
-        //$rootScope.$emit("slider.hide")
-        //sliderService.startAutoHide();
       }, function () {
-        //sliderService.startAutoHide();
-        //$modalInstance.close();
       });
       modalInstance.opened.then(function () {
-        //sliderService.stopAutoHide();
       })
     }
-
-
 
 
     /*--------------------------
