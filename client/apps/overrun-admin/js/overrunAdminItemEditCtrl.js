@@ -25,12 +25,14 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemEditCtrl',
 
     //调试帮助：区分 $scope 上的 item 与 普通值
 
+
     /*--------------------------
      $ 初始化
      --------------------------*/
-    var path = '../apps/overrun/partials/';
+    var path = '../apps/overrun-admin/partials/';
     $scope.item = item;
     var dateFormat = 'YYYY-MM-DD HH:mm';
+
 
     // 显示模块的内容
     /*$rootScope.$on("modal.content.show", function(){
@@ -235,16 +237,22 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemEditCtrl',
       $scope.item.aj_xcblsj = moment().add(16, 'minutes').format(dateFormat);
       $scope.item.aj_xwblsj = moment().add(32, 'minutes').format(dateFormat);
       $scope.item.fj_sj = date
+      // 监听初检时间
+      $scope.$watch('item.cj_sj', function (value) {
+        var date = moment(value).format(dateFormat);
+        $scope.item.aj_afsj = date
+        $scope.item.aj_xcblsj = moment(date).add(16, 'minutes').format(dateFormat);
+        $scope.item.aj_xwblsj = moment(date).add(32, 'minutes').format(dateFormat);
+      });
     }
 
-    // 监听初检时间
-    $scope.$watch('item.cj_sj', function (value) {
-      var date = moment(value).format(dateFormat);
-      $scope.item.aj_afsj = date
-      $scope.item.aj_xcblsj = moment(date).add(16, 'minutes').format(dateFormat);
-      $scope.item.aj_xwblsj = moment(date).add(32, 'minutes').format(dateFormat);
-    });
-
+    // 初始化日期时间
+    (function () {
+      // 打开页面后，日期默认被 初检重置，所以此处再改回去
+      $scope.item.aj_afsj = item.aj_afsj
+      $scope.item.aj_xcblsj = item.aj_xcblsj
+      $scope.item.aj_xwblsj = item.aj_xwblsj
+    }())
 
     /*--------------------------
      $ 罚金计算

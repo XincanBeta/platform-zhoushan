@@ -256,15 +256,22 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_xcblsj = moment().add(16, 'minutes').format(dateFormat);
       $scope.item.aj_xwblsj = moment().add(32, 'minutes').format(dateFormat);
       $scope.item.fj_sj = date
+      // 监听初检时间
+      $scope.$watch('item.cj_sj', function (value) {
+        var date = moment(value).format(dateFormat);
+        $scope.item.aj_afsj = date
+        $scope.item.aj_xcblsj = moment(date).add(16, 'minutes').format(dateFormat);
+        $scope.item.aj_xwblsj = moment(date).add(32, 'minutes').format(dateFormat);
+      });
     }
 
-    // 监听初检时间
-    $scope.$watch('item.cj_sj', function (value) {
-      var date = moment(value).format(dateFormat);
-      $scope.item.aj_afsj = date
-      $scope.item.aj_xcblsj = moment(date).add(16, 'minutes').format(dateFormat);
-      $scope.item.aj_xwblsj = moment(date).add(32, 'minutes').format(dateFormat);
-    });
+    // 初始化日期时间
+    (function(){
+      // 打开页面后，日期默认被 初检重置，所以此处再改回去
+      $scope.item.aj_afsj = item.aj_afsj
+      $scope.item.aj_xcblsj = item.aj_xcblsj
+      $scope.item.aj_xwblsj = item.aj_xwblsj
+    }())
 
 
     /*--------------------------
