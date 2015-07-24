@@ -40,6 +40,11 @@
   function Load() {
     // 添加事件
     addEvent(plugin(), 'DevChange', function (type, idx, dbt) {
+      /*
+       type= 1 idx= 1 dbt= 1
+       type= 2 idx= 2 dbt= 1
+       */
+//      console.log('type=',type,'idx=',type,'dbt=',dbt);
       if (1 == type) {
         if (0 == idx) {
           if (1 == dbt) {
@@ -48,7 +53,7 @@
               video1 = plugin().Device_CreateVideo(dev1, 0, 1);
               if (video1) {
                 view1().View_SelectVideo(video1);
-                view1().View_SetText("打开视频中，请等待...", 0);
+                view1().View_SetText("打开摄像头中，请等待...", 0);
               }
             }
           }
@@ -76,7 +81,7 @@
               video2 = plugin().Device_CreateVideo(dev2, 0, 1);
               if (video2) {
                 view2().View_SelectVideo(video2);
-                view2().View_SetText("打开视频中，请等待...", 0);
+                view2().View_SetText("打开摄像头中，请等待...", 0);
               }
             }
           }
@@ -91,112 +96,6 @@
           }
         }
       }
-    });
-
-    addEvent(plugin(), 'Ocr', function (flag, ret) {
-      if (1 == flag && 0 == ret) {
-        var ret = plugin().Global_GetOcrPlainText(0);
-        alert(ret);
-      }
-    });
-
-    addEvent(plugin(), 'IdCard', function (ret) {
-      if (1 == ret) {
-        var str = "";
-        str += plugin().Global_GetIdCardData(1);
-        str += ";";
-        str += plugin().Global_GetIdCardData(2);
-        str += ";";
-        str += plugin().Global_GetIdCardData(3);
-        str += ";";
-        str += plugin().Global_GetIdCardData(4);
-        str += "年";
-        str += plugin().Global_GetIdCardData(5);
-        str += "月";
-        str += plugin().Global_GetIdCardData(6);
-        str += "日";
-        str += ";";
-        str += plugin().Global_GetIdCardData(7);
-        str += ";";
-        str += plugin().Global_GetIdCardData(8);
-        str += ";";
-        str += plugin().Global_GetIdCardData(9);
-        str += ";";
-        str += plugin().Global_GetIdCardData(10);
-        str += "年";
-        str += plugin().Global_GetIdCardData(11);
-        str += "月";
-        str += plugin().Global_GetIdCardData(12);
-        str += "日";
-        str += "-";
-        str += plugin().Global_GetIdCardData(13);
-        str += "年";
-        str += plugin().Global_GetIdCardData(14);
-        str += "月";
-        str += plugin().Global_GetIdCardData(15);
-        str += "日";
-
-        document.getElementById("idcard").value = str;
-      }
-    });
-
-    addEvent(plugin(), 'Biokey', function (ret) {
-      if (1 == ret) {
-        // 采集模板成功
-        var mem = plugin().Global_GetBiokeyTemplateData();
-        if (mem) {
-          if (plugin().Memory_Save(mem, "D:\\1.tmp")) {
-            document.getElementById("biokey").value = "获取模板成功，存储路径为D:\\1.tmp";
-          }
-          plugin().Memory_Release(mem);
-        }
-      }
-      else if (2 == ret) {
-        // 采集特征成功
-        var mem = plugin().Global_GetBiokeyFeatureData();
-        {
-          // 读取模板并进行比较
-          var mem2 = plugin().Global_CreateMemoryFromFile("D:\\1.tmp");
-          if (mem2) {
-            // 比较
-            var ret = plugin().Global_BiokeyVerify(mem, mem2);
-            if (ret > 50) {
-              document.getElementById("biokey").value = "匹配成功";
-            }
-            else {
-              document.getElementById("biokey").value = "匹配失败";
-            }
-
-            plugin().Memory_Release(mem2);
-          }
-
-          plugin().Memory_Release(mem);
-        }
-      }
-    });
-
-    addEvent(plugin(), 'Reader', function (ret) {
-      var str = "";
-      if (4 == ret) {
-        str += "[CPU卡] Id:";
-        str += plugin().Global_ReaderGetCpuId();
-        str += "; CardNumber:";
-        str += plugin().Global_ReaderGetCpuCreditCardNumber();
-      }
-      else if (2 == ret) {
-        str += "[M1卡] Id:";
-        str += plugin().Global_ReaderGetM1Id();
-      }
-      else if (1 == ret) {
-        str += "[磁卡] CardNumber:";
-        str += plugin().Global_ReaderGetMagCardNumber();
-      }
-      else if (3 == ret) {
-        str += "[Memory卡] Id:";
-        str += plugin().Global_ReaderGetMemoryId();
-      }
-
-      document.getElementById("reader").value = str;
     });
 
     view1().Global_SetWindowName("view");
@@ -387,30 +286,17 @@
 
 <object id="view1" type="application/x-eloamplugin" width="600" height="300" name="view">
 </object>
-<object id="view2" type="application/x-eloamplugin" width="600" height="300" name="view">
+<object id="view2" type="application/x-eloamplugin" width="0" height="0" name="view" >
 </object>
 <br/>
 <object id="thumb1" type="application/x-eloamplugin" width="1208" height="150" name="thumb">
 </object>
 <br/>
-
-<input class="submit_01" type="button" value="属性" onclick="ShowProperty()"/>
-<input class="submit_01" type="button" value="纠偏" onclick="Deskew()"/>
-<input class="submit_01" type="button" value="取消纠偏" onclick="UnDeskew()"/>
 <input class="submit_01" type="button" value="左转" onclick="Left()"/>
 <input class="submit_01" type="button" value="右转" onclick="Right()"/>
 <input class="submit_01" type="button" value="拍照" onclick="Scan()"/>
-<input class="submit_01" type="button" value="普通/自定义" onclick="SetState()"/>
-<!--<input class="submit_01" type="button" value="OCR" onclick="Ocr()"/>-->
-<!--<input class="submit_01" type="button" value="采集模板" onclick="GetTemplate()"/>-->
-<!--<input class="submit_01" type="button" value="停止采集模板" onclick="StopGetTemplate()"/>-->
-<!--<input class="submit_01" type="button" value="采集特征" onclick="GetFeature()"/>-->
-<!--<input class="submit_01" type="button" value="停止采集特征" onclick="StopGetFeature()"/>-->
+<input class="submit_01" type="button" value="裁剪" onclick="SetState()"/>
 <input class="submit_01" type="button" value="上传本地文件" onclick="UploadToHttpServer()"/>
 <input class="submit_01" type="button" value="扫描直接上传" onclick="ScanToHttpServer()"/>
-<input type="text" id="idcard" size="195"/>
-<input type="text" id="biokey" size="195"/>
-<input type="text" id="reader" size="195"/>
-
 </body>
 </html>
