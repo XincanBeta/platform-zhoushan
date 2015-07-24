@@ -1,7 +1,7 @@
 <form name="form" class="form-horizontal form-modal " method="post" action="">
   <div class="modal-header">
     <button type="button" class="close" ng-click="cancel()">&times;</button>
-    <h4 class="modal-title">集体讨论</h4>
+    <h4 class="modal-title">集体讨论 <span ng-if="isJttlDone()" style="color: #1fa01d;">（已完成）</span></h4>
   </div>
   <!--id="info-edit-body"-->
   <div class="modal-body" id="jttl-modal-body"  style="height: 400px;" >
@@ -70,9 +70,9 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
-    <button type="button" class="btn btn-default" ng-click="save()">保存</button>
+    <button type="button" class="btn btn-default"  ng-disabled="isJttlDone()"  ng-click="save()" >保存</button>
     <!-- validation-submit="" 改用手动验证 -->
-    <button id="confirm" type="button" class="btn btn-default"  ng-click="confirm()">确定</button>
+    <button id="confirm" type="button" class="btn btn-default" ng-disabled="isJttlDone()" ng-click="confirm()" >确定</button>
   </div>
 </form>
 

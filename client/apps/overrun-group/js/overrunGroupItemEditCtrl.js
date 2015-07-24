@@ -69,10 +69,10 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
    $ 保存
    --------------------------*/
   $scope.save = function () {
-    if(isJttlDone()){
-      myToast.failureTip('集体讨论已完成，关闭修改');
+    /*if(isJttlDone()){
+      myToast.failureTip('集体讨论已完成，已关闭');
       return;
-    }
+    }*/
     requestService.overrunGroupItemUpdate($scope.item).success(function (res) {
       if (res.success) {
         myToast.successTip();
@@ -89,10 +89,10 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
    $ 确定
    --------------------------*/
   $scope.confirm = function () {
-    if(isJttlDone()){
+    /*if(isJttlDone()){
       myToast.failureTip('集体讨论已完成，关闭修改');
       return;
-    }
+    }*/
     if( isOverZyclq() ){
       if( !validateFieldRequired() ){
         return;
@@ -121,6 +121,25 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
     }).error(function () {
       myToast.failureTip('操作失败！');
     })
+  }
+
+
+  $scope.isJttlDone = function(){
+    if($scope.item.jt_zt == '已完成'){
+      return true;
+    }
+    return false;
+  }
+
+
+
+  // 正常关闭本层
+  $scope.closeModal = function () {
+    $modalInstance.close();
+  }
+  // 错误关闭本层
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
   }
 
 
@@ -160,22 +179,6 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
     return true;
   }
 
-  function isJttlDone(){
-    if($scope.item.jt_zt == '已完成'){
-      return true;
-    }
-    return false;
-  }
-
-
-  // 正常关闭本层
-  $scope.closeModal = function () {
-    $modalInstance.close();
-  }
-  // 错误关闭本层
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  }
 
 
 }) // controller
