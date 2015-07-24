@@ -3,7 +3,8 @@
     <button type="button" class="close" ng-click="cancel()">&times;</button>
     <h4 class="modal-title">集体讨论</h4>
   </div>
-  <div class="modal-body" style="height: 400px;" id="info-edit-body">
+  <!--id="info-edit-body"-->
+  <div class="modal-body" id="jttl-modal-body"  style="height: 400px;" >
     <div class="entity-block-wrap">
       <div class="entity-block">
         <div class="entity-block--body">
@@ -45,7 +46,7 @@
           <div class="form-group">
             <div class="col-sm-4">
               <label class="entity-label">罚款金额 <span ng-bind="cj_zyclq"></span></label>
-              <input type="text" class="form-control" name="aj_fk" ng-model="item.aj_fk" validator="required"
+              <input type="text" class="form-control" id="jttl-aj-fk" name="aj_fk" ng-model="item.aj_fk" validator="required"
                      autofocus="autofocus"/>
             </div>
           </div>

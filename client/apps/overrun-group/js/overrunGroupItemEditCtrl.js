@@ -3,9 +3,11 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
 
   /*
    初始化
-   表单
+   时间
+   监听罚款金额
    保存
    确定
+
    */
 
   /*--------------------------
@@ -20,7 +22,7 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
 
 
   /*--------------------------
-   $ 表单
+   $ 时间
    --------------------------*/
   var dateFormat = 'YYYY-MM-DD HH:mm';
   $scope.openDatepicker = {
@@ -40,20 +42,27 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
     $scope.openDatepicker[dateField] = true;
   };
 
-  // 时间初始化
   if (!$scope.item.jt_sj) {
     var date = moment().format(dateFormat);
     $scope.item.jt_sj = date
   }
 
-  // 正常关闭本层
-  $scope.closeModal = function () {
-    $modalInstance.close();
-  }
-  // 错误关闭本层
-  $scope.cancel = function () {
-    $modalInstance.dismiss('cancel');
-  }
+
+  /*--------------------------
+   $ 监听罚款金额
+   禁用无需填的表单域
+  --------------------------*/
+
+  $scope.$watch('item.aj_fk', function(){
+    var inputs = $('#jttl-modal-body').find(':input')
+    if( isOverZyclq() ){
+      inputs.prop('disabled', false) // 都要填
+      $('#jttl-aj-fk').css('color', '#428bca')
+    }else{
+      inputs.prop('disabled', true)
+      $('#jttl-aj-fk').prop('disabled', false).css('color', '#555') // 只填罚款
+    }
+  })
 
 
   /*--------------------------
@@ -115,7 +124,6 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
   }
 
 
-
   /*--------------------------
    $ 辅助函数
    --------------------------*/
@@ -126,14 +134,15 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
     if(!result){
       throw '超出自由裁量权，自由裁量权格式错误'
     }
-    return [result[1], result[2]]
+    return [parseInt(result[1],10), parseInt(result[2],10)]
   }
 
   function isOverZyclq(){
     var isOver = false;
     // 获取自由裁量权范围
     var zyclqRange = _getRangeForZyclq()
-    if( $scope.item.aj_fk < zyclqRange[0] || $scope.item.aj_fk > zyclqRange[1]){
+    var aj_fk = parseInt($scope.item.aj_fk, 10)
+    if( aj_fk < zyclqRange[0] || aj_fk > zyclqRange[1]){
       isOver = true
     }
     return isOver;
@@ -159,10 +168,14 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
   }
 
 
-
-
-
-
+  // 正常关闭本层
+  $scope.closeModal = function () {
+    $modalInstance.close();
+  }
+  // 错误关闭本层
+  $scope.cancel = function () {
+    $modalInstance.dismiss('cancel');
+  }
 
 
 }) // controller
