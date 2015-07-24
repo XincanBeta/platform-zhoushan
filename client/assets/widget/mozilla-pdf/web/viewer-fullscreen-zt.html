@@ -104,6 +104,9 @@
 
 
         <!-- 改成打印 -->
+        <button id="print-all" ng-click="print('all/-1/')" class="secondaryToolbarButton ">
+          <span>打印全部</span>
+        </button>
         <button ng-click="export('pdf')" class="secondaryToolbarButton ">
           <span>下载 pdf</span>
         </button>
@@ -488,10 +491,10 @@
       parentScope.closeFullscreenModal()
     }
 
+    // 下载
     $scope.export = function( type ){
       var filename = $('#filename'),
           form = $("#formForDownload")
-
       if( type == 'pdf' ){
         filename.val(item.currentpath_pdf)
         form.submit();
@@ -499,10 +502,34 @@
         filename.val(item.currentpath_word)
         form.submit();
       }
-
-
-
     }
+
+    // 打印
+    $scope.print = function (part) {
+//      requestService.overrunItemsPrint({itemId: item.aj_id, part: part}).success(function (res) {
+        var iframe = document.getElementById('pdfIframe');
+        iframe.src = '/api/files/downloadFile.do?print=true&filename=' + item.currentpath_pdf;
+        // 等待 iframe 加载完毕
+        if (iframe.attachEvent) {
+          iframe.attachEvent("onload", function () {
+            _doit();
+          });
+        } else {
+          // chrome in
+          iframe.onload = function () {
+            _doit();
+          };
+        }
+        function _doit() {
+          iframe.focus();
+          iframe.contentWindow.print();
+        }
+//      })
+    }
+
+
+
+
 
 
   })

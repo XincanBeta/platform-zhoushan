@@ -18,7 +18,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      页内导航
      手动验证
      保存
-     是否可以结案
+     是否可以结案（作废）
      结案
      集体讨论
      常用信息（带回历史）
@@ -537,9 +537,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
 
 
     /*--------------------------
-     $ 是否可以结案
+     $ 是否可以结案（作废）
      --------------------------*/
-    var getDoneValid = function () {
+    /*var getDoneValid = function () {
       var res = {success: true, msg: ''};
       if ($scope.item.ztzt != '是') {
         res.success = false;
@@ -549,7 +549,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         res.msg = '请先点击复检按钮'
       }
       return res;
-    }
+    }*/
 
     /*--------------------------
      $ 结案
@@ -557,14 +557,14 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     var apps = '../apps/'
     var fullscreenModalInstance;
     $scope.done = function () {
-      var res = getDoneValid();
+      /*var res = getDoneValid();
       if (!res.success) {
         ngToast.create({
           className: 'danger',
           content: res.msg
         });
         return;
-      }
+      }*/
 
       _beforeSave();
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
@@ -813,9 +813,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      责停
      --------------------------*/
     $scope.zt = function () {
-      // 两个接口
-      // 验证当前案件的表单合法性：接口，success 是 url，fail 是 提示
-      // 对接
       _beforeSave();
       requestService.overrunItemsZeTing($scope.item).success(function (res) {
         //console.log('done res', res);
@@ -845,11 +842,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           //$modalInstance.close(); // 全屏关闭后，再关闭本层
           //$rootScope.$emit("paging.act")
           //$rootScope.$emit("slider.hide")
-          //sliderService.startAutoHide();
+          sliderService.startAutoHide();
 
         }, function () {
           sliderService.startAutoHide();
-          $modalInstance.close();
+          //$modalInstance.close();
         });
 
         fullscreenModalInstance.opened.then(function () {
@@ -864,9 +861,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      实现方式与责停雷同，与责停共用一份 html template
      --------------------------*/
     $scope.fj = function () {
-      // 两个接口
-      // 验证当前案件的表单合法性：接口，success 是 url，fail 是 提示
-      // 对接
       _beforeSave();
       requestService.overrunItemsFuJian($scope.item).success(function (res) {
         //console.log('done res', res);
@@ -896,11 +890,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           //$modalInstance.close(); // 全屏关闭后，再关闭本层
           //$rootScope.$emit("paging.act")
           //$rootScope.$emit("slider.hide")
-          //sliderService.startAutoHide();
+          sliderService.startAutoHide();
 
         }, function () {
           sliderService.startAutoHide();
-          $modalInstance.close();
+          //$modalInstance.close();
         });
 
         fullscreenModalInstance.opened.then(function () {
