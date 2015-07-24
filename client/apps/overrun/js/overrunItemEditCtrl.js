@@ -583,7 +583,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           controller: 'OverrunViewerFullscreenCtrl',
           resolve: {
             item: function () {
-              $scope.item.currentpath_pdf = res.data;
+              $scope.item.currentpath_pdf = res.data.currentpath_pdf;
+              $scope.item.currentpath_word = res.data.currentpath_word;
               return $scope.item;
             }
           }
@@ -784,7 +785,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       }
     }
 
-
     // 监听 车主信息
     $scope.$watch('item.cl_syr', function (value) {
       if ($scope.owner == '车主') {
@@ -805,6 +805,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.isOwner = function (value) {
       return $scope.owner == value ? 'btn-primary' : 'btn-default'
     }
+
 
     /*--------------------------
      $ 责停
@@ -833,7 +834,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
               // 将案卷pdf和word 字段用于临时存储责停信息
               $scope.item.currentpath_pdf = res.data.zt_pdfpath;
               $scope.item.currentpath_word = res.data.zt_wordpath;
-              $scope.item.ztzt = res.data.ztzt; // 责停状态，用于监听结案按钮
               return $scope.item;
             }
           }
@@ -881,7 +881,6 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
               // 将案卷pdf和word 字段用于临时存储责停信息
               $scope.item.currentpath_pdf = res.data.fj_pdfpath;
               $scope.item.currentpath_word = res.data.fj_wordpath;
-              $scope.item.fjzt = res.data.fjzt;
               return $scope.item;
             }
           }

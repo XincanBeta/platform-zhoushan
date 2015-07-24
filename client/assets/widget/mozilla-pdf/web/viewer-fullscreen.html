@@ -119,6 +119,12 @@
         <button id="print-decision" ng-click="print('decision/-1/')" class="secondaryToolbarButton ">
           <span> 打印决定书</span>
         </button>
+        <button id="print-zt" ng-click="print('zt/-1/')" class="secondaryToolbarButton ">
+          <span> 责停</span>
+        </button>
+        <button id="print-fj" ng-click="print('fj/-1/')" class="secondaryToolbarButton ">
+          <span> 复检</span>
+        </button>
         <button id="print-content" ng-click="print('otherBody/-1/')" class="secondaryToolbarButton ">
           <span> 打印其他正文</span>
         </button>
@@ -127,6 +133,12 @@
         </button>
         <button id="print-last" ng-click="print('end/-1/')" class="secondaryToolbarButton ">
           <span> 打印封底</span>
+        </button>
+        <button ng-click="export('pdf')" class="secondaryToolbarButton ">
+          <span>下载 pdf</span>
+        </button>
+        <button ng-click="export('word')" class="secondaryToolbarButton ">
+          <span>下载 word</span>
         </button>
         <!--<button id="lastPage" class="secondaryToolbarButton lastPage" title="Go to Last Page" tabindex="57"
                 data-l10n-id="last_page">
@@ -478,6 +490,13 @@
 <!-- 案件打印，隐藏的iframe -->
 <iframe id="pdfIframe" height="600" width="800" src="" style="display: none;"></iframe>
 
+<!--下载-->
+<form id="formForDownload" target="" method="post" action="/api/files/downloadFile.do"
+      style="display: none;">
+  <input type="hidden" id="filename" name="filename" />
+</form>
+
+
 <script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script src="../../../../assets/components/request.js"></script>
@@ -494,6 +513,20 @@
     $scope.exitFile = function () {
       parentScope.closeFullscreenModal()
     }
+
+    // 下载
+    $scope.export = function( type ){
+      var filename = $('#filename'),
+          form = $("#formForDownload")
+      if( type == 'pdf' ){
+        filename.val(item.currentpath_pdf)
+        form.submit();
+      }else if( type == 'word' ){
+        filename.val(item.currentpath_word)
+        form.submit();
+      }
+    }
+
 
     $scope.print = function (part) {
       requestService.overrunItemsPrint({itemId: item.aj_id, part: part}).success(function (res) {
@@ -525,8 +558,6 @@
 
 </script>
 <script src="viewer.js"></script>
-
-
 </body>
 </html>
 

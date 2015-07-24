@@ -388,12 +388,6 @@
 
 </div>
 
-<!--修改区域-->
-<form id="formForDownload" target="" method="post" action="/api/files/downloadFile.do"
-      style="display: none;">
-  <input type="hidden" id="filename" name="filename" />
-</form>
-
 
 
 <!-- outerContainer -->
@@ -473,6 +467,13 @@
 
 <!-- 案件打印，隐藏的iframe -->
 <iframe id="pdfIframe" height="600" width="800" src="" style="display: none;"></iframe>
+
+<!--下载-->
+<form id="formForDownload" target="" method="post" action="/api/files/downloadFile.do"
+      style="display: none;">
+  <input type="hidden" id="filename" name="filename" />
+</form>
+
 
 <script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
