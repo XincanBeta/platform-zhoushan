@@ -37,6 +37,16 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
     $scope.item = item;
     var dateFormat = 'YYYY-MM-DD HH:mm';
 
+    $scope.isLocked = false;
+
+    function _before(){
+      $scope.isLocked = true;
+    }
+
+    function _after(){
+      $scope.isLocked = false;
+    }
+
     // 显示模块的内容
     /*$rootScope.$on("modal.content.show", function(){
      $scope.modal = {contentShow: true};
@@ -511,9 +521,11 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       $scope.item.aj_xwblsj = moment($scope.item.aj_xwblsj).format(dateFormat)
     }
 
-    $scope.save = function (option) {
-      option = angular.extend({}, {modalClose: true}, option);
 
+    //$scope
+    $scope.save = function (option) {
+      _before();
+      option = angular.extend({}, {modalClose: true}, option);
       _beforeSave();
       var savePromise;
       if (itemIsNew) {
@@ -522,6 +534,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
       savePromise.success(function (res) {
+        _after();
         if (res.success) {
           myToast.successTip();
           // 刷新：修改成功后调用刷新
@@ -565,9 +578,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         });
         return;
       }*/
-
+      _before();
       _beforeSave();
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
+        _after();
         //console.log('done res', res);
         if (!res.success) {
           ngToast.create({
@@ -619,6 +633,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      $ 集体讨论
      --------------------------*/
     $scope.discuss = function () {
+      _before();
       _beforeSave();
       var savePromise;
       if (itemIsNew) {
@@ -627,6 +642,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         savePromise = requestService.overrunTodoItemUpdate($scope.item)
       }
       savePromise.success(function (res) {
+        _after();
         if (res.success) {
           myToast.successTip();
           $rootScope.$emit("paging.act")
@@ -814,8 +830,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      责停
      --------------------------*/
     $scope.zt = function () {
+      _before();
       _beforeSave();
       requestService.overrunItemsZeTing($scope.item).success(function (res) {
+        _after();
         //console.log('done res', res);
         if (!res.success) {
           ngToast.create({
@@ -853,6 +871,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
           sliderService.stopAutoHide();
         })
       })
+
     }
 
 
@@ -861,8 +880,10 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      实现方式与责停雷同，与责停共用一份 html template
      --------------------------*/
     $scope.fj = function () {
+      _before();
       _beforeSave();
       requestService.overrunItemsFuJian($scope.item).success(function (res) {
+        _after();
         //console.log('done res', res);
         if (!res.success) {
           ngToast.create({

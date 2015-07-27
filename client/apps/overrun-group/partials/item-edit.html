@@ -70,9 +70,11 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
-    <button type="button" class="btn btn-default"  ng-disabled="isJttlDone()"  ng-click="save()" >保存</button>
+    <button type="button" class="btn btn-default" ng-disabled="isJttlDone()" ng-click="save()"
+            ng-disabled="isLocked">保存</button>
     <!-- validation-submit="" 改用手动验证 -->
-    <button id="confirm" type="button" class="btn btn-default" ng-disabled="isJttlDone()" ng-click="confirm()" >确定</button>
+    <button id="confirm" type="button" class="btn btn-default" ng-disabled="isJttlDone()"
+            ng-click="confirm()" ng-disabled="isLocked">确定</button>
   </div>
 </form>
 

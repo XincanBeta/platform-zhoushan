@@ -20,6 +20,14 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
   // 单独设置自由裁量权
   $scope.cj_zyclq = item.cj_zyclq
 
+  // 功能锁
+  $scope.isLocked = false;
+  function _before(){
+    $scope.isLocked = true;
+  }
+  function _after(){
+    $scope.isLocked = false;
+  }
 
   /*--------------------------
    $ 时间
@@ -52,7 +60,6 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
    $ 监听罚款金额
    禁用无需填的表单域
   --------------------------*/
-
   $scope.$watch('item.aj_fk', function(){
     var inputs = $('#jttl-modal-body').find(':input')
     if( isOverZyclq() ){
@@ -69,17 +76,20 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
    $ 保存
    --------------------------*/
   $scope.save = function () {
+    _before();
     /*if(isJttlDone()){
       myToast.failureTip('集体讨论已完成，已关闭');
       return;
     }*/
     requestService.overrunGroupItemUpdate($scope.item).success(function (res) {
+      _after();
       if (res.success) {
         myToast.successTip();
         $rootScope.$emit("paging.act")
         $modalInstance.close();
       }
     }).error(function () {
+      _after();
       myToast.failureTip();
     })
   }
@@ -89,17 +99,20 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
    $ 确定
    --------------------------*/
   $scope.confirm = function () {
+    _before();
     /*if(isJttlDone()){
       myToast.failureTip('集体讨论已完成，关闭修改');
       return;
     }*/
     if( isOverZyclq() ){
       if( !validateFieldRequired() ){
+        _after();
         return;
       }
     }
     $scope.item.jt_zt = '已完成';
     requestService.overrunGroupItemUpdate($scope.item).success(function (res) {
+      _after();
       if (res.success) {
         $rootScope.$emit("slider.hide")
         myToast.successTip('操作成功！');
@@ -119,6 +132,7 @@ angular.module('app.overrun-group').controller('OverrunGroupItemEditCtrl', funct
         })
       }
     }).error(function () {
+      _after();
       myToast.failureTip('操作失败！');
     })
   }
