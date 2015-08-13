@@ -157,12 +157,12 @@ angular.module("request", []).service('requestService', function ($http) {
       return _doPostRequest('/api/cxcfs/' + data.aj_id + '/query.do');
     }
   }
-  this.overrunTodoItemSave = function (data) {
-    return _doPostRequest('/api/cxcfs/insert.do', data);
+  this.overrunTodoItemSaveOrUpdate = function (data) {
+    return _doPostRequest('/api/cxcfs/saveOrUpdate.do', data);
   }
-  this.overrunTodoItemUpdate = function (data) {
+  /*this.overrunTodoItemUpdate = function (data) {
     return _doPostRequest('/api/cxcfs/update.do', data);
-  }
+  }*/
   this.overrunTodoItemDone = function (data) {
     return _doPostRequest('/api/cxcfs/jiean.do', data);
   }

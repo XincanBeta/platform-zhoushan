@@ -1,0 +1,62 @@
+<header class="l-app-header">
+  <div class="app-toolbar">
+    <!--<button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>-->
+    <!--<button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"-->
+            <!--ng-click="delete()"></button>-->
+  </div>
+</header>
+<section class="l-app-body on-footer">
+  <section class="l-plate">
+    <table class="app-table entity-view">
+      <thead>
+      <tr>
+        <th class="with-checkbox">
+          <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
+        </th>
+        <th>序号</th>
+        <!--<th>编号</th>-->
+        <th>单位名称</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)" ng-class="isSelected(item)">
+        <td>
+          <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
+        </td>
+        <td>{{ $index+1 }}</td>
+        <!--<td>{{ item["bh"] }}</td>-->
+        <td>{{ item["dwmc"] }}</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+<footer class="l-app-footer ">
+  <div class="app-pagination-direction">总共{{ total }}条 当前为第{{ currentPage }}页</div>
+  <paging
+      class="app-pagination"
+      page="currentPage"
+      page-size="pageSize"
+      total="total"
+      adjacent="1"
+      dots="..."
+      scroll-top="true"
+      hide-if-empty="true"
+      ul-class="pagination"
+      active-class="active"
+      disabled-class="disabled"
+      show-prev-next="true"
+      paging-action="pagingAct('Paging Clicked', page)">
+  </paging>
+</footer>
+<!-- 平级的位置 -->
+<div my-slider-show class="l-entity-panel" slider-width="550px"
+     ng-controller="OverrunAdminDeptDetailCtrl"
+     ng-include="'../apps/overrun-admin/partials/dept-detail.html'">
+</div>

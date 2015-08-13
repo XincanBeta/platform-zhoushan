@@ -318,8 +318,8 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
      --------------------------*/
     // 初始化证件类型，带上数量，为了能显示正确的格子数目
     $scope.sceneImages = [{}, {}];
-    $scope.vehicleImages = [{}, {}, {}];
-    $scope.driverImages = [{}, {}, {}];
+    $scope.vehicleImages = [{}];
+    $scope.driverImages = [{}];
     $scope.recheckImages = [{}, {}];
 
     // 证件初始化
@@ -528,20 +528,22 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       option = angular.extend({}, {modalClose: true}, option);
       _beforeSave();
       var savePromise;
-      if (itemIsNew) {
-        savePromise = requestService.overrunTodoItemSave($scope.item)
-      } else {
-        savePromise = requestService.overrunTodoItemUpdate($scope.item)
-      }
+
+      savePromise = requestService.overrunTodoItemSaveOrUpdate($scope.item)
+
       savePromise.success(function (res) {
         _after();
         if (res.success) {
           myToast.successTip();
           // 刷新：修改成功后调用刷新
           $rootScope.$emit("paging.act")
-          if (option.modalClose) {
+          //if (option.modalClose) {
             $modalInstance.close();
-          }
+          //}
+          $rootScope.$emit("slider.hide")
+          sliderService.startAutoHide();
+
+
         }
       }).error(function () {
         myToast.failureTip();
@@ -636,11 +638,9 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
       _before();
       _beforeSave();
       var savePromise;
-      if (itemIsNew) {
-        savePromise = requestService.overrunTodoItemSave($scope.item)
-      } else {
-        savePromise = requestService.overrunTodoItemUpdate($scope.item)
-      }
+
+      savePromise = requestService.overrunTodoItemSaveOrUpdate($scope.item)
+
       savePromise.success(function (res) {
         _after();
         if (res.success) {

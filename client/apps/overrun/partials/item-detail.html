@@ -71,7 +71,8 @@
       <section class="entity-block--body">
         <div class="entity-photo-hover" ng-repeat="image in vehicleImages"
              ng-click="openPhotoModal('vehicleImages', $index, image)">
-          <img ng-src="{{image.thumbnaildata}}" alt="车辆证件"/>
+          <!--style="width: 250px;"-->
+          <img ng-src="{{image.thumbnaildata}}"  alt="车辆证件"/>
         </div>
         <!--<div cg-busy="vehicleImagePromise"></div>-->
       </section>

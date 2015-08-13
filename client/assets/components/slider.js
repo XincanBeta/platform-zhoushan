@@ -50,7 +50,7 @@ angular.module("slider", []).service('sliderService', function ($rootScope, $doc
       restrict: "A",
       "link": function (scope, element, attrs) {
         // 1024 * 0.6 = 614 < 650
-        var sliderWidth = attrs.sliderWidth || "650px";
+        var sliderWidth = attrs.sliderWidth || "650px"; // 用固定值，与侧边栏图片宽度有关
         var show = function () {
           // 暴露接口：滑动隐藏完成供 detail 重置为第一个选项卡
           $rootScope.$emit("slider.hide.done")

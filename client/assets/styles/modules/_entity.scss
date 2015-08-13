@@ -169,14 +169,18 @@
   用于查看页面中
 --------------------------*/
 .entity-photo-hover {
-  height: 200px;
-  width: 400px;
+  //height: 200px;
+  //width: 400px;
+  float: left;
+  margin-left: 10px;
+
   margin-top: 10px;
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
   > img {
-    max-height: 200px;
+    max-width: 260px;
+    //max-height: 200px;
     transition: all 1s;
   }
   &::after {
@@ -197,9 +201,9 @@
   &:hover::after {
     opacity: 1;
   }
-  &:hover > img {
+  /*&:hover > img {
     transform: scale(1.2);
-  }
+  }*/
 }
 
 

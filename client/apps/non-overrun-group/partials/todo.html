@@ -1,0 +1,70 @@
+<style>
+  .jt-zt-done{
+    color: green;
+  }
+</style>
+<header class="l-app-header">
+  <div class="app-toolbar">
+  </div>
+</header>
+<section class="l-app-body on-footer">
+  <section class="l-plate">
+    <table class="app-table entity-view">
+      <thead>
+      <tr>
+        <th class="with-checkbox">
+          <input type="checkbox">
+        </th>
+        <th>序号</th>
+        <th>车牌</th>
+        <th>轴数</th>
+        <th>货车信息</th>
+        <th>检测时间</th>
+        <th>自由裁量权范围</th>
+        <th>修改后的罚金</th>
+        <th>状态</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!--ng-class="isSelected(item)"-->
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
+          ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}" >
+        <td>
+          <input type="checkbox">
+        </td>
+        <td>{{ $index+1 }}</td>
+        <td>{{ item.cj_cp }}</td>
+        <td>{{ item.cj_zs }}</td>
+        <td>{{ item.cj_zz_lx }}</td>
+        <td>{{ item.cj_sj }}</td>
+        <td>{{ item.cj_zyclq }}</td>
+        <td>{{ item.aj_fk }}</td>
+        <td ng-class="{'jt-zt-done': (item.jttl.jt_zt == '已完成')}">{{ item.jttl.jt_zt }}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+<footer class="l-app-footer ">
+  <div class="app-pagination-direction">总共{{ total }}条 当前为第{{ currentPage }}页</div>
+  <paging
+      class="app-pagination"
+      page="currentPage"
+      page-size="pageSize"
+      total="total"
+      adjacent="1"
+      dots="..."
+      scroll-top="true"
+      hide-if-empty="true"
+      ul-class="pagination"
+      active-class="active"
+      disabled-class="disabled"
+      show-prev-next="true"
+      paging-action="pagingAct('Paging Clicked', page)">
+  </paging>
+</footer>
+<!-- 平级的位置 -->
+<div my-slider-show class="l-entity-panel"
+     ng-controller="OverrunGroupItemDetailCtrl"
+     ng-include="'../apps/overrun-group/partials/item-detail.html'">
+</div>

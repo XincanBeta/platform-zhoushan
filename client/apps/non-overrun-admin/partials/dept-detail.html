@@ -1,0 +1,39 @@
+<section class="l-entity-panel--header with-border">
+  <span class="entity-title">单位信息</span>
+</section>
+<section class="l-entity-panel--body">
+  <div class="entity-block-wrap">
+    <div id="overrun-detail-checklist" class="entity-block">
+      <section class="entity-block--body">
+        <div class="entity-info">单位名称：{{ item.dwmc }}</div>
+        <div class="entity-info">单位电话：{{ item.dwdh }}</div>
+        <div class="entity-info is-clear-both">单位地址：{{ item.dwdz }}</div>
+
+        <div class="entity-info">负责单位：{{ item.fzdw }}</div>
+        <div class="entity-info">负责领导：{{ item.fzld }}</div>
+
+        <div class="entity-info is-clear-both">案号：{{ item.ahyd }}〔<span ng-bind="ahnf"></span>〕字第{{ item.ahed
+          }}0001号</span></div>
+        <div class="entity-info is-clear-both">缴款银行：{{ item.jkyh }}</div>
+        <div class="entity-info is-clear-both">银行账号：{{ item.yhzh }}</div>
+
+        <div class="entity-info is-clear-both">行政复议机关：{{ item.xzfy }}</div>
+        <div class="entity-info is-clear-both">行政诉讼机关：{{ item.xzss }}</div>
+
+        <div class="entity-info ">下级单位：
+          <div class="panel panel-default" ng-if="deptList.length != 0">
+            <div class="panel-body">
+              <div ng-repeat="dept in deptList ">{{ dept.dwmc }}</div>
+            </div>
+          </div>
+          <span ng-if="deptList.length == 0">无</span>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="l-entity-panel--footer">
+  <button type="button" class="btn btn-default" ng-click="edit()">修改</button>
+</section>
+
+

@@ -1,0 +1,82 @@
+<form name="form" class="form-horizontal form-modal " method="post" action="">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="cancel()">&times;</button>
+    <h4 class="modal-title">集体讨论 <span ng-if="isJttlDone()" style="color: #1fa01d;">（已完成）</span></h4>
+  </div>
+  <!--id="info-edit-body"-->
+  <div class="modal-body" id="jttl-modal-body"  style="height: 400px;" >
+    <div class="entity-block-wrap">
+      <div class="entity-block">
+        <div class="entity-block--body">
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label class="entity-label">主持人</label>
+              <input type="text" class="form-control" name="jt_zcr" ng-model="item.jt_zcr" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">记录人</label>
+              <input type="text" class="form-control" name="jt_jlr" ng-model="item.jt_jlr" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">讨论时间</label>
+              <input type="text" class="form-control" ng-model="item.jt_sj" readonly
+                     today-text="今天" now-text="现在" date-text="日期"
+                     time-text="时刻" clear-text="清空" close-text="关闭"
+                     datetime-picker="yyyy-MM-dd HH:mm"
+                     datepicker-options="dateOptions"
+                     timepicker-options="timeOptions"
+                     is-open="openDatepicker.jt_sj"
+                     ng-click="openCalendar($event, 'jt_sj')"/>
+            </div>
+            <div class="col-sm-4">
+              <label class="entity-label">讨论地点</label>
+              <input type="text" class="form-control" name="jt_dd" ng-model="item.jt_dd" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label">参加人员</label>
+              <input type="text" class="form-control" name="jt_cjry" ng-model="item.jt_cjry" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-4">
+              <label class="entity-label">罚款金额 <span ng-bind="cj_zyclq"></span></label>
+              <input type="text" class="form-control" id="jttl-aj-fk" name="aj_fk" ng-model="item.aj_fk" validator="required"
+                     autofocus="autofocus"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label">中队拟处理意见（限200字）</label>
+              <textarea class="form-control" name="jt_zdyj" ng-model="item.jt_zdyj" validator="required"
+                        style="resize: vertical; height: 120px; max-height: 200px;"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-16">
+              <label class="entity-label">讨论内容（限200字）</label>
+              <textarea class="form-control" name="jt_nr" ng-model="item.jt_nr" validator="required"
+                        style="resize: vertical; height: 120px; max-height: 200px;"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-default" ng-click="cancel()">取消</button>
+    <button type="button" class="btn btn-default" ng-disabled="isJttlDone()" ng-click="save()"
+            ng-disabled="isLocked">保存</button>
+    <!-- validation-submit="" 改用手动验证 -->
+    <button id="confirm" type="button" class="btn btn-default" ng-disabled="isJttlDone()"
+            ng-click="confirm()" ng-disabled="isLocked">确定</button>
+  </div>
+</form>
+
+
+

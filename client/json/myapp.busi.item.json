@@ -27,6 +27,33 @@
     "disabled": false
   },
   {
+    "appid": "0301",
+    "name": "非现场_超限处罚应用",
+    "subname": "业务员版",
+    "description": "",
+    "routestate": "myapp.non-overrun",
+    "imgsrc": "huo-che-2.png",
+    "disabled": true
+  },
+  {
+    "appid": "0302",
+    "name": "非现场_超限处罚应用",
+    "subname": "集体讨论版",
+    "description": "",
+    "routestate": "myapp.non-overrun-group",
+    "imgsrc": "huo-che-2.png",
+    "disabled": true
+  },
+  {
+    "appid": "0303",
+    "name": "非现场_超限处罚应用",
+    "subname": "管理员版",
+    "description": "",
+    "routestate": "myapp.non-overrun-admin",
+    "imgsrc": "huo-che-2.png",
+    "disabled": true
+  },
+  {
     "name": "视频监控",
     "subname": "",
     "description": "",

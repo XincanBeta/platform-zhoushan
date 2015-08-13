@@ -1,0 +1,68 @@
+<header class="l-app-header">
+  <div class="app-toolbar">
+    <button class="btn btn-sm btn-default fa-plus" title="添加" ng-click="add()"></button>
+    <button class="btn btn-sm btn-default fa-trash" title="删除" ng-disabled="!deleteIsActived()"
+            ng-click="delete()"></button>
+  </div>
+</header>
+<section class="l-app-body on-footer">
+  <section class="l-plate">
+    <table class="app-table entity-view">
+      <thead>
+      <tr>
+        <th class="with-checkbox">
+          <input type="checkbox" ng-model="allItemIsChecked" ng-init="allItemIsChecked = false" ng-click="selectAllItem()">
+        </th>
+        <th>序号</th>
+        <th>车牌</th>
+        <th>轴数</th>
+        <th>货车信息</th>
+        <th style="width: 180px;">检测时间</th>
+        <th>状态</th>
+        <!-- 最后一个字段宽度要自适应 -->
+      </tr>
+      </thead>
+      <tbody>
+      <!-- 用对象方式添加多个类 -->
+      <tr ng-repeat="item in itemList" ng-click="mySliderToggle(item)"
+          ng-class="{'gradient-flash': notid==item.aj_id, active:selected == item}">
+        <td>
+          <input type="checkbox" ng-checked="item.selected" ng-model="item.selected" ng-click="selectItem($event)">
+        </td>
+        <td>{{ $index+1 }}</td>
+        <td>{{ item.cj_cp }}</td>
+        <td>{{ item.cj_zs }}</td>
+        <td>{{ item.cj_zz_lx }}</td>
+        <td>{{ item.cj_sj }}</td>
+        <td style="text-indent: 6px;">
+          <i ng-if="item.jttl.jt_zt == '在进行'" class="iconfont icon-jinzhi"  style="color:red;" title="在进行集体讨论"></i>
+          <i ng-if="item.jttl.jt_zt == '已完成'" class="iconfont icon-wancheng"  style="color:green;" title="已完成集体讨论"></i>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+<footer class="l-app-footer ">
+  <div class="app-pagination-direction">总共{{ total }}条 当前为第{{ currentPage }}页</div>
+  <paging
+      class="app-pagination"
+      page="currentPage"
+      page-size="pageSize"
+      total="total"
+      adjacent="1"
+      dots="..."
+      scroll-top="true"
+      hide-if-empty="true"
+      ul-class="pagination"
+      active-class="active"
+      disabled-class="disabled"
+      show-prev-next="true"
+      paging-action="pagingAct('Paging Clicked', page)">
+  </paging>
+</footer>
+<!-- 平级的位置 -->
+<div my-slider-show class="l-entity-panel"
+     ng-controller="OverrunItemDetailCtrl"
+     ng-include="'../apps/overrun/partials/item-detail.html'">
+</div>

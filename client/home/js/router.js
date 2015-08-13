@@ -12,6 +12,10 @@ angular.module('app')
        overrun
        overrun-group
        overrun-admin
+       // 非现场
+       non-overrun
+       non-overrun-group
+       non-overrun-admin
        contact
        */
       .state('desktop', {
@@ -203,6 +207,75 @@ angular.module('app')
           }]
         }
       })
+
+      /*--------------------------
+       $ non-overrun
+       --------------------------*/
+      .state('myapp.non-overrun', {
+        url: '/non-overrun',
+        templateUrl: app_base + 'non-overrun/non-overrun.html',
+        controller: "NonOverrunCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'non-overrun/js/nonOverrunCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.non-overrun.filter', {
+        url: '/filter?notid',
+        templateUrl: app_base + 'non-overrun/partials/filter.html',
+        controller: "NonOverrunFilterCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'non-overrun/js/nonOverrunFilterCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.non-overrun.todo', {
+        url: '/todo?notid',
+        templateUrl: app_base + 'non-overrun/partials/todo.html',
+        controller: "NonOverrunTodoCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'non-overrun/js/nonOverrunTodoCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.non-overrun.done', {
+        url: '/done',
+        templateUrl: app_base + 'non-overrun/partials/done.html',
+        controller: "NonOverrunDoneCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'non-overrun/js/nonOverrunDoneCtrl.js'
+            ]);
+          }]
+        }
+      })
+      .state('myapp.non-overrun.report', {
+        url: '/report',
+        templateUrl: app_base + 'non-overrun/partials/report.html',
+        controller: "NonOverrunReportCtrl",
+        resolve: {
+          loadMyCtrl: ['$ocLazyLoad', function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              app_base + 'non-overrun/js/nonOverrunReportCtrl.js'
+            ]);
+          }]
+        }
+      })
+
+
+
+
+
 
 
       .state('myapp.monitor', {

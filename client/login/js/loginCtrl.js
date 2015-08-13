@@ -10,8 +10,8 @@ angular.module('app.login', [
     }
 
 
-    $scope.wkno = 'ali';
-    $scope.passwd = '123';
+    $scope.wkno = '';
+    $scope.passwd = '';
 
     $scope.login = function () {
       $http.post('/api/logins/login.do', {wkno: $scope.wkno, passwd: $scope.passwd})

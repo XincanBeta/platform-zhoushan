@@ -24,7 +24,7 @@ angular.module('app.overrun').controller('OverrunItemDiscussCtrl',
                 requestService.notiInsert({
                   notid: res.data,
                   appid: "0102", // appid 给 后端做关联 ，overrun-leader
-                  route: "myapp.overrun-leader.todo",
+                  route: "myapp.overrun-group.todo",
                   content: "车牌为 " + item.cj_cp + " 案件 需要进行集体讨论"
                 }).success(function(res){
                   console.log('发送消息通知', res);
