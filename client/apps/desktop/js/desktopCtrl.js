@@ -33,7 +33,9 @@ angular.module('app.desktop', []).controller('DesktopCtrl', function ($scope, $h
       tooltip: {
         enabled: false,
         formatter: function () {
-          return '<b>' + this.series.name + '</b><br/>' + this.x + ': ' + this.y;
+
+
+          return '<b>' + this.series.name + '</b><br/>' + this.x  + ': ' + this.y;
         }
       },
       plotOptions: {
@@ -46,7 +48,10 @@ angular.module('app.desktop', []).controller('DesktopCtrl', function ($scope, $h
       },
       series: [{
         name: '增长数量',
-        data: [ 10, 20, 10, 15, 10, 65]
+        data: [ 10, 20, 10, 15, 10, 65] //
+      },{
+        name: 'AAAAAAA',
+        data: [ 15, 25, 30, 5, 30, 65] //
       }]
     }
 
