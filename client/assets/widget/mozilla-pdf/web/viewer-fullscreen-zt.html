@@ -13,7 +13,6 @@
   <script src="debugger.js"></script>
 
   <script>
-    var DEFAULT_SCALE = 1.1;
   </script>
 
 
@@ -475,10 +474,27 @@
 </form>
 
 
+<style>
+  .myLoading {
+    position: absolute;
+    display: block;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: whitesmoke url('images/loading-icon.gif') center no-repeat;
+  }
+</style>
+
 <script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script src="../../../../assets/components/request.js"></script>
 <script>
+
+  $('body').addClass('myLoading')
+
+  var DEFAULT_SCALE = 1.1;
+
   var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL, item
 

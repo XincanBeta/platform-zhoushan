@@ -3013,10 +3013,14 @@ var PageView = function pageView(container, id, scale, defaultViewport,
       this.canvas.height = 0;
       delete this.canvas;
     }
-
+    //console.log('foo');
     this.loadingIconDiv = document.createElement('div');
     this.loadingIconDiv.className = 'loadingIcon';
     div.appendChild(this.loadingIconDiv);
+
+    //console.log('bar');
+
+
   };
 
   this.update = function pageViewUpdate(scale, rotation) {
@@ -3471,6 +3475,7 @@ var PageView = function pageView(container, id, scale, defaultViewport,
         // Tell the printEngine that rendering this canvas/page has finished.
         obj.done();
       }, function(error) {
+        //console.log('foooooo');
         console.error(error);
         // Tell the printEngine that rendering this canvas/page has failed.
         // This will make the print proces stop.
@@ -4954,7 +4959,12 @@ var PDFViewerApplication = {
     downloadManager.onerror = function (err) {
       // This error won't really be helpful because it's likely the
       // fallback won't work either (or is already open).
+      //console.log('error  error ');
       PDFViewerApplication.error('PDF failed to download.');
+
+
+
+
     };
 
     if (!this.pdfDocument) { // the PDF is not ready yet

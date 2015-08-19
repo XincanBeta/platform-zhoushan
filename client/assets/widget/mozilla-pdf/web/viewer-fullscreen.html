@@ -12,9 +12,7 @@
   <script src="../build/pdf.js"></script>
   <script src="debugger.js"></script>
 
-  <script>
-    var DEFAULT_SCALE = 1.1;
-  </script>
+
 
 
 </head>
@@ -416,6 +414,15 @@
 <div id="printContainer"></div>
 <div id="mozPrintCallback-shim" hidden>
   <style scoped>
+    .myLoading {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: whitesmoke url('images/loading-icon.gif') center no-repeat;
+    }
     #mozPrintCallback-shim {
       position: fixed;
       top: 0;
@@ -501,6 +508,10 @@
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script src="../../../../assets/components/request.js"></script>
 <script>
+
+  $('body').addClass('myLoading')
+
+  var DEFAULT_SCALE = 1.1;
   var app = angular.module('myWidget.pdf', ['request'])
   var DEFAULT_URL, item
 

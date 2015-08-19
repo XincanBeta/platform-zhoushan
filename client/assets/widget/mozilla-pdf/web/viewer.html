@@ -14,15 +14,24 @@
   <script src="../build/pdf.js"></script>
 
   <script src="debugger.js"></script>
-  <script>
-    /* 调用 viewer 之前进行配置 */
-    var DEFAULT_SCALE = 0.8
-  </script>
+
 
   <style>
     .hide {
       display: none;
     }
+
+    .myLoading {
+      position: absolute;
+      display: block;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      background: whitesmoke url('images/loading-icon.gif') center no-repeat;
+    }
+
+
   </style>
 </head>
 <body tabindex="1" ng-controller="PDFCtrl">
@@ -455,6 +464,14 @@
 <script src="../../../../assets/lib/jquery/dist/jquery.min.js"></script>
 <script src="../../../../assets/lib/angular/angular.min.js"></script>
 <script>
+  /* 调用 viewer 之前进行配置 */
+
+  // 在页面加载完成后，自动退出了
+  $('body').addClass('myLoading')
+
+
+  var DEFAULT_SCALE = 0.8
+
   var app = angular.module('myWidget.pdf', [])
   var DEFAULT_URL;
   app.controller("PDFCtrl", function ($scope) {
