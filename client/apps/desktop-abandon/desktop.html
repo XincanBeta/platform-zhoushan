@@ -1,0 +1,104 @@
+<style>
+  .desktop-bg {
+    /*background-image: url("../assets/img/website/bg.png")*/
+  }
+  .desktop-content{
+    margin: 10px;
+  }
+  .desktop-content .panel{
+    margin-bottom: 10px;
+  }
+  .desktop-content .panel-heading{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .desktop-sidebar-left{
+    width: 320px;
+    float: left;
+  }
+  .desktop-sidebar-center{
+    margin-left: 330px;
+    margin-right: 320px;
+  }
+  .desktop-sidebar-right{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 320px;
+  }
+  .growth-rate{
+    height: 241px;
+    overflow: hidden;
+  }
+  .official-document, .map{
+    margin-top: 0;
+    height: 410px;
+    overflow: hidden;
+  }
+  .growth-rate .panel-body{
+    padding: 2px;
+    overflow: hidden;
+  }
+  .map > .panel-body{
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .special-focus{
+    height: 241px;
+  }
+</style>
+<section class="app-content desktop-bg ">
+  <section class="desktop-content ">
+    <div class="desktop-sidebar-left">
+      <section class="panel panel-default  ">
+        <div class="panel-heading">
+          趋势分析
+        </div>
+        <div class="panel-body">
+          <div ng-include="'../apps/desktop/partials/statistics-charts.html'"></div>
+        </div>
+      </section>
+    </div>
+    <div class="desktop-sidebar-center">
+      <section class="panel panel-default growth-rate">
+        <div class="panel-heading">
+          月报表
+        </div>
+        <div class="panel-body">
+          <div ng-include="'../apps/desktop/partials/month-report.html'"></div>
+        </div>
+      </section>
+      <section class="panel panel-default map">
+        <div class="panel-heading">
+          区域分布图
+        </div>
+        <div class="panel-body" >
+          <div ng-include="'../apps/desktop/partials/map.html'"></div>
+        </div>
+      </section>
+    </div>
+    <div class="desktop-sidebar-right">
+      <section class="panel panel-default special-focus">
+        <div class="panel-heading">
+          动态一览
+        </div>
+        <div class="panel-body" style="">
+          <div ng-include="'../apps/desktop/partials/special-focus.html'"></div>
+        </div>
+      </section>
+      <section class="panel panel-default official-document ">
+        <div class="panel-heading">
+          待领导审批
+        </div>
+        <div class="panel-body">
+          <div ng-include="'../apps/desktop/partials/official-document.html'"></div>
+        </div>
+      </section>
+    </div>
+
+  </section>
+</section>
+
+
+

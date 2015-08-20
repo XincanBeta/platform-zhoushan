@@ -27,15 +27,18 @@ angular.module('app.overrun').controller('OverrunItemDetailCtrl',
       operator: 'photoOperator'
     }]
 
-    // 待处理与已完结
+    // 待处理与已完结，现场中除了待处理，剩下的都是已完结
     if ($state.current.name != "myapp.overrun.todo") {
-      $scope.tabset.push({
+      /*$scope.tabset.push({
         name: '案卷',
         content: 'docContent',
         operator: 'docOperator'
-      })
+      })*/
       $scope.hideDetailOperator = true;
+      $scope.showOperator = true;
     }
+
+
 
     $rootScope.$on("slider.hide.done", function () {
       // 每次都重置为第一个选项卡，因为只有 slider 只加载了第一个

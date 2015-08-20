@@ -12,91 +12,48 @@
     padding-top: 5px;
     padding-bottom: 5px;
   }
-  .desktop-sidebar-left{
-    width: 320px;
-    float: left;
-  }
   .desktop-sidebar-center{
-    margin-left: 330px;
-    margin-right: 320px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
-  .desktop-sidebar-right{
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 320px;
-  }
-  .growth-rate{
-    height: 241px;
+  .overrun{
+    height: 350px;
     overflow: hidden;
   }
-  .official-document, .map{
-    margin-top: 0;
-    height: 410px;
-    overflow: hidden;
-  }
-  .growth-rate .panel-body{
+
+  .overrun .panel-body{
     padding: 2px;
     overflow: hidden;
   }
-  .map > .panel-body{
+  .non-overrun > .panel-body{
     padding: 0;
     overflow: hidden;
   }
 
-  .special-focus{
-    height: 241px;
-  }
 </style>
 <section class="app-content desktop-bg ">
   <section class="desktop-content ">
-    <div class="desktop-sidebar-left">
-      <section class="panel panel-default  ">
+    <div class="desktop-sidebar-center">
+      <section class="panel panel-default overrun">
         <div class="panel-heading">
-          趋势分析
+          现场统计图
+          <button class="btn btn-default"  ng-click="showOverrun(lastyear)">{{lastyear}}</button>
+          <button class="btn" ng-class="{true: 'btn-default:active', false: 'btn-default'}[thisyearActive]"  ng-click="showOverrun(thisyear)">{{thisyear}}</button>
+          <!--<button class="btn btn-default"  ng-click="showOverrun(nextyear)">{{nextyear}}</button>-->
         </div>
         <div class="panel-body">
           <div ng-include="'../apps/desktop/partials/statistics-charts.html'"></div>
         </div>
       </section>
-    </div>
-    <div class="desktop-sidebar-center">
-      <section class="panel panel-default growth-rate">
+      <section class="panel panel-default non-overrun">
         <div class="panel-heading">
-          月报表
-        </div>
-        <div class="panel-body">
-          <div ng-include="'../apps/desktop/partials/month-report.html'"></div>
-        </div>
-      </section>
-      <section class="panel panel-default map">
-        <div class="panel-heading">
-          区域分布图
+
         </div>
         <div class="panel-body" >
-          <div ng-include="'../apps/desktop/partials/map.html'"></div>
+          <div ng-include="'../apps/desktop/partials/statistics-charts2.html'"></div>
         </div>
       </section>
     </div>
-    <div class="desktop-sidebar-right">
-      <section class="panel panel-default special-focus">
-        <div class="panel-heading">
-          动态一览
-        </div>
-        <div class="panel-body" style="">
-          <div ng-include="'../apps/desktop/partials/special-focus.html'"></div>
-        </div>
-      </section>
-      <section class="panel panel-default official-document ">
-        <div class="panel-heading">
-          待领导审批
-        </div>
-        <div class="panel-body">
-          <div ng-include="'../apps/desktop/partials/official-document.html'"></div>
-        </div>
-      </section>
-    </div>
-
   </section>
 </section>
 

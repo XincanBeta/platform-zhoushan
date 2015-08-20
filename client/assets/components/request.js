@@ -357,6 +357,9 @@ angular.module("request", []).service('requestService', function ($http) {
   this.faWenList = function () {
     return _doGetRequest('faWen.niGao.json');
   }
-
+  // 桌面：现场处罚 统计图
+  this.overrunChart = function (year) {
+    return _doPostRequest('/api/cxcfs/' + year + '/queryXcClCountAndFkByYear.do');
+  }
 })
 
