@@ -115,6 +115,9 @@ angular.module('app.desktop', []).controller('DesktopCtrl', function ($scope, $h
           }
         }
       }
+
+      $scope.chartLoaded = true;
+
     })
 
   }
