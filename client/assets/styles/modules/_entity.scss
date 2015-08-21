@@ -178,6 +178,11 @@
   margin-bottom: 10px;
   overflow: hidden;
   position: relative;
+  &.is-large{
+    > img {
+      max-width: 500px;
+    }
+  }
   > img {
     max-width: 260px;
     //max-height: 200px;
