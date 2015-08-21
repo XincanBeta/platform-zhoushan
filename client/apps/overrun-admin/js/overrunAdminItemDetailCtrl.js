@@ -23,11 +23,11 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemDetailCtrl',
       name: '证件',
       content: 'photoContent',
       operator: 'photoOperator'
-    }, {
+    }/*, {
       name: '案卷',
       content: 'docContent',
       operator: 'docOperator'
-    }]
+    }*/]
 
 
     $rootScope.$on("slider.hide.done", function () {

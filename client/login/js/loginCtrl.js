@@ -20,7 +20,7 @@ angular.module('app.login', [
       }
       $http.post('/api/logins/login.do', {wkno: $scope.wkno, passwd: $scope.passwd})
         .success(function (res) {
-          console.log(res);
+          //console.log(res);
           if (res.success) {
             parentScope.signIn(res.data);
           }else{

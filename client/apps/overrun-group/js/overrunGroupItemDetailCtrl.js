@@ -31,12 +31,13 @@ angular.module('app.overrun-group').controller('OverrunGroupItemDetailCtrl',
 
     // 集体讨论待处理无案卷
     if ($state.current.name != "myapp.overrun-group.todo") {
-      $scope.tabset.push({
+      /*$scope.tabset.push({
         name: '案卷',
         content: 'docContent',
         operator: 'docOperator'
-      })
+      })*/
       $scope.hideDetailOperator = true;
+      $scope.showOperator = true;
     }
 
 
