@@ -436,7 +436,7 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         }
       }
       imageNumber += newFiles.length;
-      if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
+      if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 1) {
         limited = true;
       } else if ((datatype == 'sceneImages' || datatype == 'recheckImages') && imageNumber > 2) {
         limited = true;
