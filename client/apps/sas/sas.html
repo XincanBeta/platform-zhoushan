@@ -8,18 +8,14 @@
     <p class="app-direction--place">统计分析</p>
   </div>
   <ul class="app-menu">
-    <li>
-      <a class="is-select" href="javascript:void(0);" >
-        路网检测和应急指挥
+    <li ng-repeat="menu in menus">
+      <a ng-class="isSelected(menu)" href="javascript:void(0);" ng-click="select(menu)">
+        {{ menu.menuname }}
       </a>
     </li>
   </ul>
 </aside>
-<!--
-  - 主区域是对应菜单内容变化的
--->
-<aside class="l-app-main">
-  <iframe src="http://120.26.62.238:9090/zsjt/tjcx/main" frameborder="0"
-          style="height: 100%; width: 100%;
-  overflow: hidden;"></iframe>
+<!-- 主区域是对应菜单内容变化的 -->
+<aside ui-view-container class="l-app-main">
+  <ui-view></ui-view>
 </aside>

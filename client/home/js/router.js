@@ -302,6 +302,26 @@ angular.module('app')
           }]
         }
       })
+      .state('myapp.sas.main', {
+        url: '/sas.main',
+        templateUrl: app_base + 'sas/partials/main.html'
+      })
+      .state('myapp.sas.jtlldcz', {
+        url: '/sas.jtlldcz',
+        templateUrl: app_base + 'sas/partials/jtlldcz.html'
+      })
+      .state('myapp.sas.sjcj', {
+        url: '/sas.sjcj',
+        templateUrl: app_base + 'sas/partials/sjcj.html'
+      })
+      .state('myapp.sas.holiday', {
+        url: '/sas.holiday',
+        templateUrl: app_base + 'sas/partials/holiday.html'
+      })
+      .state('myapp.sas.dczList', {
+        url: '/sas.dczList',
+        templateUrl: app_base + 'sas/partials/dczList.html'
+      })
       /*--------------------------
        $ contact
       --------------------------*/
