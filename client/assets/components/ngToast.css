@@ -8,9 +8,12 @@
   margin-top: 20px;
   text-align: center;
   left: 50%;
-  width: 200px;
+  min-width: 200px;
   margin-left: -100px;
 }
+
+
+
 .ng-toast.ng-toast--top {
   top: 0;
   bottom: auto;

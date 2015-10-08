@@ -580,9 +580,19 @@ angular.module('app.overrun').controller('OverrunItemEditCtrl',
         });
         return;
       }*/
+      // 增加用户体验
+      var myToastMsg = ngToast.create({
+        className: 'success',
+        content: '<a href="#" class="alert alert-success bold">正在生成案卷，请耐心等候...</a>',
+        dismissOnTimeout: false,
+        dismissButtonHtml: '',
+        animation: 'fade',
+        dismissOnClick: false
+      });
       _before();
       _beforeSave();
       requestService.overrunTodoItemDone($scope.item).success(function (res) {
+        ngToast.dismiss(myToastMsg);
         _after();
         //console.log('done res', res);
         if (!res.success) {
