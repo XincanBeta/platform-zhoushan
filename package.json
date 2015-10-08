@@ -37,7 +37,7 @@
   },
   "path": {
     "src": "client",
-    "build": "build"
+    "build": "../platform-zhoushan-build"
   },
   "proxy": {
     "ip": "60.190.183.178",

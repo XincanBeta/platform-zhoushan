@@ -407,7 +407,7 @@ angular.module('app.overrun-admin').controller('OverrunAdminItemEditCtrl',
         }
       }
       imageNumber += newFiles.length;
-      if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 3) {
+      if ((datatype == 'vehicleImages' || datatype == 'driverImages') && imageNumber > 1) {
         limited = true;
       } else if ((datatype == 'sceneImages' || datatype == 'recheckImages') && imageNumber > 2) {
         limited = true;
